@@ -4,7 +4,7 @@
         <div class="navbar-fixed">
             <nav class="navbar blue darken-1">
                 <div class="nav-wrapper">
-                    <a href="/" class="brand-logo white-text">Investigadores e Investigadoras resgistrados: 155</a>
+                    <a href="/" class="brand-logo white-text">Investigadores e Investigadoras resgistrados: 328</a>
                     <a href="#!" data-target="sidenav-left" class="sidenav-trigger left">
                         <i class="material-icons white-text">menu</i>
                     </a>
@@ -24,7 +24,6 @@
                         <a class="collapsible-header" tabindex="0">
                             Estadisticas de Investigadores<i class="material-icons">chevron_left</i> 
                             <!-- Pages<i class="material-icons chevron">chevron_left</i>  -->
-
                         </a>
 
                         <div class="collapsible-body" style="display: block;">

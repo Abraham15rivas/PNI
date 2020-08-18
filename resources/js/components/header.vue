@@ -1,9 +1,10 @@
 <template>
-    <header>
+<div>
+        <header>
         <div class="navbar-fixed">
             <nav class="navbar blue darken-1">
                 <div class="nav-wrapper">
-                    <a href="/" class="brand-logo white-text">Dashboard</a>
+                    <a href="/" class="brand-logo white-text">Investigadores e Investigadoras resgistrados: 155</a>
                     <a href="#!" data-target="sidenav-left" class="sidenav-trigger left">
                         <i class="material-icons white-text">menu</i>
                     </a>
@@ -48,6 +49,61 @@
             </li>
         </ul>
     </header>
+    <div class="row">
+    <div class="col s12 m6">
+      <div class="card small" style="height: 225px">
+        <div class="card-image center">
+          <img src="images/femenino.png" style="width:140px; display: block; margin: auto">
+        </div>
+        <div class="card-action">
+          <a>Mujeres: 67</a>
+        </div>
+      </div>
+    </div>
+      <div class="col s12 m6">
+      <div class="card small" style="height: 225px">
+        <div class="card-image center">
+          <img src="images/masculino.png" style="width:140px; display: block; margin: auto">
+        </div>
+        <div class="card-action">
+          <a>Hombres: 88</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col s12 m12">
+          <table class="striped responsive-table centered">
+        <thead>
+          <tr>
+              <th>#</th>
+              <th>PROFESIÓN</th>
+              <th>INVESTIGADORES (AS)</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>BIÓLOGO</td>
+            <td>22</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>QUÍMICO</td>
+            <td>19</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>INGENIERO</td>
+            <td>12</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+  </div>
+</div>
+            
 </template>
 
 <script>

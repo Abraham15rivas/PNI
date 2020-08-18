@@ -2284,6 +2284,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Componente montado.');
@@ -6754,7 +6810,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#keep .v-navigation-drawer__border {\r\n  display: none\n}\r\n", ""]);
+exports.push([module.i, "\n#keep .v-navigation-drawer__border {\n  display: none\n}\n", ""]);
 
 // exports
 
@@ -6773,7 +6829,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navbar[data-v-798ca618] {\r\n    padding: 0px 20px;\n}\n.sidenav .logo-container[data-v-798ca618] {\r\n    padding: 0 16px;\r\n    height: 64px;\r\n    line-height: 64px;\r\n    font-size: 24px;\r\n    border-bottom: 1px solid rgba(0,0,0,0.2);\r\n    box-sizing: content-box;\n}\n.sidenav .collapsible>li.waves-effect[data-v-798ca618] {\r\n    display: block;\n}\n.sidenav .collapsible li[data-v-798ca618], .sidenav.fixed .collapsible li[data-v-798ca618] {\r\n    padding: 0;\n}\r\n\r\n/* .chevron {\r\n    float: right;\r\n    height: 24px;\r\n    width: 24px;\r\n    line-height: 24px;\r\n    margin: 20px 0 0 0;\r\n    transition: transform .2s;\r\n    transform: rotate(-90deg);\r\n} */\n.logo-min[data-v-798ca618] {\r\n    width: 188px;\r\n    height: 55px;\r\n    margin: 5px 40px;\n}\r\n\r\n/* #1e88e5 blue darken-1\r\n#1976d2 blue darken-2\r\n#1565c0 blue darken-3\r\n#0d47a1 blue darken-4 */\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.navbar[data-v-798ca618] {\n    padding: 0px 20px;\n}\n.sidenav .logo-container[data-v-798ca618] {\n    padding: 0 16px;\n    height: 64px;\n    line-height: 64px;\n    font-size: 24px;\n    border-bottom: 1px solid rgba(0,0,0,0.2);\n    box-sizing: content-box;\n}\n.sidenav .collapsible>li.waves-effect[data-v-798ca618] {\n    display: block;\n}\n.sidenav .collapsible li[data-v-798ca618], .sidenav.fixed .collapsible li[data-v-798ca618] {\n    padding: 0;\n}\n\n/* .chevron {\n    float: right;\n    height: 24px;\n    width: 24px;\n    line-height: 24px;\n    margin: 20px 0 0 0;\n    transition: transform .2s;\n    transform: rotate(-90deg);\n} */\n.logo-min[data-v-798ca618] {\n    width: 188px;\n    height: 55px;\n    margin: 5px 40px;\n}\n\n/* #1e88e5 blue darken-1\n#1976d2 blue darken-2\n#1565c0 blue darken-3\n#0d47a1 blue darken-4 */\n\n\n", ""]);
 
 // exports
 
@@ -39065,132 +39121,227 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("header", [
-      _c("div", { staticClass: "navbar-fixed" }, [
-        _c("nav", { staticClass: "navbar blue darken-1" }, [
-          _c("div", { staticClass: "nav-wrapper" }, [
-            _c(
-              "a",
-              { staticClass: "brand-logo white-text", attrs: { href: "/" } },
-              [_vm._v("Dashboard")]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "sidenav-trigger left",
-                attrs: { href: "#!", "data-target": "sidenav-left" }
-              },
-              [
-                _c("i", { staticClass: "material-icons white-text" }, [
-                  _vm._v("menu")
-                ])
-              ]
-            )
+    return _c("div", [
+      _c("header", [
+        _c("div", { staticClass: "navbar-fixed" }, [
+          _c("nav", { staticClass: "navbar blue darken-1" }, [
+            _c("div", { staticClass: "nav-wrapper" }, [
+              _c(
+                "a",
+                { staticClass: "brand-logo white-text", attrs: { href: "/" } },
+                [_vm._v("Investigadores e Investigadoras resgistrados: 155")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "sidenav-trigger left",
+                  attrs: { href: "#!", "data-target": "sidenav-left" }
+                },
+                [
+                  _c("i", { staticClass: "material-icons white-text" }, [
+                    _vm._v("menu")
+                  ])
+                ]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: " sidenav sidenav-fixed" }, [
+          _c("li", [
+            _c("a", { staticClass: "logo-container", attrs: { href: "/" } }, [
+              _c("img", {
+                staticClass: "logo-min",
+                attrs: { src: "images/logo-mincyt.png" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("ul", { staticClass: "collapsible collapsible-accordion" }, [
+              _c("li", { staticClass: "waves-effect" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "collapsible-header",
+                    attrs: { tabindex: "0" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            Estadisticas de Investigadores"
+                    ),
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("chevron_left")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "collapsible-body",
+                    staticStyle: { display: "block" }
+                  },
+                  [
+                    _c("ul", [
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "waves-effect active",
+                            attrs: { href: "/pages/admin-dashboard" }
+                          },
+                          [
+                            _vm._v("1"),
+                            _c("i", { staticClass: "material-icons" }, [
+                              _vm._v("web")
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "waves-effect",
+                            attrs: { href: "/pages/admin-fixed-chart" }
+                          },
+                          [
+                            _vm._v("2"),
+                            _c("i", { staticClass: "material-icons" }, [
+                              _vm._v("list")
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "waves-effect",
+                            attrs: { href: "/pages/admin-grid" }
+                          },
+                          [
+                            _vm._v("3"),
+                            _c("i", { staticClass: "material-icons" }, [
+                              _vm._v("dashboard")
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "waves-effect",
+                            attrs: { href: "/pages/admin-chat" }
+                          },
+                          [
+                            _vm._v("4"),
+                            _c("i", { staticClass: "material-icons" }, [
+                              _vm._v("chat")
+                            ])
+                          ]
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ])
+            ])
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("ul", { staticClass: " sidenav sidenav-fixed" }, [
-        _c("li", [
-          _c("a", { staticClass: "logo-container", attrs: { href: "/" } }, [
-            _c("img", {
-              staticClass: "logo-min",
-              attrs: { src: "images/logo-mincyt.png" }
-            })
-          ])
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12 m6" }, [
+          _c(
+            "div",
+            { staticClass: "card small", staticStyle: { height: "225px" } },
+            [
+              _c("div", { staticClass: "card-image center" }, [
+                _c("img", {
+                  staticStyle: {
+                    width: "140px",
+                    display: "block",
+                    margin: "auto"
+                  },
+                  attrs: { src: "images/femenino.png" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-action" }, [
+                _c("a", [_vm._v("Mujeres: 67")])
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
-        _c("li", [
-          _c("ul", { staticClass: "collapsible collapsible-accordion" }, [
-            _c("li", { staticClass: "waves-effect" }, [
-              _c(
-                "a",
-                { staticClass: "collapsible-header", attrs: { tabindex: "0" } },
-                [
-                  _vm._v(
-                    "\n                        Estadisticas de Investigadores"
-                  ),
-                  _c("i", { staticClass: "material-icons" }, [
-                    _vm._v("chevron_left")
-                  ])
-                ]
-              ),
+        _c("div", { staticClass: "col s12 m6" }, [
+          _c(
+            "div",
+            { staticClass: "card small", staticStyle: { height: "225px" } },
+            [
+              _c("div", { staticClass: "card-image center" }, [
+                _c("img", {
+                  staticStyle: {
+                    width: "140px",
+                    display: "block",
+                    margin: "auto"
+                  },
+                  attrs: { src: "images/masculino.png" }
+                })
+              ]),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "collapsible-body",
-                  staticStyle: { display: "block" }
-                },
-                [
-                  _c("ul", [
-                    _c("li", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "waves-effect active",
-                          attrs: { href: "/pages/admin-dashboard" }
-                        },
-                        [
-                          _vm._v("1"),
-                          _c("i", { staticClass: "material-icons" }, [
-                            _vm._v("web")
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "waves-effect",
-                          attrs: { href: "/pages/admin-fixed-chart" }
-                        },
-                        [
-                          _vm._v("2"),
-                          _c("i", { staticClass: "material-icons" }, [
-                            _vm._v("list")
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "waves-effect",
-                          attrs: { href: "/pages/admin-grid" }
-                        },
-                        [
-                          _vm._v("3"),
-                          _c("i", { staticClass: "material-icons" }, [
-                            _vm._v("dashboard")
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "waves-effect",
-                          attrs: { href: "/pages/admin-chat" }
-                        },
-                        [
-                          _vm._v("4"),
-                          _c("i", { staticClass: "material-icons" }, [
-                            _vm._v("chat")
-                          ])
-                        ]
-                      )
-                    ])
-                  ])
-                ]
-              )
+              _c("div", { staticClass: "card-action" }, [
+                _c("a", [_vm._v("Hombres: 88")])
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12 m12" }, [
+          _c("table", { staticClass: "striped responsive-table centered" }, [
+            _c("thead", [
+              _c("tr", [
+                _c("th", [_vm._v("#")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("PROFESIÓN")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("INVESTIGADORES (AS)")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [_vm._v("1")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("BIÓLOGO")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("22")])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("2")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("QUÍMICO")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("19")])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("3")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("INGENIERO")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("12")])
+              ])
             ])
           ])
         ])
@@ -51633,8 +51784,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\proyectos-fii\PNI\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\proyectos-fii\PNI\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/sistemas/Laravel/pni-mppct/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/sistemas/Laravel/pni-mppct/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

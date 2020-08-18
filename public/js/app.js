@@ -2284,6 +2284,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Componente montado.');
@@ -39065,132 +39120,227 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("header", [
-      _c("div", { staticClass: "navbar-fixed" }, [
-        _c("nav", { staticClass: "navbar blue darken-1" }, [
-          _c("div", { staticClass: "nav-wrapper" }, [
-            _c(
-              "a",
-              { staticClass: "brand-logo white-text", attrs: { href: "/" } },
-              [_vm._v("Dashboard")]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "sidenav-trigger left",
-                attrs: { href: "#!", "data-target": "sidenav-left" }
-              },
-              [
-                _c("i", { staticClass: "material-icons white-text" }, [
-                  _vm._v("menu")
-                ])
-              ]
-            )
+    return _c("div", [
+      _c("header", [
+        _c("div", { staticClass: "navbar-fixed" }, [
+          _c("nav", { staticClass: "navbar blue darken-1" }, [
+            _c("div", { staticClass: "nav-wrapper" }, [
+              _c(
+                "a",
+                { staticClass: "brand-logo white-text", attrs: { href: "/" } },
+                [_vm._v("Investigadores e Investigadoras resgistrados: 328")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "sidenav-trigger left",
+                  attrs: { href: "#!", "data-target": "sidenav-left" }
+                },
+                [
+                  _c("i", { staticClass: "material-icons white-text" }, [
+                    _vm._v("menu")
+                  ])
+                ]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: " sidenav sidenav-fixed" }, [
+          _c("li", [
+            _c("a", { staticClass: "logo-container", attrs: { href: "/" } }, [
+              _c("img", {
+                staticClass: "logo-min",
+                attrs: { src: "images/logo-mincyt.png" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("ul", { staticClass: "collapsible collapsible-accordion" }, [
+              _c("li", { staticClass: "waves-effect" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "collapsible-header",
+                    attrs: { tabindex: "0" }
+                  },
+                  [
+                    _vm._v(
+                      "\r\n                            Estadisticas de Investigadores"
+                    ),
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("chevron_left")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "collapsible-body",
+                    staticStyle: { display: "block" }
+                  },
+                  [
+                    _c("ul", [
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "waves-effect active",
+                            attrs: { href: "/pages/admin-dashboard" }
+                          },
+                          [
+                            _vm._v("1"),
+                            _c("i", { staticClass: "material-icons" }, [
+                              _vm._v("web")
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "waves-effect",
+                            attrs: { href: "/pages/admin-fixed-chart" }
+                          },
+                          [
+                            _vm._v("2"),
+                            _c("i", { staticClass: "material-icons" }, [
+                              _vm._v("list")
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "waves-effect",
+                            attrs: { href: "/pages/admin-grid" }
+                          },
+                          [
+                            _vm._v("3"),
+                            _c("i", { staticClass: "material-icons" }, [
+                              _vm._v("dashboard")
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "waves-effect",
+                            attrs: { href: "/pages/admin-chat" }
+                          },
+                          [
+                            _vm._v("4"),
+                            _c("i", { staticClass: "material-icons" }, [
+                              _vm._v("chat")
+                            ])
+                          ]
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ])
+            ])
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("ul", { staticClass: " sidenav sidenav-fixed" }, [
-        _c("li", [
-          _c("a", { staticClass: "logo-container", attrs: { href: "/" } }, [
-            _c("img", {
-              staticClass: "logo-min",
-              attrs: { src: "images/logo-mincyt.png" }
-            })
-          ])
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12 m6" }, [
+          _c(
+            "div",
+            { staticClass: "card small", staticStyle: { height: "225px" } },
+            [
+              _c("div", { staticClass: "card-image center" }, [
+                _c("img", {
+                  staticStyle: {
+                    width: "140px",
+                    display: "block",
+                    margin: "auto"
+                  },
+                  attrs: { src: "images/femenino.png" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-action" }, [
+                _c("a", [_vm._v("Mujeres: 67")])
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
-        _c("li", [
-          _c("ul", { staticClass: "collapsible collapsible-accordion" }, [
-            _c("li", { staticClass: "waves-effect" }, [
-              _c(
-                "a",
-                { staticClass: "collapsible-header", attrs: { tabindex: "0" } },
-                [
-                  _vm._v(
-                    "\n                        Estadisticas de Investigadores"
-                  ),
-                  _c("i", { staticClass: "material-icons" }, [
-                    _vm._v("chevron_left")
-                  ])
-                ]
-              ),
+        _c("div", { staticClass: "col s12 m6" }, [
+          _c(
+            "div",
+            { staticClass: "card small", staticStyle: { height: "225px" } },
+            [
+              _c("div", { staticClass: "card-image center" }, [
+                _c("img", {
+                  staticStyle: {
+                    width: "140px",
+                    display: "block",
+                    margin: "auto"
+                  },
+                  attrs: { src: "images/masculino.png" }
+                })
+              ]),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "collapsible-body",
-                  staticStyle: { display: "block" }
-                },
-                [
-                  _c("ul", [
-                    _c("li", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "waves-effect active",
-                          attrs: { href: "/pages/admin-dashboard" }
-                        },
-                        [
-                          _vm._v("1"),
-                          _c("i", { staticClass: "material-icons" }, [
-                            _vm._v("web")
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "waves-effect",
-                          attrs: { href: "/pages/admin-fixed-chart" }
-                        },
-                        [
-                          _vm._v("2"),
-                          _c("i", { staticClass: "material-icons" }, [
-                            _vm._v("list")
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "waves-effect",
-                          attrs: { href: "/pages/admin-grid" }
-                        },
-                        [
-                          _vm._v("3"),
-                          _c("i", { staticClass: "material-icons" }, [
-                            _vm._v("dashboard")
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "waves-effect",
-                          attrs: { href: "/pages/admin-chat" }
-                        },
-                        [
-                          _vm._v("4"),
-                          _c("i", { staticClass: "material-icons" }, [
-                            _vm._v("chat")
-                          ])
-                        ]
-                      )
-                    ])
-                  ])
-                ]
-              )
+              _c("div", { staticClass: "card-action" }, [
+                _c("a", [_vm._v("Hombres: 88")])
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12 m12" }, [
+          _c("table", { staticClass: "striped responsive-table centered" }, [
+            _c("thead", [
+              _c("tr", [
+                _c("th", [_vm._v("#")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("PROFESIÓN")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("INVESTIGADORES (AS)")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [_vm._v("1")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("BIÓLOGO")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("22")])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("2")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("QUÍMICO")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("19")])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("3")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("INGENIERO")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("12")])
+              ])
             ])
           ])
         ])

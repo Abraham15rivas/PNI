@@ -62,6 +62,9 @@ class InvestigatorController extends Controller
         $groupRangeAge = $calculations["ranges"];
         $groupAverageAge = $calculations["averages"];
 
+        // Numero de instituciones
+        $groupInstitution = self::institutionType($investigators);
+
         $data = collect([
             "total_investigators"=>$total_investigators,
             "investigators_mens"=>$investigators_mens,
@@ -69,7 +72,8 @@ class InvestigatorController extends Controller
             "groupProfesion"=>$groupProfesion,
             "groupStates"=>$groupState,
             "groupRangeAge"=>$groupRangeAge,
-            "groupAverageAge"=>$groupAverageAge
+            "groupAverageAge"=>$groupAverageAge,
+            "groupInstitution"=>$groupInstitution
         ]);
 
         return $data->toJson();
@@ -83,18 +87,11 @@ class InvestigatorController extends Controller
             $ages->push(["age"=>Carbon::parse($data->fecha_nac)->age,"genero"=>$data->id_genero]);
         }
 
-        $ranges = collect([
-            "00 - 09" => 0,
-            "10 - 19" => 0,
-            "20 - 29" => 0,
-            "30 - 39" => 0,
-            "40 - 49" => 0,
-            "50 - 59" => 0,
-            "60 - 69" => 0,
-            "70 - 79" => 0,
-            "80 - 89" => 0,
-        ]);
-        
+        $ranges = array();
+        for ($i = 0; $i < 9; $i++) {
+            $ranges["$i"."0 - $i"."9"] = 0;
+        }
+
         $famela = array();
         $male = array();
 
@@ -168,5 +165,24 @@ class InvestigatorController extends Controller
         ]);
 
         return $groupAverageAge;
+    }
+
+    public function institutionType ($investigators) {
+
+        $type0 = $investigators->where('id_tipo_institucion', 0)->count();
+        $type1 = $investigators->where('id_tipo_institucion', 1)->count();
+        $type2 = $investigators->where('id_tipo_institucion', 2)->count();
+        $type3 = $investigators->where('id_tipo_institucion', 3)->count();
+        $type4 = $investigators->where('id_tipo_institucion', 4)->count();
+
+        $institutions = collect([
+            "INSTITUCIÓN SALUD"=> $type1,
+            "INSTITUCIÓN INVESTIGACIÓN"=> $type2,
+            "INSTITUCIÓN EDUCATIVA"=> $type3,
+            "INSTITUCION COMUNITARIA"=> $type4,
+            "NO CONTESTO"=> $type0
+        ]);
+
+        return $institutions;
     }
 }

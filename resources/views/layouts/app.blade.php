@@ -38,6 +38,7 @@
 <body class="has-fixed-sidenav">
     <div id="app">
         <header-vue></header-vue>
+        <router-view></router-view>
     </div>
 </body>
 </html>

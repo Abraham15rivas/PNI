@@ -57,12 +57,10 @@ class InvestigatorController extends Controller
             $groupState->push(["estado"=>$name,"total"=>$total]);
         }
         
-        // Investigadores por rango de edad
-        $birthDate =  $investigators;
-        $groupRangeAge = self::rangeAge($birthDate);
-      
-        // Edad minima, maxima y promedio
-        $groupAge = collect();
+        // Investigadores por rango de edad, edad minima, maxima y promedios por genero
+        $calculations = self::rangeAge($investigators);
+        $groupRangeAge = $calculations["ranges"];
+        $groupAverageAge = $calculations["averages"];
 
         $data = collect([
             "total_investigators"=>$total_investigators,
@@ -71,21 +69,21 @@ class InvestigatorController extends Controller
             "groupProfesion"=>$groupProfesion,
             "groupStates"=>$groupState,
             "groupRangeAge"=>$groupRangeAge,
-            "groupAge"=>$groupAge
+            "groupAverageAge"=>$groupAverageAge
         ]);
 
         return $data->toJson();
     }
 
-    public function rangeAge ($birthDate) {
+    public function rangeAge ($investigators) {
 
         $ages = collect();
-        
-        foreach ($birthDate as $date) {
-            $ages->push(Carbon::parse($date->fecha_nac)->age);
+        // Calcula las edades en base a la fecha de nacimiento
+        foreach ($investigators as $data) {
+            $ages->push(["age"=>Carbon::parse($data->fecha_nac)->age,"genero"=>$data->id_genero]);
         }
 
-        $rangos = collect([
+        $ranges = collect([
             "00 - 09" => 0,
             "10 - 19" => 0,
             "20 - 29" => 0,
@@ -96,29 +94,79 @@ class InvestigatorController extends Controller
             "70 - 79" => 0,
             "80 - 89" => 0,
         ]);
+        
+        $famela = array();
+        $male = array();
 
+        // Asigna valor a cada rango
         foreach ($ages as $age) 
         {
-            if (0 <= $age && $age <= 9) {
-                $rangos["00 - 09"] += 1;
-            } else if (10 <= $age && $age <= 19) {
-                $rangos["10 - 19"] += 1;
-            } else if (20 <= $age && $age <= 29) {
-                $rangos["20 - 29"] += 1;
-            } else if (30 <= $age && $age <= 39) {
-                $rangos["30 - 39"] += 1;
-            } else if (40 <= $age && $age <= 49) {
-                $rangos["40 - 49"] += 1;
-            } else if (50 <= $age && $age <= 59) {
-                $rangos["50 - 59"] += 1;
-            } else if (60 <= $age && $age <= 69) {
-                $rangos["60 - 69"] += 1;
-            } else if (70 <= $age && $age <= 79) {
-                $rangos["70 - 79"] += 1;
-            } else if (80 <= $age && $age <= 89) {
-                $rangos["80 - 89"] += 1;
+            if (0 <= $age['age'] && $age['age'] <= 9) {
+                $ranges["00 - 09"] += 1;
+                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
+            } else if (10 <= $age['age'] && $age['age'] <= 19) {
+                $ranges["10 - 19"] += 1;
+                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
+            } else if (20 <= $age['age'] && $age['age'] <= 29) {
+                $ranges["20 - 29"] += 1;
+                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
+            } else if (30 <= $age['age'] && $age['age'] <= 39) {
+                $ranges["30 - 39"] += 1;
+                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
+            } else if (40 <= $age['age'] && $age['age'] <= 49) {
+                $ranges["40 - 49"] += 1;
+                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
+            } else if (50 <= $age['age'] && $age['age'] <= 59) {
+                $ranges["50 - 59"] += 1;
+                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
+            } else if (60 <= $age['age'] && $age['age'] <= 69) {
+                $ranges["60 - 69"] += 1;
+                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
+            } else if (70 <= $age['age'] && $age['age'] <= 79) {
+                $ranges["70 - 79"] += 1;
+                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
+            } else if (80 <= $age['age'] && $age['age'] <= 89) {
+                $ranges["80 - 89"] += 1;
+                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
             } 
         }
-        return $rangos;
+
+        // Edad minima, maxima y promedios
+        $averages = self::averageAge($male, $famela);
+
+        return ["ranges"=>$ranges, "averages"=>$averages];
+    }
+
+    public function averageAge ($male, $famela) {
+
+        $min_famela = min($famela);
+        $max_famela = max($famela);
+        $average_famela = (array_sum($famela) / count($famela));
+
+        $min_male = min($male);
+        $max_male = max($male);
+        $average_male = (array_sum($male) / count($male));
+
+        $total_averages = (array_sum($famela) + array_sum($male)) / (count($famela) + count($male));
+
+        $groupAverageAge = collect([
+            "promedio"=> [
+                "femenino"=> bcdiv($average_famela, '1', 1),
+                "masculino"=> bcdiv($average_male, '1', 1),
+                "total"=> bcdiv($total_averages, '1', 1)
+            ],
+            "minima"=> [
+                "femenino"=> $min_famela,
+                "masculino"=> $min_male,
+                "total"=> $min_famela > $min_male ? $min_famela : $min_male
+            ],
+            "maxima"=> [
+                "femenino"=> $max_famela,
+                "masculino"=> $max_male,
+                "total"=> $max_famela > $max_male ? $max_famela : $max_male
+            ]
+        ]);
+
+        return $groupAverageAge;
     }
 }

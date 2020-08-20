@@ -170,7 +170,7 @@ class InvestigatorController extends Controller
     public function institutionType ($investigators) {
 
         $type0 = $investigators->where('id_tipo_institucion', 0)->count();
-        $type1 = $investigators->where('id_tipo_institucion', 1)->count();
+        $type1 = $investigators->where ('id_tipo_institucion', 1)->count();
         $type2 = $investigators->where('id_tipo_institucion', 2)->count();
         $type3 = $investigators->where('id_tipo_institucion', 3)->count();
         $type4 = $investigators->where('id_tipo_institucion', 4)->count();

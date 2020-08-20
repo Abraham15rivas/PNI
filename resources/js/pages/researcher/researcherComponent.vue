@@ -4,71 +4,31 @@
             <div class="col s12">
             <h2>Vista de Investigadores</h2>
             </div>
-            <div class="col l3 m6 s12">
-
-            <div class="card">
-                <div class="card-stacked">
-                <div class="card-metrics card-metrics-static">
-                    <div class="card-metric">
-                    <div class="card-metric-title">Revenue</div>
-                    <div class="card-metric-value">$12,476.00</div>
-                    <div class="card-metric-change increase">
-                        <i class="material-icons left">keyboard_arrow_up</i>
-                        12%
-                    </div>
-                    </div>
-                </div>
-                </div>
-                <div class="card-chart">
-                    <div class="chartjs-size-monitor">
-                        <div class="chartjs-size-monitor-expand">
-                            <div>
-                            </div>
-                        </div>
-                        <div class="chartjs-size-monitor-shrink">
-                            <div></div>
-                        </div>
+            <div class="col s12 m6 l3">
+                <div class="card card-bg black-text">
+                    <div class="card-content center">
+                        <p>Total registrados</p>
+                        <h5 class="green-text">{{total_investigators}}</h5>
                     </div>
                 </div>
             </div>
-
-            </div>
-            <div class="col l3 m6 s12">
-
-            <div class="card">
-                <div class="card-stacked">
-                <div class="card-metrics card-metrics-static">
-                    <div class="card-metric">
-                    <div class="card-metric-title">Clicks</div>
-                    <div class="card-metric-value">11,893</div>
-                    <div class="card-metric-change increase">
-                        <i class="material-icons left">keyboard_arrow_up</i>
-                        8%
-                    </div>
+            <div class="col s12 m6 l3">
+                <div class="card card-bg black-text">
+                    <div class="card-content center">
+                        <p>Investigadores</p>
+                        <h5 class="blue-text">{{investigators_mens}}</h5>
                     </div>
                 </div>
-                </div>
             </div>
-
-            </div>
-            <div class="col l3 m6 s12">
-
-                <div class="card">
-                    <div class="card-stacked">
-                        <div class="card-metrics card-metrics-static">
-                            <div class="card-metric">
-                                <div class="card-metric-title">Users</div>
-                                <div class="card-metric-value">230,648</div>
-                                <div class="card-metric-change decrease">
-                                    <i class="material-icons left">keyboard_arrow_down</i>
-                                    2%
-                                </div>
-                            </div>
-                        </div>
+            <div class="col s12 m6 l3">
+                <div class="card card-bg black-text">
+                    <div class="card-content center">
+                        <p>Investigadoras</p>
+                        <h5 class="blue-text">{{investigators_womens}}</h5>
                     </div>
                 </div>
-
             </div>
+           
             <div class="col l3 m6 s12">
 
                 <div class="card">
@@ -127,8 +87,30 @@
 
 <script>
     export default {
+        data() {
+            return {
+                total_investigators: "",
+                investigators_mens: "",
+                investigators_womens: "",
+            }
+        },
         mounted() {
-            console.log('Component mounted.')
+            this.totalInvestigators();
+        },
+        methods:{
+            totalInvestigators(){
+                let url = 'statistics/investigators';
+                axios.get(url)
+                    .then(res => {                        
+                        this.total_investigators = res.data.total_investigators;
+                        this.investigators_mens  = res.data.investigators_mens;
+                        this.investigators_womens  = res.data.investigators_womens;
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        
+                    })
+            }
         }
     }
 </script>

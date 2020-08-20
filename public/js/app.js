@@ -2202,49 +2202,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      total_investigators: "",
+      investigators_mens: "",
+      investigators_womens: ""
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.totalInvestigators();
+  },
+  methods: {
+    totalInvestigators: function totalInvestigators() {
+      var _this = this;
+
+      var url = 'statistics/investigators';
+      axios.get(url).then(function (res) {
+        _this.total_investigators = res.data.total_investigators;
+        _this.investigators_mens = res.data.investigators_mens;
+        _this.investigators_womens = res.data.investigators_womens;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
   }
 });
 
@@ -6712,7 +6693,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.navbar[data-v-62e37494] {\r\n    padding: 0px 20px;\n}\n.sidenav .logo-container[data-v-62e37494] {\r\n    padding: 0 16px;\r\n    height: 64px;\r\n    line-height: 64px;\r\n    font-size: 24px;\r\n    border-bottom: 1px solid rgba(0,0,0,0.2);\r\n    box-sizing: content-box;\n}\n.sidenav .collapsible>li.waves-effect[data-v-62e37494] {\r\n    display: block;\n}\n.sidenav .collapsible li[data-v-62e37494], .sidenav.fixed .collapsible li[data-v-62e37494] {\r\n    padding: 0;\n}\r\n\r\n/* .chevron {\r\n    float: right;\r\n    height: 24px;\r\n    width: 24px;\r\n    line-height: 24px;\r\n    margin: 20px 0 0 0;\r\n    transition: transform .2s;\r\n    transform: rotate(-90deg);\r\n} */\n.logo-min[data-v-62e37494] {\r\n    width: 188px;\r\n    height: 55px;\r\n    margin: 5px 40px;\n}\r\n\r\n/* #1e88e5 blue darken-1\r\n#1976d2 blue darken-2\r\n#1565c0 blue darken-3\r\n#0d47a1 blue darken-4 */\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.navbar[data-v-62e37494] {\n    padding: 0px 20px;\n}\n.sidenav .logo-container[data-v-62e37494] {\n    padding: 0 16px;\n    height: 64px;\n    line-height: 64px;\n    font-size: 24px;\n    border-bottom: 1px solid rgba(0,0,0,0.2);\n    box-sizing: content-box;\n}\n.sidenav .collapsible>li.waves-effect[data-v-62e37494] {\n    display: block;\n}\n.sidenav .collapsible li[data-v-62e37494], .sidenav.fixed .collapsible li[data-v-62e37494] {\n    padding: 0;\n}\n\n/* .chevron {\n    float: right;\n    height: 24px;\n    width: 24px;\n    line-height: 24px;\n    margin: 20px 0 0 0;\n    transition: transform .2s;\n    transform: rotate(-90deg);\n} */\n.logo-min[data-v-62e37494] {\n    width: 188px;\n    height: 55px;\n    margin: 5px 40px;\n}\n\n/* #1e88e5 blue darken-1\n#1976d2 blue darken-2\n#1565c0 blue darken-3\n#0d47a1 blue darken-4 */\n\n\n", ""]);
 
 // exports
 
@@ -38719,217 +38700,176 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col s12 m6 l3" }, [
+        _c("div", { staticClass: "card card-bg black-text" }, [
+          _c("div", { staticClass: "card-content center" }, [
+            _c("p", [_vm._v("Total registrados")]),
+            _vm._v(" "),
+            _c("h5", { staticClass: "green-text" }, [
+              _vm._v(_vm._s(_vm.total_investigators))
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col s12 m6 l3" }, [
+        _c("div", { staticClass: "card card-bg black-text" }, [
+          _c("div", { staticClass: "card-content center" }, [
+            _c("p", [_vm._v("Investigadores")]),
+            _vm._v(" "),
+            _c("h5", { staticClass: "blue-text" }, [
+              _vm._v(_vm._s(_vm.investigators_mens))
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col s12 m6 l3" }, [
+        _c("div", { staticClass: "card card-bg black-text" }, [
+          _c("div", { staticClass: "card-content center" }, [
+            _c("p", [_vm._v("Investigadoras")]),
+            _vm._v(" "),
+            _c("h5", { staticClass: "blue-text" }, [
+              _vm._v(_vm._s(_vm.investigators_womens))
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2)
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col s12" }, [
-          _c("h2", [_vm._v("Vista de Investigadores")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col l3 m6 s12" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-stacked" }, [
-              _c("div", { staticClass: "card-metrics card-metrics-static" }, [
-                _c("div", { staticClass: "card-metric" }, [
-                  _c("div", { staticClass: "card-metric-title" }, [
-                    _vm._v("Revenue")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-metric-value" }, [
-                    _vm._v("$12,476.00")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-metric-change increase" }, [
-                    _c("i", { staticClass: "material-icons left" }, [
-                      _vm._v("keyboard_arrow_up")
-                    ]),
-                    _vm._v("\n                    12%\n                ")
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-chart" }, [
-              _c("div", { staticClass: "chartjs-size-monitor" }, [
-                _c("div", { staticClass: "chartjs-size-monitor-expand" }, [
-                  _c("div")
+    return _c("div", { staticClass: "col s12" }, [
+      _c("h2", [_vm._v("Vista de Investigadores")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col l3 m6 s12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-stacked" }, [
+          _c("div", { staticClass: "card-metrics card-metrics-static" }, [
+            _c("div", { staticClass: "card-metric" }, [
+              _c("div", { staticClass: "card-metric-title" }, [
+                _vm._v("Conversion Rate")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-metric-value" }, [
+                _vm._v("0.24%")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-metric-change decrease" }, [
+                _c("i", { staticClass: "material-icons left" }, [
+                  _vm._v("keyboard_arrow_down")
                 ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "chartjs-size-monitor-shrink" }, [
-                  _c("div")
-                ])
+                _vm._v("\n                        9%\n                    ")
               ])
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col l3 m6 s12" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-stacked" }, [
-              _c("div", { staticClass: "card-metrics card-metrics-static" }, [
-                _c("div", { staticClass: "card-metric" }, [
-                  _c("div", { staticClass: "card-metric-title" }, [
-                    _vm._v("Clicks")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-metric-value" }, [
-                    _vm._v("11,893")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-metric-change increase" }, [
-                    _c("i", { staticClass: "material-icons left" }, [
-                      _vm._v("keyboard_arrow_up")
-                    ]),
-                    _vm._v("\n                    8%\n                ")
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col l3 m6 s12" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-stacked" }, [
-              _c("div", { staticClass: "card-metrics card-metrics-static" }, [
-                _c("div", { staticClass: "card-metric" }, [
-                  _c("div", { staticClass: "card-metric-title" }, [
-                    _vm._v("Users")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-metric-value" }, [
-                    _vm._v("230,648")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-metric-change decrease" }, [
-                    _c("i", { staticClass: "material-icons left" }, [
-                      _vm._v("keyboard_arrow_down")
-                    ]),
-                    _vm._v(
-                      "\n                                2%\n                            "
-                    )
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col l3 m6 s12" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-stacked" }, [
-              _c("div", { staticClass: "card-metrics card-metrics-static" }, [
-                _c("div", { staticClass: "card-metric" }, [
-                  _c("div", { staticClass: "card-metric-title" }, [
-                    _vm._v("Conversion Rate")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-metric-value" }, [
-                    _vm._v("0.24%")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-metric-change decrease" }, [
-                    _c("i", { staticClass: "material-icons left" }, [
-                      _vm._v("keyboard_arrow_down")
-                    ]),
-                    _vm._v("\n                        9%\n                    ")
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col s12" }, [
-          _c("div", { staticClass: "card" }, [
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col s12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "card-metrics card-metrics-toggle card-metrics-centered"
+          },
+          [
             _c(
               "div",
               {
-                staticClass:
-                  "card-metrics card-metrics-toggle card-metrics-centered"
+                staticClass: "card-metric waves-effect active",
+                attrs: { "data-metric": "revenue" }
               },
               [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-metric waves-effect active",
-                    attrs: { "data-metric": "revenue" }
-                  },
-                  [
-                    _c("div", { staticClass: "card-metric-title" }, [
-                      _vm._v("Revenue")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-metric-value" }, [
-                      _vm._v("$12,476.00")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-metric-change" }, [
-                      _c("i", { staticClass: "material-icons" }, [
-                        _vm._v("keyboard_arrow_up")
-                      ]),
-                      _vm._v("\n                    12%\n                    ")
-                    ])
-                  ]
-                ),
+                _c("div", { staticClass: "card-metric-title" }, [
+                  _vm._v("Revenue")
+                ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-metric waves-effect",
-                    attrs: { "data-metric": "users" }
-                  },
-                  [
-                    _c("div", { staticClass: "card-metric-title" }, [
-                      _vm._v("Users")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-metric-value" }, [
-                      _vm._v("2024")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-metric-change" }, [
-                      _c("i", { staticClass: "material-icons" }, [
-                        _vm._v("keyboard_arrow_up")
-                      ]),
-                      _vm._v("\n                    9%\n                    ")
-                    ])
-                  ]
-                ),
+                _c("div", { staticClass: "card-metric-value" }, [
+                  _vm._v("$12,476.00")
+                ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-metric waves-effect",
-                    attrs: { "data-metric": "ctr" }
-                  },
-                  [
-                    _c("div", { staticClass: "card-metric-title" }, [
-                      _vm._v("CTR")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-metric-value" }, [
-                      _vm._v("0.20%")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-metric-change" }, [
-                      _c("i", { staticClass: "material-icons" }, [
-                        _vm._v("keyboard_arrow_up")
-                      ]),
-                      _vm._v("\n                    4%\n                    ")
-                    ])
-                  ]
-                )
+                _c("div", { staticClass: "card-metric-change" }, [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("keyboard_arrow_up")
+                  ]),
+                  _vm._v("\n                    12%\n                    ")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "card-metric waves-effect",
+                attrs: { "data-metric": "users" }
+              },
+              [
+                _c("div", { staticClass: "card-metric-title" }, [
+                  _vm._v("Users")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-metric-value" }, [
+                  _vm._v("2024")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-metric-change" }, [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("keyboard_arrow_up")
+                  ]),
+                  _vm._v("\n                    9%\n                    ")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "card-metric waves-effect",
+                attrs: { "data-metric": "ctr" }
+              },
+              [
+                _c("div", { staticClass: "card-metric-title" }, [
+                  _vm._v("CTR")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-metric-value" }, [
+                  _vm._v("0.20%")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-metric-change" }, [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("keyboard_arrow_up")
+                  ]),
+                  _vm._v("\n                    4%\n                    ")
+                ])
               ]
             )
-          ])
-        ])
+          ]
+        )
       ])
     ])
   }
@@ -54208,7 +54148,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/research',
     component: _pages_research_researchComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }]
+  }],
+  mode: 'history'
 });
 var app = new Vue({
   el: '#app',
@@ -54578,8 +54519,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\PNI\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\PNI\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/sistemas/Laravel/PNI/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/sistemas/Laravel/PNI/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

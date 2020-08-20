@@ -33,7 +33,8 @@ const router = new VueRouter({
             path: '/research',
             component: researchComponent
         }
-    ]
+    ],
+    mode: 'history'
 })
 
 

@@ -164,11 +164,11 @@ class InvestigatorController extends Controller
         $total_averages = (array_sum($famela) + array_sum($male)) / (count($famela) + count($male));
 
         $groupAverageAge = collect([
-            "promedio"=> [
+           /* "promedio"=> [
                 "femenino"=> bcdiv($average_famela, '1', 1),
                 "masculino"=> bcdiv($average_male, '1', 1),
                 "total"=> bcdiv($total_averages, '1', 1)
-            ],
+            ],*/
             "minima"=> [
                 "femenino"=> $min_famela,
                 "masculino"=> $min_male,

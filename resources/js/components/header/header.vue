@@ -1,4 +1,5 @@
 <template>
+<div>
     <header>
         <div class="navbar-fixed">
             <nav class="navbar blue darken-1">
@@ -55,6 +56,7 @@
             </li>
         </ul>
     </header>
+</div>
 </template>
 
 <script>

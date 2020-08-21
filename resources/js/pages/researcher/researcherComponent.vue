@@ -28,70 +28,30 @@
                     </div>
                 </div>
             </div>
-           
-            <div class="col l3 m6 s12">
-
-                <div class="card">
-                    <div class="card-stacked">
-                    <div class="card-metrics card-metrics-static">
-                        <div class="card-metric">
-                        <div class="card-metric-title">Conversion Rate</div>
-                        <div class="card-metric-value">0.24%</div>
-                        <div class="card-metric-change decrease">
-                            <i class="material-icons left">keyboard_arrow_down</i>
-                            9%
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                
-                </div>
-
-            </div>
-
-            <div class="col s12">
-
-                <div class="card">
-                    <div class="card-metrics card-metrics-toggle card-metrics-centered">
-                    <div class="card-metric waves-effect active" data-metric="revenue">
-                        <div class="card-metric-title">Revenue</div>
-                        <div class="card-metric-value">$12,476.00</div>
-                        <div class="card-metric-change">
-                        <i class="material-icons">keyboard_arrow_up</i>
-                        12%
-                        </div>
-                    </div>
-                    <div class="card-metric waves-effect" data-metric="users">
-                        <div class="card-metric-title">Users</div>
-                        <div class="card-metric-value">2024</div>
-                        <div class="card-metric-change">
-                        <i class="material-icons">keyboard_arrow_up</i>
-                        9%
-                        </div>
-                    </div>
-                    <div class="card-metric waves-effect" data-metric="ctr">
-                        <div class="card-metric-title">CTR</div>
-                        <div class="card-metric-value">0.20%</div>
-                        <div class="card-metric-change">
-                        <i class="material-icons">keyboard_arrow_up</i>
-                        4%
-                        </div>
-                    </div>
+            <div class="col l12 m6 s12">
+                <div class="card card-bg">
+                    <div class="card-content">
+                         <Bar :chart-data="datacollection" :height="250"></Bar>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import Bar from '../../charts'
+
     export default {
+        components: {
+            Bar
+        },
         data() {
             return {
                 total_investigators: "",
                 investigators_mens: "",
                 investigators_womens: "",
+                datacollection: null
             }
         },
         mounted() {
@@ -101,10 +61,31 @@
             totalInvestigators(){
                 let url = 'statistics/investigators';
                 axios.get(url)
-                    .then(res => {                        
-                        this.total_investigators = res.data.total_investigators;
-                        this.investigators_mens  = res.data.investigators_mens;
-                        this.investigators_womens  = res.data.investigators_womens;
+                    .then(res => {          
+
+                        this.total_investigators = res.data.total_investigators; //TOTAL DE INVESTIGADORES
+                        this.investigators_mens  = res.data.investigators_mens; //TOTAL DE INVESTIGADORES HOMBRES
+                        this.investigators_womens  = res.data.investigators_womens; //TOTAL DE INVESTIGADORAS   
+
+                        let states = res.data.groupStates;
+                        let nameStates = new Array();
+                        let num    = new Array();
+
+                        if (states) {
+                            states.forEach(element => {
+                                nameStates.push(element.estado);
+                                num.push(element.total)
+                            });                            
+                        }
+                        this.datacollection = {
+                            labels: nameStates,
+                            datasets: [{
+                                label: 'Total',
+                                backgroundColor: '#1976d2',
+                                data: num
+                            }]
+                        }
+                        
                     })
                     .catch(err => {
                         console.log(err);

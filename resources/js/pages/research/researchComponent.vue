@@ -89,9 +89,16 @@ export default {
         }
         }
     },
-    mounted () {
-        console.log(this.data);
-        console.log(this.options);
+    async mounted () {
+        let url = 'statistics/investigators?interest=true';
+        axios.get(url)
+            .then(res => {          
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+                
+            })
     }
 }
 </script>

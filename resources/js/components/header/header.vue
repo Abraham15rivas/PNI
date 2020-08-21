@@ -1,55 +1,71 @@
 <template>
+<div>
     <header>
+<<<<<<< HEAD
         <div >
             <nav class="navbar" style="">
                 <div >
                    <img src="images/cintillo.jpg" class="cintillo-min">
+=======
+        <div class="navbar-fixed">
+            <nav class="navbar blue darken-1"  style="height: 95px">
+                <div class="nav-wrapper">
+                    <div class="brand-logo" >
+                        <img class="logo-min header-logo" src="images/mincyt.png" alt="">
+                    </div>
+>>>>>>> cbce73ddbe5801961e3b258e14e6a381520683ee
                 </div>
             </nav>
         </div>
         <ul class=" sidenav sidenav-fixed">
             <li>
+<<<<<<< HEAD
                 <img src="images/pni.png" class="logo-min">
+=======
+                <div class="logo-container">
+                    <img src="images/pni.png" class="logo-min">
+                </div>
+>>>>>>> cbce73ddbe5801961e3b258e14e6a381520683ee
             </li>
             <li>
-
                 <ul class="collapsible collapsible-accordion">
+<<<<<<< HEAD
                     <li>
                         <h5 class="center">
                             Indicadores
                         </h5>
+=======
+                    <li class="waves-effect">
+                        <a class="collapsible-header" tabindex="0">
+                           <h5 class="black-text name center">Indicadores</h5>
+                        </a>
+>>>>>>> cbce73ddbe5801961e3b258e14e6a381520683ee
                     </li>
                     <li class="waves-effect">
                         <router-link to="/researcher" class="collapsible-header" tabindex="0">
-                            Investigadoras e Investigadores<i class="material-icons">web</i> 
-                            <!-- Pages<i class="material-icons chevron">chevron_left</i>  -->
+                           Inicio<i class="material-icons">home</i> 
                         </router-link>
-
-                        <!-- <div class="collapsible-body" style="display: block;">
-                            <ul>
-                                <li>
-                                    <router-link to="/researcher" class="waves-effect active">1<i class="material-icons">web</i></router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/researcher/1" class="waves-effect">2<i class="material-icons">list</i></router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/researcher/2" class="waves-effect">3<i class="material-icons">dashboard</i></router-link>
-                                </li>
-                            </ul>
-                        </div> -->
+                    </li>
+                    <li class="waves-effect">
+<<<<<<< HEAD
+                        <router-link to="/research" class="collapsible-header" tabindex="0">
+                            Interés de Investigaciones<i class="material-icons">list</i>
+=======
+                        <router-link to="/researcher" class="collapsible-header" tabindex="0">
+                            Investigadores e Investigadoras<i class="material-icons ">people</i> 
+>>>>>>> cbce73ddbe5801961e3b258e14e6a381520683ee
+                        </router-link>
                     </li>
                     <li class="waves-effect">
                         <router-link to="/research" class="collapsible-header" tabindex="0">
-                            Interés de Investigaciones<i class="material-icons">list</i>
+                            Interés de Investigación<i class="material-icons">work</i>
                         </router-link>
-                    </li>
-                
+                    </li>                
                 </ul>
-
             </li>
         </ul>
     </header>
+</div>
 </template>
 
 <script>
@@ -67,13 +83,16 @@
     height: 0 !important;
 }
 
-
 .sidenav .logo-container {
     padding: 0 16px;
+<<<<<<< HEAD
     height: 64px;
     line-height: 0px;
+=======
+    height: 94px;
+    line-height: 64px;
+>>>>>>> cbce73ddbe5801961e3b258e14e6a381520683ee
     font-size: 24px;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
     box-sizing: content-box;
 }
 
@@ -84,6 +103,7 @@
 .sidenav .collapsible li, .sidenav.fixed .collapsible li {
     padding: 0;
 }
+<<<<<<< HEAD
 
 /* .chevron {
     float: right;
@@ -99,6 +119,12 @@
     width: 188px;
     height: 100px;
     margin: 5px 40px;
+=======
+.logo-min{
+	width: 195px;
+	height: 85px;
+	margin-top: 6px;
+>>>>>>> cbce73ddbe5801961e3b258e14e6a381520683ee
 }
 .cintillo-min {
     width: 100%;
@@ -106,10 +132,7 @@
    
 }
 
-/* #1e88e5 blue darken-1
-#1976d2 blue darken-2
-#1565c0 blue darken-3
-#0d47a1 blue darken-4 */
-
-
+.header-logo {
+    margin-left: 750px;
+}
 </style>

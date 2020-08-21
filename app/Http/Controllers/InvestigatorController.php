@@ -61,9 +61,6 @@ class InvestigatorController extends Controller
             $groupRangeAge = $calculations["ranges"];
             $groupAverageAge = $calculations["averages"];
 
-            // Numero de instituciones
-            $groupInstitution = self::institutionType($investigators);
-
             $data = collect([
                 "total_investigators"=>$total_investigators,
                 "investigators_mens"=>$investigators_mens,
@@ -72,14 +69,16 @@ class InvestigatorController extends Controller
                 "groupStates"=>$groupState,
                 "groupRangeAge"=>$groupRangeAge,
                 "groupAverageAge"=>$groupAverageAge,
-                "groupInstitution"=>$groupInstitution
             ]);
         } else {
             if($_GET['interest'] == 'true') {
                 //obtener datos masivos
-                $investigators = Investigator::get(['interes_inv', 'id_genero']);
+                $investigators = Investigator::get(['interes_inv', 'id_genero', 'id_tipo_institucion']);
                 $interests = Interest::orderBy('id_lineas_presidenciales', 'asc')->get(['nombre_lineas_presidenciales', 'id_lineas_presidenciales']);
 
+                // Numero de instituciones
+                $groupInstitution = self::institutionType($investigators);
+                
                 //Numero total de investigadores
                 $total_investigators = $investigators->count();
                 
@@ -137,6 +136,7 @@ class InvestigatorController extends Controller
 
                 $data = collect([
                     "total_investigators"=>$total_investigators,
+                    "groupInstitution"=>$groupInstitution,
                     "groupInterest"=>$groupInterest
                 ]);
             }

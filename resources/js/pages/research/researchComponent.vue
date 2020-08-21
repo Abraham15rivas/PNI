@@ -1,7 +1,9 @@
 <template>
     <div class="container">
+        
         <div class="row">
             <div class="col s12">
+                <br><br><br><br>
                 <h5 class="center-align" >Indicador del tipo de institución e interés de investigación de las investigadoras e investigadores</h5>
             </div>
         </div>

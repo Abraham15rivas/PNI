@@ -1,28 +1,23 @@
 <template>
     <header>
-        <div class="navbar-fixed">
-            <nav class="navbar blue darken-1">
-                <div class="nav-wrapper">
-                    <router-link to="/home" class="brand-logo white-text">Dashboard</router-link>
-                    <a href="#" data-target="sidenav-left" class="sidenav-trigger left">
-                        <i class="material-icons white-text">menu</i>
-                    </a>
+        <div >
+            <nav class="navbar" style="">
+                <div >
+                   <img src="images/cintillo.jpg" class="cintillo-min">
                 </div>
             </nav>
         </div>
         <ul class=" sidenav sidenav-fixed">
             <li>
-                <router-link to="/home" class="logo-container">
-                    <img src="images/logo-mincyt.png" class="logo-min">
-                </router-link>
+                <img src="images/pni.png" class="logo-min">
             </li>
             <li>
 
                 <ul class="collapsible collapsible-accordion">
-                    <li class="waves-effect">
-                        <a class="collapsible-header" tabindex="0">
-                            Indicadores<i class="material-icons">chevron_left</i>
-                        </a>
+                    <li>
+                        <h5 class="center">
+                            Indicadores
+                        </h5>
                     </li>
                     <li class="waves-effect">
                         <router-link to="/researcher" class="collapsible-header" tabindex="0">
@@ -46,7 +41,7 @@
                     </li>
                     <li class="waves-effect">
                         <router-link to="/research" class="collapsible-header" tabindex="0">
-                            Interes de Investigaciones<i class="material-icons">list</i>
+                            Interés de Investigaciones<i class="material-icons">list</i>
                         </router-link>
                     </li>
                 
@@ -68,14 +63,15 @@
 <style scoped>
 
 .navbar {
-    padding: 0px 20px;
+    background: white;
+    height: 0 !important;
 }
 
 
 .sidenav .logo-container {
     padding: 0 16px;
     height: 64px;
-    line-height: 64px;
+    line-height: 0px;
     font-size: 24px;
     border-bottom: 1px solid rgba(0,0,0,0.2);
     box-sizing: content-box;
@@ -101,8 +97,13 @@
 
 .logo-min {
     width: 188px;
-    height: 55px;
+    height: 100px;
     margin: 5px 40px;
+}
+.cintillo-min {
+    width: 100%;
+    height: 100px;
+   
 }
 
 /* #1e88e5 blue darken-1

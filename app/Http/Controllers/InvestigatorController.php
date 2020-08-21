@@ -75,6 +75,7 @@ class InvestigatorController extends Controller
                 //obtener datos masivos
                 $investigators = Investigator::get(['interes_inv', 'id_genero', 'id_tipo_institucion']);
                 $interests = Interest::orderBy('id_lineas_presidenciales', 'asc')->get(['nombre_lineas_presidenciales', 'id_lineas_presidenciales']);
+                $interests->push(["name"=> "TOTALES"]);
 
                 // Numero de instituciones
                 $groupInstitution = self::institutionType($investigators);
@@ -112,23 +113,37 @@ class InvestigatorController extends Controller
 
                 // Intereses de los investigadores
                 $groupInterest = array();
+                // Contadores de totales
+                $count_total_inv = 0;
+                $count_total_famela = 0;
+                $count_total_male = 0;
                 $j = 1;
                 for ($i = 0; $i < $interests->count(); $i++) 
                 {
-                    $name = $interests[$i]->nombre_lineas_presidenciales;
-                    $id_interest = $interests[$i]->id_lineas_presidenciales;
+                    $length = $interests->count();
+                    $name = $i == ($length - 1) ? $interests[$i]['name'] : $interests[$i]->nombre_lineas_presidenciales;
+                    $id_interest = $i == ($length - 1) ? 'No' : $interests[$i]->id_lineas_presidenciales;
                     $value = isset($count_values_repeat[$j]) ? $count_values_repeat[$j] : 0;
-                    $groupInterest[$i]["$name"]["total"] = $value;
+                    // Suma de totales
+                    $count_total_inv += $value;
+
+                    $groupInterest[$i]["$name"]["total"] = $i == ($length - 1) ? $count_total_inv : $value;
                     $groupInterest[$i]["$name"]["femenino"] = 0;
                     $groupInterest[$i]["$name"]["masculino"] = 0;
+
                     foreach ($count_generos_repeat as $key => $generos) {
                         $id = explode("-", $key);
                         if ((int)$id[0] == $id_interest) {
                             if ((int)$id[1] == 1) {
+                                $count_total_famela += $generos;
                                 $groupInterest[$i]["$name"]["femenino"] = $generos;
                             } else {
+                                $count_total_male += $generos;
                                 $groupInterest[$i]["$name"]["masculino"] = $generos;
                             }
+                        } else {
+                            $groupInterest[$i]["$name"]['femenino'] = $count_total_famela;
+                            $groupInterest[$i]["$name"]['masculino'] = $count_total_male;
                         }
                     }
                     $j++;

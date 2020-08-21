@@ -2,11 +2,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-// import Vuetify from 'vuetify'
-import '@mdi/font/css/materialdesignicons.css'
 import VueRouter from 'vue-router'
 
-// Vue.use(Vuetify);
 Vue.use(VueRouter)
 
 Vue.component('header-vue', require('./components/header/header.vue').default);
@@ -33,7 +30,8 @@ const router = new VueRouter({
             path: '/research',
             component: researchComponent
         }
-    ]
+    ],
+    mode: 'history'
 })
 
 

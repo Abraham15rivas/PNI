@@ -70,6 +70,7 @@ class InvestigatorController extends Controller
                     $groupProfesion->push(["profesion"=>$name,"id"=>$key,"total"=>$total]);
                 }
             }
+            $groupProfesion->orderBy('total', 'desc')->take(10)->get();
             //Numero de investigadores por estados
             $groupBySta = $investigators->groupBy('id_estado');
 

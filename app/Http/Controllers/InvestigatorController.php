@@ -14,7 +14,6 @@ class InvestigatorController extends Controller
             $investigators = Investigator::get();
             $profesion = Profesion::get();
             $states = State::get();
-            $actualInvestigations = ActualInvestigation::get();
 
             //Numero total de investigadores
             $total_investigators = $investigators->count();
@@ -70,7 +69,8 @@ class InvestigatorController extends Controller
                     $groupProfesion->push(["profesion"=>$name,"id"=>$key,"total"=>$total]);
                 }
             }
-            $groupProfesion->orderBy('total', 'desc')->take(10)->get();
+            // ->orderBy('total', 'desc')->take(10)->get();
+            $groupProfesion = $groupProfesion->sortByDesc('total')->take(10);
             //Numero de investigadores por estados
             $groupBySta = $investigators->groupBy('id_estado');
 
@@ -92,6 +92,95 @@ class InvestigatorController extends Controller
             $calculations = self::rangeAge($investigators);
             $groupRangeAge = $calculations["ranges"];
             $groupAverageAge = $calculations["averages"];
+
+
+            $data = collect([
+                "total_investigators"=>$total_investigators,
+                "investigators_mens"=>$investigators_mens,
+                "investigators_womens"=>$investigators_womens,
+                "groupProfesion"=>$groupProfesion,
+                "groupStates"=>$groupState,
+                "groupRangeAge"=>$groupRangeAge,
+                "groupAverageAge"=>$groupAverageAge
+            ]);
+        } elseif($_GET['interest'] == 'true') {
+            //obtener datos masivos
+            $investigators = Investigator::get(['interes_inv', 'id_genero', 'id_tipo_institucion', 'inv_actual']);
+            $interests = Interest::orderBy('id_lineas_presidenciales', 'asc')->get(['nombre_lineas_presidenciales', 'id_lineas_presidenciales']);
+            $interests->push(["name"=> "TOTALES"]);
+            $actualInvestigations = ActualInvestigation::get();
+
+            // Numero de instituciones
+            $groupInstitution = self::institutionType($investigators);
+            
+            //Numero total de investigadores
+            $total_investigators = $investigators->count();
+            
+            // Separar intereses por genero (femenino, masculino) 
+            $genero = array();
+    
+            // Obtener "id" de los intereses de investigación
+            $interests_inv = array();
+            foreach ($investigators as $key => $investigator) {
+                // Quitar las llaves "{}" de los datos
+                $remove_key = substr($investigator->interes_inv, 1, strlen($investigator->interes_inv) - 2);
+                $remove_comma = explode(",", $remove_key);
+                if ($remove_comma > 1) {
+                    foreach ($remove_comma as $item) {
+                        $interests_inv[] = $item;
+                        $genero[] = $item."-".$investigator->id_genero;
+                    }
+                } else {
+                    $interests_inv[] = $remove_comma;
+                    $genero[] = $remove_comma."-".$investigator->id_genero;
+                }
+            }
+
+            // contar valores repetidos
+            $count_values_repeat = array_count_values($interests_inv); // intereses
+            $count_generos_repeat = array_count_values($genero); // generos
+            
+            // Ordenar ascendente
+            ksort($count_values_repeat); // intereses
+            ksort($count_generos_repeat); // generos
+
+            // Intereses de los investigadores
+            $groupInterest = array();
+            // Contadores de totales
+            $count_total_inv = 0;
+            $count_total_famela = 0;
+            $count_total_male = 0;
+            $j = 1;
+            for ($i = 0; $i < $interests->count(); $i++) 
+            {
+                $length = $interests->count();
+                $name = $i == ($length - 1) ? $interests[$i]['name'] : $interests[$i]->nombre_lineas_presidenciales;
+                $id_interest = $i == ($length - 1) ? 'No' : $interests[$i]->id_lineas_presidenciales;
+                $value = isset($count_values_repeat[$j]) ? $count_values_repeat[$j] : 0;
+                // Suma de totales
+                $count_total_inv += $value;
+
+                $groupInterest[$i]["$name"]["total"] = $i == ($length - 1) ? $count_total_inv : $value;
+                $groupInterest[$i]["$name"]["femenino"] = 0;
+                $groupInterest[$i]["$name"]["masculino"] = 0;
+
+                foreach ($count_generos_repeat as $key => $generos) {
+                    $id = explode("-", $key);
+                    if ((int)$id[0] == $id_interest) {
+                        if ((int)$id[1] == 1) {
+                            $count_total_famela += $generos;
+                            $groupInterest[$i]["$name"]["femenino"] = $generos;
+                        } else {
+                            $count_total_male += $generos;
+                            $groupInterest[$i]["$name"]["masculino"] = $generos;
+                        }
+                    } else {
+                        $groupInterest[$i]["$name"]['femenino'] = $count_total_famela;
+                        $groupInterest[$i]["$name"]['masculino'] = $count_total_male;
+                    }
+                }
+                $j++;
+            }
 
             //investigaciones actuales
             $investigators_actual = $investigators->where('inv_actual','!=',null);
@@ -121,103 +210,14 @@ class InvestigatorController extends Controller
 
             }
 
-
             $data = collect([
                 "total_investigators"=>$total_investigators,
-                "investigators_mens"=>$investigators_mens,
-                "investigators_womens"=>$investigators_womens,
-                "groupProfesion"=>$groupProfesion,
-                "groupStates"=>$groupState,
-                "groupRangeAge"=>$groupRangeAge,
-                "groupAverageAge"=>$groupAverageAge,
+                "groupInstitution"=>$groupInstitution,
+                "groupInterest"=>$groupInterest,
                 "actualInvestigation"=>$arrActual
             ]);
-        } else {
-            if($_GET['interest'] == 'true') {
-                //obtener datos masivos
-                $investigators = Investigator::get(['interes_inv', 'id_genero', 'id_tipo_institucion']);
-                $interests = Interest::orderBy('id_lineas_presidenciales', 'asc')->get(['nombre_lineas_presidenciales', 'id_lineas_presidenciales']);
-                $interests->push(["name"=> "TOTALES"]);
-
-                // Numero de instituciones
-                $groupInstitution = self::institutionType($investigators);
-                
-                //Numero total de investigadores
-                $total_investigators = $investigators->count();
-                
-                // Separar intereses por genero (femenino, masculino) 
-                $genero = array();
-        
-                // Obtener "id" de los intereses de investigación
-                $interests_inv = array();
-                foreach ($investigators as $key => $investigator) {
-                    // Quitar las llaves "{}" de los datos
-                    $remove_key = substr($investigator->interes_inv, 1, strlen($investigator->interes_inv) - 2);
-                    $remove_comma = explode(",", $remove_key);
-                    if ($remove_comma > 1) {
-                        foreach ($remove_comma as $item) {
-                            $interests_inv[] = $item;
-                            $genero[] = $item."-".$investigator->id_genero;
-                        }
-                    } else {
-                        $interests_inv[] = $remove_comma;
-                        $genero[] = $remove_comma."-".$investigator->id_genero;
-                    }
-                }
-
-                // contar valores repetidos
-                $count_values_repeat = array_count_values($interests_inv); // intereses
-                $count_generos_repeat = array_count_values($genero); // generos
-                
-                // Ordenar ascendente
-                ksort($count_values_repeat); // intereses
-                ksort($count_generos_repeat); // generos
-
-                // Intereses de los investigadores
-                $groupInterest = array();
-                // Contadores de totales
-                $count_total_inv = 0;
-                $count_total_famela = 0;
-                $count_total_male = 0;
-                $j = 1;
-                for ($i = 0; $i < $interests->count(); $i++) 
-                {
-                    $length = $interests->count();
-                    $name = $i == ($length - 1) ? $interests[$i]['name'] : $interests[$i]->nombre_lineas_presidenciales;
-                    $id_interest = $i == ($length - 1) ? 'No' : $interests[$i]->id_lineas_presidenciales;
-                    $value = isset($count_values_repeat[$j]) ? $count_values_repeat[$j] : 0;
-                    // Suma de totales
-                    $count_total_inv += $value;
-
-                    $groupInterest[$i]["$name"]["total"] = $i == ($length - 1) ? $count_total_inv : $value;
-                    $groupInterest[$i]["$name"]["femenino"] = 0;
-                    $groupInterest[$i]["$name"]["masculino"] = 0;
-
-                    foreach ($count_generos_repeat as $key => $generos) {
-                        $id = explode("-", $key);
-                        if ((int)$id[0] == $id_interest) {
-                            if ((int)$id[1] == 1) {
-                                $count_total_famela += $generos;
-                                $groupInterest[$i]["$name"]["femenino"] = $generos;
-                            } else {
-                                $count_total_male += $generos;
-                                $groupInterest[$i]["$name"]["masculino"] = $generos;
-                            }
-                        } else {
-                            $groupInterest[$i]["$name"]['femenino'] = $count_total_famela;
-                            $groupInterest[$i]["$name"]['masculino'] = $count_total_male;
-                        }
-                    }
-                    $j++;
-                }
-
-                $data = collect([
-                    "total_investigators"=>$total_investigators,
-                    "groupInstitution"=>$groupInstitution,
-                    "groupInterest"=>$groupInterest
-                ]);
-            }
         }
+        
         return $data->toJson();
     }
 

@@ -2075,6 +2075,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2086,8 +2103,9 @@ __webpack_require__.r(__webpack_exports__);
       investigators_mens: "",
       investigators_womens: "",
       datacollection: null,
+      datacollectionn: null,
       profesions: [],
-      totalProfesions: ''
+      averageAge: []
     };
   },
   mounted: function mounted() {
@@ -2125,7 +2143,7 @@ __webpack_require__.r(__webpack_exports__);
           }]
         };
         _this.profesions = res.data.groupProfesion;
-        console.log(res.data);
+        _this.averageAge = res.data.groupAverageAge;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -76270,11 +76288,9 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.profesions, function(profesion, index) {
+          _vm._l(_vm.averageAge, function(averageAge, index) {
             return _c("tr", { key: index }, [
-              _c("td", [_vm._v(_vm._s(profesion.profesion))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(profesion.total))])
+              _c("td", [_vm._v(_vm._s(averageAge.promedio))])
             ])
           }),
           0
@@ -76302,9 +76318,13 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Profesión")]),
+        _c("th", [_vm._v("Edades")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Investigadores (as)")])
+        _c("th", [_vm._v("Minima")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Maxima")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Promedio")])
       ])
     ])
   }

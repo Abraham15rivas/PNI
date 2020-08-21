@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <table>
+            <!--table>
                 <thead>
                     <tr>
                         <th>Profesión</th>
@@ -47,6 +47,23 @@
                     <tr v-for="(profesion, index) in profesions" :key="index">
                         <td>{{profesion.profesion}}</td>
                         <td>{{profesion.total}}</td>
+                    </tr>
+                </tbody>
+            </table-->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Edades</th>
+                        <th>Minima</th>
+                        <th>Maxima</th>
+                        <th>Promedio</th>
+                    </tr>
+                </thead>
+                <tbody>               
+    
+                   
+                    <tr v-for="(averageAge, index) in averageAge" :key="index">
+                        <td >{{averageAge.promedio}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -67,8 +84,9 @@
                 investigators_mens: "",
                 investigators_womens: "",
                 datacollection: null,
+                datacollectionn: null,
                 profesions: [],
-                totalProfesions: ''
+                averageAge: []
             }
         },
         mounted() {
@@ -102,8 +120,8 @@
                                 data: num
                             }]
                         }
-                       this.profesions = res.data.groupProfesion;
-                        console.log(res.data);
+                        this.profesions = res.data.groupProfesion;
+                        this.averageAge = res.data.groupAverageAge;
                         
                         
                     })

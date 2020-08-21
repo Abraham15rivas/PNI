@@ -1,8 +1,9 @@
 <template>
     <div class="container">
+        <br><br>
         <div class="row">
             <div class="col s12">
-            <h2>Vista de Investigadores</h2>
+            <h5 class="center">Indicador de Investigadoras e Investigadores registrados en el Programa Nacional de Investigadores</h5>
             </div>
             <div class="col s12 m6 l3">
                 <div class="card card-bg black-text">

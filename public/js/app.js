@@ -1955,10 +1955,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Componente montado.');
@@ -2023,6 +2019,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _charts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../charts */ "./resources/js/charts.js");
+//
 //
 //
 //
@@ -22723,7 +22720,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.navbar[data-v-62e37494] {\n    padding: 0px 20px;\n}\n.sidenav .logo-container[data-v-62e37494] {\n    padding: 0 16px;\n    height: 94px;\n    line-height: 64px;\n    font-size: 24px;\n    border-bottom: 1px solid rgba(0,0,0,0.2);\n    box-sizing: content-box;\n}\n.sidenav .collapsible>li.waves-effect[data-v-62e37494] {\n    display: block;\n}\n.sidenav .collapsible li[data-v-62e37494], .sidenav.fixed .collapsible li[data-v-62e37494] {\n    padding: 0;\n}\n.logo-min[data-v-62e37494]{\n\twidth: 195px;\n\theight: 85px;\n\tmargin-top: 6px;\n}\n.header-logo[data-v-62e37494] {\n    margin-left: 700px;\n}\n", ""]);
+exports.push([module.i, "\n.navbar[data-v-62e37494] {\n    padding: 0px 20px;\n}\n.sidenav .logo-container[data-v-62e37494] {\n    padding: 0 16px;\n    height: 94px;\n    line-height: 64px;\n    font-size: 24px;\n    box-sizing: content-box;\n}\n.sidenav .collapsible>li.waves-effect[data-v-62e37494] {\n    display: block;\n}\n.sidenav .collapsible li[data-v-62e37494], .sidenav.fixed .collapsible li[data-v-62e37494] {\n    padding: 0;\n}\n.logo-min[data-v-62e37494]{\n\twidth: 195px;\n\theight: 85px;\n\tmargin-top: 6px;\n}\n.header-logo[data-v-62e37494] {\n    margin-left: 750px;\n}\n", ""]);
 
 // exports
 
@@ -75999,26 +75996,11 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("ul", { staticClass: " sidenav sidenav-fixed" }, [
-        _c(
-          "li",
-          [
-            _c(
-              "router-link",
-              { staticClass: "logo-container", attrs: { to: "/home" } },
-              [
-                _c("img", {
-                  staticClass: "logo-min",
-                  attrs: { src: "images/pni.png" }
-                })
-              ]
-            )
-          ],
-          1
-        ),
+        _vm._m(1),
         _vm._v(" "),
         _c("li", [
           _c("ul", { staticClass: "collapsible collapsible-accordion" }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "li",
@@ -76050,7 +76032,9 @@ var render = function() {
                     attrs: { to: "/researcher", tabindex: "0" }
                   },
                   [
-                    _vm._v("\n                            Investigadores"),
+                    _vm._v(
+                      "\n                            Investigadores e Investigadoras"
+                    ),
                     _c("i", { staticClass: "material-icons " }, [
                       _vm._v("people")
                     ])
@@ -76072,7 +76056,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                            Interes de Investigaciones"
+                      "\n                            Interés de Investigación"
                     ),
                     _c("i", { staticClass: "material-icons" }, [_vm._v("work")])
                   ]
@@ -76105,23 +76089,20 @@ var staticRenderFns = [
                 staticClass: "logo-min header-logo",
                 attrs: { src: "images/mincyt.png", alt: "" }
               })
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "sidenav-trigger left",
-                attrs: { href: "#", "data-target": "sidenav-left" }
-              },
-              [
-                _c("i", { staticClass: "material-icons white-text" }, [
-                  _vm._v("menu")
-                ])
-              ]
-            )
+            ])
           ])
         ]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("div", { staticClass: "logo-container" }, [
+        _c("img", { staticClass: "logo-min", attrs: { src: "images/pni.png" } })
+      ])
     ])
   },
   function() {
@@ -76209,6 +76190,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -76271,7 +76255,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col s12" }, [
-      _c("h2", [_vm._v("Vista de Investigadores")])
+      _c("h5", { staticClass: "center" }, [
+        _vm._v(
+          "Indicador de Investigadoras e Investigadores registrados en el Programa Nacional de Investigadores"
+        )
+      ])
     ])
   }
 ]

@@ -5,22 +5,18 @@
             <nav class="navbar blue darken-1"  style="height: 95px">
                 <div class="nav-wrapper">
                     <div class="brand-logo" >
-                            <img class="logo-min header-logo" src="images/mincyt.png" alt="">
+                        <img class="logo-min header-logo" src="images/mincyt.png" alt="">
                     </div>
-                    <a href="#" data-target="sidenav-left" class="sidenav-trigger left">
-                        <i class="material-icons white-text">menu</i>
-                    </a>
                 </div>
             </nav>
         </div>
         <ul class=" sidenav sidenav-fixed">
             <li>
-                <router-link to="/home" class="logo-container">
+                <div class="logo-container">
                     <img src="images/pni.png" class="logo-min">
-                </router-link>
+                </div>
             </li>
             <li>
-
                 <ul class="collapsible collapsible-accordion">
                     <li class="waves-effect">
                         <a class="collapsible-header" tabindex="0">
@@ -34,12 +30,12 @@
                     </li>
                     <li class="waves-effect">
                         <router-link to="/researcher" class="collapsible-header" tabindex="0">
-                            Investigadores<i class="material-icons ">people</i> 
+                            Investigadores e Investigadoras<i class="material-icons ">people</i> 
                         </router-link>
                     </li>
                     <li class="waves-effect">
                         <router-link to="/research" class="collapsible-header" tabindex="0">
-                            Interes de Investigaciones<i class="material-icons">work</i>
+                            Interés de Investigación<i class="material-icons">work</i>
                         </router-link>
                     </li>                
                 </ul>
@@ -68,7 +64,6 @@
     height: 94px;
     line-height: 64px;
     font-size: 24px;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
     box-sizing: content-box;
 }
 
@@ -86,6 +81,6 @@
 }
 
 .header-logo {
-    margin-left: 700px;
+    margin-left: 750px;
 }
 </style>

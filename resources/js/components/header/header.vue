@@ -2,9 +2,11 @@
 <div>
     <header>
         <div class="navbar-fixed">
-            <nav class="navbar blue darken-1">
+            <nav class="navbar blue darken-1"  style="height: 95px">
                 <div class="nav-wrapper">
-                    <router-link to="/home" class="brand-logo white-text">Dashboard</router-link>
+                    <router-link to="/home" class="brand-logo" >
+                            <img class="logo-min" src="images/mincyt.png" alt="">
+                    </router-link>
                     <a href="#" data-target="sidenav-left" class="sidenav-trigger left">
                         <i class="material-icons white-text">menu</i>
                     </a>
@@ -14,7 +16,7 @@
         <ul class=" sidenav sidenav-fixed">
             <li>
                 <router-link to="/home" class="logo-container">
-                    <img src="images/logo-mincyt.png" class="logo-min">
+                    <img src="images/pni.png" class="logo-min">
                 </router-link>
             </li>
             <li>
@@ -76,7 +78,7 @@
 
 .sidenav .logo-container {
     padding: 0 16px;
-    height: 64px;
+    height: 94px;
     line-height: 64px;
     font-size: 24px;
     border-bottom: 1px solid rgba(0,0,0,0.2);
@@ -90,6 +92,12 @@
 .sidenav .collapsible li, .sidenav.fixed .collapsible li {
     padding: 0;
 }
+.logo-min{
+	width: 195px;
+	height: 85px;
+	margin-top: 6px;
+	
+}
 
 /* .chevron {
     float: right;
@@ -101,11 +109,6 @@
     transform: rotate(-90deg);
 } */
 
-.logo-min {
-    width: 188px;
-    height: 55px;
-    margin: 5px 40px;
-}
 
 /* #1e88e5 blue darken-1
 #1976d2 blue darken-2

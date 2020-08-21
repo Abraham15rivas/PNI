@@ -1969,6 +1969,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Componente montado.');
@@ -22733,7 +22735,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.navbar[data-v-62e37494] {\n    padding: 0px 20px;\n}\n.sidenav .logo-container[data-v-62e37494] {\n    padding: 0 16px;\n    height: 64px;\n    line-height: 64px;\n    font-size: 24px;\n    border-bottom: 1px solid rgba(0,0,0,0.2);\n    box-sizing: content-box;\n}\n.sidenav .collapsible>li.waves-effect[data-v-62e37494] {\n    display: block;\n}\n.sidenav .collapsible li[data-v-62e37494], .sidenav.fixed .collapsible li[data-v-62e37494] {\n    padding: 0;\n}\n\n/* .chevron {\n    float: right;\n    height: 24px;\n    width: 24px;\n    line-height: 24px;\n    margin: 20px 0 0 0;\n    transition: transform .2s;\n    transform: rotate(-90deg);\n} */\n.logo-min[data-v-62e37494] {\n    width: 188px;\n    height: 55px;\n    margin: 5px 40px;\n}\n\n/* #1e88e5 blue darken-1\n#1976d2 blue darken-2\n#1565c0 blue darken-3\n#0d47a1 blue darken-4 */\n\n\n", ""]);
+exports.push([module.i, "\n.navbar[data-v-62e37494] {\n    padding: 0px 20px;\n}\n.sidenav .logo-container[data-v-62e37494] {\n    padding: 0 16px;\n    height: 94px;\n    line-height: 64px;\n    font-size: 24px;\n    border-bottom: 1px solid rgba(0,0,0,0.2);\n    box-sizing: content-box;\n}\n.sidenav .collapsible>li.waves-effect[data-v-62e37494] {\n    display: block;\n}\n.sidenav .collapsible li[data-v-62e37494], .sidenav.fixed .collapsible li[data-v-62e37494] {\n    padding: 0;\n}\n.logo-min[data-v-62e37494]{\n\twidth: 195px;\n\theight: 85px;\n\tmargin-top: 6px;\n}\n\n/* .chevron {\n    float: right;\n    height: 24px;\n    width: 24px;\n    line-height: 24px;\n    margin: 20px 0 0 0;\n    transition: transform .2s;\n    transform: rotate(-90deg);\n} */\n\n\n/* #1e88e5 blue darken-1\n#1976d2 blue darken-2\n#1565c0 blue darken-3\n#0d47a1 blue darken-4 */\n\n\n", ""]);
 
 // exports
 
@@ -76007,25 +76009,34 @@ var render = function() {
   return _c("div", [
     _c("header", [
       _c("div", { staticClass: "navbar-fixed" }, [
-        _c("nav", { staticClass: "navbar blue darken-1" }, [
-          _c(
-            "div",
-            { staticClass: "nav-wrapper" },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "brand-logo white-text",
-                  attrs: { to: "/home" }
-                },
-                [_vm._v("Dashboard")]
-              ),
-              _vm._v(" "),
-              _vm._m(0)
-            ],
-            1
-          )
-        ])
+        _c(
+          "nav",
+          {
+            staticClass: "navbar blue darken-1",
+            staticStyle: { height: "95px" }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "nav-wrapper" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "brand-logo", attrs: { to: "/home" } },
+                  [
+                    _c("img", {
+                      staticClass: "logo-min",
+                      attrs: { src: "images/mincyt.png", alt: "" }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(0)
+              ],
+              1
+            )
+          ]
+        )
       ]),
       _vm._v(" "),
       _c("ul", { staticClass: " sidenav sidenav-fixed" }, [
@@ -76038,7 +76049,7 @@ var render = function() {
               [
                 _c("img", {
                   staticClass: "logo-min",
-                  attrs: { src: "images/logo-mincyt.png" }
+                  attrs: { src: "images/pni.png" }
                 })
               ]
             )

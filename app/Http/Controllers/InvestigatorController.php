@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Investigator, Interest, Profesion, State, InstitutionType};
+use App\{Investigator, Interest, Profesion, State, InstitutionType, ActualInvestigation};
 use Carbon\Carbon;
 
 class InvestigatorController extends Controller
@@ -14,6 +14,7 @@ class InvestigatorController extends Controller
             $investigators = Investigator::get();
             $profesion = Profesion::get();
             $states = State::get();
+            $actualInvestigations = ActualInvestigation::get();
 
             //Numero total de investigadores
             $total_investigators = $investigators->count();
@@ -36,9 +37,39 @@ class InvestigatorController extends Controller
                 }
 
                 $total = count($val);
-                $groupProfesion->push(["profesion"=>$name,"total"=>$total]);
+                $similar = $profesion->filter(function ($item) use ($name) {
+                    return false !== stristr($item->profesion, substr($name, 0, -1)) && $item->profesion !== $name;
+                });
+                if(count($similar) > 0){
+                    foreach($similar as $val){
+                        $total += $investigators->where('id_profesion',$val["id_profesion"])->count();
+                    }
+                    $groupByPro = $groupByPro->filter(function ($f) use($similar){
+                        $id = 0;
+                        foreach($similar as $val){
+                            $id = $val->id_profesion;
+                        }
+                        foreach($f as $investigator){
+                            if($investigator->id_profesion != $id){
+                                return true;
+                            }else{
+                                return false;
+                            }
+                        }
+                    });
+                }
+                $test=null;
+                if(count($groupProfesion) > 0){
+                    $test = $groupProfesion->filter(function ($item) use ($name) {
+                        return false !== stristr($item["profesion"], substr($name, 0, -1)) && $item["profesion"] !== $name;
+                    });
+                }
+                if(!$test){
+                    $groupProfesion->push(["profesion"=>$name,"id"=>$key,"total"=>$total]);
+                }elseif($test && count($test) == 0){
+                    $groupProfesion->push(["profesion"=>$name,"id"=>$key,"total"=>$total]);
+                }
             }
-
             //Numero de investigadores por estados
             $groupBySta = $investigators->groupBy('id_estado');
 
@@ -61,6 +92,35 @@ class InvestigatorController extends Controller
             $groupRangeAge = $calculations["ranges"];
             $groupAverageAge = $calculations["averages"];
 
+            //investigaciones actuales
+            $investigators_actual = $investigators->where('inv_actual','!=',null);
+
+            $arrActual = collect();
+            foreach($investigators_actual as $inv){
+                $ids_inv = explode(",",substr($inv->inv_actual,1,-1));
+
+                foreach($ids_inv as $id){
+                    $selected = $actualInvestigations->where('id_investigacion_actual',$id);
+
+                    foreach($selected as $pro){
+                        $name = $pro->titulo_investigacion;
+                    }
+                    $search = $arrActual->where('titulo',$name);
+                    if($search->count() > 0){
+                        $arrActual = $arrActual->map(function ($investigation, $key) use($name) {
+                            if ($investigation["titulo"] == $name) {
+                                $investigation["total"]++;
+                            }
+                            return $investigation;
+                        });
+                    }else{
+                        $arrActual->push(["titulo"=>$name,"total"=>1]);
+                    }
+                }
+
+            }
+
+
             $data = collect([
                 "total_investigators"=>$total_investigators,
                 "investigators_mens"=>$investigators_mens,
@@ -69,6 +129,7 @@ class InvestigatorController extends Controller
                 "groupStates"=>$groupState,
                 "groupRangeAge"=>$groupRangeAge,
                 "groupAverageAge"=>$groupAverageAge,
+                "actualInvestigation"=>$arrActual
             ]);
         } else {
             if($_GET['interest'] == 'true') {

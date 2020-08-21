@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <!--table>
+            <table>
                 <thead>
                     <tr>
                         <th>Profesión</th>
@@ -49,7 +49,7 @@
                         <td>{{profesion.total}}</td>
                     </tr>
                 </tbody>
-            </table-->
+            </table>
             <table>
                 <thead>
                     <tr>
@@ -59,9 +59,7 @@
                         <th>Promedio</th>
                     </tr>
                 </thead>
-                <tbody>               
-    
-                   
+                <tbody>             
                     <tr v-for="(averageAge, index) in averageAge" :key="index">
                         <td >{{averageAge.promedio}}</td>
                     </tr>

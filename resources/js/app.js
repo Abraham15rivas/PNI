@@ -10,6 +10,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 Vue.component('header-vue', require('./components/header/header.vue').default);
+Vue.component('line-charts', require('./components/line/line.vue').default);
 
 import homeComponent from './pages/home/homeComponent';
 import researcherComponent from './pages/researcher/researcherComponent';

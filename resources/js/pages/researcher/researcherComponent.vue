@@ -36,6 +36,20 @@
                     </div>
                 </div>
             </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Profesión</th>
+                        <th>Investigadores (as)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(profesion, index) in profesions" :key="index">
+                        <td>{{profesion.profesion}}</td>
+                        <td>{{profesion.total}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>
@@ -52,7 +66,9 @@
                 total_investigators: "",
                 investigators_mens: "",
                 investigators_womens: "",
-                datacollection: null
+                datacollection: null,
+                profesions: [],
+                totalProfesions: ''
             }
         },
         mounted() {
@@ -86,6 +102,9 @@
                                 data: num
                             }]
                         }
+                       this.profesions = res.data.groupProfesion;
+                        console.log(res.data);
+                        
                         
                     })
                     .catch(err => {

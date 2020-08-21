@@ -2061,6 +2061,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2071,7 +2085,9 @@ __webpack_require__.r(__webpack_exports__);
       total_investigators: "",
       investigators_mens: "",
       investigators_womens: "",
-      datacollection: null
+      datacollection: null,
+      profesions: [],
+      totalProfesions: ''
     };
   },
   mounted: function mounted() {
@@ -2108,6 +2124,8 @@ __webpack_require__.r(__webpack_exports__);
             data: num
           }]
         };
+        _this.profesions = res.data.groupProfesion;
+        console.log(res.data);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -76245,6 +76263,22 @@ var render = function() {
             1
           )
         ])
+      ]),
+      _vm._v(" "),
+      _c("table", [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.profesions, function(profesion, index) {
+            return _c("tr", { key: index }, [
+              _c("td", [_vm._v(_vm._s(profesion.profesion))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(profesion.total))])
+            ])
+          }),
+          0
+        )
       ])
     ])
   ])
@@ -76259,6 +76293,18 @@ var staticRenderFns = [
         _vm._v(
           "Indicador de Investigadoras e Investigadores registrados en el Programa Nacional de Investigadores"
         )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Profesión")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Investigadores (as)")])
       ])
     ])
   }

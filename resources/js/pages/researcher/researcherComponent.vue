@@ -1,83 +1,4 @@
 <template>
-    <!--div class="container">
-        <br><br>
-        <div class="row">
-            <div class="col s12">
-            <h5 class="center">Indicador de Investigadoras e Investigadores registrados en el Programa Nacional de Investigadores</h5>
-            </div>
-            <div class="col s12 m6 l3">
-                <div class="card card-bg black-text">
-                    <div class="card-content center">
-                        <p>Total registrados</p>
-                        <h5 class="green-text">{{total_investigators}}</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m6 l3">
-                <div class="card card-bg black-text">
-                    <div class="card-content center">
-                        <p>Investigadores</p>
-                        <h5 class="blue-text">{{investigators_mens}}</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m6 l3">
-                <div class="card card-bg black-text">
-                    <div class="card-content center">
-                        <p>Investigadoras</p>
-                        <h5 class="blue-text">{{investigators_womens}}</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col l12 m6 s12">
-                <div class="card card-bg">
-                    <div class="card-content">
-                         <Bar :chart-data="datacollection" :height="250"></Bar>
-                    </div>
-                </div>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Profesión</th>
-                        <th>Investigadores (as)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(profesion, index) in profesions" :key="index">
-                        <td>{{profesion.profesion}}</td>
-                        <td>{{profesion.total}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Edades</th>
-                        <th>Masculino</th>
-                        <th>Femenino</th>
-                        <th>Total</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Promedio</td>
-                    </tr>
-                    <tr>
-                        <td>Maxima</td>
-                    </tr>
-                    <tr>
-                        <td>Minima</td>
-                    </tr>
-                   
-                    <tr v-for="(averageAge, index) in averageAge" :key="index">
-                        <td>{{averageAge.total}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div-->
     <div>
     <div class="content bg">
 		<div class="row">
@@ -219,8 +140,8 @@
                 total_investigators: "",
                 investigators_mens: "",
                 investigators_womens: "",
-                datacollection: null,
-                datacollectionn: null,
+                datacollection: {},
+                datacollectionn: {},
                 profesions: [],
                 averageAge: [],
 

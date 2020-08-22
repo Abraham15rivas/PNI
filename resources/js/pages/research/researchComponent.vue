@@ -125,7 +125,6 @@ export default {
         let url = 'statistics/investigators?interest=true';
         axios.get(url)
             .then(res => {          
-                console.log(res.data);
                 this.institution = this.groupInstitution(res.data.groupInstitution);
                 this.dataInterest = res.data.groupInterest;
                 this.interest = this.groupInterest(res.data.groupInterest);

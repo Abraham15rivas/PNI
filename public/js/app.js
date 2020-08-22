@@ -2223,7 +2223,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 0:
               url = 'statistics/investigators?interest=true';
               axios.get(url).then(function (res) {
-                console.log(res.data);
                 _this.institution = _this.groupInstitution(res.data.groupInstitution);
                 _this.dataInterest = res.data.groupInterest;
                 _this.interest = _this.groupInterest(res.data.groupInterest);
@@ -2468,85 +2467,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2557,8 +2477,8 @@ __webpack_require__.r(__webpack_exports__);
       total_investigators: "",
       investigators_mens: "",
       investigators_womens: "",
-      datacollection: null,
-      datacollectionn: null,
+      datacollection: {},
+      datacollectionn: {},
       profesions: [],
       averageAge: [],
       proFeme: '',
@@ -93752,8 +93672,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\proyectos-fii\PNI\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\proyectos-fii\PNI\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\PNI\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\PNI\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

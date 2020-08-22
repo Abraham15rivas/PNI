@@ -1,7 +1,7 @@
 <template>
 <div>
     <header>
-        <div class="navbar-fixed">
+        <div class="navbar-fixed" style="height: 95px">
             <nav class="navbar blue darken-1"  style="height: 95px">
                 <div class="nav-wrapper">
                     <div class="brand-logo" >
@@ -55,9 +55,6 @@
 
 <style scoped>
 
-.navbar {
-    padding: 0px 20px;
-}
 
 .sidenav .logo-container {
     padding: 0 16px;
@@ -79,8 +76,14 @@
 	height: 85px;
 	margin-top: 6px;
 }
+.cintillo-min {
+    width: 100%;
+    height: 100px;
+   
+}
 
 .header-logo {
-    margin-left: 750px;
+    position: fixed;
+    right: 10px;
 }
 </style>

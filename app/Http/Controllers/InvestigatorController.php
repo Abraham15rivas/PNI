@@ -69,8 +69,13 @@ class InvestigatorController extends Controller
                     $groupProfesion->push(["profesion"=>$name,"id"=>$key,"total"=>$total]);
                 }
             }
-            // ->orderBy('total', 'desc')->take(10)->get();
-            $groupProfesion = $groupProfesion->sortByDesc('total')->take(10);
+            
+            // Ordenar descendente las profesiones
+            $arrayProfesion = $groupProfesion->toArray();
+            usort($arrayProfesion, function($a, $b) {
+                return $b['total'] <=> $a['total'];
+            });
+
             //Numero de investigadores por estados
             $groupBySta = $investigators->groupBy('id_estado');
 
@@ -98,7 +103,7 @@ class InvestigatorController extends Controller
                 "total_investigators"=>$total_investigators,
                 "investigators_mens"=>$investigators_mens,
                 "investigators_womens"=>$investigators_womens,
-                "groupProfesion"=>$groupProfesion,
+                "groupProfesion"=>count($arrayProfesion) != 0 ? array_slice($arrayProfesion, 0, 10) : 0,
                 "groupStates"=>$groupState,
                 "groupRangeAge"=>$groupRangeAge,
                 "groupAverageAge"=>$groupAverageAge
@@ -108,7 +113,7 @@ class InvestigatorController extends Controller
             $investigators = Investigator::get(['interes_inv', 'id_genero', 'id_tipo_institucion', 'inv_actual']);
             $interests = Interest::orderBy('id_lineas_presidenciales', 'asc')->get(['nombre_lineas_presidenciales', 'id_lineas_presidenciales']);
             $interests->push(["name"=> "TOTALES"]);
-            $actualInvestigations = ActualInvestigation::get();
+            $actualInvestigations = Interest::get();
 
             // Numero de instituciones
             $groupInstitution = self::institutionType($investigators);
@@ -190,10 +195,10 @@ class InvestigatorController extends Controller
                 $ids_inv = explode(",",substr($inv->inv_actual,1,-1));
 
                 foreach($ids_inv as $id){
-                    $selected = $actualInvestigations->where('id_investigacion_actual',$id);
+                    $selected = $actualInvestigations->where('id_lineas_presidenciales',$id);
 
                     foreach($selected as $pro){
-                        $name = $pro->titulo_investigacion;
+                        $name = $pro->nombre_lineas_presidenciales;
                     }
                     $search = $arrActual->where('titulo',$name);
                     if($search->count() > 0){

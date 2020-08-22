@@ -4,7 +4,6 @@ import { HorizontalBar } from 'vue-chartjs'
 export default {
   name: "HorizontalBar",
   extends: HorizontalBar,
-  mixins: [reactiveProp],
   props: {
     chartdata: {
       type: Object,

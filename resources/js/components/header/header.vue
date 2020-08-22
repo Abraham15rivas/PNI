@@ -13,18 +13,18 @@
                 </div>
             </nav>
         </div>
-        <ul class=" sidenav sidenav-fixed" id="slide-out">
+        <ul class="sidenav sidenav-fixed" id="slide-out">
             <li>
                 <div class="logo-container">
-                    <img src="images/pni.png" class="logo-min">
+                    <img src="images/pni.png" class="logo-sidebar">
                 </div>
             </li>
             <li>
-                <ul class="collapsible collapsible-accordion">
+                <ul class="collapsible collapsible-accordion top-m">
                     <li class="waves-effect">
-                        <a class="collapsible-header" tabindex="0">
-                           <h5 class="black-text name center">Indicadores</h5>
-                        </a>
+                        
+                        <h5 class="black-text name center">Indicadores</h5>
+                        
                     </li>
                     <li class="waves-effect">
                         <router-link to="/home" class="collapsible-header" tabindex="0">
@@ -91,5 +91,15 @@ mounted() {
 
 .brand-logo{
     width: 100%;
+}
+
+.logo-sidebar {
+    height: 110px;
+    margin: 0 auto;
+    display: block;
+}
+
+.top-m {
+    margin-top: 10px;
 }
 </style>

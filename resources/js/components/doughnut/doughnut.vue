@@ -4,7 +4,6 @@ import { Doughnut } from 'vue-chartjs'
 export default {
   name: "DoughnutChart",
   extends: Doughnut,
-  mixins: [reactiveProp],
   props: {
     chartdata: {
       type: Object,

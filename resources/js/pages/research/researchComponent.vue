@@ -7,25 +7,25 @@
         </div>
 
         <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m6 offset-m3">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center">Tipo de Institución</span>
-                        <doughnut-charts v-if="loadedIns" :chartdata="institution" :height="'400px'"></doughnut-charts>
+                        <doughnut-charts v-if="loadedIns" :chartdata="institution"></doughnut-charts>
                     </div>
                 </div>
             </div>
-            <div class="col s12 m6">
+            <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Interés de Investigación</span>
-                        <!-- <horizontalBar-charts :chartdata="" :options="options"></horizontalBar-charts> -->
+                        <line-charts v-if="loadedInt" :chartdata="interest"></line-charts>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Interés de Investigación por Género</span>
@@ -33,11 +33,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12 m6">
+            <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Investigación Actual</span>
-                        Aquí 4
+                        <horizontalBar-charts v-if="loadedAct" :chartdata="actualInt"></horizontalBar-charts>
                     </div>
                 </div>
             </div>
@@ -52,12 +52,11 @@ export default {
         return {
             // Opciones Predefinidas
             options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+                legend: {
+                    align: "end"
+                },
+                element: {
+                    radius: 20
                 }
             },
             backgroundColor: [
@@ -99,10 +98,9 @@ export default {
             interest: {},
             loadedInt: false,
 
-
-
-
-            
+            //Grupo de Interes
+            actualInt: {},
+            loadedAct: false,
         }
     },
     async mounted () {
@@ -112,6 +110,7 @@ export default {
                 console.log(res.data);
                 this.institution = this.groupInstitution(res.data.groupInstitution);
                 this.interest = this.groupInterest(res.data.groupInterest);
+                this.actualInt = this.groupActualInt(res.data.actualInvestigation);
             })
             .catch(err => {
                 console.log(err);
@@ -119,39 +118,87 @@ export default {
     },
     methods: {
         groupInstitution(items){
+            let labels = [];
+            let info = []
+
+            items.forEach(item => {
+                item.titulo = item.titulo.toLowerCase();
+                let palabra = item.titulo.split(' ');
+
+                if(palabra[0] === 'institucion' || palabra[0] === 'institución' ){
+                    labels.push(palabra[1][0].toUpperCase() + palabra[1].slice(1));
+                }else{
+                    labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1));
+                }
+                info.push(item.total);
+            });
+
             let data = {
-                labels: [
-                    'Comunitaria - ' + items['INSTITUCION COMUNITARIA'], 
-                    'Educativa - ' + items['INSTITUCIÓN EDUCATIVA'],
-                    'Investigación - ' + items['INSTITUCIÓN INVESTIGACIÓN'],
-                    'Salud - ' + items['INSTITUCIÓN SALUD'],
-                    'No Contestaron - ' + items['NO CONTESTARON']
-                ],
+                labels: labels,
                 datasets: [{
-                    data: [
-                        items['INSTITUCION COMUNITARIA'],
-                        items['INSTITUCIÓN EDUCATIVA'],
-                        items['INSTITUCIÓN INVESTIGACIÓN'],
-                        items['INSTITUCIÓN SALUD'],
-                        items['NO CONTESTARON']
-                    ],
+                    data: info,
                     backgroundColor: this.backgroundColor,
                     borderColor: this.borderColor,
                     hoverBackgroundColor: this.borderColor,
                     borderWidth: 1,
-                    hoverBorderWidth: 2
-                }]
+                    hoverBorderWidth: 2,
+                    
+                }],
             }
             this.loadedIns = true;
             return data;
         },
         groupInterest(items){
-            console.log(items);
+            let labels = [];
+            let info = [];
+            let content = [];
+
+            items.forEach(item => {
+                if(item['titulo'] != "TOTALES"){
+                    
+                    item.titulo = item.titulo.toLowerCase();
+                    labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1)); 
+                    info.push(item.total);
+                }
+            });
+
             let data = {
-                labels: [],
+                labels: labels,
                 datasets: [
                     {
-                        data: [],
+                        data: info,
+                        label: 'Cantidad de Investigadores',
+                        backgroundColor: ["rgba(0, 0, 0, 0)"],
+                        borderColor: this.borderColor,
+                        hoverBackgroundColor: this.borderColor,
+                        borderWidth: 1,
+                        hoverBorderWidth: 30,
+                        steppedLine: "middle"
+                    }
+                ]
+            }
+            this.loadedInt = true;
+            return data;
+        },
+        groupActualInt(items){
+            let labels = [];
+            let info = [];
+            let content = [];
+
+            items.forEach(item => {
+                if(item['titulo'] != "TOTALES"){
+                    item.titulo = item.titulo.toLowerCase();
+                    labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1)); 
+                    info.push(item.total);
+                }
+            });
+
+            let data = {
+                labels: labels,
+                datasets: [
+                    {
+                        data: info,
+                        label: 'Cantidad de Investigadores',
                         backgroundColor: this.backgroundColor,
                         borderColor: this.borderColor,
                         hoverBackgroundColor: this.borderColor,
@@ -160,7 +207,7 @@ export default {
                     }
                 ]
             }
-
+            this.loadedAct = true;
             return data;
         }
     }

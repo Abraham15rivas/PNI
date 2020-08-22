@@ -4,7 +4,6 @@ import { Line } from 'vue-chartjs'
 export default {
   name: "LineChart",
   extends: Line,
-  mixins: [reactiveProp],
   props: {
     chartdata: {
       type: Object,

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <!--div class="container">
         <br><br>
         <div class="row">
             <div class="col s12">
@@ -77,6 +77,93 @@
                 </tbody>
             </table>
         </div>
+    </div-->
+    <div>
+    <div class="content bg">
+		<div class="row">
+			<div class="col s12">
+                <br><br>
+				<h5 class="black-text center principal-title">
+                    Indicador de Investigadoras e Investigadores registrados en el Programa Nacional de Investigadores
+                </h5>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col s3"></div>
+				<div class="col s12 m7">
+					<div class="card horizontal">
+						<div class="card-image">
+							<img class="icon-total-register" src="images/registro.svg">
+						</div>
+						<div class="card-stacked">
+							<div class="card-content">
+								<h5>Total registrados</h5>
+							</div>
+							<div class="card-action">
+								<h2 class="total-register">{{total_investigators}}</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s4">
+				<div class="card card-bg black-text container-fm" style="height: 500px;">
+					<div class="card-content center">
+                        <img class="icon-fm" src="images/genero-color.png" style="width: 200px">
+						<h4>Mujeres:</h4>
+						<h5>{{investigators_womens}}</h5>
+						
+						<h4>Hombres:</h4>
+						<h5>{{investigators_mens}}</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col s8">
+				<div class="row">
+					<div class="col s5">
+						<div class="card card-bg black-text" >
+							<div class="card-content center">
+								<table class="responsive-table" style="height: 500px">
+                            <thead>
+                                <tr>
+                                    <th>Profesión</th>
+                                    <th>Investigadores (as)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(profesion, index) in profesions" :key="index">
+                                    <td>{{profesion.profesion}}</td>
+                                    <td>{{profesion.total}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<!--div class="row">
+					<div class="col s6">
+						<div class="card card-bg" style="height: 280px;">
+							<div class="card-content" style="height: 270px;">
+								<canvas id="myChart"></canvas>
+							</div>
+						</div>
+					</div>
+					<div class="col s6">
+						<div class="card card-bg" style="height: 280px;">
+							<div class="card-content" style="height: 270px;">
+								<canvas id="myChart2"></canvas>
+							</div>
+						</div>
+					</div>
+				</div-->
+		    </div>
+		</div>
+	</div>
     </div>
 </template>
 
@@ -142,3 +229,19 @@
         }
     }
 </script>
+<style>
+*{
+    color: black;
+}
+.total-register{
+	font-size: 40px;
+	margin-left: 55px;
+	margin-top: -10px;
+}
+.icon-total-register{
+	margin-top: 40px;
+	margin-left: 12px;
+	width: 110px;
+	height: 110px;
+}
+</style>

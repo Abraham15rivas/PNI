@@ -29,7 +29,24 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Interés de Investigación por Género</span>
-                        Aquí 3
+                        <table class="highlight striped">
+                            <thead>
+                                <tr>
+                                    <th>Titulo</th>
+                                    <th>Masculino</th>
+                                    <th>Femenino</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody v-if="loadedInt">
+                                <tr v-for="(item, index) in dataInterest" v-bind:key="index">
+                                    <td>{{ item.titulo }}</td>
+                                    <td>{{ item.masculino }}</td>
+                                    <td>{{ item.femenino }}</td>
+                                    <td>{{ item.total }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -96,6 +113,7 @@ export default {
 
             //Grupo de Interes
             interest: {},
+            dataInterest: {},
             loadedInt: false,
 
             //Grupo de Interes
@@ -109,6 +127,7 @@ export default {
             .then(res => {          
                 console.log(res.data);
                 this.institution = this.groupInstitution(res.data.groupInstitution);
+                this.dataInterest = res.data.groupInterest;
                 this.interest = this.groupInterest(res.data.groupInterest);
                 this.actualInt = this.groupActualInt(res.data.actualInvestigation);
             })

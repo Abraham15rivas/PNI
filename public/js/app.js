@@ -2158,6 +2158,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2188,6 +2205,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       loadedIns: false,
       //Grupo de Interes
       interest: {},
+      dataInterest: {},
       loadedInt: false,
       //Grupo de Interes
       actualInt: {},
@@ -2207,6 +2225,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               axios.get(url).then(function (res) {
                 console.log(res.data);
                 _this.institution = _this.groupInstitution(res.data.groupInstitution);
+                _this.dataInterest = res.data.groupInterest;
                 _this.interest = _this.groupInterest(res.data.groupInterest);
                 _this.actualInt = _this.groupActualInt(res.data.actualInvestigation);
               })["catch"](function (err) {
@@ -77556,7 +77575,37 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _vm._m(1),
+      _c("div", { staticClass: "col s12 m12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-content" }, [
+            _c("span", { staticClass: "card-title center" }, [
+              _vm._v("Interés de Investigación por Género")
+            ]),
+            _vm._v(" "),
+            _c("table", { staticClass: "highlight striped" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _vm.loadedInt
+                ? _c(
+                    "tbody",
+                    _vm._l(_vm.dataInterest, function(item, index) {
+                      return _c("tr", { key: index }, [
+                        _c("td", [_vm._v(_vm._s(item.titulo))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(item.masculino))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(item.femenino))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(item.total))])
+                      ])
+                    }),
+                    0
+                  )
+                : _vm._e()
+            ])
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "col s12 m12" }, [
         _c("div", { staticClass: "card" }, [
@@ -77600,14 +77649,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col s12 m12" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-content" }, [
-          _c("span", { staticClass: "card-title center" }, [
-            _vm._v("Interés de Investigación por Género")
-          ]),
-          _vm._v("\n                    Aquí 3\n                ")
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Titulo")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Masculino")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Femenino")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total")])
       ])
     ])
   }

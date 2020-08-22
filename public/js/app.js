@@ -2324,6 +2324,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2335,8 +2375,18 @@ __webpack_require__.r(__webpack_exports__);
       investigators_mens: "",
       investigators_womens: "",
       datacollection: null,
+      datacollectionn: null,
       profesions: [],
-      averageAge: []
+      averageAge: [],
+      proFeme: '',
+      proMasc: '',
+      proTotal: '',
+      minFeme: '',
+      minMasc: '',
+      minTotal: '',
+      maxFeme: '',
+      maxMasc: '',
+      maxTotal: ''
     };
   },
   mounted: function mounted() {
@@ -2368,14 +2418,41 @@ __webpack_require__.r(__webpack_exports__);
         _this.datacollection = {
           labels: nameStates,
           datasets: [{
-            label: 'Total',
+            label: 'Total investigadores por estado',
             backgroundColor: '#1976d2',
             data: num
           }]
         };
         _this.profesions = res.data.groupProfesion;
+        var rangeAge = res.data.groupRangeAge;
+        var range = new Array();
+        var totalRange = new Array();
+
+        if (rangeAge) {
+          rangeAge.forEach(function (element) {
+            range.push(element.titulo);
+            totalRange.push(element.total);
+          });
+        }
+
+        _this.datacollectionn = {
+          labels: range,
+          datasets: [{
+            label: 'Rango de edades',
+            backgroundColor: '#1976d2',
+            data: totalRange
+          }]
+        };
         _this.averageAge = res.data.groupAverageAge;
-        console.log(_this.averageAge);
+        _this.proMasc = _this.averageAge.promedio.masculino;
+        _this.proFeme = _this.averageAge.promedio.femenino;
+        _this.proTotal = _this.averageAge.promedio.total;
+        _this.minMasc = _this.averageAge.minima.masculino;
+        _this.minFeme = _this.averageAge.minima.femenino;
+        _this.minTotal = _this.averageAge.minima.total;
+        _this.maxMasc = _this.averageAge.maxima.masculino;
+        _this.maxFeme = _this.averageAge.maxima.femenino;
+        _this.maxTotal = _this.averageAge.maxima.total;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -77380,13 +77457,13 @@ var render = function() {
             "div",
             {
               staticClass: "card card-bg black-text container-fm",
-              staticStyle: { height: "500px" }
+              staticStyle: { height: "450px" }
             },
             [
               _c("div", { staticClass: "card-content center" }, [
                 _c("img", {
                   staticClass: "icon-fm",
-                  staticStyle: { width: "200px" },
+                  staticStyle: { width: "100px" },
                   attrs: { src: "images/genero-color.png" }
                 }),
                 _vm._v(" "),
@@ -77404,31 +77481,108 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col s8" }, [
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col s5" }, [
+            _c("div", { staticClass: "col s12" }, [
               _c("div", { staticClass: "card card-bg black-text" }, [
-                _c("div", { staticClass: "card-content center" }, [
+                _c(
+                  "div",
+                  { staticClass: "card-content center" },
+                  [
+                    _c("span", { staticClass: "card-title" }, [
+                      _vm._v("Investigadores por rango de edad")
+                    ]),
+                    _vm._v(" "),
+                    _c("Bar", {
+                      attrs: { "chart-data": _vm.datacollectionn, height: 250 }
+                    })
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col s12" }, [
+            _c("div", { staticClass: "card card-bg" }, [
+              _c(
+                "div",
+                { staticClass: "card-content center" },
+                [
+                  _c("span", { staticClass: "card-title" }, [
+                    _vm._v("Investigadores por estados")
+                  ]),
+                  _vm._v(" "),
+                  _c("Bar", {
+                    attrs: { "chart-data": _vm.datacollection, height: 250 }
+                  })
+                ],
+                1
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col s6" }, [
+            _c("div", { staticClass: "card card-bg" }, [
+              _c("div", { staticClass: "card-content" }, [
+                _c("table", { staticClass: "responsive-table" }, [
+                  _vm._m(3),
+                  _vm._v(" "),
                   _c(
-                    "table",
-                    {
-                      staticClass: "responsive-table",
-                      staticStyle: { height: "500px" }
-                    },
-                    [
-                      _vm._m(3),
-                      _vm._v(" "),
-                      _c(
-                        "tbody",
-                        _vm._l(_vm.profesions, function(profesion, index) {
-                          return _c("tr", { key: index }, [
-                            _c("td", [_vm._v(_vm._s(profesion.profesion))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(profesion.total))])
-                          ])
-                        }),
-                        0
-                      )
-                    ]
+                    "tbody",
+                    _vm._l(_vm.profesions, function(profesion, index) {
+                      return _c("tr", { key: index }, [
+                        _c("td", [_vm._v(_vm._s(profesion.profesion))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(profesion.total))])
+                      ])
+                    }),
+                    0
                   )
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col s6" }, [
+            _c("div", { staticClass: "card card-bg" }, [
+              _c("div", { staticClass: "card-content" }, [
+                _c("table", { staticClass: "responsive-table" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _c("tr", [
+                      _c("td", [_vm._v("Promedio")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.proMasc))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.proFeme))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.proTotal))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Maxima")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.maxMasc))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.maxFeme))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.maxTotal))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Minima")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.minMasc))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.minFeme))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.minTotal))])
+                    ])
+                  ])
                 ])
               ])
             ])
@@ -77484,6 +77638,22 @@ var staticRenderFns = [
         _c("th", [_vm._v("Profesión")]),
         _vm._v(" "),
         _c("th", [_vm._v("Investigadores (as)")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Edades")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Masculino")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Femenino")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total")])
       ])
     ])
   }

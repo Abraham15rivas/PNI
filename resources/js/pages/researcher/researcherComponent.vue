@@ -110,9 +110,9 @@
 		</div>
 		<div class="row">
 			<div class="col s4">
-				<div class="card card-bg black-text container-fm" style="height: 500px;">
+				<div class="card card-bg black-text container-fm" style="height: 450px;">
 					<div class="card-content center">
-                        <img class="icon-fm" src="images/genero-color.png" style="width: 200px">
+                        <img class="icon-fm" src="images/genero-color.png" style="width: 100px">
 						<h4>Mujeres:</h4>
 						<h5>{{investigators_womens}}</h5>
 						
@@ -123,47 +123,87 @@
 			</div>
 			<div class="col s8">
 				<div class="row">
-					<div class="col s5">
+					<div class="col s12">
 						<div class="card card-bg black-text" >
 							<div class="card-content center">
-								<table class="responsive-table" style="height: 500px">
-                            <thead>
-                                <tr>
-                                    <th>Profesión</th>
-                                    <th>Investigadores (as)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(profesion, index) in profesions" :key="index">
-                                    <td>{{profesion.profesion}}</td>
-                                    <td>{{profesion.total}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                <span class="card-title">Investigadores por rango de edad</span>
+                                <Bar :chart-data="datacollectionn" :height="250"></Bar>
 							</div>
 						</div>
-					</div>
-					
+					</div>					 
 				</div>
-				<!--div class="row">
+			</div>
+            <div class="row">
+					<div class="col s12">
+						<div class="card card-bg">
+							<div class="card-content center">
+                                <span class="card-title">Investigadores por estados</span>
+                               <Bar :chart-data="datacollection" :height="250"></Bar>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
 					<div class="col s6">
-						<div class="card card-bg" style="height: 280px;">
-							<div class="card-content" style="height: 270px;">
-								<canvas id="myChart"></canvas>
+						<div class="card card-bg">
+							<div class="card-content">
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Profesión</th>
+                                            <th>Investigadores (as)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(profesion, index) in profesions" :key="index">
+                                            <td>{{profesion.profesion}}</td>
+                                            <td>{{profesion.total}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 							</div>
 						</div>
 					</div>
 					<div class="col s6">
-						<div class="card card-bg" style="height: 280px;">
-							<div class="card-content" style="height: 270px;">
-								<canvas id="myChart2"></canvas>
+						<div class="card card-bg">
+							<div class="card-content">
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Edades</th>
+                                            <th>Masculino</th>
+                                            <th>Femenino</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                            <td>Promedio</td>
+                                            <td>{{proMasc}}</td>
+                                            <td>{{proFeme}}</td>
+                                            <td>{{proTotal}}</td>
+                                       </tr>
+                                       <tr>
+                                            <td>Maxima</td>
+                                            <td>{{maxMasc}}</td>
+                                            <td>{{maxFeme}}</td>
+                                            <td>{{maxTotal}}</td>
+                                            
+                                       </tr>
+                                       <tr>
+                                           <td>Minima</td>
+                                            <td>{{minMasc}}</td>
+                                            <td>{{minFeme}}</td>
+                                            <td>{{minTotal}}</td>
+                                       </tr>
+                                    </tbody>
+                                </table>
 							</div>
 						</div>
 					</div>
-				</div-->
+				</div>
 		    </div>
-		</div>
-	</div>
+	    </div>
     </div>
 </template>
 
@@ -180,8 +220,22 @@
                 investigators_mens: "",
                 investigators_womens: "",
                 datacollection: null,
+                datacollectionn: null,
                 profesions: [],
-                averageAge: []
+                averageAge: [],
+
+                proFeme: '',
+                proMasc: '',
+                proTotal: '',
+
+                minFeme: '',
+                minMasc: '',
+                minTotal: '',
+
+                maxFeme: '',
+                maxMasc: '',
+                maxTotal: '',
+
             }
         },
         mounted() {
@@ -210,20 +264,50 @@
                         this.datacollection = {
                             labels: nameStates,
                             datasets: [{
-                                label: 'Total',
+                                label: 'Total investigadores por estado',
                                 backgroundColor: '#1976d2',
                                 data: num
                             }]
                         }
                         this.profesions = res.data.groupProfesion;
+                        
+
+
+                        let rangeAge = res.data.groupRangeAge;
+                        let range = new Array();
+                        let totalRange    = new Array();
+
+                        if (rangeAge) {
+                            rangeAge.forEach(element => {
+                                range.push(element.titulo);
+                                totalRange.push(element.total)
+                            });                            
+                        }
+
+                        this.datacollectionn = {
+                            labels: range,
+                            datasets: [{
+                                label: 'Rango de edades',
+                                backgroundColor: '#1976d2',
+                                data: totalRange
+                            }]
+                        }
                         this.averageAge = res.data.groupAverageAge;
-                        
-                        console.log(this.averageAge);
-                        
+
+                        this.proMasc = this.averageAge.promedio.masculino
+                        this.proFeme = this.averageAge.promedio.femenino
+                        this.proTotal = this.averageAge.promedio.total
+
+                        this.minMasc = this.averageAge.minima.masculino
+                        this.minFeme = this.averageAge.minima.femenino
+                        this.minTotal = this.averageAge.minima.total
+
+                        this.maxMasc = this.averageAge.maxima.masculino
+                        this.maxFeme = this.averageAge.maxima.femenino
+                        this.maxTotal = this.averageAge.maxima.total                                            
                     })
                     .catch(err => {
-                        console.log(err);
-                        
+                        console.log(err);  
                     })
             }
         }

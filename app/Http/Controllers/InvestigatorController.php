@@ -244,45 +244,34 @@ class InvestigatorController extends Controller
             $ages->push(["age"=>Carbon::parse($data->fecha_nac)->age,"genero"=>$data->id_genero]);
         }
 
-        $ranges = array();
+        $ranges = collect();
         for ($i = 0; $i < 9; $i++) {
-            $ranges["$i"."0 - $i"."9"] = 0;
+            $ranges->push(["titulo"=>$i."0 - ".$i."9", "total"=> 0]);
         }
 
         $famela = array();
         $male = array();
 
         // Asigna valor a cada rango
-        foreach ($ages as $age) 
-        {
-            if (0 <= $age['age'] && $age['age'] <= 9) {
-                $ranges["00 - 09"] += 1;
-                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
-            } else if (10 <= $age['age'] && $age['age'] <= 19) {
-                $ranges["10 - 19"] += 1;
-                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
-            } else if (20 <= $age['age'] && $age['age'] <= 29) {
-                $ranges["20 - 29"] += 1;
-                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
-            } else if (30 <= $age['age'] && $age['age'] <= 39) {
-                $ranges["30 - 39"] += 1;
-                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
-            } else if (40 <= $age['age'] && $age['age'] <= 49) {
-                $ranges["40 - 49"] += 1;
-                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
-            } else if (50 <= $age['age'] && $age['age'] <= 59) {
-                $ranges["50 - 59"] += 1;
-                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
-            } else if (60 <= $age['age'] && $age['age'] <= 69) {
-                $ranges["60 - 69"] += 1;
-                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
-            } else if (70 <= $age['age'] && $age['age'] <= 79) {
-                $ranges["70 - 79"] += 1;
-                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
-            } else if (80 <= $age['age'] && $age['age'] <= 89) {
-                $ranges["80 - 89"] += 1;
-                $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
-            } 
+        foreach ($ranges as $value) {
+            $comparar1 = (int) substr($value["titulo"], 0, 2);
+            $comparar2 = (int) substr($value["titulo"], -2, 2);
+            $titulo = $value["titulo"];
+            foreach ($ages as $age) 
+            {
+                if ($comparar1 <= $age['age'] && $age['age'] <= $comparar2) {
+                    $search = $ranges->where('titulo', $titulo);
+                    if($search) {
+                        $ranges = $ranges->map(function ($rango) use($titulo) {
+                            if ($rango["titulo"] == $titulo) {
+                                $rango["total"]++;
+                            }
+                            return $rango;
+                        });
+                    }
+                    $age['genero'] == '1' ? $famela[] = $age['age'] : $male[] = $age['age'];
+                }
+            }
         }
 
         // Edad minima, maxima y promedios

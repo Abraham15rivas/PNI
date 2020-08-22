@@ -70,11 +70,17 @@ class InvestigatorController extends Controller
                 }
             }
             
-            // Ordenar descendente las profesiones
+            // Ordenar descendente las profesiones y mostrar solo 10 primeros
             $arrayProfesion = $groupProfesion->toArray();
             usort($arrayProfesion, function($a, $b) {
                 return $b['total'] <=> $a['total'];
             });
+
+            if (count($arrayProfesion) > 10) {
+                $arrayProfesion = array_slice($arrayProfesion, 0, 10);
+            } else {
+                $arrayProfesion = array_slice($arrayProfesion, 0, count($arrayProfesion));
+            }
 
             //Numero de investigadores por estados
             $groupBySta = $investigators->groupBy('id_estado');
@@ -103,7 +109,7 @@ class InvestigatorController extends Controller
                 "total_investigators"=>$total_investigators,
                 "investigators_mens"=>$investigators_mens,
                 "investigators_womens"=>$investigators_womens,
-                "groupProfesion"=>count($arrayProfesion) != 0 ? array_slice($arrayProfesion, 0, 10) : 0,
+                "groupProfesion"=>$arrayProfesion,
                 "groupStates"=>$groupState,
                 "groupRangeAge"=>$groupRangeAge,
                 "groupAverageAge"=>$groupAverageAge
@@ -113,7 +119,6 @@ class InvestigatorController extends Controller
             $investigators = Investigator::get(['interes_inv', 'id_genero', 'id_tipo_institucion', 'inv_actual']);
             $interests = Interest::orderBy('id_lineas_presidenciales', 'asc')->get(['nombre_lineas_presidenciales', 'id_lineas_presidenciales']);
             $interests->push(["name"=> "TOTALES"]);
-            $actualInvestigations = Interest::get();
 
             // Numero de instituciones
             $groupInstitution = self::institutionType($investigators);
@@ -160,34 +165,38 @@ class InvestigatorController extends Controller
             {
                 $length = $interests->count();
                 $name = $i == ($length - 1) ? $interests[$i]['name'] : $interests[$i]->nombre_lineas_presidenciales;
-                $id_interest = $i == ($length - 1) ? 'No' : $interests[$i]->id_lineas_presidenciales;
+                $id = $i == ($length - 1) ? $length : $interests[$i]->id_lineas_presidenciales;
+                $id_interest = $i == ($length - 1) ? 'Abi' : $interests[$i]->id_lineas_presidenciales;
                 $value = isset($count_values_repeat[$j]) ? $count_values_repeat[$j] : 0;
                 // Suma de totales
                 $count_total_inv += $value;
 
-                $groupInterest[$i]["$name"]["total"] = $i == ($length - 1) ? $count_total_inv : $value;
-                $groupInterest[$i]["$name"]["femenino"] = 0;
-                $groupInterest[$i]["$name"]["masculino"] = 0;
+                $groupInterest[$i]["titulo"] = $name;
+                $groupInterest[$i]["id"] = $id;
+                $groupInterest[$i]["total"] = $i == ($length - 1) ? $count_total_inv : $value;
+                $groupInterest[$i]['femenino'] = 0;
+                $groupInterest[$i]['masculino'] = 0;
 
                 foreach ($count_generos_repeat as $key => $generos) {
                     $id = explode("-", $key);
                     if ((int)$id[0] == $id_interest) {
                         if ((int)$id[1] == 1) {
                             $count_total_famela += $generos;
-                            $groupInterest[$i]["$name"]["femenino"] = $generos;
+                            $groupInterest[$i]["femenino"] = $generos;
                         } else {
                             $count_total_male += $generos;
-                            $groupInterest[$i]["$name"]["masculino"] = $generos;
+                            $groupInterest[$i]["masculino"] = $generos;
                         }
-                    } else {
-                        $groupInterest[$i]["$name"]['femenino'] = $count_total_famela;
-                        $groupInterest[$i]["$name"]['masculino'] = $count_total_male;
+                    } else if ($id_interest == 'Abi') {
+                        $groupInterest[$i]['femenino'] = $count_total_famela;
+                        $groupInterest[$i]['masculino'] = $count_total_male;
                     }
                 }
                 $j++;
             }
 
             //investigaciones actuales
+            $actualInvestigations = Interest::get();
             $investigators_actual = $investigators->where('inv_actual','!=',null);
 
             $arrActual = collect();
@@ -199,6 +208,7 @@ class InvestigatorController extends Controller
 
                     foreach($selected as $pro){
                         $name = $pro->nombre_lineas_presidenciales;
+                        $id = $pro->id_lineas_presidenciales;
                     }
                     $search = $arrActual->where('titulo',$name);
                     if($search->count() > 0){
@@ -209,7 +219,7 @@ class InvestigatorController extends Controller
                             return $investigation;
                         });
                     }else{
-                        $arrActual->push(["titulo"=>$name,"total"=>1]);
+                        $arrActual->push(["titulo"=>$name, "id"=>$id ,"total"=>1]);
                     }
                 }
 
@@ -316,15 +326,16 @@ class InvestigatorController extends Controller
 
     public function institutionType ($investigators) {
         // Obtener datos de institucion
-        $institutions = InstitutionType::orderBy('id_tipo_institucion', 'asc')->get(['tipo_institucion']);
+        $institutions = InstitutionType::orderBy('id_tipo_institucion', 'asc')->get(['tipo_institucion', 'id_tipo_institucion']);
         $institutions->prepend(["tipo_institucion" => "NO CONTESTARON"]);
 
         // Generar Objeto 
-        $type_institution = array();
+        $type_institution = collect();
         for ($i = 0; $i < $institutions->count(); $i++) {
             $name = $i == 0 ? $institutions[$i]['tipo_institucion'] : $institutions[$i]->tipo_institucion;
+            $id = $i == 0 ? 0 : $institutions[$i]->id_tipo_institucion;
             $value = $investigators->where('id_tipo_institucion', $i)->count();
-            $type_institution["$name"] = $value;
+            $type_institution->push(["titulo"=> $name, "id"=> $id, "total"=> $value]);
         }
         return $type_institution;
     }

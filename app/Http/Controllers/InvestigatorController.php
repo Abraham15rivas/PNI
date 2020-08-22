@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\{Investigator, Interest, Profesion, State, InstitutionType, ActualInvestigation};
 use Carbon\Carbon;
 
-class InvestigatorController extends Controller
-{
+class InvestigatorController extends Controller {
+    
     public function index(){
         if (!isset($_GET['interest'])) {
             //obtener datos masivos

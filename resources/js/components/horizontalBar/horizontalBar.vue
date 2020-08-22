@@ -1,9 +1,9 @@
 <script>
-import { Line } from 'vue-chartjs'
+import { HorizontalBar } from 'vue-chartjs'
 
 export default {
-  name: "LineChart",
-  extends: Line,
+  name: "HorizontalBar",
+  extends: HorizontalBar,
   mixins: [reactiveProp],
   props: {
     chartdata: {

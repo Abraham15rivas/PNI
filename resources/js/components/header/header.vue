@@ -1,16 +1,19 @@
 <template>
 <div>
     <header>
-        <div class="navbar-fixed">
+        <div class="navbar-fixed" style="height: 95px">
             <nav class="navbar blue darken-1"  style="height: 95px">
                 <div class="nav-wrapper">
                     <div class="brand-logo" >
                         <img class="logo-min header-logo" src="images/mincyt.png" alt="">
                     </div>
+                    <a data-target="slide-out" class="sidenav-trigger left">
+                        <i class="material-icons white-text">menu</i>
+                    </a>
                 </div>
             </nav>
         </div>
-        <ul class=" sidenav sidenav-fixed">
+        <ul class=" sidenav sidenav-fixed" id="slide-out">
             <li>
                 <div class="logo-container">
                     <img src="images/pni.png" class="logo-min">
@@ -24,7 +27,7 @@
                         </a>
                     </li>
                     <li class="waves-effect">
-                        <router-link to="/researcher" class="collapsible-header" tabindex="0">
+                        <router-link to="/home" class="collapsible-header" tabindex="0">
                            Inicio<i class="material-icons">home</i> 
                         </router-link>
                     </li>
@@ -46,19 +49,14 @@
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Componente montado.')
-        }
+export default {
+mounted() {
+    console.log('Componente montado.');
     }
+}
 </script>
 
 <style scoped>
-
-.navbar {
-    padding: 0px 20px;
-}
-
 .sidenav .logo-container {
     padding: 0 16px;
     height: 94px;
@@ -74,13 +72,24 @@
 .sidenav .collapsible li, .sidenav.fixed .collapsible li {
     padding: 0;
 }
+
 .logo-min{
 	width: 195px;
 	height: 85px;
 	margin-top: 6px;
 }
 
+.cintillo-min {
+    width: 100%;
+    height: 100px;
+}
+
 .header-logo {
-    margin-left: 750px;
+    position: fixed;
+    right: 10px;
+}
+
+.brand-logo{
+    width: 100%;
 }
 </style>

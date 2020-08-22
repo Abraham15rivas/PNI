@@ -54,14 +54,25 @@
                 <thead>
                     <tr>
                         <th>Edades</th>
-                        <th>Minima</th>
-                        <th>Maxima</th>
-                        <th>Promedio</th>
+                        <th>Masculino</th>
+                        <th>Femenino</th>
+                        <th>Total</th>
+                        
                     </tr>
                 </thead>
-                <tbody>             
+                <tbody>
+                    <tr>
+                        <td>Promedio</td>
+                    </tr>
+                    <tr>
+                        <td>Maxima</td>
+                    </tr>
+                    <tr>
+                        <td>Minima</td>
+                    </tr>
+                   
                     <tr v-for="(averageAge, index) in averageAge" :key="index">
-                        <td >{{averageAge.promedio}}</td>
+                        <td>{{averageAge.total}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -82,7 +93,6 @@
                 investigators_mens: "",
                 investigators_womens: "",
                 datacollection: null,
-                datacollectionn: null,
                 profesions: [],
                 averageAge: []
             }
@@ -121,6 +131,7 @@
                         this.profesions = res.data.groupProfesion;
                         this.averageAge = res.data.groupAverageAge;
                         
+                        console.log(this.averageAge);
                         
                     })
                     .catch(err => {

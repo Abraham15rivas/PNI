@@ -2221,7 +2221,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              url = 'statistics/investigators?interest=true';
+              url = 'statistics/investigators/interest';
               axios.get(url).then(function (res) {
                 _this.institution = _this.groupInstitution(res.data.groupInstitution);
                 _this.dataInterest = res.data.groupInterest;

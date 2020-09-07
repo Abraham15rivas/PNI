@@ -122,7 +122,7 @@ export default {
         }
     },
     async mounted () {
-        let url = 'statistics/investigators?interest=true';
+        let url = 'statistics/investigators/interest';
         axios.get(url)
             .then(res => {          
                 this.institution = this.groupInstitution(res.data.groupInstitution);

@@ -182,7 +182,7 @@ class InvestigatorController extends Controller {
             "minima"=> [
                 "femenino"=> $min_famela,
                 "masculino"=> $min_male,
-                "total"=> $min_famela > $min_male ? $min_famela : $min_male
+                "total"=> $min_famela < $min_male ? $min_famela : $min_male
             ],
             "maxima"=> [
                 "femenino"=> $max_famela,

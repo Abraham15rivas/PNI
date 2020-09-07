@@ -70,15 +70,12 @@ class InvestigatorController extends Controller {
         }
         
         // Ordenar descendente las profesiones y mostrar solo 10 primeros
-        $arrayProfesion = $groupProfesion->toArray();
-        usort($arrayProfesion, function($a, $b) {
-            return $b['total'] <=> $a['total'];
-        });
+        $grauprofesionArray = $this->orderDescUnkey($groupProfesion);
 
-        if (count($arrayProfesion) > 10) {
-            $arrayProfesion = array_slice($arrayProfesion, 0, 10);
+        if (count($grauprofesionArray) > 10) {
+            $grauprofesionArray = array_slice($grauprofesionArray, 0, 10);
         } else {
-            $arrayProfesion = array_slice($arrayProfesion, 0, count($arrayProfesion));
+            $grauprofesionArray = array_slice($grauprofesionArray, 0, count($grauprofesionArray));
         }
 
         //Numero de investigadores por estados
@@ -97,19 +94,21 @@ class InvestigatorController extends Controller {
             $total = count($val);
             $groupState->push(["estado"=>$name,"total"=>$total]);
         }
+
+        // Ordenar descendente los estados
+        $groupStateArray = $this->orderDescUnkey($groupState);
         
         // Investigadores por rango de edad, edad minima, maxima y promedios por genero
         $calculations = self::rangeAge($investigators);
         $groupRangeAge = $calculations["ranges"];
         $groupAverageAge = $calculations["averages"];
 
-
         $data = collect([
             "total_investigators"=>$total_investigators,
             "investigators_mens"=>$investigators_mens,
             "investigators_womens"=>$investigators_womens,
-            "groupProfesion"=>$arrayProfesion,
-            "groupStates"=>$groupState,
+            "groupProfesion"=>$grauprofesionArray,
+            "groupStates"=>$groupStateArray,
             "groupRangeAge"=>$groupRangeAge,
             "groupAverageAge"=>$groupAverageAge
         ]);
@@ -182,7 +181,7 @@ class InvestigatorController extends Controller {
             "minima"=> [
                 "femenino"=> $min_famela,
                 "masculino"=> $min_male,
-                "total"=> $min_famela < $min_male ? $min_famela : $min_male
+                "total"=> $min_famela > $min_male ? $min_famela : $min_male
             ],
             "maxima"=> [
                 "femenino"=> $max_famela,
@@ -330,5 +329,15 @@ class InvestigatorController extends Controller {
             $type_institution->push(["titulo"=> $name, "id"=> $id, "total"=> $value]);
         }
         return $type_institution;
+    }
+
+    public function orderDescUnkey ($collection)
+    {
+        $newArray = $collection->toArray();
+        usort($newArray, function($a, $b) {
+            return $b['total'] <=> $a['total'];
+        });
+
+        return $newArray;
     }
 }

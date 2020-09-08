@@ -15,6 +15,8 @@ Vue.component('bar-charts', require('./components/bar/bar.vue').default);
 import homeComponent from './pages/home/homeComponent';
 import researcherComponent from './pages/researcher/researcherComponent';
 import researchComponent from './pages/research/researchComponent';
+import profileResearchComponent from './pages/profileResearch/profileResearchComponent';
+import currentResearchComponent from './pages/currentResearch/currentResearchComponent';
 
 const router = new VueRouter({
     routes: [
@@ -33,6 +35,14 @@ const router = new VueRouter({
         {
             path: '/research',
             component: researchComponent
+        },
+        {
+            path: '/profileResearch',
+            component: profileResearchComponent
+        },
+        {
+            path: '/currentResearch',
+            component: currentResearchComponent
         }
     ],
     mode: 'history'

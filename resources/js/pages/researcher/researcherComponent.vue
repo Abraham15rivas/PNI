@@ -129,12 +129,7 @@
 </template>
 
 <script>
-    import Bar from '../../charts'
-
     export default {
-        components: {
-            Bar
-        },
         data() {
             return {
                 total_investigators: "",

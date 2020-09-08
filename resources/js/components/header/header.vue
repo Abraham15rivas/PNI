@@ -40,7 +40,17 @@
                         <router-link to="/research" class="collapsible-header" tabindex="0">
                             Interés de Investigación<i class="material-icons">work</i>
                         </router-link>
-                    </li>                
+                    </li>
+                    <li class="waves-effect">
+                        <router-link to="/profileResearch" class="collapsible-header" tabindex="0">
+                            Perfil de Investigación<i class="material-icons">person</i>
+                        </router-link>
+                    </li>   
+                    <li class="waves-effect">
+                        <router-link to="/currentResearch" class="collapsible-header" tabindex="0">
+                            Modulo de Investigación Actual<i class="material-icons">view_module</i>
+                        </router-link>
+                    </li>              
                 </ul>
             </li>
         </ul>

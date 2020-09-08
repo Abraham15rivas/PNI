@@ -23,3 +23,11 @@ Route::get('research', function () {
     return view('layouts.app');
 });
 
+Route::get('profileResearch', function () {
+    return view('layouts.app');
+});
+
+Route::get('currentResearch', function () {
+    return view('layouts.app');
+});
+

@@ -48,7 +48,7 @@
                             <div class="card card-bg black-text" >
                                 <div class="card-content center">
                                     <span class="card-title">Investigadores por rango de edad</span>
-                                    <Bar :chart-data="datacollectionn" :height="250"></Bar>
+                                    <bar-charts v-if="show.dataAge" :chartdata="datacollectionn" :height="250"></bar-charts>
                                 </div>
                             </div>
                         </div>					 
@@ -59,7 +59,7 @@
                             <div class="card card-bg">
                                 <div class="card-content center">
                                     <span class="card-title">Investigadores por estados</span>
-                                <Bar :chart-data="datacollection" :height="250"></Bar>
+                                <bar-charts v-if="show.dataState" :chartdata="datacollection" :height="250"></bar-charts>
                                 </div>
                             </div>
                         </div>
@@ -157,6 +157,11 @@
                 maxMasc: '',
                 maxTotal: '',
 
+                show: {
+                    dataAge: false,
+                    dataState: false
+                }
+
             }
         },
         mounted() {
@@ -190,6 +195,7 @@
                                 data: num
                             }]
                         }
+                        
                         this.profesions = res.data.groupProfesion;
                         
 
@@ -214,6 +220,7 @@
                             }]
                         }
                         this.averageAge = res.data.groupAverageAge;
+                        console.log(this.datacollectionn);
 
                         console.log(this.averageAge);
 
@@ -227,7 +234,9 @@
 
                         this.maxMasc = this.averageAge.maxima.masculino
                         this.maxFeme = this.averageAge.maxima.femenino
-                        this.maxTotal = this.averageAge.maxima.total                                            
+                        this.maxTotal = this.averageAge.maxima.total
+                        this.show.dataState = true;
+                        this.show.dataAge = true;                               
                     })
                     .catch(err => {
                         console.log(err);  

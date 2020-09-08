@@ -78,7 +78,7 @@
             </table>
         </div>
     </div-->
-    <div>
+    <div class="margin-x">
     <div class="content bg">
 		<div class="row">
 			<div class="col s12">
@@ -294,6 +294,8 @@
                         }
                         this.averageAge = res.data.groupAverageAge;
 
+                        console.log(this.averageAge);
+
                         this.proMasc = this.averageAge.promedio.masculino
                         this.proFeme = this.averageAge.promedio.femenino
                         this.proTotal = this.averageAge.promedio.total
@@ -327,5 +329,9 @@
 	margin-left: 12px;
 	width: 110px;
 	height: 110px;
+}
+
+.margin-x{
+    margin: 0 50px
 }
 </style>

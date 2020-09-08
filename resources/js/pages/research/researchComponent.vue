@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="margin-x">
         <div class="row">
             <div class="col s12">
                 <h5 class="center-align" >Indicador del tipo de institución e interés de investigación de las investigadoras e investigadores</h5>
@@ -7,7 +7,7 @@
         </div>
 
         <div class="row">
-            <div class="col s12 m6 offset-m3">
+            <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center">Tipo de Institución</span>
@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12 m12">
+            <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Interés de Investigación</span>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s12 m12">
+            <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Interés de Investigación por Género</span>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12 m12">
+            <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Investigación Actual</span>
@@ -233,3 +233,12 @@ export default {
 
 }
 </script>
+
+
+<style>
+
+.margin-x{
+    margin: 0 50px
+}
+
+</style>

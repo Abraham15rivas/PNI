@@ -1,130 +1,130 @@
 <template>
-    <div>
-    <div class="content bg">
-		<div class="row">
-			<div class="col s12">
-                <br><br>
-				<h5 class="black-text center principal-title">
-                    Indicador de Investigadoras e Investigadores registrados en el Programa Nacional de Investigadores
-                </h5>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col s3"></div>
-				<div class="col s12 m7">
-					<div class="card horizontal">
-						<div class="card-image">
-							<img class="icon-total-register" src="images/registro.svg">
-						</div>
-						<div class="card-stacked">
-							<div class="card-content">
-								<h5>Total registrados</h5>
-							</div>
-							<div class="card-action">
-								<h2 class="total-register">{{total_investigators}}</h2>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col s4">
-				<div class="card card-bg black-text container-fm" style="height: 450px;">
-					<div class="card-content center">
-                        <img class="icon-fm" src="images/genero-color.png" style="width: 100px">
-						<h4>Mujeres:</h4>
-						<h5>{{investigators_womens}}</h5>
-						
-						<h4>Hombres:</h4>
-						<h5>{{investigators_mens}}</h5>
-					</div>
-				</div>
-			</div>
-			<div class="col s8">
-				<div class="row">
-					<div class="col s12">
-						<div class="card card-bg black-text" >
-							<div class="card-content center">
-                                <span class="card-title">Investigadores por rango de edad</span>
-                                <Bar :chart-data="datacollectionn" :height="250"></Bar>
-							</div>
-						</div>
-					</div>					 
-				</div>
-			</div>
+    <div class="margin-x">
+        <div class="content bg">
             <div class="row">
-					<div class="col s12">
-						<div class="card card-bg">
-							<div class="card-content center">
-                                <span class="card-title">Investigadores por estados</span>
-                               <Bar :chart-data="datacollection" :height="250"></Bar>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col s6">
-						<div class="card card-bg">
-							<div class="card-content">
-                                <table class="responsive-table">
-                                    <thead>
+                <div class="col s12">
+                    <br><br>
+                    <h5 class="black-text center principal-title">
+                        Indicador de Investigadoras e Investigadores registrados en el Programa Nacional de Investigadores
+                    </h5>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col s3"></div>
+                    <div class="col s12 m7">
+                        <div class="card horizontal">
+                            <div class="card-image">
+                                <img class="icon-total-register" src="images/registro.svg">
+                            </div>
+                            <div class="card-stacked">
+                                <div class="card-content">
+                                    <h5>Total registrados</h5>
+                                </div>
+                                <div class="card-action">
+                                    <h2 class="total-register">{{total_investigators}}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s4">
+                    <div class="card card-bg black-text container-fm" style="height: 450px;">
+                        <div class="card-content center">
+                            <img class="icon-fm" src="images/genero-color.png" style="width: 100px">
+                            <h4>Mujeres:</h4>
+                            <h5>{{investigators_womens}}</h5>
+                            
+                            <h4>Hombres:</h4>
+                            <h5>{{investigators_mens}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s8">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="card card-bg black-text" >
+                                <div class="card-content center">
+                                    <span class="card-title">Investigadores por rango de edad</span>
+                                    <Bar :chart-data="datacollectionn" :height="250"></Bar>
+                                </div>
+                            </div>
+                        </div>					 
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col s12">
+                            <div class="card card-bg">
+                                <div class="card-content center">
+                                    <span class="card-title">Investigadores por estados</span>
+                                <Bar :chart-data="datacollection" :height="250"></Bar>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <div class="card card-bg">
+                                <div class="card-content">
+                                    <table class="responsive-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Profesión</th>
+                                                <th>Investigadores (as)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(profesion, index) in profesions" :key="index">
+                                                <td>{{profesion.profesion}}</td>
+                                                <td>{{profesion.total}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s6">
+                            <div class="card card-bg">
+                                <div class="card-content">
+                                    <table class="responsive-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Edades</th>
+                                                <th>Masculino</th>
+                                                <th>Femenino</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                         <tr>
-                                            <th>Profesión</th>
-                                            <th>Investigadores (as)</th>
+                                                <td>Promedio</td>
+                                                <td>{{proMasc}}</td>
+                                                <td>{{proFeme}}</td>
+                                                <td>{{proTotal}}</td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="(profesion, index) in profesions" :key="index">
-                                            <td>{{profesion.profesion}}</td>
-                                            <td>{{profesion.total}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-							</div>
-						</div>
-					</div>
-					<div class="col s6">
-						<div class="card card-bg">
-							<div class="card-content">
-                                <table class="responsive-table">
-                                    <thead>
                                         <tr>
-                                            <th>Edades</th>
-                                            <th>Masculino</th>
-                                            <th>Femenino</th>
-                                            <th>Total</th>
+                                                <td>Maxima</td>
+                                                <td>{{maxMasc}}</td>
+                                                <td>{{maxFeme}}</td>
+                                                <td>{{maxTotal}}</td>
+                                                
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                       <tr>
-                                            <td>Promedio</td>
-                                            <td>{{proMasc}}</td>
-                                            <td>{{proFeme}}</td>
-                                            <td>{{proTotal}}</td>
-                                       </tr>
-                                       <tr>
-                                            <td>Maxima</td>
-                                            <td>{{maxMasc}}</td>
-                                            <td>{{maxFeme}}</td>
-                                            <td>{{maxTotal}}</td>
-                                            
-                                       </tr>
-                                       <tr>
-                                           <td>Minima</td>
-                                            <td>{{minMasc}}</td>
-                                            <td>{{minFeme}}</td>
-                                            <td>{{minTotal}}</td>
-                                       </tr>
-                                    </tbody>
-                                </table>
-							</div>
-						</div>
-					</div>
-				</div>
-		    </div>
-	    </div>
+                                        <tr>
+                                            <td>Minima</td>
+                                                <td>{{minMasc}}</td>
+                                                <td>{{minFeme}}</td>
+                                                <td>{{minTotal}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
     </div>
 </template>
 
@@ -215,6 +215,8 @@
                         }
                         this.averageAge = res.data.groupAverageAge;
 
+                        console.log(this.averageAge);
+
                         this.proMasc = this.averageAge.promedio.masculino
                         this.proFeme = this.averageAge.promedio.femenino
                         this.proTotal = this.averageAge.promedio.total
@@ -248,5 +250,9 @@
 	margin-left: 12px;
 	width: 110px;
 	height: 110px;
+}
+
+.margin-x{
+    margin: 0 50px
 }
 </style>

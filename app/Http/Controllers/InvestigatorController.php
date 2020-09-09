@@ -199,7 +199,7 @@ class InvestigatorController extends Controller {
             "minima"=> [
                 "femenino"=> $min_famela,
                 "masculino"=> $min_male,
-                "total"=> $min_famela > $min_male ? $min_famela : $min_male
+                "total"=> $min_famela < $min_male ? $min_famela : $min_male
             ],
             "maxima"=> [
                 "femenino"=> $max_famela,
@@ -335,17 +335,24 @@ class InvestigatorController extends Controller {
 
     public function institutionType ($investigators) {
         // Obtener datos de institucion
-        $institutions = InstitutionType::orderBy('id_tipo_institucion', 'asc')->get(['tipo_institucion', 'id_tipo_institucion']);
-        $institutions->prepend(["tipo_institucion" => "NO CONTESTARON"]);
+        $institutions = InstitutionType::get();
 
         // Generar Objeto 
+        $groupByInstitution = $investigators->groupBy('id_tipo_institucion');
         $type_institution = collect();
-        for ($i = 0; $i < $institutions->count(); $i++) {
-            $name = $i == 0 ? $institutions[$i]['tipo_institucion'] : $institutions[$i]->tipo_institucion;
-            $id = $i == 0 ? 0 : $institutions[$i]->id_tipo_institucion;
-            $value = $investigators->where('id_tipo_institucion', $i)->count();
-            $type_institution->push(["titulo"=> $name, "id"=> $id, "total"=> $value]);
+        foreach ($groupByInstitution as $key => $val) {
+            if ($key != 0) {
+                $selected = $institutions->where('id_tipo_institucion',$key);
+                foreach($selected as $pro){
+                    $name = $pro->tipo_institucion;
+                }            
+                $total = count($val);
+                $type_institution->push(["titulo"=>$name, "id" => $key, "total"=>$total]);
+            } else {
+                $type_institution->prepend(["titulo" => 'NO CONTESTARON', "id" => $key,"total" => count($val)]);
+            }
         }
+
         return $type_institution;
     }
 
@@ -514,7 +521,6 @@ class InvestigatorController extends Controller {
         // Tiempo de investigacion actual
         $groupByTime = $investigation_current->groupBy('tiempo_investigacion');
         $groupTime = collect();
-        $not_response = 0;
         foreach ($groupByTime as $key => $val) {
             if ($key == "") {
                 $not_response = count($val);

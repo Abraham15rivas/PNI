@@ -15,7 +15,8 @@ use App\{
     InvestigationType,
     InvestigationLine,
     InvestigationTime,
-    Academic
+    Academic,
+    Phase
 };
 use Carbon\Carbon;
 
@@ -450,6 +451,103 @@ class InvestigatorController extends Controller {
             "investigations_time"=>$groupTime
         ]);
         
+        return $data->toJson();
+    }
+
+    public function current () {
+        $investigation_current = ActualInvestigation::get();
+        $institutionsType = InstitutionType::get();
+        $types = InvestigationType::get();
+        $line = InvestigationLine::get();
+        $times = InvestigationTime::get();
+        $phase = Phase::get();
+
+        // Total investigación actual
+        $total_investigation = $investigation_current->count();
+        
+        // Tipo de institución actual
+        $groupByInstitution = $investigation_current->groupBy('id_tipo_institucion');
+        $groupInstitution = collect();
+        foreach ($groupByInstitution as $key => $val) {
+            $selected = $institutionsType->where('id_tipo_institucion',$key);
+
+            foreach($selected as $pro){
+                $name = $pro->tipo_institucion;
+            }
+
+            $total = count($val);
+            $groupInstitution->push(["institution_type"=>$name,"total"=>$total]);
+        }
+        
+        foreach ($investigation_current as $key => $type) {
+
+        }
+
+        // Tipo de investigación actual
+        $groupByType = $investigation_current->groupBy('id_tipo_investigacion');
+        $groupType = collect();
+        foreach ($groupByType as $key => $val) {
+            $selected = $types->where('id_tipo_investigacion',$key);
+
+            foreach($selected as $pro){
+                $name = $pro->tipo_investigacion;
+            }
+
+            $total = count($val);
+            $groupType->push(["type_investigation"=>$name,"total"=>$total]);
+        }
+
+        // Lineas de investigación actual
+        $groupByLine = $investigation_current->groupBy('id_tipo_investigacion');
+        $groupLine = collect();
+        foreach ($groupByLine as $key => $val) {
+            $selected = $line->where('id_linea_investigacion',$key);
+
+            foreach($selected as $pro){
+                $name = $pro->linea_investigacion;
+            }
+
+            $total = count($val);
+            $groupLine->push(["line_investigation"=>$name,"total"=>$total]);
+        }
+
+        // Tiempo de investigacion actual
+        $groupByTime = $investigation_current->groupBy('tiempo_investigacion');
+        $groupTime = collect();
+        foreach ($groupByTime as $key => $val) {
+            $selected = $times->where('id_tiempo_investigacion',$key);
+
+            foreach($selected as $pro){
+                $name = $pro->tiempo_investigacion;
+            }
+
+            $total = count($val);
+            $groupTime->push(["investigation_time"=>$name,"total"=>$total]);
+        }
+
+        // Fases de investigación actual
+        $groupByPhase = $investigation_current->groupBy('id_fase');
+        $groupPhase = collect();
+        foreach ($groupByPhase as $key => $val) {
+            $selected = $phase->where('id_fase',$key);
+
+            foreach($selected as $pro){
+                $name = $pro->fase;
+            }
+
+            $total = count($val);
+            $groupPhase->push(["phase_investigation"=>$name,"total"=>$total]);
+        }
+
+        $data = collect([
+            "total_investigation" => $total_investigation,
+            "groupInstitution" => $groupInstitution,
+            "investigations_type" =>$groupType,
+            "investigations_line" =>$groupLine,
+            "investigations_phase" => $groupPhase,
+            "investigations_time" =>$groupTime
+        ]);
+
         return $data->toJson();
     }
 

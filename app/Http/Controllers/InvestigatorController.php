@@ -514,16 +514,21 @@ class InvestigatorController extends Controller {
         // Tiempo de investigacion actual
         $groupByTime = $investigation_current->groupBy('tiempo_investigacion');
         $groupTime = collect();
+        $not_response = 0;
         foreach ($groupByTime as $key => $val) {
-            $selected = $times->where('id_tiempo_investigacion',$key);
-
-            foreach($selected as $pro){
-                $name = $pro->tiempo_investigacion;
+            if ($key == "") {
+                $not_response = count($val);
             }
-
-            $total = count($val);
-            $groupTime->push(["investigation_time"=>$name,"total"=>$total]);
+            if ($key == 1 || $key == 2) {
+                $selected = $times->where('id_tiempo_investigacion',$key);
+                foreach($selected as $pro){
+                    $name = $pro->tiempo_investigacion;
+                }
+                $total = count($val);
+                $groupTime->push(["investigation_time"=>$name,"total"=>$total]);
+            }
         }
+        $groupTime->push(["investigation_time" => 'NO CONTESTARON',"total" => $not_response]);
 
         // Fases de investigación actual
         $groupByPhase = $investigation_current->groupBy('id_fase');

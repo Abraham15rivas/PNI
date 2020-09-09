@@ -3,7 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Investigator, Interest, Profesion, State, InstitutionType, ActualInvestigation};
+use App\{
+    Investigator, 
+    Interest, 
+    Profesion, 
+    State, 
+    InstitutionType, 
+    ActualInvestigation, 
+    InvestigatorProfile,
+    ProfileInvestigation, 
+    InvestigationType,
+    InvestigationLine,
+    InvestigationTime,
+    Academic
+};
 use Carbon\Carbon;
 
 class InvestigatorController extends Controller {
@@ -35,17 +48,21 @@ class InvestigatorController extends Controller {
             }
 
             $total = count($val);
+            $total_male = $investigators->where('id_profesion',$key)->where('id_genero',2)->count();
+            $total_female = $investigators->where('id_profesion',$key)->where('id_genero',1)->count();
             $similar = $profesion->filter(function ($item) use ($name) {
                 return false !== stristr($item->profesion, substr($name, 0, -1)) && $item->profesion !== $name;
             });
             if(count($similar) > 0){
-                foreach($similar as $val){
-                    $total += $investigators->where('id_profesion',$val["id_profesion"])->count();
+                foreach($similar as $val2){
+                    $total += $investigators->where('id_profesion',$val2["id_profesion"])->count();
+                    $total_male += $investigators->where('id_profesion',$val2["id_profesion"])->where('id_genero',2)->count();
+                    $total_female += $investigators->where('id_profesion',$val2["id_profesion"])->where('id_genero',1)->count();
                 }
                 $groupByPro = $groupByPro->filter(function ($f) use($similar){
                     $id = 0;
-                    foreach($similar as $val){
-                        $id = $val->id_profesion;
+                    foreach($similar as $val2){
+                        $id = $val2->id_profesion;
                     }
                     foreach($f as $investigator){
                         if($investigator->id_profesion != $id){
@@ -63,9 +80,9 @@ class InvestigatorController extends Controller {
                 });
             }
             if(!$test){
-                $groupProfesion->push(["profesion"=>$name,"id"=>$key,"total"=>$total]);
+                $groupProfesion->push(["profesion"=>$name,"id"=>$key,"total"=>$total,"male"=>$total_male,"female"=>$total_female]);
             }elseif($test && count($test) == 0){
-                $groupProfesion->push(["profesion"=>$name,"id"=>$key,"total"=>$total]);
+                $groupProfesion->push(["profesion"=>$name,"id"=>$key,"total"=>$total,"male"=>$total_male,"female"=>$total_female]);
             }
         }
         
@@ -340,4 +357,100 @@ class InvestigatorController extends Controller {
 
         return $newArray;
     }
+
+    public function profile(){
+        $profiles = InvestigatorProfile::get();
+        $profileInvestigations = ProfileInvestigation::get();
+        $line = InvestigationLine::get();
+        $times = InvestigationTime::get();
+        $types = InvestigationType::get();
+        $academic = Academic::get();
+        $institutionsType = InstitutionType::get();
+
+        $total_profiles = $profiles->count();
+        $totalInvestigations = $profileInvestigations->count();
+
+        //Perfiles por nivel academico
+        $groupByAcademic = $profiles->groupBy('id_nivel_academico');
+        $groupAcademic = collect();
+        foreach ($groupByAcademic as $key => $val) {
+            $selected = $academic->where('id_nivel_academico',$key);
+
+            foreach($selected as $pro){
+                $name = $pro->nivel_academico;
+            }
+
+            $total = count($val);
+            $groupAcademic->push(["academic_level"=>$name,"total"=>$total]);
+        }
+
+        //tipo investigacion
+        $groupByType = $profileInvestigations->groupBy('id_linea_investigacion');
+        $groupType = collect();
+        foreach ($groupByType as $key => $val) {
+            $selected = $types->where('id_linea_investigacion',$key);
+
+            foreach($selected as $pro){
+                $name = $pro->tipo_investigacion;
+            }
+
+            $total = count($val);
+            $groupType->push(["type_investigation"=>$name,"total"=>$total]);
+        }
+
+        //linea investigacion
+        $groupByLine = $profileInvestigations->groupBy('id_tipo_investigacion');
+        $groupLine = collect();
+        foreach ($groupByLine as $key => $val) {
+            $selected = $line->where('id_linea_investigacion',$key);
+
+            foreach($selected as $pro){
+                $name = $pro->linea_investigacion;
+            }
+
+            $total = count($val);
+            $groupLine->push(["line_investigation"=>$name,"total"=>$total]);
+        }
+
+        //tipo institucion
+        $groupByInstitution = $profileInvestigations->groupBy('id_tipo_institucion');
+        $groupInstitution = collect();
+        foreach ($groupByInstitution as $key => $val) {
+            $selected = $institutionsType->where('id_tipo_institucion',$key);
+
+            foreach($selected as $pro){
+                $name = $pro->tipo_institucion;
+            }
+
+            $total = count($val);
+            $groupInstitution->push(["institution_type"=>$name,"total"=>$total]);
+        }
+
+        //tiempo investigacion
+        $groupByTime = $profileInvestigations->groupBy('tiempo_investigacion');
+        $groupTime = collect();
+        foreach ($groupByTime as $key => $val) {
+            $selected = $times->where('id_tiempo_investigacion',$key);
+
+            foreach($selected as $pro){
+                $name = $pro->tiempo_investigacion;
+            }
+
+            $total = count($val);
+            $groupTime->push(["investigation_time"=>$name,"total"=>$total]);
+        }
+
+        $data = collect([
+            "total_profiles"=>$total_profiles,
+            "total_profiles_investigations"=>$totalInvestigations,
+            "academic_levels"=>$groupAcademic,
+            "investigations_line"=>$groupLine,
+            "investigations_type"=>$groupType,
+            "institutions_type"=>$groupInstitution,
+            "investigations_time"=>$groupTime
+        ]);
+        
+        return $data->toJson();
+    }
+
 }

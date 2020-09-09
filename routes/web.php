@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('statistics')->group(function () {
     Route::get('/investigators','InvestigatorController@index');
+    Route::get('/investigators/profile','InvestigatorController@profile');
     Route::get('/investigators/interest','InvestigatorController@interest');
 });
 

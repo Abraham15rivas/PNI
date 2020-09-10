@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
                     <div class="row">
                         <div class="col s6">
                             <div class="card card-bg">

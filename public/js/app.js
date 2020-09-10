@@ -2180,6 +2180,112 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {}
 });
@@ -77838,9 +77944,151 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "margin-x" })
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "margin-x" }, [
+      _c("div", { staticClass: "content bg" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col s12" }, [
+            _c("br"),
+            _c("br"),
+            _vm._v(" "),
+            _c("h5", { staticClass: "black-text center principal-title" }, [
+              _vm._v(
+                "\n                    Indicador del Perfil de los Investigadores e Investigaciones Registradas\n                "
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col s3" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col s12 m7" }, [
+              _c("div", { staticClass: "card horizontal" }, [
+                _c("div", { staticClass: "card-image" }, [
+                  _c("img", {
+                    staticClass: "icon-total-register",
+                    attrs: { src: "images/registro.svg" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-stacked" }, [
+                  _c("div", { staticClass: "card-content" }, [
+                    _c("h5", { staticClass: "center-align" }, [
+                      _vm._v("Total registrados en el perfil del Investigador")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-action" })
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12" }, [
+          _c("div", { staticClass: "card card-bg" }, [
+            _c("div", { staticClass: "card-content center" }, [
+              _c("span", { staticClass: "card-title" }, [
+                _vm._v("Investigadores por estados")
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Gráfico")])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col s3" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "col s12 m7" }, [
+            _c("div", { staticClass: "card horizontal" }, [
+              _c("div", { staticClass: "card-image" }, [
+                _c("img", {
+                  staticClass: "icon-total-register",
+                  attrs: { src: "images/registro.svg" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-stacked" }, [
+                _c("div", { staticClass: "card-content" }, [
+                  _c("h5", { staticClass: "center-align" }, [
+                    _vm._v("Total registrados en el perfil de la investigación")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-action" })
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12 m6" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-content" }, [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Tipo de Investigación")
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Gráfico")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col s12 m6" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-content" }, [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Línea de Investigación")
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Gráfico")])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12 m6" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-content" }, [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Tipo de Institución")
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Gráfico")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col s12 m6" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-content" }, [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Tiempo de Investigación")
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Gráfico")])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -94335,8 +94583,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\PNI\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\PNI\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\PNI\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\PNI\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

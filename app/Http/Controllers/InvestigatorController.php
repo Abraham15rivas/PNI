@@ -503,7 +503,7 @@ class InvestigatorController extends Controller {
         }
 
         // Lineas de investigación actual
-        $groupByLine = $investigation_current->groupBy('id_tipo_investigacion');
+        $groupByLine = $investigation_current->groupBy('id_linea_investigacion');
         $groupLine = collect();
         foreach ($groupByLine as $key => $val) {
             $selected = $line->where('id_linea_investigacion',$key);

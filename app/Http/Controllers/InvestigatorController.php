@@ -407,7 +407,7 @@ class InvestigatorController extends Controller {
         }
 
         //linea investigacion
-        $groupByLine = $profileInvestigations->groupBy('id_tipo_investigacion');
+        $groupByLine = $profileInvestigations->groupBy('id_linea_investigacion');
         $groupLine = collect();
         foreach ($groupByLine as $key => $val) {
             $selected = $line->where('id_linea_investigacion',$key);

@@ -241,9 +241,7 @@
     }
 </script>
 <style>
-*{
-    color: black;
-}
+* { color: black; }
 .total-register{
 	font-size: 40px;
 	margin-left: 55px;

@@ -117,7 +117,7 @@ export default {
             loadedInt: false,
 
             //Grupo de Interes
-            actualInt: {},
+            actualInt: {}, 
             loadedAct: false,
         }
     },

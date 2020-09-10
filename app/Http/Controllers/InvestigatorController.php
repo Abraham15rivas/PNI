@@ -438,9 +438,8 @@ class InvestigatorController extends Controller {
         $groupByTime = $profileInvestigations->groupBy('tiempo_investigacion');
         $groupTime = collect();
         foreach ($groupByTime as $key => $val) {
-            if ($key <= 8) {
-                $selected = $times->where('id_tiempo_investigacion',$key);
-
+            $selected = $times->where('id_tiempo_investigacion',$key);
+            if (count($selected) > 0) {
                 foreach($selected as $pro){
                     $name = $pro->tiempo_investigacion;
                 }

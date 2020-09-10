@@ -6,30 +6,30 @@
             </div>
         </div>
         
-            <div class="row">
-                <div class="col s12 m4 offset-m4">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img class="icon-total-register" src="images/registro.svg">
+        <div class="row">
+            <div class="col s12 m6 offset-m3 l4 offset-l4">
+                <div class="card horizontal">
+                    <div class="card-image card-icon">
+                        <img class="icon-total-register" src="images/registro.svg">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <h6 class="center-align title-card">Total Registrados en el Módulo de la Investigación</h6>
                         </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <h6 class="center-align">Total registrados en el módulo de la investigación</h6>
-                            </div>
-                            <div class="card-action">
-                                <h2 class="total-register">{{total_investigation}}</h2>                                    
-                            </div>
+                        <div class="card-action">
+                            <h2 class="total-register">{{total_investigation}}</h2>                                    
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         
         <div class="row">
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center">Tipo de Institución</span>
-                        <pie-charts v-if="loadedIns" :chartdata="institution"></pie-charts>
+                        <doughnut-charts v-if="loadedIns" :chartdata="institution"></doughnut-charts>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
             <div class="card">
                 <div class="card-content">
                     <span class="card-title center">Línea de Investigación</span>
-                    <horizontalBar-charts v-if="loadedInvLine" :chartdata="investigation_line"></horizontalBar-charts>
+                    <horizontalBar-charts v-if="loadedInvLine" :chartdata="investigation_line" :height="250"></horizontalBar-charts>
                 </div>
             </div>
             </div>
@@ -57,7 +57,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center">Fase de la Investigación</span>
-                        <line-charts v-if="loadedPhaseInv" :chartdata="phase_investigation"></line-charts>
+                        <line-charts v-if="loadedPhaseInv" :chartdata="phase_investigation" :height="180"></line-charts>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Tiempo de la Investigación</span>
-                        <line-charts v-if="loadedTimeInv" :chartdata="investigation_time"></line-charts>
+                        <line-charts v-if="loadedTimeInv" :chartdata="investigation_time" :height="180"></line-charts>
                     </div>
                 </div>
             </div>
@@ -298,14 +298,28 @@
         }
     }
 </script>
-<style>
+<style scoped>
 .margin-x{
-    margin: 0 50px
+    margin: 0 50px;
+    padding-top: 32px;
 }
 .total-register{
 	font-size: 40px;
-	margin-left: 55px;
-	margin-top: -10px;
+    margin-top: -8px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.icon-total-register{
+	width: 110px;
+	height: 110px;
+}
+
+.card-icon {
+    background: #e3f2fd;
+    display: flex;
+    align-items: center;
+    padding: 0px 8px 0px 16px;
 }
 
 </style>

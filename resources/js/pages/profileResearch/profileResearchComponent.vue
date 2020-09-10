@@ -9,14 +9,14 @@
         </div>
 
         <div class="row">
-            <div class="col s12 m6 offset-m3">
+            <div class="col s12 m6 offset-m3 l6 offset-l3">
                 <div class="card horizontal">
                     <div class="card-image card-icon">
                         <img class="icon-total-register" src="images/registro.svg">
                     </div>
                     <div class="card-stacked">
                         <div class="card-content">
-                            <h5 class="title-card">Total Registrados en el Perfil del Investigador</h5>
+                            <h5 class="title-card center-align">Total Registrados en el Perfil del Investigador</h5>
                         </div>
                         <div class="card-action" v-if="show.profileResearcher">
                             <h2 class="total-register">{{profileResearcher}}</h2>
@@ -33,9 +33,7 @@
                     <!-- <div class="card-content center blue lighten-5"> -->
                     <div class="card-content center">
                         <span class="card-title title-card">Nivel Académico</span>
-                    </div>
-                    <div class="card-action" v-if="show.academicLevel">
-                       <bar-charts :chartdata="academicLevel" :height="150"></bar-charts>
+                        <bar-charts v-if="show.academicLevel" :chartdata="academicLevel" :height="150"></bar-charts>
                     </div>
                 </div>
             </div>
@@ -70,9 +68,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title title-card">Tipo de Investigación</span>
-                    </div>
-                    <div class="card-action" v-if="show.typeInvestigation">
-                       <bar-charts :chartdata="typeInvestigation" :height="200"></bar-charts>
+                        <bar-charts  v-if="show.typeInvestigation" :chartdata="typeInvestigation" :height="200"></bar-charts>
                     </div>
                 </div>
             </div>
@@ -80,9 +76,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title title-card" >Línea de Investigación</span>
-                    </div>
-                    <div class="card-action" v-if="show.lineInvestigation">
-                        <horizontalBar-charts :chartdata="lineInvestigation" :height="200" ></horizontalBar-charts>
+                        <horizontalBar-charts v-if="show.lineInvestigation" :chartdata="lineInvestigation" :height="200" ></horizontalBar-charts>
                     </div>
                 </div>
             </div>
@@ -94,9 +88,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title title-card">Tipo de Institución</span>
-                    </div>
-                    <div class="card-action" v-if="show.typeInstitution">
-                       <pie-charts :chartdata="typeInstitution" :height="200"></pie-charts>
+                        <pie-charts v-if="show.typeInstitution" :chartdata="typeInstitution" :height="200"></pie-charts>
                     </div>
                 </div>
             </div>
@@ -104,9 +96,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title title-card" >Tiempo de Investigación</span>
-                    </div>
-                    <div class="card-action" v-if="show.timeInvestigation">
-                       <bar-charts :chartdata="timeInvestigation" :height="200"></bar-charts>
+                       <bar-charts v-if="show.timeInvestigation" :chartdata="timeInvestigation" :height="200"></bar-charts>
                     </div>
                 </div>
             </div>
@@ -286,11 +276,12 @@ export default {
 }
 
 .separate {
-    margin: 64px;
+    margin: 48px 64px;
 }
 
 .margin-x{
-    margin: 0 50px
+    margin: 0 50px;
+    padding-top: 32px;
 }
 
 .card:hover {

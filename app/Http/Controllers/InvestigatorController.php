@@ -389,25 +389,25 @@ class InvestigatorController extends Controller {
             }
 
             $total = count($val);
-            $groupAcademic->push(["academic_level"=>$name,"total"=>$total]);
+            $groupAcademic->push(["academic_level"=>$name,"id"=>$key,"total"=>$total]);
         }
 
         //tipo investigacion
-        $groupByType = $profileInvestigations->groupBy('id_linea_investigacion');
+        $groupByType = $profileInvestigations->groupBy('id_tipo_investigacion');
         $groupType = collect();
         foreach ($groupByType as $key => $val) {
-            $selected = $types->where('id_linea_investigacion',$key);
+            $selected = $types->where('id_tipo_investigacion',$key);
 
             foreach($selected as $pro){
                 $name = $pro->tipo_investigacion;
             }
 
             $total = count($val);
-            $groupType->push(["type_investigation"=>$name,"total"=>$total]);
+            $groupType->push(["type_investigation"=>$name,"id"=>$key,"total"=>$total]);
         }
 
         //linea investigacion
-        $groupByLine = $profileInvestigations->groupBy('id_tipo_investigacion');
+        $groupByLine = $profileInvestigations->groupBy('id_linea_investigacion');
         $groupLine = collect();
         foreach ($groupByLine as $key => $val) {
             $selected = $line->where('id_linea_investigacion',$key);
@@ -417,7 +417,7 @@ class InvestigatorController extends Controller {
             }
 
             $total = count($val);
-            $groupLine->push(["line_investigation"=>$name,"total"=>$total]);
+            $groupLine->push(["line_investigation"=>$name,"id"=>$key,"total"=>$total]);
         }
 
         //tipo institucion
@@ -431,7 +431,7 @@ class InvestigatorController extends Controller {
             }
 
             $total = count($val);
-            $groupInstitution->push(["institution_type"=>$name,"total"=>$total]);
+            $groupInstitution->push(["institution_type"=>$name,"id"=>$key,"total"=>$total]);
         }
 
         //tiempo investigacion
@@ -445,7 +445,7 @@ class InvestigatorController extends Controller {
             }
 
             $total = count($val);
-            $groupTime->push(["investigation_time"=>$name,"total"=>$total]);
+            $groupTime->push(["investigation_time"=>$name,"id"=>$key,"total"=>$total]);
         }
 
         $data = collect([

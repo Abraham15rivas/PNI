@@ -240,7 +240,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
 *{
     color: black;
 }

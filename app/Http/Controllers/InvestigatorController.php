@@ -393,10 +393,10 @@ class InvestigatorController extends Controller {
         }
 
         //tipo investigacion
-        $groupByType = $profileInvestigations->groupBy('id_linea_investigacion');
+        $groupByType = $profileInvestigations->groupBy('id_tipo_investigacion');
         $groupType = collect();
         foreach ($groupByType as $key => $val) {
-            $selected = $types->where('id_linea_investigacion',$key);
+            $selected = $types->where('id_tipo_investigacion',$key);
 
             foreach($selected as $pro){
                 $name = $pro->tipo_investigacion;

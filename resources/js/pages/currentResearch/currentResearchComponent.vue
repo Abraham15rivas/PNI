@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center">Tipo de Institución</span>
-                        <doughnut-charts v-if="loadedIns" :chartdata="institution"></doughnut-charts>
+                        <pie-charts v-if="loadedIns" :chartdata="institution"></pie-charts>
                     </div>
                 </div>
             </div>

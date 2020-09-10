@@ -438,14 +438,16 @@ class InvestigatorController extends Controller {
         $groupByTime = $profileInvestigations->groupBy('tiempo_investigacion');
         $groupTime = collect();
         foreach ($groupByTime as $key => $val) {
-            $selected = $times->where('id_tiempo_investigacion',$key);
+            if ($key <= 8) {
+                $selected = $times->where('id_tiempo_investigacion',$key);
 
-            foreach($selected as $pro){
-                $name = $pro->tiempo_investigacion;
+                foreach($selected as $pro){
+                    $name = $pro->tiempo_investigacion;
+                }
+
+                $total = count($val);
+                $groupTime->push(["investigation_time"=>$name,"id"=>$key,"total"=>$total]);
             }
-
-            $total = count($val);
-            $groupTime->push(["investigation_time"=>$name,"id"=>$key,"total"=>$total]);
         }
 
         $data = collect([

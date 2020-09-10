@@ -117,7 +117,7 @@ export default {
             loadedInt: false,
 
             //Grupo de Interes
-            actualInt: {},
+            actualInt: {}, 
             loadedAct: false,
         }
     },
@@ -238,7 +238,8 @@ export default {
 <style>
 
 .margin-x{
-    margin: 0 50px
+    margin: 0 50px;
+    padding-top: 32px;
 }
 
 </style>

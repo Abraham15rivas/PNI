@@ -2152,13 +2152,285 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {}
+  data: function data() {
+    return {
+      options: {
+        legend: {
+          align: "end"
+        },
+        element: {
+          radius: 20
+        }
+      },
+      backgroundColor: ['rgba(41, 98, 255, 0.5)', 'rgba(98, 0, 234, 0.5)', 'rgba(0, 191, 165, 0.5)', 'rgba(230, 74, 25, 0.5)', 'rgba(66, 66, 66, 0.5)', 'rgba(197, 17, 98, 0.5)', 'rgba(255, 214, 0, 0.5)', 'rgba(183, 28, 28, 0.5)'],
+      borderColor: ['rgba(41, 98, 255, 1)', 'rgba(98, 0, 234, 1)', 'rgba(0, 191, 165, 1)', 'rgba(230, 74, 25, 1)', 'rgba(66, 66, 66, 1)', 'rgba(197, 17, 98, 1)', 'rgba(255, 214, 0, 1)', 'rgba(183, 28, 28, 1)'],
+      total_investigation: 0,
+      //Group Institution
+      institution: {},
+      loadedIns: false,
+      //Group investigation type
+      investigation_type: {},
+      loadedInvType: false,
+      //Group investigation line
+      investigation_line: {},
+      loadedInvLine: false,
+      //Group phase investigation
+      phase_investigation: {},
+      loadedPhaseInv: false,
+      //Group time investigation
+      investigation_time: {},
+      loadedTimeInv: false
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var url;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              url = 'statistics/investigators/current';
+              axios.get(url).then(function (res) {
+                _this.total_investigation = res.data.total_investigation;
+                _this.institution = _this.groupInstitution(res.data.groupInstitution);
+                _this.investigation_type = _this.groupInvestigationType(res.data.investigations_type);
+                _this.investigation_line = _this.groupInvestigationLine(res.data.investigations_line);
+                _this.phase_investigation = _this.groupPhaseInvestigation(res.data.investigations_phase);
+                _this.investigation_time = _this.groupInvestigationsTime(res.data.investigations_time);
+              });
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  methods: {
+    groupInstitution: function groupInstitution(items) {
+      var labels = [];
+      var info = [];
+      items.forEach(function (item) {
+        item.institution_type = item.institution_type.toLowerCase();
+        var palabra = item.institution_type.split(' ');
+
+        if (palabra[0] === 'institucion' || palabra[0] === 'institución') {
+          labels.push(palabra[1][0].toUpperCase() + palabra[1].slice(1));
+        } else {
+          labels.push(item.institution_type[0].toUpperCase() + item.institution_type.slice(1));
+        }
+
+        info.push(item.total);
+      });
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: info,
+          backgroundColor: this.backgroundColor,
+          borderColor: this.borderColor,
+          hoverBackgroundColor: this.borderColor,
+          borderWidth: 1,
+          hoverBorderWidth: 2
+        }]
+      };
+      this.loadedIns = true;
+      return data;
+    },
+    groupInvestigationType: function groupInvestigationType(items) {
+      var labels = [];
+      var info = [];
+      var content = [];
+      items.forEach(function (item) {
+        if (item['type_investigation'] != "TOTALES") {
+          item.type_investigation = item.type_investigation.toLowerCase();
+          labels.push(item.type_investigation[0].toUpperCase() + item.type_investigation.slice(1));
+          info.push(item.total);
+        }
+      });
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: info,
+          label: 'Total',
+          backgroundColor: ["rgba(0, 0, 0, 0)"],
+          borderColor: this.borderColor,
+          hoverBackgroundColor: this.borderColor,
+          borderWidth: 1,
+          hoverBorderWidth: 30,
+          steppedLine: "middle"
+        }]
+      };
+      this.loadedInvType = true;
+      return data;
+    },
+    groupInvestigationLine: function groupInvestigationLine(items) {
+      var labels = [];
+      var info = [];
+      var content = [];
+      items.forEach(function (item) {
+        if (item['line_investigation'] != "TOTALES") {
+          item.line_investigation = item.line_investigation.toLowerCase();
+          labels.push(item.line_investigation[0].toUpperCase() + item.line_investigation.slice(1));
+          info.push(item.total);
+        }
+      });
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: info,
+          label: 'Total',
+          backgroundColor: this.backgroundColor,
+          borderColor: this.borderColor,
+          hoverBackgroundColor: this.borderColor,
+          borderWidth: 1,
+          hoverBorderWidth: 2
+        }]
+      };
+      this.loadedInvLine = true;
+      return data;
+    },
+    groupPhaseInvestigation: function groupPhaseInvestigation(items) {
+      var labels = [];
+      var info = [];
+      var content = [];
+      items.forEach(function (item) {
+        if (item['phase_investigation'] != "TOTALES") {
+          item.phase_investigation = item.phase_investigation.toLowerCase();
+          labels.push(item.phase_investigation[0].toUpperCase() + item.phase_investigation.slice(1));
+          info.push(item.total);
+        }
+      });
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: info,
+          label: 'Total',
+          backgroundColor: ["rgba(0, 0, 0, 0)"],
+          borderColor: this.borderColor,
+          hoverBackgroundColor: this.borderColor,
+          borderWidth: 1,
+          hoverBorderWidth: 30,
+          steppedLine: "middle"
+        }]
+      };
+      this.loadedPhaseInv = true;
+      return data;
+    },
+    groupInvestigationsTime: function groupInvestigationsTime(items) {
+      var labels = [];
+      var info = [];
+      var content = [];
+      items.forEach(function (item) {
+        if (item['investigation_time'] != "TOTALES") {
+          item.investigation_time = item.investigation_time.toLowerCase();
+          labels.push(item.investigation_time[0].toUpperCase() + item.investigation_time.slice(1));
+          info.push(item.total);
+        }
+      });
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: info,
+          label: 'Total',
+          backgroundColor: ["rgba(0, 0, 0, 0)"],
+          borderColor: this.borderColor,
+          hoverBackgroundColor: this.borderColor,
+          borderWidth: 1,
+          hoverBorderWidth: 30,
+          steppedLine: "middle"
+        }]
+      };
+      this.loadedTimeInv = true;
+      return data;
+    }
+  }
 });
 
 /***/ }),
@@ -23525,7 +23797,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.sidenav .logo-container[data-v-62e37494] {\r\n    padding: 0 16px;\r\n    height: 94px;\r\n    line-height: 64px;\r\n    font-size: 24px;\r\n    box-sizing: content-box;\n}\n.sidenav .collapsible>li.waves-effect[data-v-62e37494] {\r\n    display: block;\n}\n.sidenav .collapsible li[data-v-62e37494], .sidenav.fixed .collapsible li[data-v-62e37494] {\r\n    padding: 0;\n}\n.logo-min[data-v-62e37494]{\r\n\twidth: 195px;\r\n\theight: 85px;\r\n\tmargin-top: 6px;\n}\n.cintillo-min[data-v-62e37494] {\r\n    width: 100%;\r\n    height: 100px;\n}\n.header-logo[data-v-62e37494] {\r\n    position: fixed;\r\n    right: 10px;\n}\n.brand-logo[data-v-62e37494]{\r\n    width: 100%;\n}\n.logo-sidebar[data-v-62e37494] {\r\n    height: 110px;\r\n    margin: 0 auto;\r\n    display: block;\n}\n.top-m[data-v-62e37494] {\r\n    margin-top: 10px;\n}\r\n", ""]);
+exports.push([module.i, "\n.sidenav .logo-container[data-v-62e37494] {\n    padding: 0 16px;\n    height: 94px;\n    line-height: 64px;\n    font-size: 24px;\n    box-sizing: content-box;\n}\n.sidenav .collapsible>li.waves-effect[data-v-62e37494] {\n    display: block;\n}\n.sidenav .collapsible li[data-v-62e37494], .sidenav.fixed .collapsible li[data-v-62e37494] {\n    padding: 0;\n}\n.logo-min[data-v-62e37494]{\n\twidth: 195px;\n\theight: 85px;\n\tmargin-top: 6px;\n}\n.cintillo-min[data-v-62e37494] {\n    width: 100%;\n    height: 100px;\n}\n.header-logo[data-v-62e37494] {\n    position: fixed;\n    right: 10px;\n}\n.brand-logo[data-v-62e37494]{\n    width: 100%;\n}\n.logo-sidebar[data-v-62e37494] {\n    height: 110px;\n    margin: 0 auto;\n    display: block;\n}\n.top-m[data-v-62e37494] {\n    margin-top: 10px;\n}\n", ""]);
 
 // exports
 
@@ -23544,7 +23816,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.margin-x{\r\n    margin: 0 50px\n}\r\n", ""]);
+exports.push([module.i, "\n.margin-x{\n    margin: 0 50px\n}\n.total-register{\n\tfont-size: 40px;\n\tmargin-left: 55px;\n\tmargin-top: -10px;\n}\n\n", ""]);
 
 // exports
 
@@ -23563,7 +23835,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.imagen-portada[data-v-b4ab9052]{\r\n\twidth: auto;\r\n\theight: auto;\n}\n.section-imagen[data-v-b4ab9052]{\r\n    display: flex;\r\n    align-items: center;\r\n    height: 80vh;\n}\n.section-imagen>div[data-v-b4ab9052]{\r\n    display: block;\r\n    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;\n}\n.section-imagen>h3[data-v-b4ab9052]{\r\n    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n}\n.texto-imagen[data-v-b4ab9052]{\r\n    width: 100%;\r\n    margin: 0;\r\n    text-align: center;\r\n    margin-top: -50px;\n}\r\n", ""]);
+exports.push([module.i, "\n.imagen-portada[data-v-b4ab9052]{\n\twidth: auto;\n\theight: auto;\n}\n.section-imagen[data-v-b4ab9052]{\n    display: flex;\n    align-items: center;\n    height: 80vh;\n}\n.section-imagen>div[data-v-b4ab9052]{\n    display: block;\n    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;\n}\n.section-imagen>h3[data-v-b4ab9052]{\n    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n}\n.texto-imagen[data-v-b4ab9052]{\n    width: 100%;\n    margin: 0;\n    text-align: center;\n    margin-top: -50px;\n}\n", ""]);
 
 // exports
 
@@ -23582,7 +23854,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.total-register[data-v-768de6a6]{\r\n\tfont-size: 40px;\r\n    margin-top: -8px;\r\n    margin-bottom: 0px;\r\n    text-align: center;\n}\n.icon-total-register[data-v-768de6a6]{\r\n\twidth: 110px;\r\n\theight: 110px;\n}\n.card-icon[data-v-768de6a6] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\n.title-card[data-v-768de6a6] {\r\n    text-align: center;\r\n    margin-top: 0px;\n}\n.separate[data-v-768de6a6] {\r\n    margin: 64px;\n}\n.margin-x[data-v-768de6a6]{\r\n    margin: 0 50px\n}\n.card[data-v-768de6a6]:hover {\r\n    background: #e3f2fd;\n}\r\n", ""]);
+exports.push([module.i, "\n.total-register[data-v-768de6a6]{\n\tfont-size: 40px;\n    margin-top: -8px;\n    margin-bottom: 0px;\n    text-align: center;\n}\n.icon-total-register[data-v-768de6a6]{\n\twidth: 110px;\n\theight: 110px;\n}\n.card-icon[data-v-768de6a6] {\n    background: #e3f2fd;\n    display: flex;\n    align-items: center;\n    padding: 0px 8px 0px 16px;\n}\n.title-card[data-v-768de6a6] {\n    text-align: center;\n    margin-top: 0px;\n}\n.separate[data-v-768de6a6] {\n    margin: 64px;\n}\n.margin-x[data-v-768de6a6]{\n    margin: 0 50px\n}\n.card[data-v-768de6a6]:hover {\n    background: #e3f2fd;\n}\n", ""]);
 
 // exports
 
@@ -23601,7 +23873,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.margin-x{\r\n    margin: 0 50px\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.margin-x{\n    margin: 0 50px\n}\n\n", ""]);
 
 // exports
 
@@ -23620,7 +23892,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n*[data-v-64b339f7]{\r\n    color: black;\n}\n.total-register[data-v-64b339f7]{\r\n\tfont-size: 40px;\r\n\tmargin-left: 55px;\r\n\tmargin-top: -10px;\n}\n.icon-total-register[data-v-64b339f7]{\r\n\tmargin-top: 40px;\r\n\tmargin-left: 12px;\r\n\twidth: 110px;\r\n\theight: 110px;\n}\n.margin-x[data-v-64b339f7]{\r\n    margin: 0 50px\n}\r\n", ""]);
+exports.push([module.i, "\n*[data-v-64b339f7]{\n    color: black;\n}\n.total-register[data-v-64b339f7]{\n\tfont-size: 40px;\n\tmargin-left: 55px;\n\tmargin-top: -10px;\n}\n.icon-total-register[data-v-64b339f7]{\n\tmargin-top: 40px;\n\tmargin-left: 12px;\n\twidth: 110px;\n\theight: 110px;\n}\n.margin-x[data-v-64b339f7]{\n    margin: 0 50px\n}\n", ""]);
 
 // exports
 
@@ -77828,7 +78100,7 @@ var render = function() {
                         attrs: { to: "/home", tabindex: "0" }
                       },
                       [
-                        _vm._v("\r\n                           Inicio"),
+                        _vm._v("\n                           Inicio"),
                         _c("i", { staticClass: "material-icons" }, [
                           _vm._v("home")
                         ])
@@ -77850,7 +78122,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\r\n                            Investigadores e Investigadoras"
+                          "\n                            Investigadores e Investigadoras"
                         ),
                         _c("i", { staticClass: "material-icons " }, [
                           _vm._v("people")
@@ -77873,7 +78145,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\r\n                            Interés de Investigación"
+                          "\n                            Interés de Investigación"
                         ),
                         _c("i", { staticClass: "material-icons" }, [
                           _vm._v("work")
@@ -77896,7 +78168,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\r\n                            Perfil de Investigación"
+                          "\n                            Perfil de Investigación"
                         ),
                         _c("i", { staticClass: "material-icons" }, [
                           _vm._v("person")
@@ -77919,7 +78191,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\r\n                            Modulo de Investigación Actual"
+                          "\n                            Modulo de Investigación Actual"
                         ),
                         _c("i", { staticClass: "material-icons" }, [
                           _vm._v("view_module")
@@ -78024,9 +78296,174 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "margin-x" })
+  return _c("div", { staticClass: "margin-x" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col s12 m4 offset-m4" }, [
+        _c("div", { staticClass: "card horizontal" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-stacked" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-action" }, [
+              _c("h2", { staticClass: "total-register" }, [
+                _vm._v(_vm._s(_vm.total_investigation))
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col s12 m6" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-content" },
+            [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Tipo de Institución")
+              ]),
+              _vm._v(" "),
+              _vm.loadedIns
+                ? _c("doughnut-charts", {
+                    attrs: { chartdata: _vm.institution }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col s12 m6" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-content" },
+            [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Tipo de Investigación")
+              ]),
+              _vm._v(" "),
+              _vm.loadedInvType
+                ? _c("bar-charts", {
+                    attrs: { chartdata: _vm.investigation_type }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col s12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-content" },
+            [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Línea de Investigación")
+              ]),
+              _vm._v(" "),
+              _vm.loadedInvLine
+                ? _c("horizontalBar-charts", {
+                    attrs: { chartdata: _vm.investigation_line }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col s12 m6" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-content" },
+            [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Fase de la Investigación")
+              ]),
+              _vm._v(" "),
+              _vm.loadedPhaseInv
+                ? _c("line-charts", {
+                    attrs: { chartdata: _vm.phase_investigation }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col s12 m6" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-content" },
+            [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Tiempo de la Investigación")
+              ]),
+              _vm._v(" "),
+              _vm.loadedTimeInv
+                ? _c("line-charts", {
+                    attrs: { chartdata: _vm.investigation_time }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ])
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col s12" }, [
+        _c("h5", { staticClass: "center-align" }, [
+          _vm._v("Indicador del Módulo de la Investigación Actual")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-image" }, [
+      _c("img", {
+        staticClass: "icon-total-register",
+        attrs: { src: "images/registro.svg" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-content" }, [
+      _c("h6", { staticClass: "center-align" }, [
+        _vm._v("Total registrados en el módulo de la investigación")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -94183,9 +94620,15 @@ __webpack_require__.r(__webpack_exports__);
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
 
+<<<<<<< HEAD
 
 
 
+=======
+
+
+
+>>>>>>> cd3608d01110a1ff0c9361f6f6f8687e43bbd09b
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
@@ -94322,9 +94765,15 @@ var render, staticRenderFns
 
 
 
+<<<<<<< HEAD
 
 /* normalize component */
 
+=======
+
+/* normalize component */
+
+>>>>>>> cd3608d01110a1ff0c9361f6f6f8687e43bbd09b
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
   _horizontalBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
   render,
@@ -94910,8 +95359,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\xampp\htdocs\PNI\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\xampp\htdocs\PNI\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! /var/www/html/sistemas/Laravel/PNI/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/sistemas/Laravel/PNI/resources/sass/app.scss */"./resources/sass/app.scss");
+>>>>>>> cd3608d01110a1ff0c9361f6f6f8687e43bbd09b
 
 
 /***/ })

@@ -37,7 +37,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Tipo de Investigación</span>
-                        <line-charts v-if="loadedInvType" :chartdata="investigation_type"></line-charts>
+                        <bar-charts v-if="loadedInvType" :chartdata="investigation_type"></bar-charts>
                     </div>
                 </div>
             </div>

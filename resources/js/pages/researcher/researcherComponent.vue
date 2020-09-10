@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
                     <div class="row">
                         <div class="col s6">
                             <div class="card card-bg">
@@ -240,8 +240,10 @@
         }
     }
 </script>
-<style>
-* { color: black; }
+<style scoped>
+*{
+    color: black;
+}
 .total-register{
 	font-size: 40px;
 	margin-left: 55px;

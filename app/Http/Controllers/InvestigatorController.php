@@ -483,11 +483,7 @@ class InvestigatorController extends Controller {
             }
 
             $total = count($val);
-            $groupInstitution->push(["institution_type"=>$name,"total"=>$total]);
-        }
-        
-        foreach ($investigation_current as $key => $type) {
-
+            $groupInstitution->push(["institution_type"=>$name,"id"=>$key,"total"=>$total]);
         }
 
         // Tipo de investigación actual
@@ -501,7 +497,7 @@ class InvestigatorController extends Controller {
             }
 
             $total = count($val);
-            $groupType->push(["type_investigation"=>$name,"total"=>$total]);
+            $groupType->push(["type_investigation"=>$name,"id"=>$key,"total"=>$total]);
         }
 
         // Lineas de investigación actual
@@ -515,7 +511,7 @@ class InvestigatorController extends Controller {
             }
 
             $total = count($val);
-            $groupLine->push(["line_investigation"=>$name,"total"=>$total]);
+            $groupLine->push(["line_investigation"=>$name,"id"=>$key,"total"=>$total]);
         }
 
         // Tiempo de investigacion actual
@@ -531,10 +527,10 @@ class InvestigatorController extends Controller {
                     $name = $pro->tiempo_investigacion;
                 }
                 $total = count($val);
-                $groupTime->push(["investigation_time"=>$name,"total"=>$total]);
+                $groupTime->push(["investigation_time"=>$name,"id"=>$key,"total"=>$total]);
             }
         }
-        $groupTime->push(["investigation_time" => 'NO CONTESTARON',"total" => $not_response]);
+        $groupTime->push(["investigation_time" => 'NO CONTESTARON',"id"=>0,"total" => $not_response]);
 
         // Fases de investigación actual
         $groupByPhase = $investigation_current->groupBy('id_fase');
@@ -547,7 +543,7 @@ class InvestigatorController extends Controller {
             }
 
             $total = count($val);
-            $groupPhase->push(["phase_investigation"=>$name,"total"=>$total]);
+            $groupPhase->push(["phase_investigation"=>$name,"id"=>$key,"total"=>$total]);
         }
 
         $data = collect([

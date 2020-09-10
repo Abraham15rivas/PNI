@@ -9,6 +9,7 @@ Vue.use(VueRouter)
 Vue.component('header-vue', require('./components/header/header.vue').default);
 Vue.component('line-charts', require('./components/line/line.vue').default);
 Vue.component('doughnut-charts', require('./components/doughnut/doughnut.vue').default);
+Vue.component('pie-charts', require('./components/pie/pie.vue').default);
 Vue.component('horizontalBar-charts', require('./components/horizontalBar/horizontalBar.vue').default);
 Vue.component('bar-charts', require('./components/bar/bar.vue').default);
 

@@ -342,7 +342,7 @@ class InvestigatorController extends Controller {
             } else {
                 $groupModeInvestigation->push([
                     "id" => $key,
-                    "titulo" => "Error de datos", 
+                    "titulo" => "No contestaron", 
                     "total" => count($val)
                 ]);
             }

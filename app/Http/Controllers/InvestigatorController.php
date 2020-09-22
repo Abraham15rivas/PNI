@@ -18,6 +18,7 @@ use App\{
     Academic,
     Phase,
     Municipality,
+    InvestigationMode
 };
 use Carbon\Carbon;
 
@@ -215,7 +216,8 @@ class InvestigatorController extends Controller {
     public function interest ()
     {
         //obtener datos masivos
-        $investigators = Investigator::get(['interes_inv', 'id_genero', 'id_tipo_institucion', 'inv_actual']);
+        $investigators = Investigator::get(['interes_inv', 'id_genero', 'id_tipo_institucion', 'inv_actual', 'id_modo_investifgacion']);
+        $investigationMode = InvestigationMode::get();
         $interests = Interest::orderBy('id_lineas_presidenciales', 'asc')->get(['nombre_lineas_presidenciales', 'id_lineas_presidenciales']);
         $actualInvestigations = $interests;
         $interests->push(["name"=> "TOTALES"]);
@@ -323,12 +325,35 @@ class InvestigatorController extends Controller {
             }
 
         }
+        // Modo de investigación
+        $groupByModeInvestigation = $investigators->groupBy('id_modo_investifgacion');
+        $groupModeInvestigation = collect();
+
+        foreach ($groupByModeInvestigation as $key => $val) {
+            $selected = $investigationMode->where('id_modo_investigacion', $key);
+            if (count($selected) > 0) {
+                foreach ($selected as $pro) {
+                    $groupModeInvestigation->push([
+                        "id" => $key,
+                        "titulo" => $pro->modo_investigacion, 
+                        "total" => count($val)
+                    ]);
+                }
+            } else {
+                $groupModeInvestigation->push([
+                    "id" => $key,
+                    "titulo" => "Error de datos", 
+                    "total" => count($val)
+                ]);
+            }
+        }
 
         $data = collect([
             "total_investigators"=>$total_investigators,
             "groupInstitution"=>$groupInstitution,
             "groupInterest"=>$groupInterest,
-            "actualInvestigation"=>$arrActual
+            "actualInvestigation"=>$arrActual,
+            "groupModeInvestigation"=>$groupModeInvestigation
         ]);
 
         return $data->toJson();

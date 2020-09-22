@@ -16,7 +16,8 @@ use App\{
     InvestigationLine,
     InvestigationTime,
     Academic,
-    Phase
+    Phase,
+    Municipality,
 };
 use Carbon\Carbon;
 
@@ -88,12 +89,12 @@ class InvestigatorController extends Controller {
         }
         
         // Ordenar descendente las profesiones y mostrar solo 10 primeros
-        $grauprofesionArray = $this->orderDescUnkey($groupProfesion);
+        $grouprofesionArray = $this->orderDescUnkey($groupProfesion);
 
-        if (count($grauprofesionArray) > 10) {
-            $grauprofesionArray = array_slice($grauprofesionArray, 0, 10);
+        if (count($grouprofesionArray) > 10) {
+            $grouprofesionArray = array_slice($grouprofesionArray, 0, 10);
         } else {
-            $grauprofesionArray = array_slice($grauprofesionArray, 0, count($grauprofesionArray));
+            $grouprofesionArray = array_slice($grouprofesionArray, 0, count($grouprofesionArray));
         }
 
         //Numero de investigadores por estados
@@ -125,7 +126,7 @@ class InvestigatorController extends Controller {
             "total_investigators"=>$total_investigators,
             "investigators_mens"=>$investigators_mens,
             "investigators_womens"=>$investigators_womens,
-            "groupProfesion"=>$grauprofesionArray,
+            "groupProfesion"=>$grouprofesionArray,
             "groupStates"=>$groupStateArray,
             "groupRangeAge"=>$groupRangeAge,
             "groupAverageAge"=>$groupAverageAge
@@ -559,4 +560,109 @@ class InvestigatorController extends Controller {
         return $data->toJson();
     }
 
+    public function searchMunicipality ($state_id) {
+        if (!$state_id == 0) {
+            $investigators = Investigator::get();
+            $states = State::where('id_estado', $state_id)
+                            ->with('municipalities')
+                            ->first();
+
+            $groupByMuni = $investigators->groupBy('id_municipio');
+            $groupMunicipality = collect();
+
+            foreach ($groupByMuni as $key => $val) {
+                $selected = $states->municipalities->where('id_municipio', $key);
+                if ($selected->isNotEmpty()) {
+                    $total = count($val);
+                    foreach ($selected as $municipality) {
+                        $groupMunicipality->push([
+                            "id" => $key,
+                            "estado_id" => $municipality->id_estado,
+                            "estado" => $states->estado,
+                            "municipio"=> $municipality->municipio,
+                            "total" => $total
+                        ]);
+                    }
+                }
+            }
+            // Ordenar descendente los estados
+            $groupMuniArray = $this->orderDescUnkey($groupMunicipality);
+            $data = collect([
+                "total_municipios" => $states->municipalities->count(),
+                "municipios" => $groupMuniArray
+            ])->toJson();
+        } else {
+            $data = "No válido";
+        }
+        return $data;
+    }
+
+    public function searchParish ($municipality_id) {
+        if (!$municipality_id == 0) {
+            $investigators = Investigator::get();
+            $municipalities = Municipality::where('id_municipio', $municipality_id)
+                                            ->with('parishes')
+                                            ->first();
+            
+            $groupByParish = $investigators->groupBy('id_parroquia');
+            $groupParish = collect();
+
+            foreach ($groupByParish as $key => $val) {
+                $selected = $municipalities->parishes->where('id_parroquia', $key);
+                if ($selected->isNotEmpty()) {
+                    $total = count($val);
+                    foreach ($selected as $parish) {
+                        $groupParish->push([
+                            "id" => $key,
+                            "municipio_id" => $parish->id_municipio,
+                            "municipio" => $municipalities->municipio,
+                            "parroquia"=> $parish->parroquia,
+                            "total" => $total
+                        ]);
+                    }
+                }
+            }
+            // Ordenar descendente los estados
+            $groupParishArray = $this->orderDescUnkey($groupParish);
+            $data = collect([
+               "total_parroquias" => $municipalities->parishes->count(),
+               "parroquias" => $groupParishArray
+            ])->toJson();
+        } else {
+            $data ="No válido";
+        }
+        return $data;
+    }
+
+    public function allStates () {
+        $states =  State::all(['estado', 'id_estado']);
+        $groupStates = collect();
+        foreach ($states as $state) {
+            $groupStates->push([
+                'id' => $state->id_estado,
+                'estado' => $state->estado
+            ]);
+        }
+        $data = collect([
+            "total_estados" => $states->count(),
+            "groupStates" => $groupStates
+        ]);
+        return $data->toJson();
+    }
+
+    public function allMunicipalities (State $state)
+    {
+        $groupMunicipality = collect();
+        foreach ($state->municipalities as $muni) {
+            $groupMunicipality->push([
+                'id' => $muni->id_municipio,
+                'municipio' => $muni->municipio
+            ]);
+        }
+        $data = collect([
+            "total_municipios" => $state->municipalities()->count(),
+            "groupMunicipality" => $groupMunicipality
+        ]);
+        return $data->toJson();
+    }
 }

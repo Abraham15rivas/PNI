@@ -112,7 +112,7 @@ class InvestigatorController extends Controller {
             }
 
             $total = count($val);
-            $groupState->push(["estado"=>$name,"total"=>$total]);
+            $groupState->push(["estado"=>$name,"id"=>$key,"total"=>$total]);
         }
 
         // Ordenar descendente los estados
@@ -675,7 +675,7 @@ class InvestigatorController extends Controller {
         return $data->toJson();
     }
 
-    public function allMunicipalities (State $state)
+    public function allMunicipalities (Satate $state)
     {
         $groupMunicipality = collect();
         foreach ($state->municipalities as $muni) {

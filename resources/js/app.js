@@ -1,7 +1,10 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.min.css'
 
+Vue.use(VueMaterial)
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)

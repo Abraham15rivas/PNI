@@ -8,7 +8,7 @@ Route::prefix('statistics')->group(function () {
     Route::get('/investigators/interest','InvestigatorController@interest');
     Route::get('/investigators/current','InvestigatorController@current');
     Route::get('/investigators/all/states','InvestigatorController@allStates');
-    Route::get('/investigators/all/{state?}/municipalities','InvestigatorController@allMunicipalities');
+    Route::get('/investigators/all/{state}/municipalities','InvestigatorController@allMunicipalities');
     Route::get('/investigators/municipality/{state_id?}','InvestigatorController@searchMunicipality');
     Route::get('/investigators/parish/{municipality_id?}','InvestigatorController@searchParish');
 });

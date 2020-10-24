@@ -53,6 +53,26 @@
                         <span class="card-title">Investigadores por estados</span>
                         <bar-charts v-if="show.dataState" :chartdata="datacollection" :height="250"></bar-charts>
                     </div>
+                    
+                    <div class="row" style="padding: 0px 24px">
+                        <div class="col s6" v-if="dataStates.length > 0">
+                            <md-field>
+                                <label for="state">Estados</label>
+                                <md-select v-model="selectedState" name="state" id="state" v-on:md-selected="searchMunicipalities()">
+                                    <md-option v-for="(state,index) of dataStates" :key="index" :value="state.id">{{state.estado}}</md-option>
+                                </md-select>
+                            </md-field>
+                        </div>
+                        <div class="col s6" v-if="dataMunicipalities.length > 0">
+                            <md-field>
+                                <label for="state">Municipios</label>
+                                <md-select v-model="selectedMunicipality" name="municipality" id="municipality" v-on:md-selected="searchParish()">
+                                    <md-option v-for="(mun,index) of dataMunicipalities" :key="index" :value="mun.id">{{mun.municipio}}</md-option>
+                                </md-select>
+                            </md-field>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -127,8 +147,15 @@
                 investigators_womens: "",
                 datacollection: {},
                 datacollectionn: {},
+                dataStates:[],
+                dataMunicipalities:[],
+                dataParish:[],
                 profesions: [],
                 averageAge: [],
+                loading:true,
+
+                selectedState:0,
+                selectedMunicipality:0,
 
                 proFeme: '',
                 proMasc: '',
@@ -150,6 +177,7 @@
             }
         },
         mounted() {
+            this.loading = true;
             this.totalInvestigators();
         },
         methods:{
@@ -166,11 +194,13 @@
                         let nameStates = new Array();
                         let num    = new Array();
 
+
                         if (states) {
                             states.forEach(element => {
                                 nameStates.push(element.estado);
                                 num.push(element.total)
-                            });                            
+                            });   
+                            this.dataStates = states;                        
                         }
                         this.datacollection = {
                             labels: nameStates,
@@ -221,7 +251,79 @@
                         this.maxFeme = this.averageAge.maxima.femenino
                         this.maxTotal = this.averageAge.maxima.total
                         this.show.dataState = true;
-                        this.show.dataAge = true;                               
+                        this.show.dataAge = true;  
+                        this.loading = false;                             
+                    })
+                    .catch(err => {
+                        console.log(err);  
+                    })
+            },
+
+            searchMunicipalities(){
+                this.show.dataState = false;
+                this.loading = true;
+                let url = `statistics/investigators/municipality/${this.selectedState}`;
+                axios.get(url)
+                    .then(res => {          
+                        console.log(res);
+                        let municipalities = res.data.municipios;
+                        let nameMunicipality = new Array();
+                        let num    = new Array();
+
+
+                        if (municipalities) {
+                            municipalities.forEach(element => {
+                                nameMunicipality.push(element.municipio);
+                                num.push(element.total)
+                            });   
+                            this.dataMunicipalities = municipalities;                        
+                        }
+                        this.datacollection = {
+                            labels: nameMunicipality,
+                            datasets: [{
+                                label: 'Total investigadores del estado '+ this.dataStates.find(v => v.id == this.selectedState).estado +' por Municipios',
+                                backgroundColor: '#1976d2',
+                                data: num
+                            }]
+                        }
+                        
+                        this.show.dataState = true;  
+                        this.loading = false;                          
+                    })
+                    .catch(err => {
+                        console.log(err);  
+                    })
+            },
+            searchParish(){
+                this.show.dataState = false;
+                this.loading = true;
+                let url = `statistics/investigators/parish/${this.selectedMunicipality}`;
+                axios.get(url)
+                    .then(res => {          
+                        console.log(res);
+                        let parish = res.data.parroquias;
+                        let nameParish = new Array();
+                        let num    = new Array();
+
+
+                        if (parish) {
+                            parish.forEach(element => {
+                                nameParish.push(element.parroquia);
+                                num.push(element.total)
+                            });   
+                            this.dataParish = parish;                        
+                        }
+                        this.datacollection = {
+                            labels: nameParish,
+                            datasets: [{
+                                label: 'Total investigadores del Municipio '+ this.dataMunicipalities.find(v => v.id == this.selectedMunicipality).municipio +' por Parroquias',
+                                backgroundColor: '#1976d2',
+                                data: num
+                            }]
+                        }
+                        
+                        this.show.dataState = true;  
+                        this.loading = false;                          
                     })
                     .catch(err => {
                         console.log(err);  
@@ -244,6 +346,10 @@
 .icon-total-register{
 	width: 110px;
 	height: 110px;
+}
+
+.md-button, .md-button-clean{
+    background-color: white;
 }
 
 .card-icon {

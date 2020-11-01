@@ -226,10 +226,10 @@ export default {
             let info = []
 
             items.forEach(item => {
-                labels.push(item[title]);
+                let palabra = item[title].toLowerCase();
+                labels.push(palabra[0].toUpperCase() + palabra.slice(1));
                 info.push(item.total);
             });
-
             let data = {
                 labels: labels,
                 datasets: [{
@@ -243,7 +243,6 @@ export default {
                     
                 }],
             }
-
             return data;
         }
     },

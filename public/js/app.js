@@ -2477,40 +2477,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/home/homeComponent.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/home/homeComponent.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/profileResearch/profileResearchComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/profileResearch/profileResearchComponent.vue?vue&type=script&lang=js& ***!
@@ -2730,7 +2696,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var labels = [];
       var info = [];
       items.forEach(function (item) {
-        labels.push(item[title]);
+        var palabra = item[title].toLowerCase();
+        labels.push(palabra[0].toUpperCase() + palabra.slice(1));
         info.push(item.total);
       });
       var data = {
@@ -2833,6 +2800,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2867,7 +2844,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       loadedInt: false,
       //Grupo de Interes
       actualInt: {},
-      loadedAct: false
+      loadedAct: false,
+      //Como investiga
+      modeInv: {},
+      loadedModeInv: false
     };
   },
   mounted: function mounted() {
@@ -2885,6 +2865,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.dataInterest = res.data.groupInterest;
                 _this.interest = _this.groupInterest(res.data.groupInterest);
                 _this.actualInt = _this.groupActualInt(res.data.actualInvestigation);
+                _this.modeInv = _this.groupInv(res.data.groupModeInvestigation, 'titulo');
+                _this.loadedModeInv = _this.modeInv != {} ? true : false;
               })["catch"](function (err) {
                 console.log(err);
               });
@@ -2979,6 +2961,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
       this.loadedAct = true;
       return data;
+    },
+    groupInv: function groupInv(items, title) {
+      var labels = [];
+      var info = [];
+      items.forEach(function (item) {
+        var palabra = item[title].toLowerCase();
+        labels.push(palabra[0].toUpperCase() + palabra.slice(1));
+        info.push(item.total);
+      });
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: info,
+          label: 'Series 1',
+          backgroundColor: this.backgroundColor,
+          borderColor: this.borderColor,
+          hoverBackgroundColor: this.borderColor,
+          borderWidth: 1,
+          hoverBorderWidth: 2
+        }]
+      };
+      return data;
     }
   }
 });
@@ -2994,16 +2998,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3200,8 +3194,9 @@ __webpack_require__.r(__webpack_exports__);
             backgroundColor: '#1976d2',
             data: num
           }]
-        };
-        _this.profesions = res.data.groupProfesion;
+        }; //Grafica de 
+
+        _this.profesions = _this.groupInv(res.data.groupProfesion, 'profesion');
         var rangeAge = res.data.groupRangeAge;
         var range = new Array();
         var totalRange = new Array();
@@ -3222,8 +3217,6 @@ __webpack_require__.r(__webpack_exports__);
           }]
         };
         _this.averageAge = res.data.groupAverageAge;
-        console.log(_this.datacollectionn);
-        console.log(_this.averageAge);
         _this.proMasc = _this.averageAge.promedio.masculino;
         _this.proFeme = _this.averageAge.promedio.femenino;
         _this.proTotal = _this.averageAge.promedio.total;
@@ -3247,7 +3240,6 @@ __webpack_require__.r(__webpack_exports__);
       this.loading = true;
       var url = "statistics/investigators/municipality/".concat(this.selectedState);
       axios.get(url).then(function (res) {
-        console.log(res);
         var municipalities = res.data.municipios;
         var nameMunicipality = new Array();
         var num = new Array();
@@ -3283,7 +3275,6 @@ __webpack_require__.r(__webpack_exports__);
       this.loading = true;
       var url = "statistics/investigators/parish/".concat(this.selectedMunicipality);
       axios.get(url).then(function (res) {
-        console.log(res);
         var parish = res.data.parroquias;
         var nameParish = new Array();
         var num = new Array();
@@ -3311,6 +3302,51 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    groupInv: function groupInv(items, title) {
+      //Funcion para agregar graficas
+      var labels = [];
+      var info = [];
+      var female = [];
+      var male = [];
+      items.forEach(function (item) {
+        var palabra = item[title].toLowerCase();
+        labels.push(palabra[0].toUpperCase() + palabra.slice(1));
+        info.push(item.total);
+        if (item === null || item === void 0 ? void 0 : item.female) female.push(item.female);
+        if (item === null || item === void 0 ? void 0 : item.male) male.push(item.male);
+      });
+      var data = {
+        labels: labels,
+        datasets: [{
+          data: info,
+          label: 'Total',
+          backgroundColor: 'rgba(66, 66, 66, 0.5)',
+          borderColor: 'rgba(66, 66, 66, 1)',
+          hoverBackgroundColor: 'rgba(66, 66, 66, 1)',
+          borderWidth: 1,
+          hoverBorderWidth: 2
+        }]
+      };
+      if (female.length > 0) data.datasets.push({
+        data: female,
+        label: 'Femenino',
+        backgroundColor: 'rgba(255, 214, 0, 0.5)',
+        borderColor: 'rgba(255, 214, 0, 1)',
+        hoverBackgroundColor: 'rgba(255, 214, 0, 1)',
+        borderWidth: 1,
+        hoverBorderWidth: 2
+      });
+      if (male.length > 0) data.datasets.push({
+        data: male,
+        label: 'Masculino',
+        backgroundColor: 'rgba(41, 98, 255, 0.5)',
+        borderColor: 'rgba(41, 98, 255, 1)',
+        hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+        borderWidth: 1,
+        hoverBorderWidth: 2
+      });
+      return data;
     }
   }
 });
@@ -23977,7 +24013,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.imagen-portada[data-v-b4ab9052]{\r\n\twidth: auto;\r\n\theight: auto;\n}\n.section-imagen[data-v-b4ab9052]{\r\n    display: flex;\r\n    align-items: center;\r\n    height: 80vh;\n}\n.section-imagen>div[data-v-b4ab9052]{\r\n    display: block;\r\n    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;\n}\n.section-imagen>h3[data-v-b4ab9052]{\r\n    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n}\n.texto-imagen[data-v-b4ab9052]{\r\n    width: 100%;\r\n    margin: 0;\r\n    text-align: center;\r\n    margin-top: -50px;\n}\r\n", ""]);
+exports.push([module.i, "\n.mt[data-v-b4ab9052]{\r\n    margin-top: 70px;\r\n    margin-bottom: 100px;\n}\n.padding[data-v-b4ab9052]{\r\n    padding-left: 50px;\r\n    padding-right: 50px;\r\n    font-family: \"Nunito\", Times, serif;\n}\n.imagen-portada[data-v-b4ab9052]{ width: 400px;\n}\n.section-imagen[data-v-b4ab9052]{\r\n    display: flex;\r\n    align-items: center;\r\n    height: 40vh;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -78640,25 +78676,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("div", { staticClass: "padding" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col m6 s12 section-imagen" }, [
-          _c("div", [
-            _c("img", {
-              staticClass: "imagen-portada",
-              attrs: { src: "images/portada.png", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("h4", { staticClass: "texto-imagen" }, [_vm._v("COVID-19")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col m6 s12 section-imagen" }, [
-          _c("h3", { staticClass: "right-align" }, [
+        _c("div", { staticClass: "col m12 s12 mt" }, [
+          _c("h3", { staticClass: "center-align" }, [
             _vm._v(
               "Investigadores e Investigadoras Registrados en el Programa Nacional de Investigadores (PNI) "
             )
           ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col m12 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/covid-19.svg", alt: "" }
+          })
         ])
       ])
     ])
@@ -79029,6 +79063,29 @@ var render = function() {
           )
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col s12 m8 offset-m2" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-content" },
+            [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Como Investiga")
+              ]),
+              _vm._v(" "),
+              _vm.loadedModeInv
+                ? _c("horizontalBar-charts", {
+                    attrs: { chartdata: _vm.modeInv, height: 250 }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ])
+      ])
     ])
   ])
 }
@@ -79107,12 +79164,12 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s4" }, [
+      _c("div", { staticClass: "col s12 m3" }, [
         _c(
           "div",
           {
             staticClass: "card card-bg black-text container-fm",
-            staticStyle: { height: "450px" }
+            staticStyle: { height: "300px" }
           },
           [
             _c("div", { staticClass: "card-content center" }, [
@@ -79122,11 +79179,11 @@ var render = function() {
                 attrs: { src: "images/genero-color.png" }
               }),
               _vm._v(" "),
-              _c("h4", [_vm._v("Mujeres:")]),
+              _c("h4", { staticClass: "card-title" }, [_vm._v("Mujeres:")]),
               _vm._v(" "),
               _c("h5", [_vm._v(_vm._s(_vm.investigators_womens))]),
               _vm._v(" "),
-              _c("h4", [_vm._v("Hombres:")]),
+              _c("h4", { staticClass: "card-title" }, [_vm._v("Hombres:")]),
               _vm._v(" "),
               _c("h5", [_vm._v(_vm._s(_vm.investigators_mens))])
             ])
@@ -79134,7 +79191,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col s8" }, [
+      _c("div", { staticClass: "col s12 m9" }, [
         _c("div", { staticClass: "card card-bg black-text" }, [
           _c(
             "div",
@@ -79284,33 +79341,11 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s6" }, [
+      _c("div", { staticClass: "col m8 offset-m2" }, [
         _c("div", { staticClass: "card card-bg" }, [
           _c("div", { staticClass: "card-content" }, [
             _c("table", { staticClass: "responsive-table" }, [
               _vm._m(3),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                _vm._l(_vm.profesions, function(profesion, index) {
-                  return _c("tr", { key: index }, [
-                    _c("td", [_vm._v(_vm._s(profesion.profesion))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(profesion.total))])
-                  ])
-                }),
-                0
-              )
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col s6" }, [
-        _c("div", { staticClass: "card card-bg" }, [
-          _c("div", { staticClass: "card-content" }, [
-            _c("table", { staticClass: "responsive-table" }, [
-              _vm._m(4),
               _vm._v(" "),
               _c("tbody", [
                 _c("tr", [
@@ -79345,6 +79380,29 @@ var render = function() {
               ])
             ])
           ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col s12" }, [
+        _c("div", { staticClass: "card card-bg" }, [
+          _c(
+            "div",
+            { staticClass: "card-content center" },
+            [
+              _c("span", { staticClass: "card-title" }, [
+                _vm._v("Investigadores por Profesión")
+              ]),
+              _vm._v(" "),
+              _vm.show.dataState
+                ? _c("bar-charts", {
+                    attrs: { chartdata: _vm.profesions, height: 150 }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
         ])
       ])
     ])
@@ -79383,18 +79441,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-content" }, [
       _c("h5", { staticClass: "center-align title-card" }, [
         _vm._v("Total Registrados")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Profesión")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Investigadores (as)")])
       ])
     ])
   },
@@ -128133,19 +128179,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _homeComponent_vue_vue_type_template_id_b4ab9052_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./homeComponent.vue?vue&type=template&id=b4ab9052&scoped=true& */ "./resources/js/pages/home/homeComponent.vue?vue&type=template&id=b4ab9052&scoped=true&");
-/* harmony import */ var _homeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./homeComponent.vue?vue&type=script&lang=js& */ "./resources/js/pages/home/homeComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _homeComponent_vue_vue_type_style_index_0_id_b4ab9052_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./homeComponent.vue?vue&type=style&index=0&id=b4ab9052&scoped=true&lang=css& */ "./resources/js/pages/home/homeComponent.vue?vue&type=style&index=0&id=b4ab9052&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _homeComponent_vue_vue_type_style_index_0_id_b4ab9052_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./homeComponent.vue?vue&type=style&index=0&id=b4ab9052&scoped=true&lang=css& */ "./resources/js/pages/home/homeComponent.vue?vue&type=style&index=0&id=b4ab9052&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-
-
+var script = {}
 
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _homeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  script,
   _homeComponent_vue_vue_type_template_id_b4ab9052_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _homeComponent_vue_vue_type_template_id_b4ab9052_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -128159,20 +128203,6 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/pages/home/homeComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/pages/home/homeComponent.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/pages/home/homeComponent.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_homeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./homeComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/home/homeComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_homeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -128489,8 +128519,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\PNI\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\PNI\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\laravel\PNI\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\laravel\PNI\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

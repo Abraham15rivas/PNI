@@ -4,7 +4,7 @@
             <div class="col m6 s12 section-imagen">
                 <div>
                     <img src="images/portada.png" class="imagen-portada" alt="">
-                    <h4 class="texto-imagen">COVID-19</h4>
+                    <h4 class="texto-imagen" style="margin-top: 10px">COVID-19</h4>
                 </div>
             </div>
             <div class="col m6 s12 section-imagen">
@@ -15,13 +15,6 @@
 
 </template>
 
-<script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
-</script>
 <style scoped>
 .imagen-portada{
 	width: auto;

@@ -25,19 +25,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s4">
-                <div class="card card-bg black-text container-fm" style="height: 450px;">
+            <div class="col s12 m3">
+                <div class="card card-bg black-text container-fm" style="height: 300px;">
                     <div class="card-content center">
                         <img class="icon-fm" src="images/genero-color.png" style="width: 100px">
-                        <h4>Mujeres:</h4>
+                        <h4 class="card-title">Mujeres:</h4>
                         <h5>{{investigators_womens}}</h5>
                         
-                        <h4>Hombres:</h4>
+                        <h4 class="card-title">Hombres:</h4>
                         <h5>{{investigators_mens}}</h5>
                     </div>
                 </div>
             </div>
-            <div class="col s8">
+            <div class="col s12 m9">
                 <div class="card card-bg black-text" >
                     <div class="card-content center">
                         <span class="card-title">Investigadores por rango de edad</span>
@@ -77,27 +77,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s6">
-                <div class="card card-bg">
-                    <div class="card-content">
-                        <table class="responsive-table">
-                            <thead>
-                                <tr>
-                                    <th>Profesión</th>
-                                    <th>Investigadores (as)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(profesion, index) in profesions" :key="index">
-                                    <td>{{profesion.profesion}}</td>
-                                    <td>{{profesion.total}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col s6">
+            <div class="col m8 offset-m2">
                 <div class="card card-bg">
                     <div class="card-content">
                         <table class="responsive-table">
@@ -131,6 +111,16 @@
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="card card-bg">
+                    <div class="card-content center">
+                        <span class="card-title">Investigadores por Profesión</span>
+                       <bar-charts v-if="show.dataState" :chartdata="profesions" :height="150"></bar-charts>
                     </div>
                 </div>
             </div>
@@ -173,7 +163,6 @@
                     dataAge: false,
                     dataState: false
                 }
-
             }
         },
         mounted() {
@@ -211,9 +200,8 @@
                             }]
                         }
                         
-                        this.profesions = res.data.groupProfesion;
-                        
-
+                        //Grafica de 
+                        this.profesions = this.groupInv(res.data.groupProfesion, 'profesion');
 
                         let rangeAge = res.data.groupRangeAge;
                         let range = new Array();
@@ -235,9 +223,6 @@
                             }]
                         }
                         this.averageAge = res.data.groupAverageAge;
-                        console.log(this.datacollectionn);
-
-                        console.log(this.averageAge);
 
                         this.proMasc = this.averageAge.promedio.masculino
                         this.proFeme = this.averageAge.promedio.femenino
@@ -264,8 +249,7 @@
                 this.loading = true;
                 let url = `statistics/investigators/municipality/${this.selectedState}`;
                 axios.get(url)
-                    .then(res => {          
-                        console.log(res);
+                    .then(res => {
                         let municipalities = res.data.municipios;
                         let nameMunicipality = new Array();
                         let num    = new Array();
@@ -299,8 +283,7 @@
                 this.loading = true;
                 let url = `statistics/investigators/parish/${this.selectedMunicipality}`;
                 axios.get(url)
-                    .then(res => {          
-                        console.log(res);
+                    .then(res => {
                         let parish = res.data.parroquias;
                         let nameParish = new Array();
                         let num    = new Array();
@@ -328,6 +311,61 @@
                     .catch(err => {
                         console.log(err);  
                     })
+            },
+            groupInv(items, title){ //Funcion para agregar graficas
+                let labels = [];
+                let info = [];
+                let female = [];
+                let male = [];
+
+                items.forEach(item => {
+                    let palabra = item[title].toLowerCase();
+                    labels.push(palabra[0].toUpperCase() + palabra.slice(1));
+                    info.push(item.total);
+
+                    if(item?.female)
+                        female.push(item.female);
+
+                    if(item?.male)
+                        male.push(item.male);
+                });
+                let data = {
+                    labels: labels,
+                    datasets: [{
+                        data: info,
+                        label: 'Total',
+                        backgroundColor: 'rgba(66, 66, 66, 0.5)',
+                        borderColor: 'rgba(66, 66, 66, 1)',
+                        hoverBackgroundColor: 'rgba(66, 66, 66, 1)',
+                        borderWidth: 1,
+                        hoverBorderWidth: 2,    
+                    }
+                    ],
+                }
+
+                if(female.length > 0)
+                    data.datasets.push({
+                        data: female,
+                        label: 'Femenino',
+                        backgroundColor: 'rgba(255, 214, 0, 0.5)',
+                        borderColor: 'rgba(255, 214, 0, 1)',
+                        hoverBackgroundColor: 'rgba(255, 214, 0, 1)',
+                        borderWidth: 1,
+                        hoverBorderWidth: 2,    
+                    });
+                
+                if(male.length > 0)
+                    data.datasets.push({
+                        data: male,
+                        label: 'Masculino',
+                        backgroundColor: 'rgba(41, 98, 255, 0.5)',
+                        borderColor: 'rgba(41, 98, 255, 1)',
+                        hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                        borderWidth: 1,
+                        hoverBorderWidth: 2,    
+                    });
+
+                return data;
             }
         }
     }

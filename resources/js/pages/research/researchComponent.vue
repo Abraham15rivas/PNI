@@ -59,6 +59,16 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title center">Como Investiga</span>
+                        <horizontalBar-charts v-if="loadedModeInv" :chartdata="modeInv" :height="250"></horizontalBar-charts>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -119,16 +129,22 @@ export default {
             //Grupo de Interes
             actualInt: {}, 
             loadedAct: false,
+
+            //Como investiga
+            modeInv: {}, 
+            loadedModeInv: false,
         }
     },
     async mounted () {
         let url = 'statistics/investigators/interest';
         axios.get(url)
-            .then(res => {          
+            .then(res => {
                 this.institution = this.groupInstitution(res.data.groupInstitution);
                 this.dataInterest = res.data.groupInterest;
                 this.interest = this.groupInterest(res.data.groupInterest);
                 this.actualInt = this.groupActualInt(res.data.actualInvestigation);
+                this.modeInv = this.groupInv(res.data.groupModeInvestigation, 'titulo');
+                this.loadedModeInv = this.modeInv != {} ? true : false;
             })
             .catch(err => {
                 console.log(err);
@@ -226,6 +242,31 @@ export default {
                 ]
             }
             this.loadedAct = true;
+            return data;
+        },
+        groupInv(items, title){
+            let labels = [];
+            let info = []
+
+            items.forEach(item => {
+                let palabra = item[title].toLowerCase();
+                labels.push(palabra[0].toUpperCase() + palabra.slice(1));
+                info.push(item.total);
+            });
+
+            let data = {
+                labels: labels,
+                datasets: [{
+                    data: info,
+                    label: 'Series 1',
+                    backgroundColor: this.backgroundColor,
+                    borderColor: this.borderColor,
+                    hoverBackgroundColor: this.borderColor,
+                    borderWidth: 1,
+                    hoverBorderWidth: 2,
+                    
+                }],
+            }
             return data;
         }
     }

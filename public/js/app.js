@@ -24010,7 +24010,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.imagen-portada[data-v-b4ab9052]{\n\twidth: auto;\n\theight: auto;\n}\n.section-imagen[data-v-b4ab9052]{\n    display: flex;\n    align-items: center;\n    height: 80vh;\n}\n.section-imagen>div[data-v-b4ab9052]{\n    display: block;\n    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;\n}\n.section-imagen>h3[data-v-b4ab9052]{\n    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n}\n.texto-imagen[data-v-b4ab9052]{\n    width: 100%;\n    margin: 0;\n    text-align: center;\n    margin-top: -50px;\n}\n", ""]);
+exports.push([module.i, "\n.mt[data-v-b4ab9052]{\n    margin-top: 70px;\n    margin-bottom: 100px;\n}\n.padding[data-v-b4ab9052]{\n    padding-left: 50px;\n    padding-right: 50px;\n    font-family: \"Nunito\", Times, serif;\n}\n.imagen-portada[data-v-b4ab9052]{ width: 400px;\n}\n.section-imagen[data-v-b4ab9052]{\n    display: flex;\n    align-items: center;\n    height: 40vh;\n}\n", ""]);
 
 // exports
 
@@ -78673,32 +78673,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("div", { staticClass: "padding" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col m6 s12 section-imagen" }, [
-          _c("div", [
-            _c("img", {
-              staticClass: "imagen-portada",
-              attrs: { src: "images/portada.png", alt: "" }
-            }),
-            _vm._v(" "),
-            _c(
-              "h4",
-              {
-                staticClass: "texto-imagen",
-                staticStyle: { "margin-top": "10px" }
-              },
-              [_vm._v("COVID-19")]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col m6 s12 section-imagen" }, [
-          _c("h3", { staticClass: "right-align" }, [
+        _c("div", { staticClass: "col m12 s12 mt" }, [
+          _c("h3", { staticClass: "center-align" }, [
             _vm._v(
               "Investigadores e Investigadoras Registrados en el Programa Nacional de Investigadores (PNI) "
             )
           ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col m12 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/covid-19.svg", alt: "" }
+          })
         ])
       ])
     ])
@@ -79170,26 +79161,26 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s4" }, [
+      _c("div", { staticClass: "col s12 m3" }, [
         _c(
           "div",
           {
             staticClass: "card card-bg black-text container-fm",
-            staticStyle: { height: "450px" }
+            staticStyle: { height: "325px" }
           },
           [
             _c("div", { staticClass: "card-content center" }, [
               _c("img", {
                 staticClass: "icon-fm",
-                staticStyle: { width: "100px" },
+                staticStyle: { width: "70px" },
                 attrs: { src: "images/genero-color.png" }
               }),
               _vm._v(" "),
-              _c("h4", [_vm._v("Mujeres:")]),
+              _c("h4", { staticClass: "card-title" }, [_vm._v("Mujeres:")]),
               _vm._v(" "),
               _c("h5", [_vm._v(_vm._s(_vm.investigators_womens))]),
               _vm._v(" "),
-              _c("h4", [_vm._v("Hombres:")]),
+              _c("h4", { staticClass: "card-title" }, [_vm._v("Hombres:")]),
               _vm._v(" "),
               _c("h5", [_vm._v(_vm._s(_vm.investigators_mens))])
             ])
@@ -79197,7 +79188,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col s8" }, [
+      _c("div", { staticClass: "col s12 m9" }, [
         _c("div", { staticClass: "card card-bg black-text" }, [
           _c(
             "div",
@@ -79347,7 +79338,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col m6 offset-m3" }, [
+      _c("div", { staticClass: "col m8 offset-m2" }, [
         _c("div", { staticClass: "card card-bg" }, [
           _c("div", { staticClass: "card-content" }, [
             _c("table", { staticClass: "responsive-table" }, [

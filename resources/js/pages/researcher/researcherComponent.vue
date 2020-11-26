@@ -25,19 +25,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s4">
-                <div class="card card-bg black-text container-fm" style="height: 450px;">
+            <div class="col s12 m3">
+                <div class="card card-bg black-text container-fm" style="height: 325px;">
                     <div class="card-content center">
-                        <img class="icon-fm" src="images/genero-color.png" style="width: 100px">
-                        <h4>Mujeres:</h4>
+                        <img class="icon-fm" src="images/genero-color.png" style="width: 70px">
+                        <h4 class="card-title">Mujeres:</h4>
                         <h5>{{investigators_womens}}</h5>
                         
-                        <h4>Hombres:</h4>
+                        <h4 class="card-title">Hombres:</h4>
                         <h5>{{investigators_mens}}</h5>
                     </div>
                 </div>
             </div>
-            <div class="col s8">
+            <div class="col s12 m9">
                 <div class="card card-bg black-text" >
                     <div class="card-content center">
                         <span class="card-title">Investigadores por rango de edad</span>
@@ -77,7 +77,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col m6 offset-m3">
+            <div class="col m8 offset-m2">
                 <div class="card card-bg">
                     <div class="card-content">
                         <table class="responsive-table">

@@ -115,6 +115,52 @@ class InvestigatorController extends Controller {
             $groupState->push(["estado"=>$name,"id"=>$key,"total"=>$total]);
         }
 
+        //Numero de investigadores por estados, genero y edad
+        $groupStateAge = collect();
+
+        foreach($groupBySta as $key => $val){
+            $selected = $states->where('id_estado',$key);
+
+            //destructurar el objeto para obtener el nombre del estado
+            foreach($selected as $pro){
+                $name = $pro->estado;
+            }
+
+            foreach($val as $investigator){
+                $investigator->age = Carbon::parse($investigator->fecha_nac)->age;
+            }
+
+            $genreGroup = $val->groupBy('id_genero');
+            $val->genreGroup = collect();
+
+            foreach ($genreGroup as $keyG => $genre) {
+                $genre->ageGroup = $genre->groupBy('age');
+                $ageGroup = collect();
+
+                foreach($genre->ageGroup as $keyA => $age){
+                    $ageGroup->push([$keyA=>count($age)]);
+                }
+
+                $val->genreGroup->push([$keyG == 2 ? 'Masculino' : 'Femenino'=>$ageGroup]);
+            }
+
+            $groupStateAge->push(["estado"=>$name,"data"=>$val->genreGroup]);
+        }
+
+        //Investigadores agrupados por mes
+        \setlocale(LC_ALL,'es_ES');
+        foreach($investigators as $investigator){
+            $month_creation = Carbon::parse($investigator->fecha_creacion)->formatLocalized('%B');
+            $investigator->month_creation = $month_creation;
+        }
+
+        $groupM = $investigators->groupBy('month_creation');
+
+        $groupMonth = collect();
+        foreach($groupM as $key => $month){
+            $groupMonth->push([$key=>count($month)]);
+        }
+
         // Ordenar descendente los estados
         $groupStateArray = $this->orderDescUnkey($groupState);
         
@@ -127,9 +173,11 @@ class InvestigatorController extends Controller {
             "total_investigators"=>$total_investigators,
             "investigators_mens"=>$investigators_mens,
             "investigators_womens"=>$investigators_womens,
+            "groupMonth"=> $groupMonth,
             "groupProfesion"=>$grouprofesionArray,
             "groupStates"=>$groupStateArray,
             "groupRangeAge"=>$groupRangeAge,
+            "groupAge"=>$groupStateAge,
             "groupAverageAge"=>$groupAverageAge
         ]);
         

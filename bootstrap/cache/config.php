@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:ntWnkSWVaUUyNrf1GRS6RKfYNeWXmjqJksSe9UoDPpk=',
+    'key' => 'base64:iZMltzHTWysNPMWiC9CfCi3wrWJzCfmJsajCIbvxUOs=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -177,7 +177,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => '/var/www/html/PNI/storage/framework/cache/data',
+        'path' => 'C:\\xampp\\htdocs\\PNI\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -265,7 +265,7 @@
         'host' => '127.0.0.1',
         'port' => '5432',
         'database' => 'pni',
-        'username' => 'desarrollo',
+        'username' => 'postgres',
         'password' => '123456',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
@@ -285,7 +285,7 @@
         'host' => '127.0.0.1',
         'port' => '5432',
         'database' => 'pni',
-        'username' => 'desarrollo',
+        'username' => 'postgres',
         'password' => '123456',
         'charset' => 'utf8',
         'prefix' => '',
@@ -300,7 +300,7 @@
         'host' => '127.0.0.1',
         'port' => '5432',
         'database' => 'pni',
-        'username' => 'desarrollo',
+        'username' => 'postgres',
         'password' => '123456',
         'charset' => 'utf8',
         'prefix' => '',
@@ -334,6 +334,29 @@
       ),
     ),
   ),
+  'dompdf' => 
+  array (
+    'show_warnings' => false,
+    'orientation' => 'portrait',
+    'defines' => 
+    array (
+      'font_dir' => 'C:\\xampp\\htdocs\\PNI\\storage\\fonts/',
+      'font_cache' => 'C:\\xampp\\htdocs\\PNI\\storage\\fonts/',
+      'temp_dir' => 'C:\\Users\\pc\\AppData\\Local\\Temp',
+      'chroot' => 'C:\\xampp\\htdocs\\PNI',
+      'enable_font_subsetting' => false,
+      'pdf_backend' => 'CPDF',
+      'default_media_type' => 'screen',
+      'default_paper_size' => 'a4',
+      'default_font' => 'serif',
+      'dpi' => 96,
+      'enable_php' => false,
+      'enable_javascript' => true,
+      'enable_remote' => true,
+      'font_height_ratio' => 1.1,
+      'enable_html5_parser' => false,
+    ),
+  ),
   'filesystems' => 
   array (
     'default' => 'local',
@@ -343,12 +366,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => '/var/www/html/PNI/storage/app',
+        'root' => 'C:\\xampp\\htdocs\\PNI\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => '/var/www/html/PNI/storage/app/public',
+        'root' => 'C:\\xampp\\htdocs\\PNI\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -365,7 +388,7 @@
     ),
     'links' => 
     array (
-      '/var/www/html/PNI/public/storage' => '/var/www/html/PNI/storage/app/public',
+      'C:\\xampp\\htdocs\\PNI\\public\\storage' => 'C:\\xampp\\htdocs\\PNI\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -399,13 +422,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => '/var/www/html/PNI/storage/logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\PNI\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => '/var/www/html/PNI/storage/logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\PNI\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -455,7 +478,7 @@
       ),
       'emergency' => 
       array (
-        'path' => '/var/www/html/PNI/storage/logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\PNI\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -512,7 +535,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => '/var/www/html/PNI/resources/views/vendor/mail',
+        0 => 'C:\\xampp\\htdocs\\PNI\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -591,7 +614,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => '/var/www/html/PNI/storage/framework/sessions',
+    'files' => 'C:\\xampp\\htdocs\\PNI\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -611,9 +634,9 @@
   array (
     'paths' => 
     array (
-      0 => '/var/www/html/PNI/resources/views',
+      0 => 'C:\\xampp\\htdocs\\PNI\\resources\\views',
     ),
-    'compiled' => '/var/www/html/PNI/storage/framework/views',
+    'compiled' => 'C:\\xampp\\htdocs\\PNI\\storage\\framework\\views',
   ),
   'flare' => 
   array (

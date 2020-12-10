@@ -2076,13 +2076,9 @@ __webpack_require__.r(__webpack_exports__);
       sidebar: false
     };
   },
-  mounted: function mounted() {
-    console.log("Componente montado.");
-  },
   methods: {
     collapse: function collapse() {
       this.sidebar = !this.sidebar;
-      console.log(this.sidebar);
     }
   }
 });
@@ -2995,6 +2991,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -23972,7 +23973,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.sidenav .logo-container[data-v-62e37494] {\n  padding: 0 16px;\n  height: 94px;\n  line-height: 64px;\n  font-size: 24px;\n  box-sizing: content-box;\n}\n.sidenav .collapsible > li.waves-effect[data-v-62e37494] {\n  display: block;\n}\n.sidenav .collapsible li[data-v-62e37494],\n.sidenav.fixed .collapsible li[data-v-62e37494] {\n  padding: 0;\n}\n.logo-min[data-v-62e37494] {\n  width: 195px;\n  height: 85px;\n  margin-top: 6px;\n}\n.cintillo-min[data-v-62e37494] {\n  width: 100%;\n  height: 100px;\n}\n.header-logo[data-v-62e37494] {\n  position: fixed;\n  right: 10px;\n}\n.brand-logo[data-v-62e37494] {\n  width: 100%;\n}\n.logo-sidebar[data-v-62e37494] {\n  height: 110px;\n  margin: 0 auto;\n  display: block;\n}\n.top-m[data-v-62e37494] {\n  margin-top: 10px;\n}\n@media (max-width: 992px) {\n.sidenav-collapse[data-v-62e37494] {\n    transform: translateX(0%);\n    transition: transform 300ms linear;\n}\n.button-collapse[data-v-62e37494] {\n    margin-left: 312px;\n    transition: margin-left 300ms linear;\n}\n}\n", ""]);
+exports.push([module.i, "\n.sidenav .logo-container[data-v-62e37494] {\r\n  padding: 0 16px;\r\n  height: 94px;\r\n  line-height: 64px;\r\n  font-size: 24px;\r\n  box-sizing: content-box;\n}\n.sidenav .collapsible > li.waves-effect[data-v-62e37494] {\r\n  display: block;\n}\n.sidenav .collapsible li[data-v-62e37494],\r\n.sidenav.fixed .collapsible li[data-v-62e37494] {\r\n  padding: 0;\n}\n.logo-min[data-v-62e37494] {\r\n  width: 195px;\r\n  height: 85px;\r\n  margin-top: 6px;\n}\n.cintillo-min[data-v-62e37494] {\r\n  width: 100%;\r\n  height: 100px;\n}\n.header-logo[data-v-62e37494] {\r\n  position: fixed;\r\n  right: 10px;\n}\n.brand-logo[data-v-62e37494] {\r\n  width: 100%;\n}\n.logo-sidebar[data-v-62e37494] {\r\n  height: 110px;\r\n  margin: 0 auto;\r\n  display: block;\n}\n.top-m[data-v-62e37494] {\r\n  margin-top: 10px;\n}\n@media (max-width: 992px) {\n.sidenav-collapse[data-v-62e37494] {\r\n    transform: translateX(0%);\r\n    transition: transform 300ms linear;\n}\n.button-collapse[data-v-62e37494] {\r\n    margin-left: 312px;\r\n    transition: margin-left 300ms linear;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -23991,7 +23992,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.margin-x[data-v-54e7490d]{\n    margin: 0 50px;\n    padding-top: 32px;\n}\n.total-register[data-v-54e7490d]{\n\tfont-size: 40px;\n    margin-top: -8px;\n    margin-bottom: 0px;\n    text-align: center;\n}\n.icon-total-register[data-v-54e7490d]{\n\twidth: 110px;\n\theight: 110px;\n}\n.card-icon[data-v-54e7490d] {\n    background: #e3f2fd;\n    display: flex;\n    align-items: center;\n    padding: 0px 8px 0px 16px;\n}\n\n", ""]);
+exports.push([module.i, "\n.margin-x[data-v-54e7490d]{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\n.total-register[data-v-54e7490d]{\r\n\tfont-size: 40px;\r\n    margin-top: -8px;\r\n    margin-bottom: 0px;\r\n    text-align: center;\n}\n.icon-total-register[data-v-54e7490d]{\r\n\twidth: 110px;\r\n\theight: 110px;\n}\n.card-icon[data-v-54e7490d] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -24010,7 +24011,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.mt[data-v-b4ab9052]{\n    margin-top: 70px;\n    margin-bottom: 100px;\n}\n.padding[data-v-b4ab9052]{\n    padding-left: 50px;\n    padding-right: 50px;\n    font-family: \"Nunito\", Times, serif;\n}\n.imagen-portada[data-v-b4ab9052]{ width: 400px;\n}\n.section-imagen[data-v-b4ab9052]{\n    display: flex;\n    align-items: center;\n    height: 40vh;\n}\n", ""]);
+exports.push([module.i, "\n.mt[data-v-b4ab9052]{\r\n    margin-top: 70px;\r\n    margin-bottom: 100px;\n}\n.padding[data-v-b4ab9052]{\r\n    padding-left: 50px;\r\n    padding-right: 50px;\r\n    font-family: \"Nunito\", Times, serif;\n}\n.imagen-portada[data-v-b4ab9052]{ width: 400px;\n}\n.section-imagen[data-v-b4ab9052]{\r\n    display: flex;\r\n    align-items: center;\r\n    height: 40vh;\n}\r\n", ""]);
 
 // exports
 
@@ -24029,7 +24030,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.total-register[data-v-768de6a6]{\n\tfont-size: 40px;\n    margin-top: -8px;\n    margin-bottom: 0px;\n    text-align: center;\n}\n.icon-total-register[data-v-768de6a6]{\n\twidth: 110px;\n\theight: 110px;\n}\n.card-icon[data-v-768de6a6] {\n    background: #e3f2fd;\n    display: flex;\n    align-items: center;\n    padding: 0px 8px 0px 16px;\n}\n.title-card[data-v-768de6a6] {\n    text-align: center;\n    margin-top: 0px;\n}\n.separate[data-v-768de6a6] {\n    margin: 48px 64px;\n}\n.margin-x[data-v-768de6a6]{\n    margin: 0 50px;\n    padding-top: 32px;\n}\n.card[data-v-768de6a6]:hover {\n    background: #e3f2fd;\n}\n", ""]);
+exports.push([module.i, "\n.total-register[data-v-768de6a6]{\r\n\tfont-size: 40px;\r\n    margin-top: -8px;\r\n    margin-bottom: 0px;\r\n    text-align: center;\n}\n.icon-total-register[data-v-768de6a6]{\r\n\twidth: 110px;\r\n\theight: 110px;\n}\n.card-icon[data-v-768de6a6] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\n.title-card[data-v-768de6a6] {\r\n    text-align: center;\r\n    margin-top: 0px;\n}\n.separate[data-v-768de6a6] {\r\n    margin: 48px 64px;\n}\n.margin-x[data-v-768de6a6]{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\n.card[data-v-768de6a6]:hover {\r\n    background: #e3f2fd;\n}\r\n", ""]);
 
 // exports
 
@@ -24048,7 +24049,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.margin-x{\n    margin: 0 50px;\n    padding-top: 32px;\n}\n\n", ""]);
+exports.push([module.i, "\n.margin-x{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -24067,7 +24068,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n*[data-v-64b339f7]{\n    color: black;\n}\n.total-register[data-v-64b339f7]{\n\tfont-size: 40px;\n    margin-top: -8px;\n    margin-bottom: 0px;\n    text-align: center;\n}\n.icon-total-register[data-v-64b339f7]{\n\twidth: 110px;\n\theight: 110px;\n}\n.md-button[data-v-64b339f7], .md-button-clean[data-v-64b339f7]{\n    background-color: white;\n}\n.card-icon[data-v-64b339f7] {\n    background: #e3f2fd;\n    display: flex;\n    align-items: center;\n    padding: 0px 8px 0px 16px;\n}\n.margin-x[data-v-64b339f7]{\n    margin: 0 50px;\n    padding-top: 32px;\n}\n", ""]);
+exports.push([module.i, "\nhr[data-v-64b339f7]{ width: 100%\n}\n.md-button[data-v-64b339f7], .md-button-clean[data-v-64b339f7]{\r\n    background-color: white;\n}\n.card-icon[data-v-64b339f7] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\n.margin-x[data-v-64b339f7]{\r\n    margin: 0 25px;\r\n    padding-top: 32px;\n}\n.size-img[data-v-64b339f7]{ \r\n    width: 100px; \r\n    height: 100px;\n}\n.color-w[data-v-64b339f7] { color: #EA5771\n}\n.color-m[data-v-64b339f7]{ color:#1E88E5}\n@media (max-width: 320px) {\n.card-icon[data-v-64b339f7]{ display: none;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -78333,7 +78334,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "collapsible-header",
-                        attrs: { to: "/researcher", tabindex: "0" }
+                        attrs: { to: "/investigadores", tabindex: "0" }
                       },
                       [
                         _c("span", { staticStyle: { "font-size": "13px" } }, [
@@ -79143,16 +79144,50 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12 m6 offset-m3" }, [
+      _c("div", { staticClass: "col s12 m7" }, [
         _c("div", { staticClass: "card horizontal" }, [
           _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "card-stacked" }, [
-            _vm._m(2),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-action" }, [
-              _c("h2", { staticClass: "total-register" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h5", { staticClass: "center-align" }, [
+                _vm._v("Total de investigadores registrados")
+              ]),
+              _vm._v(" "),
+              _c("h4", { staticClass: "center-align" }, [
                 _vm._v(_vm._s(_vm.total_investigators))
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col s12 m5" }, [
+        _c("div", { staticClass: "card horizontal" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-stacked" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col s12 m12 xl6" }, [
+                  _c("h5", { staticClass: "center-align color-w ml-5" }, [
+                    _vm._v("Mujeres")
+                  ]),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "center-align color-w" }, [
+                    _vm._v(_vm._s(_vm.investigators_womens))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col s12 m12 xl6" }, [
+                  _c("h5", { staticClass: "center-align color-m" }, [
+                    _vm._v("Hombres")
+                  ]),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "center-align color-m" }, [
+                    _vm._v(_vm._s(_vm.investigators_mens))
+                  ])
+                ])
               ])
             ])
           ])
@@ -79161,35 +79196,8 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12 m3" }, [
-        _c(
-          "div",
-          {
-            staticClass: "card card-bg black-text container-fm",
-            staticStyle: { height: "325px" }
-          },
-          [
-            _c("div", { staticClass: "card-content center" }, [
-              _c("img", {
-                staticClass: "icon-fm",
-                staticStyle: { width: "70px" },
-                attrs: { src: "images/genero-color.png" }
-              }),
-              _vm._v(" "),
-              _c("h4", { staticClass: "card-title" }, [_vm._v("Mujeres:")]),
-              _vm._v(" "),
-              _c("h5", [_vm._v(_vm._s(_vm.investigators_womens))]),
-              _vm._v(" "),
-              _c("h4", { staticClass: "card-title" }, [_vm._v("Hombres:")]),
-              _vm._v(" "),
-              _c("h5", [_vm._v(_vm._s(_vm.investigators_mens))])
-            ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col s12 m9" }, [
-        _c("div", { staticClass: "card card-bg black-text" }, [
+      _c("div", { staticClass: "col s12" }, [
+        _c("div", { staticClass: "card" }, [
           _c(
             "div",
             { staticClass: "card-content center" },
@@ -79200,7 +79208,7 @@ var render = function() {
               _vm._v(" "),
               _vm.show.dataAge
                 ? _c("bar-charts", {
-                    attrs: { chartdata: _vm.datacollectionn, height: 250 }
+                    attrs: { chartdata: _vm.datacollectionn, height: 180 }
                   })
                 : _vm._e()
             ],
@@ -79212,7 +79220,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col s12" }, [
-        _c("div", { staticClass: "card card-bg" }, [
+        _c("div", { staticClass: "card" }, [
           _c(
             "div",
             { staticClass: "card-content center" },
@@ -79223,7 +79231,7 @@ var render = function() {
               _vm._v(" "),
               _vm.show.dataState
                 ? _c("bar-charts", {
-                    attrs: { chartdata: _vm.datacollection, height: 250 }
+                    attrs: { chartdata: _vm.datacollection, height: 180 }
                   })
                 : _vm._e()
             ],
@@ -79339,43 +79347,49 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col m8 offset-m2" }, [
-        _c("div", { staticClass: "card card-bg" }, [
+        _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-content" }, [
-            _c("table", { staticClass: "responsive-table" }, [
-              _vm._m(3),
-              _vm._v(" "),
-              _c("tbody", [
-                _c("tr", [
-                  _c("td", [_vm._v("Promedio")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.proMasc))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.proFeme))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.proTotal))])
-                ]),
+            _c(
+              "table",
+              {
+                staticClass: "table table-striped table-hover responsive-table"
+              },
+              [
+                _vm._m(3),
                 _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("Maxima")]),
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v("Promedio")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.proMasc))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.proFeme))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.proTotal))])
+                  ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.maxMasc))]),
+                  _c("tr", [
+                    _c("td", [_vm._v("Maxima")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.maxMasc))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.maxFeme))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.maxTotal))])
+                  ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.maxFeme))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.maxTotal))])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("Minima")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.minMasc))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.minFeme))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.minTotal))])
+                  _c("tr", [
+                    _c("td", [_vm._v("Minima")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.minMasc))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.minFeme))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.minTotal))])
+                  ])
                 ])
-              ])
-            ])
+              ]
+            )
           ])
         ])
       ])
@@ -79412,7 +79426,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col s12" }, [
-        _c("h5", { staticClass: "black-text center principal-title" }, [
+        _c("h5", { staticClass: "center" }, [
           _vm._v(
             "\n                Indicador de Investigadoras e Investigadores registrados en el Programa Nacional de Investigadores\n            "
           )
@@ -79426,7 +79440,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-image card-icon" }, [
       _c("img", {
-        staticClass: "icon-total-register",
+        staticClass: "img-fluid size-img",
         attrs: { src: "images/registro.svg" }
       })
     ])
@@ -79435,10 +79449,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-content" }, [
-      _c("h5", { staticClass: "center-align title-card" }, [
-        _vm._v("Total Registrados")
-      ])
+    return _c("div", { staticClass: "card-image card-icon" }, [
+      _c("img", {
+        staticClass: "icon-fm img-fluid size-img",
+        attrs: { src: "images/genero.png" }
+      })
     ])
   },
   function() {
@@ -127672,7 +127687,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
     path: '/home',
     component: _pages_home_homeComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
-    path: '/researcher',
+    path: '/investigadores',
     component: _pages_researcher_researcherComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
     path: '/research',
@@ -128516,8 +128531,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/PNI/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/PNI/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\PNI\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\PNI\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

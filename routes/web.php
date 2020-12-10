@@ -21,7 +21,7 @@ Route::get('home', function () {
     return view('layouts.app');
 });
 
-Route::get('researcher', function () {
+Route::get('investigadores', function () {
     return view('layouts.app');
 });
 

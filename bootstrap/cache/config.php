@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:iZMltzHTWysNPMWiC9CfCi3wrWJzCfmJsajCIbvxUOs=',
+    'key' => 'base64:NXXjwtfNUftXwYHFzkdTyKr31lKBB+sS+36gcaNyYUo=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -124,18 +124,18 @@
   ),
   'broadcasting' => 
   array (
-    'default' => 'log',
+    'default' => 'null',
     'connections' => 
     array (
       'pusher' => 
       array (
         'driver' => 'pusher',
-        'key' => '',
-        'secret' => '',
-        'app_id' => '',
+        'key' => NULL,
+        'secret' => NULL,
+        'app_id' => NULL,
         'options' => 
         array (
-          'cluster' => 'mt1',
+          'cluster' => NULL,
           'useTLS' => true,
         ),
       ),
@@ -177,7 +177,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\PNI\\storage\\framework/cache/data',
+        'path' => '/var/www/html/PNI/storage/framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -209,8 +209,8 @@
       'dynamodb' => 
       array (
         'driver' => 'dynamodb',
-        'key' => '',
-        'secret' => '',
+        'key' => NULL,
+        'secret' => NULL,
         'region' => 'us-east-1',
         'table' => 'cache',
         'endpoint' => NULL,
@@ -340,10 +340,10 @@
     'orientation' => 'portrait',
     'defines' => 
     array (
-      'font_dir' => 'C:\\xampp\\htdocs\\PNI\\storage\\fonts/',
-      'font_cache' => 'C:\\xampp\\htdocs\\PNI\\storage\\fonts/',
-      'temp_dir' => 'C:\\Users\\pc\\AppData\\Local\\Temp',
-      'chroot' => 'C:\\xampp\\htdocs\\PNI',
+      'font_dir' => '/var/www/html/PNI/storage/fonts/',
+      'font_cache' => '/var/www/html/PNI/storage/fonts/',
+      'temp_dir' => '/tmp',
+      'chroot' => '/var/www/html/PNI',
       'enable_font_subsetting' => false,
       'pdf_backend' => 'CPDF',
       'default_media_type' => 'screen',
@@ -366,29 +366,29 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\PNI\\storage\\app',
+        'root' => '/var/www/html/PNI/storage/app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\PNI\\storage\\app/public',
+        'root' => '/var/www/html/PNI/storage/app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
       's3' => 
       array (
         'driver' => 's3',
-        'key' => '',
-        'secret' => '',
-        'region' => 'us-east-1',
-        'bucket' => '',
+        'key' => NULL,
+        'secret' => NULL,
+        'region' => NULL,
+        'bucket' => NULL,
         'url' => NULL,
         'endpoint' => NULL,
       ),
     ),
     'links' => 
     array (
-      'C:\\xampp\\htdocs\\PNI\\public\\storage' => 'C:\\xampp\\htdocs\\PNI\\storage\\app/public',
+      '/var/www/html/PNI/public/storage' => '/var/www/html/PNI/storage/app/public',
     ),
   ),
   'hashing' => 
@@ -422,13 +422,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp\\htdocs\\PNI\\storage\\logs/laravel.log',
+        'path' => '/var/www/html/PNI/storage/logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp\\htdocs\\PNI\\storage\\logs/laravel.log',
+        'path' => '/var/www/html/PNI/storage/logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -478,7 +478,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\xampp\\htdocs\\PNI\\storage\\logs/laravel.log',
+        'path' => '/var/www/html/PNI/storage/logs/laravel.log',
       ),
     ),
   ),
@@ -490,9 +490,9 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'smtp.mailtrap.io',
-        'port' => '2525',
-        'encryption' => NULL,
+        'host' => 'smtp.mailgun.org',
+        'port' => 587,
+        'encryption' => 'tls',
         'username' => NULL,
         'password' => NULL,
         'timeout' => NULL,
@@ -527,15 +527,15 @@
     ),
     'from' => 
     array (
-      'address' => NULL,
-      'name' => 'Laravel',
+      'address' => 'hello@example.com',
+      'name' => 'Example',
     ),
     'markdown' => 
     array (
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\PNI\\resources\\views/vendor/mail',
+        0 => '/var/www/html/PNI/resources/views/vendor/mail',
       ),
     ),
   ),
@@ -566,8 +566,8 @@
       'sqs' => 
       array (
         'driver' => 'sqs',
-        'key' => '',
-        'secret' => '',
+        'key' => NULL,
+        'secret' => NULL,
         'prefix' => 'https://sqs.us-east-1.amazonaws.com/your-account-id',
         'queue' => 'your-queue-name',
         'suffix' => NULL,
@@ -603,18 +603,18 @@
     ),
     'ses' => 
     array (
-      'key' => '',
-      'secret' => '',
+      'key' => NULL,
+      'secret' => NULL,
       'region' => 'us-east-1',
     ),
   ),
   'session' => 
   array (
     'driver' => 'file',
-    'lifetime' => '120',
+    'lifetime' => 120,
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\PNI\\storage\\framework/sessions',
+    'files' => '/var/www/html/PNI/storage/framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -634,9 +634,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\PNI\\resources\\views',
+      0 => '/var/www/html/PNI/resources/views',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\PNI\\storage\\framework\\views',
+    'compiled' => '/var/www/html/PNI/storage/framework/views',
   ),
   'flare' => 
   array (

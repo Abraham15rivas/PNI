@@ -79,6 +79,17 @@
                 >
               </router-link>
             </li>
+            <li class="waves-effect">
+              <router-link
+                to="/reports"
+                class="collapsible-header"
+                tabindex="0"
+              >
+                Reportes<i class="material-icons"
+                  >description</i
+                >
+              </router-link>
+            </li>
           </ul>
         </li>
       </ul>

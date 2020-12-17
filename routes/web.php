@@ -37,3 +37,6 @@ Route::get('currentResearch', function () {
     return view('layouts.app');
 });
 
+Route::get('reports', function () {
+    return view('layouts.app');
+});

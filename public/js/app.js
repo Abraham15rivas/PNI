@@ -2815,7 +2815,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       loadMoth: false,
       ready: false,
       ranges: '',
-      valueDoc: "numero.pdf"
+      valueDoc: "numero.pdf",
+      since: "",
+      until: "",
+      monthActual: ""
     };
   },
   methods: {
@@ -2823,32 +2826,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var url, response, data;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.ready = true;
-                /*try {
-                    const url = ""
-                    let response = await axios.get(url)
-                    let data = response.data
-                    if (data) {
-                        alert("Enviado correctamente")
-                        this.ready = true
-                    } else {
-                        alert("Error al enviar")
-                        this.ready = false
-                    }
-                } catch (error) {
-                    console.log(error)
-                }*/
+                _context.prev = 0;
+                url = "";
+                _context.next = 4;
+                return axios.get(url);
 
-              case 1:
+              case 4:
+                response = _context.sent;
+                data = response.data;
+
+                if (data) {
+                  alert("Enviado correctamente");
+                  _this.ready = true;
+                } else {
+                  alert("Error al enviar");
+                  _this.ready = false;
+                }
+
+                _context.next = 12;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, null, [[0, 9]]);
       }))();
     },
     download: function download() {
@@ -2872,6 +2885,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.loadMoth = false;
       }
     }
+  },
+  mounted: function mounted() {
+    var fecha = new Date();
+    var fechaActualA = fecha.getFullYear();
+    var fechaActualM = fecha.getMonth();
+    this.monthActual = "".concat(fechaActualA, "-").concat(fechaActualM);
   }
 });
 
@@ -79235,13 +79254,61 @@ var render = function() {
                         _vm._v("Desde:")
                       ]),
                       _vm._v(" "),
-                      _c("input", { attrs: { type: "week" } }),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.since,
+                            expression: "since"
+                          }
+                        ],
+                        attrs: {
+                          type: "week",
+                          min: "2015-W06",
+                          max: "2015-W24",
+                          step: "2"
+                        },
+                        domProps: { value: _vm.since },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.since = $event.target.value
+                          }
+                        }
+                      }),
                       _vm._v(" "),
                       _c("span", { staticClass: "card-title" }, [
                         _vm._v("Hasta:")
                       ]),
                       _vm._v(" "),
-                      _c("input", { attrs: { type: "week" } })
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.until,
+                            expression: "until"
+                          }
+                        ],
+                        attrs: {
+                          type: "week",
+                          min: "2015-W06",
+                          max: "2015-W24",
+                          step: "2"
+                        },
+                        domProps: { value: _vm.until },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.until = $event.target.value
+                          }
+                        }
+                      })
                     ])
                   : _vm._e(),
                 _vm._v(" "),
@@ -79255,13 +79322,61 @@ var render = function() {
                         _vm._v("Desde:")
                       ]),
                       _vm._v(" "),
-                      _c("input", { attrs: { type: "month" } }),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.since,
+                            expression: "since"
+                          }
+                        ],
+                        attrs: {
+                          type: "month",
+                          min: "2018-02",
+                          max: "2018-06",
+                          step: "2"
+                        },
+                        domProps: { value: _vm.since },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.since = $event.target.value
+                          }
+                        }
+                      }),
                       _vm._v(" "),
                       _c("span", { staticClass: "card-title" }, [
                         _vm._v("Hasta:")
                       ]),
                       _vm._v(" "),
-                      _c("input", { attrs: { type: "month" } })
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.until,
+                            expression: "until"
+                          }
+                        ],
+                        attrs: {
+                          type: "month",
+                          min: "2018-02",
+                          max: _vm.monthActual,
+                          step: "2"
+                        },
+                        domProps: { value: _vm.until },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.until = $event.target.value
+                          }
+                        }
+                      })
                     ])
                   : _vm._e(),
                 _vm._v(" "),

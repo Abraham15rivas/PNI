@@ -32,16 +32,16 @@
                         <div v-if="loadWeek">
                             <span class="card-title center">Seleccionar semanas</span>
                             <span class="card-title">Desde:</span>
-                            <input type="week">
+                            <input type="week" v-model="since" min="2015-W06" max="2015-W24" step="2">
                             <span class="card-title">Hasta:</span>
-                            <input type="week">
+                            <input type="week" v-model="until" min="2015-W06" max="2015-W24" step="2">
                         </div>
                         <div v-if="loadMoth">
                             <span class="card-title center">Seleccionar meses</span>
                             <span class="card-title">Desde:</span>
-                            <input type="month">
+                            <input type="month" v-model="since" min="2018-02" max="2018-06" step="2">
                             <span class="card-title">Hasta:</span>
-                            <input type="month">
+                            <input type="month" v-model="until" min="2018-02" :max="monthActual" step="2">
                         </div>
                         <div v-if="!loadSelect">
                             <button class="btn btn-success right" @click="sendRanges">Enviar</button>
@@ -74,13 +74,15 @@ export default {
             loadMoth: false,
             ready: false,
             ranges: '',
-            valueDoc: "numero.pdf"
+            valueDoc: "numero.pdf",
+            since: "",
+            until: "",
+            monthActual: ""
         }
     },
     methods: {
         async sendRanges () {
-            this.ready = true
-            /*try {
+            try {
                 const url = ""
                 let response = await axios.get(url)
                 let data = response.data
@@ -93,7 +95,7 @@ export default {
                 }
             } catch (error) {
                 console.log(error)
-            }*/
+            }
         },
         download () {
             alert("descargando")
@@ -116,6 +118,12 @@ export default {
                 this.loadMoth = false
             }
         }
+    },
+    mounted () {
+        let fecha = new Date()
+        let fechaActualA = fecha.getFullYear()
+        let fechaActualM = fecha.getMonth()
+        this.monthActual = `${fechaActualA}-${fechaActualM}`
     }
 }
 </script>

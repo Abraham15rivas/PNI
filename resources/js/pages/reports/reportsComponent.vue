@@ -104,7 +104,6 @@ export default {
             readySelectedDate: false,
             typeQuery: 0,
             routeName: "",
-            year: ""
         }
     },
     methods: {

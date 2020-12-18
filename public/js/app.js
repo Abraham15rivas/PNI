@@ -2846,8 +2846,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       monthMin: "2018-02",
       readySelectedDate: false,
       typeQuery: 0,
-      routeName: "",
-      year: ""
+      routeName: ""
     };
   },
   methods: {

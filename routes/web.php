@@ -13,6 +13,11 @@ Route::prefix('statistics')->group(function () {
     Route::get('/investigators/parish/{municipality_id?}','InvestigatorController@searchParish');
 });
 
+Route::prefix('reports')->group(function () {
+    Route::post('/pdf', 'ReportController@pdf');
+    Route::delete('/delete/pdf/{name}', 'ReportController@deleteReport');
+});
+
 Route::get('', function () {
     return view('layouts.app');
 });

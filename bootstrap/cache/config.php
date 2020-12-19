@@ -4,13 +4,13 @@
     'name' => 'Laravel',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://aprender',
+    'url' => 'http://localhost',
     'asset_url' => NULL,
-    'timezone' => 'UTC',
+    'timezone' => 'America/Caracas',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:nOtHUYbNM95N662GEufFdtANjH3c215JNcr77gp3jtA=',
+    'key' => 'base64:eDMJ8tDnCTPTkLw4JITpzhg3m5FK27jouk/IxLTo1Hc=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -124,18 +124,18 @@
   ),
   'broadcasting' => 
   array (
-    'default' => 'pusher',
+    'default' => 'null',
     'connections' => 
     array (
       'pusher' => 
       array (
         'driver' => 'pusher',
-        'key' => '',
-        'secret' => '',
-        'app_id' => '',
+        'key' => NULL,
+        'secret' => NULL,
+        'app_id' => NULL,
         'options' => 
         array (
-          'cluster' => 'mt1',
+          'cluster' => NULL,
           'useTLS' => true,
         ),
       ),
@@ -372,7 +372,7 @@
       array (
         'driver' => 'local',
         'root' => 'C:\\laragon\\www\\PNI\\storage\\app/public',
-        'url' => 'http://aprender/storage',
+        'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -490,11 +490,11 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'smtp.mailtrap.io',
-        'port' => '2525',
+        'host' => '',
+        'port' => '',
         'encryption' => 'tls',
-        'username' => 'ddcc7d0679c93a',
-        'password' => 'b854057911d0c3',
+        'username' => '',
+        'password' => '',
         'timeout' => NULL,
         'auth_mode' => NULL,
       ),
@@ -610,8 +610,8 @@
   ),
   'session' => 
   array (
-    'driver' => 'database',
-    'lifetime' => '120',
+    'driver' => 'file',
+    'lifetime' => 120,
     'expire_on_close' => false,
     'encrypt' => false,
     'files' => 'C:\\laragon\\www\\PNI\\storage\\framework/sessions',

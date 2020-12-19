@@ -77,8 +77,7 @@
                                 </md-select>
                             </md-field>
                         </div>
-                    </div>
-                    
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -375,6 +374,7 @@
         }
     }
 </script>
+
 <style scoped>
 hr{ width: 100% }
 

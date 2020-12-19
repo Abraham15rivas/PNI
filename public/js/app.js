@@ -2070,6 +2070,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2712,6 +2723,235 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/reports/reportsComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/reports/reportsComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      loadSelect: true,
+      loadWeek: false,
+      loadMoth: false,
+      ready: false,
+      ranges: '',
+      valueDoc: "",
+      since: "",
+      until: "",
+      weekActual: moment__WEBPACK_IMPORTED_MODULE_1___default()().format('YYYY-[W]WW'),
+      monthActual: moment__WEBPACK_IMPORTED_MODULE_1___default()().format('YYYY-MM'),
+      monthMin: "2018-02",
+      readySelectedDate: false,
+      typeQuery: 0,
+      routeName: ""
+    };
+  },
+  methods: {
+    sendRanges: function sendRanges() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var url, params, response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                url = "reports/pdf";
+                params = {
+                  typeQuery: _this.typeQuery,
+                  since: _this.since,
+                  until: _this.until
+                };
+                _context.next = 5;
+                return axios.post(url, params);
+
+              case 5:
+                response = _context.sent;
+                data = response.data;
+
+                if (data) {
+                  _this.ready = true;
+                  _this.routeName = data;
+                  _this.valueDoc = "/storage/pdf/".concat(data);
+                } else {
+                  alert("Error al enviar");
+                  _this.ready = false;
+                }
+
+                _context.next = 13;
+                break;
+
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+
+              case 13:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 10]]);
+      }))();
+    },
+    download: function download() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        try {
+          var url = "reports/delete/pdf/".concat(_this2.routeName);
+          var response = axios["delete"](url).then(function (response) {
+            var data = response.data;
+
+            if (data) {
+              window.location.reload();
+            } else {
+              alert("Error al descargar");
+            }
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }, 1000);
+    }
+  },
+  watch: {
+    since: function since() {
+      if ((this.since && this.until) != "") {
+        this.readySelectedDate = true;
+      }
+    },
+    until: function until() {
+      if ((this.since && this.until) != "") {
+        this.readySelectedDate = true;
+      }
+    },
+    ranges: function ranges() {
+      if (this.ranges == "week") {
+        this.loadSelect = false;
+        this.loadWeek = true;
+        this.loadMoth = false;
+      } else if (this.ranges == "month") {
+        this.loadSelect = false;
+        this.loadWeek = false;
+        this.loadMoth = true;
+        this.validateDateNow;
+      } else {
+        this.loadSelect = true;
+        this.loadWeek = false;
+        this.loadMoth = false;
+        this.readySelectedDate = false;
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/research/researchComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/research/researchComponent.vue?vue&type=script&lang=js& ***!
@@ -2991,7 +3231,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -78791,6 +79030,27 @@ var render = function() {
                     )
                   ],
                   1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "waves-effect" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "collapsible-header",
+                        attrs: { to: "/reports", tabindex: "0" }
+                      },
+                      [
+                        _vm._v("\n              Reportes"),
+                        _c("i", { staticClass: "material-icons" }, [
+                          _vm._v("description")
+                        ])
+                      ]
+                    )
+                  ],
+                  1
                 )
               ]
             )
@@ -79317,6 +79577,383 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-content" }, [
       _c("h5", { staticClass: "title-card" }, [
         _vm._v("Total Registrados en el Perfil de la Investigación")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/reports/reportsComponent.vue?vue&type=template&id=ffd25492&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/reports/reportsComponent.vue?vue&type=template&id=ffd25492&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "margin-x" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    !_vm.ready
+      ? _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col s12 m6" }, [
+            _c("div", { staticClass: "card" }, [
+              _c(
+                "div",
+                { staticClass: "card-content" },
+                [
+                  _c("span", { staticClass: "card-title center" }, [
+                    _vm._v("Seleccionar tipos de rangos")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "md-field",
+                    [
+                      _c("label", { attrs: { for: "state" } }, [
+                        _vm._v("Rangos")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "md-select",
+                        {
+                          attrs: { name: "ranges", id: "ranges" },
+                          model: {
+                            value: _vm.ranges,
+                            callback: function($$v) {
+                              _vm.ranges = $$v
+                            },
+                            expression: "ranges"
+                          }
+                        },
+                        [
+                          _c("md-option", { attrs: { value: "select" } }, [
+                            _vm._v("Seleccionar un tipo")
+                          ]),
+                          _vm._v(" "),
+                          _c("md-option", { attrs: { value: "week" } }, [
+                            _vm._v("Semanas")
+                          ]),
+                          _vm._v(" "),
+                          _c("md-option", { attrs: { value: "month" } }, [
+                            _vm._v("Meses")
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col s12 m6" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-content" }, [
+                _vm.loadSelect
+                  ? _c("div", [
+                      _c("span", { staticClass: "card-title center" }, [
+                        _vm._v("Seleccionar rangos de fecha")
+                      ]),
+                      _vm._v(" "),
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("picture_as_pdf")
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "card-title" }, [
+                        _vm._v("No ha seleccionado ningún tipo rango")
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.loadWeek
+                  ? _c("div", [
+                      _c("span", { staticClass: "card-title center" }, [
+                        _vm._v("Seleccionar año")
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "card-title" }, [
+                        _vm._v("Año:")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.year,
+                            expression: "year"
+                          }
+                        ],
+                        attrs: { type: "date", min: "2015", max: "2020" },
+                        domProps: { value: _vm.year },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.year = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "card-title center" }, [
+                        _vm._v("Seleccionar semanas")
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "card-title" }, [
+                        _vm._v("Desde:")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.since,
+                            expression: "since"
+                          }
+                        ],
+                        attrs: {
+                          type: "week",
+                          min: "2015-W06",
+                          max: "2015-W24"
+                        },
+                        domProps: { value: _vm.since },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.since = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "card-title" }, [
+                        _vm._v("Hasta:")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.until,
+                            expression: "until"
+                          }
+                        ],
+                        attrs: {
+                          type: "week",
+                          min: "2015-W06",
+                          max: _vm.weekActual
+                        },
+                        domProps: { value: _vm.until },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.until = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.loadMoth
+                  ? _c("div", [
+                      _c("span", { staticClass: "card-title center" }, [
+                        _vm._v("Seleccionar meses")
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "card-title" }, [
+                        _vm._v("Desde:")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.since,
+                            expression: "since"
+                          }
+                        ],
+                        attrs: {
+                          type: "month",
+                          min: _vm.monthMin,
+                          max: _vm.monthActual
+                        },
+                        domProps: { value: _vm.since },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.since = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "card-title" }, [
+                        _vm._v("Hasta:")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.until,
+                            expression: "until"
+                          }
+                        ],
+                        attrs: {
+                          type: "month",
+                          min: _vm.since,
+                          max: _vm.monthActual
+                        },
+                        domProps: { value: _vm.until },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.until = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e()
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm.readySelectedDate
+            ? _c("div", { staticClass: "col s12 m12" }, [
+                _c("div", { staticClass: "card" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-content" },
+                    [
+                      _c("span", { staticClass: "card-title center" }, [
+                        _vm._v("Seleccionar tipos de reportes")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "md-field",
+                        [
+                          _c("label", { attrs: { for: "state" } }),
+                          _vm._v(" "),
+                          _c(
+                            "md-select",
+                            {
+                              attrs: { name: "typeQuery", id: "typeQuery" },
+                              model: {
+                                value: _vm.typeQuery,
+                                callback: function($$v) {
+                                  _vm.typeQuery = $$v
+                                },
+                                expression: "typeQuery"
+                              }
+                            },
+                            [
+                              _c("md-option", { attrs: { value: 0 } }, [
+                                _vm._v("Seleccionar un tipo")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: 1 } }, [
+                                _vm._v("Investigadores e Investigadoras")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: 2 } }, [
+                                _vm._v("Interés de Investigación")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: 3 } }, [
+                                _vm._v("Perfil de Investigación")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: 4 } }, [
+                                _vm._v("Modulo de Investigación Actual")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  !_vm.loadSelect
+                    ? _c("div", { staticClass: "card-footer" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success right",
+                            on: { click: _vm.sendRanges }
+                          },
+                          [_vm._v("Solicitar reporte")]
+                        )
+                      ])
+                    : _vm._e()
+                ])
+              ])
+            : _vm._e()
+        ])
+      : _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col s12 m12" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-content" }, [
+                _c("span", { staticClass: "card-title center" }, [
+                  _vm._v("descargar reporte")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "card-title center",
+                    attrs: { href: _vm.valueDoc, download: _vm.routeName },
+                    on: { click: _vm.download }
+                  },
+                  [
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("picture_as_pdf")
+                    ])
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col s12" }, [
+        _c("h5", { staticClass: "center-align" }, [
+          _vm._v("Reportes de estadísticas")
+        ])
       ])
     ])
   }
@@ -128039,6 +128676,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_research_researchComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/research/researchComponent */ "./resources/js/pages/research/researchComponent.vue");
 /* harmony import */ var _pages_profileResearch_profileResearchComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/profileResearch/profileResearchComponent */ "./resources/js/pages/profileResearch/profileResearchComponent.vue");
 /* harmony import */ var _pages_currentResearch_currentResearchComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/currentResearch/currentResearchComponent */ "./resources/js/pages/currentResearch/currentResearchComponent.vue");
+/* harmony import */ var _pages_reports_reportsComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/reports/reportsComponent */ "./resources/js/pages/reports/reportsComponent.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -128053,6 +128691,7 @@ Vue.component('doughnut-charts', __webpack_require__(/*! ./components/doughnut/d
 Vue.component('pie-charts', __webpack_require__(/*! ./components/pie/pie.vue */ "./resources/js/components/pie/pie.vue")["default"]);
 Vue.component('horizontalBar-charts', __webpack_require__(/*! ./components/horizontalBar/horizontalBar.vue */ "./resources/js/components/horizontalBar/horizontalBar.vue")["default"]);
 Vue.component('bar-charts', __webpack_require__(/*! ./components/bar/bar.vue */ "./resources/js/components/bar/bar.vue")["default"]);
+
 
 
 
@@ -128077,6 +128716,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   }, {
     path: '/currentResearch',
     component: _pages_currentResearch_currentResearchComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
+    path: '/reports',
+    component: _pages_reports_reportsComponent__WEBPACK_IMPORTED_MODULE_8__["default"]
   }],
   mode: 'history'
 });
@@ -128713,6 +129355,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_profileResearchComponent_vue_vue_type_template_id_768de6a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_profileResearchComponent_vue_vue_type_template_id_768de6a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/reports/reportsComponent.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/pages/reports/reportsComponent.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _reportsComponent_vue_vue_type_template_id_ffd25492_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reportsComponent.vue?vue&type=template&id=ffd25492&scoped=true& */ "./resources/js/pages/reports/reportsComponent.vue?vue&type=template&id=ffd25492&scoped=true&");
+/* harmony import */ var _reportsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reportsComponent.vue?vue&type=script&lang=js& */ "./resources/js/pages/reports/reportsComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _reportsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _reportsComponent_vue_vue_type_template_id_ffd25492_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _reportsComponent_vue_vue_type_template_id_ffd25492_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "ffd25492",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/reports/reportsComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/reports/reportsComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/pages/reports/reportsComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_reportsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./reportsComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/reports/reportsComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_reportsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/reports/reportsComponent.vue?vue&type=template&id=ffd25492&scoped=true&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/pages/reports/reportsComponent.vue?vue&type=template&id=ffd25492&scoped=true& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_reportsComponent_vue_vue_type_template_id_ffd25492_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./reportsComponent.vue?vue&type=template&id=ffd25492&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/reports/reportsComponent.vue?vue&type=template&id=ffd25492&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_reportsComponent_vue_vue_type_template_id_ffd25492_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_reportsComponent_vue_vue_type_template_id_ffd25492_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

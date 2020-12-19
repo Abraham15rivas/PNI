@@ -43,7 +43,6 @@ class ReportController extends Controller
         return response()->json($name);
     }
 
-
     public function download($name, $value)
     {
         $data = [

@@ -49,12 +49,12 @@ class ReportController extends Controller
             'titulo' => $value
         ];
         $content = PDF::loadView('reports.view-pdf', $data)->output();
-        Storage::disk('public')->put("pdf\$name", $content);
+        Storage::disk('public')->put("pdf/$name", $content);
     }
 
     public function deleteReport ($name)
     {
-        Storage::disk('public')->delete("pdf\$name");
+        Storage::disk('public')->delete("pdf/$name");
         return "true";
     }
 }

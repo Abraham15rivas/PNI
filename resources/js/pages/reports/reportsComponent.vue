@@ -14,8 +14,7 @@
                             <label for="state">Rangos</label>
                             <md-select v-model="ranges" name="ranges" id="ranges">
                                 <md-option value="select">Seleccionar un tipo</md-option>
-                                <md-option value="week">Semanas</md-option>
-                                <md-option value="month">Meses</md-option>
+                                <md-option value="date">Fechas</md-option>
                             </md-select>
                         </md-field>
                     </div>
@@ -29,22 +28,12 @@
                             <i class="material-icons">picture_as_pdf</i>
                             <span class="card-title">No ha seleccionado ningún tipo rango</span>
                         </div>
-                        <div v-if="loadWeek">
-                            <span class="card-title center">Seleccionar año</span>
-                            <span class="card-title">Año:</span>
-                            <input type="date" v-model="year" min="2015" max="2020">
-                            <span class="card-title center">Seleccionar semanas</span>
+                        <div v-if="loadDate">
+                            <span class="card-title center">Seleccionar fechas</span>
                             <span class="card-title">Desde:</span>
-                            <input type="week" v-model="since" min="2015-W06" max="2015-W24">
+                            <input type="date" v-model="since" :min="dateMin" :max="dateActual">
                             <span class="card-title">Hasta:</span>
-                            <input type="week" v-model="until" min="2015-W06" :max="weekActual">
-                        </div>
-                        <div v-if="loadMoth">
-                            <span class="card-title center">Seleccionar meses</span>
-                            <span class="card-title">Desde:</span>
-                            <input type="month" v-model="since" :min="monthMin" :max="monthActual">
-                            <span class="card-title">Hasta:</span>
-                            <input type="month" v-model="until" :min="since" :max="monthActual">
+                            <input type="date" v-model="until" :min="since" :max="dateActual">
                         </div>
                     </div>
                 </div>
@@ -91,16 +80,14 @@ export default {
     data () {
         return {
             loadSelect: true,
-            loadWeek: false,
-            loadMoth: false,
+            loadDate: false,
             ready: false,
-            ranges: '',
+            ranges: "select",
             valueDoc: "",
             since: "",
             until: "",
-            weekActual: moment().format('YYYY-[W]WW'),
-            monthActual: moment().format('YYYY-MM'),
-            monthMin: "2018-02",
+            dateActual: moment().format('YYYY-MM-DD'),
+            dateMin: "2018-02-02",
             readySelectedDate: false,
             typeQuery: 0,
             routeName: "",
@@ -160,19 +147,13 @@ export default {
             }
         },
         ranges () {
-            if (this.ranges == "week") {
+            if (this.ranges == "date") {
                 this.loadSelect = false
-                this.loadWeek = true
-                this.loadMoth = false
-            } else if (this.ranges == "month") {
-                this.loadSelect = false
-                this.loadWeek = false
-                this.loadMoth = true
+                this.loadDate = true
                 this.validateDateNow
             } else {
                 this.loadSelect = true
-                this.loadWeek = false
-                this.loadMoth = false
+                this.loadDate = false
                 this.readySelectedDate = false
             }
         }

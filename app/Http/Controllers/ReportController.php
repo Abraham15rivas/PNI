@@ -32,23 +32,25 @@ class ReportController extends Controller
                 $name = "Investigacion_actual_$dateNow.pdf";
                 break;
             default:
+                $name = "no hay documento";
                 $value = false;
                 break;
         endswitch;
 
         if (!$value == false) {
-            $this->download($name, $value);
+            $this->download($name, $value, $request->typeQuery);
         }
        
         return response()->json($name);
     }
 
-    public function download($name, $value)
+    public function download($name, $value, $view)
     {
         $data = [
-            'titulo' => $value
+            'data' => $value,
+            'view' => $view
         ];
-        $content = PDF::loadView('reports.view-pdf', $data)->output();
+        $content = PDF::loadView('reports.partials-pdf.main', $data)->output();
         Storage::disk('public')->put("pdf/$name", $content);
     }
 

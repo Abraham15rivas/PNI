@@ -9,6 +9,11 @@ use Carbon\Carbon;
 
 class ReportController extends Controller
 {
+    public function index ()
+    {
+        //definir aqui consulta para saber la fecha minima de consulta
+    }
+
     public function pdf (Request $request)
     {
         $clase = new InvestigatorController();

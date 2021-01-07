@@ -2334,8 +2334,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           radius: 20
         }
       },
-      backgroundColor: ['rgba(41, 98, 255, 0.5)', 'rgba(98, 0, 234, 0.5)', 'rgba(0, 191, 165, 0.5)', 'rgba(230, 74, 25, 0.5)', 'rgba(66, 66, 66, 0.5)', 'rgba(197, 17, 98, 0.5)', 'rgba(255, 214, 0, 0.5)', 'rgba(183, 28, 28, 0.5)'],
-      borderColor: ['rgba(41, 98, 255, 1)', 'rgba(98, 0, 234, 1)', 'rgba(0, 191, 165, 1)', 'rgba(230, 74, 25, 1)', 'rgba(66, 66, 66, 1)', 'rgba(197, 17, 98, 1)', 'rgba(255, 214, 0, 1)', 'rgba(183, 28, 28, 1)'],
+      backgroundColor: ['rgba(41, 98, 255, .5)', 'rgba(98, 0, 234, .5)', 'rgba(0, 191, 165, .5)', 'rgba(230, 74, 25, .5)', 'rgba(66, 66, 66, .5)', 'rgba(197, 17, 98, .5)', 'rgba(255, 214, 0, .5)', 'rgba(183, 28, 28, .5)', 'rgba(63, 191, 63, .5)', 'rgba(59,18,98,.5)', 'rgba(59,255,255, .5)'],
+      borderColor: ['rgba(41, 98, 255, 1)', 'rgba(98, 0, 234, 1)', 'rgba(0, 191, 165, 1)', 'rgba(230, 74, 25, 1)', 'rgba(66, 66, 66, 1)', 'rgba(197, 17, 98, 1)', 'rgba(255, 214, 0, 1)', 'rgba(183, 28, 28, 1)', 'rgba(63, 191, 63, 1)', 'rgba(59,18,98,1)', 'rgba(59,255,255, 1)'],
       total_investigation: 0,
       //Group Institution
       institution: {},
@@ -3067,6 +3067,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3079,31 +3081,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           radius: 20
         }
       },
-      backgroundColor: ['rgba(41, 98, 255, 0.5)', 'rgba(98, 0, 234, 0.5)', 'rgba(0, 191, 165, 0.5)', 'rgba(230, 74, 25, 0.5)', 'rgba(66, 66, 66, 0.5)', 'rgba(197, 17, 98, 0.5)', 'rgba(255, 214, 0, 0.5)', 'rgba(183, 28, 28, 0.5)'],
-      borderColor: ['rgba(41, 98, 255, 1)', 'rgba(98, 0, 234, 1)', 'rgba(0, 191, 165, 1)', 'rgba(230, 74, 25, 1)', 'rgba(66, 66, 66, 1)', 'rgba(197, 17, 98, 1)', 'rgba(255, 214, 0, 1)', 'rgba(183, 28, 28, 1)'],
-
-      /*
-          rgba(41, 98, 255)   Violeta
-          rgba(98, 0, 234)    Azul
-          rgba(0, 191, 165)   Turquesa
-          rgba(66, 66, 66)    Gris
-          rgba(197, 17, 98)   Fucsia
-          rgba(230, 74, 25)   Naranja
-          rgba(255, 214, 0)   Amarillo
-          rgba(183, 28, 28)   Rojo
-      */
-      //Grupo de institucion 
+      backgroundColor: ['rgba(41, 98, 255, .5)', 'rgba(98, 0, 234, .5)', 'rgba(0, 191, 165, .5)', 'rgba(230, 74, 25, .5)', 'rgba(66, 66, 66, .5)', 'rgba(197, 17, 98, .5)', 'rgba(255, 214, 0, .5)', 'rgba(183, 28, 28, .5)', 'rgba(63, 191, 63, .5)', 'rgba(59,18,98, .5)', 'rgba(59,255,255, .5)', 'rgba(255,163,0,.5)'],
+      borderColor: ['rgba(41, 98, 255, 1)', //violeta   
+      'rgba(98, 0, 234, 1)', //azul  
+      'rgba(0, 191, 165, 1)', //turquesa
+      'rgba(230, 74, 25, 1)', //gris
+      'rgba(66, 66, 66, 1)', //fucsia
+      'rgba(197, 17, 98, 1)', //naranja
+      'rgba(255, 214, 0, 1)', //amarillo
+      'rgba(183, 28, 28, 1)', //rojo
+      'rgba(63, 191, 63, 1)', 'rgba(59,18,98,1)', 'rgba(59,255,255, 1)', 'rgba(255,163,0,1)'],
       institution: {},
+      //Grupo de institucion 
       loadedIns: false,
-      //Grupo de Interes
       interest: {},
+      //Grupo de Interes
       dataInterest: {},
       loadedInt: false,
-      //Grupo de Interes
       actualInt: {},
+      //Grupo de Interes
       loadedAct: false,
-      //Como investiga
       modeInv: {},
+      //Como investiga
       loadedModeInv: false
     };
   },
@@ -3208,7 +3207,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         labels: labels,
         datasets: [{
           data: info,
-          label: 'Cantidad de Investigadores',
           backgroundColor: this.backgroundColor,
           borderColor: this.borderColor,
           hoverBackgroundColor: this.borderColor,
@@ -3402,6 +3400,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3423,6 +3452,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       profesions: [],
       averageAge: [],
       rangeAges: {},
+      genero: {},
       av: {},
       //average de edades
       promedios: {},
@@ -3447,31 +3477,85 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               axios.get(url).then(function (res) {
                 _this.investigators = _this.totalInvestigators(res.data);
                 _this.rangeAges = _this.rangeAge(res.data.groupRangeAge);
-                _this.promedios = _this.averageAges(res.data.groupAverageAge);
+                _this.promedios = _this.averageAges(res.data.groupAverageAge); // this.genero  = this.stateGenero(res.data.groupAge);
+
                 _this.profesions = _this.groupInv(res.data.groupProfesion, 'profesion');
-                var data = res.data.groupStates;
-                var nameStates = new Array();
-                var num = new Array();
+                /* let data = res.data.groupStates;
+                 let nameStates = [];
+                 let num = [];
+                  let female = [];
+                 let male = [];
+                  if (data) {
+                     data.forEach(element => {
+                         nameStates.push(element.estado);
+                         num.push(element.total)
+                     });   
+                     this.dataStates = data;                        
+                 }
+                 this.datacollection = {
+                     labels: nameStates,
+                     /*datasets: [{
+                         label: 'Total investigadores por estado',
+                         backgroundColor: '#1976d2',
+                         hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                         data: num
+                     }]
+                 }
+                 this.show.dataState = true;
+                 this.load = false;*/
 
-                if (data) {
-                  data.forEach(function (element) {
-                    nameStates.push(element.estado);
-                    num.push(element.total);
-                  });
-                  _this.dataStates = data;
-                }
-
-                _this.datacollection = {
-                  labels: nameStates,
-                  datasets: [{
-                    label: 'Total investigadores por estado',
-                    backgroundColor: '#1976d2',
-                    hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
-                    data: num
-                  }]
-                };
-                _this.show.dataState = true;
-                _this.load = false;
+                /*let items = res.data.groupAge;
+                let states = [];
+                let info = [];
+                let female = [];
+                let male = [];
+                let otro = [];
+                 items.forEach(item => {
+                    states.push(item.estado);
+                         female.push(item.data[0]);
+                     if(item?.male)
+                        male.push(item.data.masculino);  
+                        
+                        let arr = item.data;
+                         arr.forEach(item2 => {
+                            console.log(item2[0]);
+                        })
+                        
+                });
+                
+                
+                console.log(female[0].Femenino[0]);
+                this.genero = {
+                    labels: states,
+                    datasets: [{
+                        data: female[0].Femenino[],
+                        label: 'Femenino',
+                        backgroundColor: '#EA7CBB',
+                        borderWidth: 1,
+                        hoverBorderWidth: 2,  
+                    }],
+                }  
+                 if(female.length > 0)
+                    data.datasets.push({
+                        data: female,
+                        label: 'Femenino',
+                        backgroundColor: '#EA7CBB',
+                        borderWidth: 1,
+                        hoverBorderWidth: 2,    
+                    });
+                
+                if(male.length > 0)
+                    data.datasets.push({
+                        data: male,
+                        label: 'Masculino',
+                        backgroundColor: '#1E88E5',
+                        borderColor: 'rgba(41, 98, 255, 1)',
+                        hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                        borderWidth: 1,
+                        hoverBorderWidth: 2,    
+                    });
+                //return data;
+                this.show.dataState = true;*/
               });
 
             case 3:
@@ -3483,14 +3567,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   methods: {
+    stateGenero: function stateGenero(items) {},
     totalInvestigators: function totalInvestigators(data) {
       this.inv.total_inv = data.total_investigators; //TOTAL DE INVESTIGADORES
 
       this.inv.inv_mens = data.investigators_mens; //TOTAL DE INVESTIGADORES HOMBRES
 
-      this.inv.inv_womens = data.investigators_womens; //TOTAL DE INVESTIGADORAS
+      this.inv.inv_womens = data.investigators_womens; //TOTAL DE INVESTIGADORAS                
 
-      localStorage.setItem('dataInvestigators', JSON.stringify(this.inv));
       return this.inv;
     },
     averageAges: function averageAges(data) {
@@ -3506,8 +3590,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.av;
     },
     rangeAge: function rangeAge(data) {
-      var range = new Array();
-      var totalRange = new Array();
+      var range = [];
+      var totalRange = [];
 
       if (data) {
         data.forEach(function (element) {
@@ -3535,8 +3619,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var url = "statistics/investigators/municipality/".concat(this.selectedState);
       axios.get(url).then(function (res) {
         var municipalities = res.data.municipios;
-        var nameMunicipality = new Array();
-        var num = new Array();
+        var nameMunicipality = [];
+        var num = [];
 
         if (municipalities) {
           municipalities.forEach(function (element) {
@@ -3569,8 +3653,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var url = "statistics/investigators/parish/".concat(this.selectedMunicipality);
       axios.get(url).then(function (res) {
         var parish = res.data.parroquias;
-        var nameParish = new Array();
-        var num = new Array();
+        var nameParish = [];
+        var num = [];
 
         if (parish) {
           parish.forEach(function (element) {
@@ -24361,7 +24445,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.margin-x{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.margin-x{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\n.td-title{\r\n    color: #1E88E5;\r\n    cursor: pointer;\n}\n.td-title:hover{ color: #000\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -79266,7 +79350,7 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12 m6 offset-m3 l4 offset-l4" }, [
+      _c("div", { staticClass: "col s12 m6 offset-m3" }, [
         _c("div", { staticClass: "card horizontal" }, [
           _vm._m(1),
           _vm._v(" "),
@@ -79296,7 +79380,7 @@ var render = function() {
               _vm._v(" "),
               _vm.loadedIns
                 ? _c("doughnut-charts", {
-                    attrs: { chartdata: _vm.institution }
+                    attrs: { chartdata: _vm.institution, height: 325 }
                   })
                 : _vm._e()
             ],
@@ -79317,7 +79401,7 @@ var render = function() {
               _vm._v(" "),
               _vm.loadedInvType
                 ? _c("bar-charts", {
-                    attrs: { chartdata: _vm.investigation_type }
+                    attrs: { chartdata: _vm.investigation_type, height: 325 }
                   })
                 : _vm._e()
             ],
@@ -79340,7 +79424,7 @@ var render = function() {
               _vm._v(" "),
               _vm.loadedInvLine
                 ? _c("horizontalBar-charts", {
-                    attrs: { chartdata: _vm.investigation_line, height: 250 }
+                    attrs: { chartdata: _vm.investigation_line, height: 225 }
                   })
                 : _vm._e()
             ],
@@ -80029,6 +80113,29 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col s12 m12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-content" },
+            [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Interés de Investigación")
+              ]),
+              _vm._v(" "),
+              _vm.loadedInt
+                ? _c("line-charts", {
+                    attrs: { chartdata: _vm.interest, height: 180 }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col s12 m6" }, [
         _c("div", { staticClass: "card" }, [
           _c(
@@ -80041,7 +80148,7 @@ var render = function() {
               _vm._v(" "),
               _vm.loadedIns
                 ? _c("doughnut-charts", {
-                    attrs: { chartdata: _vm.institution }
+                    attrs: { chartdata: _vm.institution, height: 200 }
                   })
                 : _vm._e()
             ],
@@ -80057,11 +80164,13 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Interés de Investigación")
+                _vm._v("Como Investiga")
               ]),
               _vm._v(" "),
-              _vm.loadedInt
-                ? _c("line-charts", { attrs: { chartdata: _vm.interest } })
+              _vm.loadedModeInv
+                ? _c("horizontalBar-charts", {
+                    attrs: { chartdata: _vm.modeInv, height: 200 }
+                  })
                 : _vm._e()
             ],
             1
@@ -80071,7 +80180,30 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12 m6" }, [
+      _c("div", { staticClass: "col s12 m12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-content" },
+            [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Investigación Actual")
+              ]),
+              _vm._v(" "),
+              _vm.loadedAct
+                ? _c("horizontalBar-charts", {
+                    attrs: { chartdata: _vm.actualInt, height: 180 }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col s12 m12" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-content" }, [
             _c("span", { staticClass: "card-title center" }, [
@@ -80086,7 +80218,9 @@ var render = function() {
                     "tbody",
                     _vm._l(_vm.dataInterest, function(item, index) {
                       return _c("tr", { key: index }, [
-                        _c("td", [_vm._v(_vm._s(item.titulo))]),
+                        _c("td", { staticClass: "td-title" }, [
+                          _vm._v(_vm._s(item.titulo))
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(item.masculino))]),
                         _vm._v(" "),
@@ -80100,50 +80234,6 @@ var render = function() {
                 : _vm._e()
             ])
           ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col s12 m6" }, [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "div",
-            { staticClass: "card-content" },
-            [
-              _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Investigación Actual")
-              ]),
-              _vm._v(" "),
-              _vm.loadedAct
-                ? _c("horizontalBar-charts", {
-                    attrs: { chartdata: _vm.actualInt }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12 m8 offset-m2" }, [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "div",
-            { staticClass: "card-content" },
-            [
-              _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Como Investiga")
-              ]),
-              _vm._v(" "),
-              _vm.loadedModeInv
-                ? _c("horizontalBar-charts", {
-                    attrs: { chartdata: _vm.modeInv, height: 250 }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
         ])
       ])
     ])
@@ -80425,6 +80515,29 @@ var render = function() {
                     )
                   : _vm._e()
               ]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c(
+              "div",
+              { staticClass: "card-content center" },
+              [
+                _c("span", { staticClass: "card-title" }, [
+                  _vm._v("Investigadores por estados")
+                ]),
+                _vm._v(" "),
+                _vm.show.dataState
+                  ? _c("bar-charts", {
+                      attrs: { chartdata: _vm.genero, height: 180 }
+                    })
+                  : _vm._e()
+              ],
+              1
             )
           ])
         ])

@@ -85,6 +85,37 @@
                 </div>
             </div>
         </div>
+         <div class="row">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content center">
+                        <span class="card-title">Investigadores por estados</span>
+                        <bar-charts v-if="show.dataState" :chartdata="genero" :height="180"></bar-charts>
+                    </div>                    
+                    <div class="row" style="padding: 0px 24px">
+                         <div class="col s4" v-if="dataMunicipalities.length > 0">
+                            <md-button class="md-primary md-raised" onClick="window.location.reload()">Recargar</md-button>
+                        </div>
+                        <div class="col s4" v-if="dataStates.length > 0">
+                            <md-field>
+                                <label for="state">Estados</label>
+                                <md-select v-model="selectedState" name="state" id="state" v-on:md-selected="searchMunicipalities()">
+                                    <md-option v-for="(state,index) of dataStates" :key="index" :value="state.id">{{state.estado}}</md-option>
+                                </md-select>
+                            </md-field>
+                        </div>
+                        <div class="col s4" v-if="dataMunicipalities.length > 0">
+                            <md-field>
+                                <label for="state">Municipios</label>
+                                <md-select v-model="selectedMunicipality" name="municipality" id="municipality" v-on:md-selected="searchParish()">
+                                    <md-option v-for="(mun,index) of dataMunicipalities" :key="index" :value="mun.id">{{mun.municipio}}</md-option>
+                                </md-select>
+                            </md-field>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col m8 offset-m2">
                 <div class="card">
@@ -157,6 +188,7 @@
                 profesions: [],
                 averageAge: [],       
                 rangeAges: {},
+                genero: {},
 
                 av: {}, //average de edades
                 promedios: {}, // promedio de edades
@@ -169,49 +201,22 @@
         },
         async mounted() {
             const url = 'statistics/investigators';
-
+            
             this.load = true;
             axios.get(url)
                 .then(res => {
                     this.investigators = this.totalInvestigators(res.data);
                     this.rangeAges     = this.rangeAge(res.data.groupRangeAge);
                     this.promedios     = this.averageAges(res.data.groupAverageAge);
-                    this.profesions    = this.groupInv(res.data.groupProfesion, 'profesion');
-
-                    let data = res.data.groupStates;
-                    let nameStates = new Array();
-                    let num    = new Array();
-
-                    if (data) {
-                        data.forEach(element => {
-                            nameStates.push(element.estado);
-                            num.push(element.total)
-                        });   
-                        this.dataStates = data;                        
-                    }
-                    this.datacollection = {
-                        labels: nameStates,
-                        datasets: [{
-                            label: 'Total investigadores por estado',
-                            backgroundColor: '#1976d2',
-                            hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
-                            data: num
-                        }]
-                    }
-                    this.show.dataState = true;
-                    this.load = false;
-                });
-                    
-            
+                   // this.genero  = this.stateGenero(res.data.groupAge);
+                    this.profesions    = this.groupInv(res.data.groupProfesion, 'profesion');   
+                });   
         },
         methods:{
             totalInvestigators(data){               
                 this.inv.total_inv  = data.total_investigators;  //TOTAL DE INVESTIGADORES
                 this.inv.inv_mens   = data.investigators_mens;   //TOTAL DE INVESTIGADORES HOMBRES
-                this.inv.inv_womens = data.investigators_womens; //TOTAL DE INVESTIGADORAS
-                
-                localStorage.setItem('dataInvestigators', JSON.stringify(this.inv));
-                
+                this.inv.inv_womens = data.investigators_womens; //TOTAL DE INVESTIGADORAS                
                 return this.inv;
             },
             averageAges(data){
@@ -230,8 +235,8 @@
                 return this.av
             },
             rangeAge(data){
-                let range      = new Array();
-                let totalRange = new Array();
+                let range      = [];
+                let totalRange = [];
 
                 if (data) {
                     data.forEach(element => {
@@ -259,8 +264,8 @@
                 axios.get(url)
                     .then(res => {
                         let municipalities = res.data.municipios;
-                        let nameMunicipality = new Array();
-                        let num    = new Array();
+                        let nameMunicipality = [];
+                        let num = [];
 
                         if (municipalities) {
                             municipalities.forEach(element => {
@@ -290,8 +295,8 @@
                 axios.get(url)
                     .then(res => {
                         let parish = res.data.parroquias;
-                        let nameParish = new Array();
-                        let num    = new Array();
+                        let nameParish = [];
+                        let num = [];
 
                         if (parish) {
                             parish.forEach(element => {
@@ -320,7 +325,6 @@
                 let info = [];
                 let female = [];
                 let male = [];
-
                 items.forEach(item => {
                     let palabra = item[title].toLowerCase();
                     labels.push(palabra[0].toUpperCase() + palabra.slice(1));
@@ -330,7 +334,7 @@
                         female.push(item.female);
 
                     if(item?.male)
-                        male.push(item.male);
+                        male.push(item.male);                    
                 });
                 let data = {
                     labels: labels,
@@ -343,7 +347,7 @@
                         borderWidth: 1,
                         hoverBorderWidth: 2,    
                     }],
-                }
+                }  
 
                 if(female.length > 0)
                     data.datasets.push({

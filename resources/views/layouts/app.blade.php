@@ -33,10 +33,8 @@
                 padding-left: 300px;
             }
         }
-
         .v-enter-active, .fade-leave-active { transition: opacity 2.5s }
-        .v-enter, .v-leave-to{ opacity: 0 }
-        
+        .v-enter, .v-leave-to{ opacity: 0 }        
     </style>
 </head>
 <body class="has-fixed-sidenav">

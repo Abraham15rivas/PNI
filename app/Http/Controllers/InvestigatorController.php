@@ -4,14 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{
-    Investigator, 
-    Interest, 
-    Profesion, 
-    State, 
-    InstitutionType, 
-    ActualInvestigation, 
-    InvestigatorProfile,
-    ProfileInvestigation, 
+    Investigator, Interest, Profesion, State, InstitutionType, ActualInvestigation, InvestigatorProfile,ProfileInvestigation, 
     InvestigationType,
     InvestigationLine,
     InvestigationTime,
@@ -140,8 +133,13 @@ class InvestigatorController extends Controller {
                 foreach($genre->ageGroup as $keyA => $age){
                     $ageGroup->push([$keyA=>count($age)]);
                 }
-
-                $val->genreGroup->push([$keyG == 2 ? 'Masculino' : 'Femenino'=>$ageGroup]);
+                if($keyG == 2){
+                    $val->genreGroup->push(['Masculino'=>$ageGroup]);
+                }elseif($keyG == 1){
+                    $val->genreGroup->push(['Femenino'=>$ageGroup]);
+                }else{
+                    $val->genreGroup->push(['Otro'=>$ageGroup]);
+                }                
             }
 
             $groupStateAge->push(["estado"=>$name,"data"=>$val->genreGroup]);

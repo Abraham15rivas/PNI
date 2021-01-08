@@ -14,6 +14,7 @@ Route::prefix('statistics')->group(function () {
 });
 
 Route::prefix('reports')->group(function () {
+    Route::get('/date_min', 'ReportController@index');
     Route::post('/pdf', 'ReportController@pdf');
     Route::delete('/delete/pdf/{name}', 'ReportController@deleteReport');
 });

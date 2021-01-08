@@ -15,6 +15,7 @@
 </template>
 
 <style scoped>
+
 .mt{
     margin-top: 70px;
     margin-bottom: 100px;

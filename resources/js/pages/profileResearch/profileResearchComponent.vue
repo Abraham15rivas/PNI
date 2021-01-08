@@ -1,5 +1,6 @@
 <template>
     <div class="margin-x">
+        
         <div class="row">
             <div class="col s12">
                 <h5 class="black-text center">
@@ -108,6 +109,7 @@
 export default {
     data(){
         return {
+             load: false,
             // Opciones Predefinidas
             options: {
                 legend: {
@@ -164,8 +166,6 @@ export default {
             //investigations_line
             //linea de Investigacion
             lineInvestigation: {},
-
-
             
             show:{
                 profileResearcher: false,
@@ -181,11 +181,10 @@ export default {
         }
     },
     async mounted() {
-        let url = 'statistics/investigators/profile';
+        const url = 'statistics/investigators/profile';
         axios.get(url)
             .then(res => {
                 if(res.statusText === "OK"){
-                    // console.log(res.data);
                     //Cantidad de Perfil del investigador
                     this.profileResearcher = res.data.total_profiles;
                     this.show.profileResearcher = this.profileResearcher ? true : false;
@@ -193,7 +192,6 @@ export default {
                     //Cantidad de Perfil del investigacion
                     this.profileResearch = res.data.total_profiles_investigations;
                     this.show.profileResearch = this.profileResearch ? true : false;
-
 
                     //Nivel Academico
                     this.academicLevel = this.groupInv(res.data.academic_levels, 'academic_level');

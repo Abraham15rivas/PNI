@@ -87,13 +87,27 @@ export default {
             since: "",
             until: "",
             dateActual: moment().format('YYYY-MM-DD'),
-            dateMin: "2018-02-02",
+            dateMin: "",
             readySelectedDate: false,
             typeQuery: 0,
             routeName: "",
         }
     },
     methods: {
+        async dateMinima () {
+            try {
+                const url = "reports/date_min"
+                let response = await axios.get(url)
+                let data = response.data
+                if (data) {
+                    this.dateMin = data
+                } else {
+                    console.log('Error', data)
+                }               
+            } catch (error) {
+                console.log(error)
+            }
+        },
         async sendRanges () {
             try {
                 const url = "reports/pdf"
@@ -157,6 +171,9 @@ export default {
                 this.readySelectedDate = false
             }
         }
+    },
+    created () {
+        this.dateMinima()
     }
 }
 </script>

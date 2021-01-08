@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\InvestigatorController;
+use App\Investigator;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Storage;
@@ -11,7 +12,9 @@ class ReportController extends Controller
 {
     public function index ()
     {
-        //definir aqui consulta para saber la fecha minima de consulta
+        $date = Investigator::orderBy('fecha_creacion')->first(['fecha_creacion']);
+        $date_min = Carbon::parse($date->fecha_creacion)->format('Y-m-d');
+        return response()->json($date_min);
     }
 
     public function pdf (Request $request)
@@ -21,19 +24,19 @@ class ReportController extends Controller
 
         switch ($request->typeQuery):
             case 1:
-                $value = $clase->index();
+                $value = $clase->index($request->since, $request->until);
                 $name = "Investigadores_$dateNow.pdf";
                 break;
             case 2:
-                $value = $clase->interest();
+                $value = $clase->interest($request->since, $request->until);
                 $name = "Intereses_investigadores_$dateNow.pdf";
                 break;
             case 3:
-                $value = $clase->profile();
+                $value = $clase->profile($request->since, $request->until);
                 $name = "Perfil_investigadores_$dateNow.pdf";
                 break;
             case 4:
-                $value = $clase->current();
+                $value = $clase->current($request->since, $request->until);
                 $name = "Investigacion_actual_$dateNow.pdf";
                 break;
             default:

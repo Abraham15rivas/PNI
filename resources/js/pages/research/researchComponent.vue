@@ -7,25 +7,45 @@
         </div>
 
         <div class="row">
-            <div class="col s12 m6">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title center">Tipo de Institución</span>
-                        <doughnut-charts v-if="loadedIns" :chartdata="institution"></doughnut-charts>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m6">
+            <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Interés de Investigación</span>
-                        <line-charts v-if="loadedInt" :chartdata="interest"></line-charts>
+                        <line-charts v-if="loadedInt" :chartdata="interest" :height="180"></line-charts>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title center">Tipo de Institución</span>
+                        <doughnut-charts v-if="loadedIns" :chartdata="institution" :height="200"></doughnut-charts>
+                    </div>
+                </div>                
+            </div>
+             <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title center">Como Investiga</span>
+                        <horizontalBar-charts v-if="loadedModeInv" :chartdata="modeInv" :height="200"></horizontalBar-charts>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title center" >Investigación Actual</span>
+                        <horizontalBar-charts v-if="loadedAct" :chartdata="actualInt" :height="180"></horizontalBar-charts>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Interés de Investigación por Género</span>
@@ -40,31 +60,13 @@
                             </thead>
                             <tbody v-if="loadedInt">
                                 <tr v-for="(item, index) in dataInterest" v-bind:key="index">
-                                    <td>{{ item.titulo }}</td>
+                                    <td class="td-title">{{ item.titulo }}</td>
                                     <td>{{ item.masculino }}</td>
                                     <td>{{ item.femenino }}</td>
                                     <td>{{ item.total }}</td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m6">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title center" >Investigación Actual</span>
-                        <horizontalBar-charts v-if="loadedAct" :chartdata="actualInt"></horizontalBar-charts>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m8 offset-m2">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title center">Como Investiga</span>
-                        <horizontalBar-charts v-if="loadedModeInv" :chartdata="modeInv" :height="250"></horizontalBar-charts>
                     </div>
                 </div>
             </div>
@@ -87,51 +89,45 @@ export default {
                 }
             },
             backgroundColor: [
-                'rgba(41, 98, 255, 0.5)',
-                'rgba(98, 0, 234, 0.5)',
-                'rgba(0, 191, 165, 0.5)',
-                'rgba(230, 74, 25, 0.5)',
-                'rgba(66, 66, 66, 0.5)',
-                'rgba(197, 17, 98, 0.5)',
-                'rgba(255, 214, 0, 0.5)',
-                'rgba(183, 28, 28, 0.5)'
+                'rgba(41, 98, 255, .5)',
+                'rgba(98, 0, 234, .5)',
+                'rgba(0, 191, 165, .5)',
+                'rgba(230, 74, 25, .5)',
+                'rgba(66, 66, 66, .5)',
+                'rgba(197, 17, 98, .5)',
+                'rgba(255, 214, 0, .5)',
+                'rgba(183, 28, 28, .5)',
+                'rgba(63, 191, 63, .5)',
+                'rgba(59,18,98, .5)',
+                'rgba(59,255,255, .5)',
+                'rgba(255,163,0,.5)'
             ],
             borderColor: [
-                'rgba(41, 98, 255, 1)',
-                'rgba(98, 0, 234, 1)',
-                'rgba(0, 191, 165, 1)',
-                'rgba(230, 74, 25, 1)',
-                'rgba(66, 66, 66, 1)',
-                'rgba(197, 17, 98, 1)',
-                'rgba(255, 214, 0, 1)',
-                'rgba(183, 28, 28, 1)'
+                'rgba(41, 98, 255, 1)', //violeta   
+                'rgba(98, 0, 234, 1)',  //azul  
+                'rgba(0, 191, 165, 1)', //turquesa
+                'rgba(230, 74, 25, 1)', //gris
+                'rgba(66, 66, 66, 1)',  //fucsia
+                'rgba(197, 17, 98, 1)', //naranja
+                'rgba(255, 214, 0, 1)', //amarillo
+                'rgba(183, 28, 28, 1)',  //rojo
+                'rgba(63, 191, 63, 1)',
+                'rgba(59,18,98,1)',
+                'rgba(59,255,255, 1)',
+                'rgba(255,163,0,1)'
             ],
-            /*
-                rgba(41, 98, 255)   Violeta
-                rgba(98, 0, 234)    Azul
-                rgba(0, 191, 165)   Turquesa
-                rgba(66, 66, 66)    Gris
-                rgba(197, 17, 98)   Fucsia
-                rgba(230, 74, 25)   Naranja
-                rgba(255, 214, 0)   Amarillo
-                rgba(183, 28, 28)   Rojo
-            */ 
-
-            //Grupo de institucion 
-            institution: {},
+           
+            institution: {}, //Grupo de institucion 
             loadedIns: false,
 
-            //Grupo de Interes
-            interest: {},
+            interest: {}, //Grupo de Interes
             dataInterest: {},
             loadedInt: false,
 
-            //Grupo de Interes
-            actualInt: {}, 
+            actualInt: {}, //Grupo de Interes
             loadedAct: false,
 
-            //Como investiga
-            modeInv: {}, 
+            modeInv: {}, //Como investiga
             loadedModeInv: false,
         }
     },
@@ -229,17 +225,14 @@ export default {
 
             let data = {
                 labels: labels,
-                datasets: [
-                    {
-                        data: info,
-                        label: 'Cantidad de Investigadores',
-                        backgroundColor: this.backgroundColor,
-                        borderColor: this.borderColor,
-                        hoverBackgroundColor: this.borderColor,
-                        borderWidth: 1,
-                        hoverBorderWidth: 2
-                    }
-                ]
+                datasets: [{
+                    data: info,
+                    backgroundColor: this.backgroundColor,
+                    borderColor: this.borderColor,
+                    hoverBackgroundColor: this.borderColor,
+                    borderWidth: 1,
+                    hoverBorderWidth: 2
+                }]
             }
             this.loadedAct = true;
             return data;
@@ -270,17 +263,20 @@ export default {
             return data;
         }
     }
-
-
 }
 </script>
-
-
 <style>
 
 .margin-x{
     margin: 0 50px;
     padding-top: 32px;
 }
+
+.td-title{
+    color: #1E88E5;
+    cursor: pointer;
+}
+
+.td-title:hover{ color: #000 }
 
 </style>

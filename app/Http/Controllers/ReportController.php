@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\InvestigatorController;
-use App\Investigator;
+use App\{Investigator, InvestigatorProfile, ActualInvestigation};
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Storage;
@@ -10,10 +10,18 @@ use Carbon\Carbon;
 
 class ReportController extends Controller
 {
-    public function index ()
+    public function index (Request $request)
     {
-        $date = Investigator::orderBy('fecha_creacion')->first(['fecha_creacion']);
-        $date_min = Carbon::parse($date->fecha_creacion)->format('Y-m-d');
+        if ($request->value == 1 || $request->value == 2) {
+            $date = Investigator::orderBy('fecha_creacion')->first(['fecha_creacion'])->fecha_creacion;
+        } else if ($request->value == 3) {
+            $date = InvestigatorProfile::orderBy('fecha_creacion')->first(['fecha_creacion'])->fecha_creacion;
+        } else if ($request->value == 4) {
+            $date = ActualInvestigation::orderBy('fecha_registro')->first(['fecha_registro'])->fecha_registro;
+        } else {
+            return 0;
+        }
+        $date_min = Carbon::parse($date)->format('Y-m-d');
         return response()->json($date_min);
     }
 

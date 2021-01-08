@@ -24193,7 +24193,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.sidenav .logo-container[data-v-62e37494] {\n  padding: 0 16px;\n  height: 94px;\n  line-height: 64px;\n  font-size: 24px;\n  box-sizing: content-box;\n}\n.sidenav .collapsible > li.waves-effect[data-v-62e37494] {\n  display: block;\n}\n.sidenav .collapsible li[data-v-62e37494],\n.sidenav.fixed .collapsible li[data-v-62e37494] {\n  padding: 0;\n}\n.logo-min[data-v-62e37494] {\n  width: 195px;\n  height: 85px;\n  margin-top: 6px;\n}\n.cintillo-min[data-v-62e37494] {\n  width: 100%;\n  height: 100px;\n}\n.header-logo[data-v-62e37494] {\n  position: fixed;\n  right: 10px;\n}\n.brand-logo[data-v-62e37494] {\n  width: 100%;\n}\n.logo-sidebar[data-v-62e37494] {\n  height: 110px;\n  margin: 0 auto;\n  display: block;\n}\n.top-m[data-v-62e37494] {\n  margin-top: 10px;\n}\n@media (max-width: 992px) {\n.sidenav-collapse[data-v-62e37494] {\n    transform: translateX(0%);\n    transition: transform 300ms linear;\n}\n.button-collapse[data-v-62e37494] {\n    margin-left: 312px;\n    transition: margin-left 300ms linear;\n}\n}\n", ""]);
+exports.push([module.i, "\n.sidenav .logo-container[data-v-62e37494] {\r\n  padding: 0 16px;\r\n  height: 94px;\r\n  line-height: 64px;\r\n  font-size: 24px;\r\n  box-sizing: content-box;\n}\n.sidenav .collapsible > li.waves-effect[data-v-62e37494] {\r\n  display: block;\n}\n.sidenav .collapsible li[data-v-62e37494],\r\n.sidenav.fixed .collapsible li[data-v-62e37494] {\r\n  padding: 0;\n}\n.logo-min[data-v-62e37494] {\r\n  width: 195px;\r\n  height: 85px;\r\n  margin-top: 6px;\n}\n.cintillo-min[data-v-62e37494] {\r\n  width: 100%;\r\n  height: 100px;\n}\n.header-logo[data-v-62e37494] {\r\n  position: fixed;\r\n  right: 10px;\n}\n.brand-logo[data-v-62e37494] {\r\n  width: 100%;\n}\n.logo-sidebar[data-v-62e37494] {\r\n  height: 110px;\r\n  margin: 0 auto;\r\n  display: block;\n}\n.top-m[data-v-62e37494] {\r\n  margin-top: 10px;\n}\n@media (max-width: 992px) {\n.sidenav-collapse[data-v-62e37494] {\r\n    transform: translateX(0%);\r\n    transition: transform 300ms linear;\n}\n.button-collapse[data-v-62e37494] {\r\n    margin-left: 312px;\r\n    transition: margin-left 300ms linear;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -24212,7 +24212,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.margin-x[data-v-54e7490d]{\n    margin: 0 50px;\n    padding-top: 32px;\n}\n.total-register[data-v-54e7490d]{\n\tfont-size: 40px;\n    margin-top: -8px;\n    margin-bottom: 0px;\n    text-align: center;\n}\n.icon-total-register[data-v-54e7490d]{\n\twidth: 110px;\n\theight: 110px;\n}\n.card-icon[data-v-54e7490d] {\n    background: #e3f2fd;\n    display: flex;\n    align-items: center;\n    padding: 0px 8px 0px 16px;\n}\n\n", ""]);
+exports.push([module.i, "\n.margin-x[data-v-54e7490d]{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\n.total-register[data-v-54e7490d]{\r\n\tfont-size: 40px;\r\n    margin-top: -8px;\r\n    margin-bottom: 0px;\r\n    text-align: center;\n}\n.icon-total-register[data-v-54e7490d]{\r\n\twidth: 110px;\r\n\theight: 110px;\n}\n.card-icon[data-v-54e7490d] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -24231,7 +24231,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.mt[data-v-b4ab9052]{\n    margin-top: 70px;\n    margin-bottom: 100px;\n}\n.padding[data-v-b4ab9052]{\n    padding-left: 50px;\n    padding-right: 50px;\n    font-family: \"Nunito\", Times, serif;\n}\n.imagen-portada[data-v-b4ab9052]{ width: 400px;\n}\n.section-imagen[data-v-b4ab9052]{\n    display: flex;\n    align-items: center;\n    height: 40vh;\n}\n", ""]);
+exports.push([module.i, "\n.mt[data-v-b4ab9052]{\r\n    margin-top: 70px;\r\n    margin-bottom: 100px;\n}\n.padding[data-v-b4ab9052]{\r\n    padding-left: 50px;\r\n    padding-right: 50px;\r\n    font-family: \"Nunito\", Times, serif;\n}\n.imagen-portada[data-v-b4ab9052]{ width: 400px;\n}\n.section-imagen[data-v-b4ab9052]{\r\n    display: flex;\r\n    align-items: center;\r\n    height: 40vh;\n}\r\n", ""]);
 
 // exports
 
@@ -24250,7 +24250,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.total-register[data-v-768de6a6]{\n\tfont-size: 40px;\n    margin-top: -8px;\n    margin-bottom: 0px;\n    text-align: center;\n}\n.icon-total-register[data-v-768de6a6]{\n\twidth: 110px;\n\theight: 110px;\n}\n.card-icon[data-v-768de6a6] {\n    background: #e3f2fd;\n    display: flex;\n    align-items: center;\n    padding: 0px 8px 0px 16px;\n}\n.title-card[data-v-768de6a6] {\n    text-align: center;\n    margin-top: 0px;\n}\n.separate[data-v-768de6a6] {\n    margin: 48px 64px;\n}\n.margin-x[data-v-768de6a6]{\n    margin: 0 50px;\n    padding-top: 32px;\n}\n.card[data-v-768de6a6]:hover {\n    background: #e3f2fd;\n}\n", ""]);
+exports.push([module.i, "\n.total-register[data-v-768de6a6]{\r\n\tfont-size: 40px;\r\n    margin-top: -8px;\r\n    margin-bottom: 0px;\r\n    text-align: center;\n}\n.icon-total-register[data-v-768de6a6]{\r\n\twidth: 110px;\r\n\theight: 110px;\n}\n.card-icon[data-v-768de6a6] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\n.title-card[data-v-768de6a6] {\r\n    text-align: center;\r\n    margin-top: 0px;\n}\n.separate[data-v-768de6a6] {\r\n    margin: 48px 64px;\n}\n.margin-x[data-v-768de6a6]{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\n.card[data-v-768de6a6]:hover {\r\n    background: #e3f2fd;\n}\r\n", ""]);
 
 // exports
 
@@ -24269,7 +24269,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.margin-x{\n    margin: 0 50px;\n    padding-top: 32px;\n}\n\n", ""]);
+exports.push([module.i, "\n.margin-x{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -24288,7 +24288,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nhr[data-v-64b339f7]{ width: 100%\n}\n.md-button[data-v-64b339f7], .md-button-clean[data-v-64b339f7]{\n    background-color: white;\n}\n.card-icon[data-v-64b339f7] {\n    background: #e3f2fd;\n    display: flex;\n    align-items: center;\n    padding: 0px 8px 0px 16px;\n}\n.margin-x[data-v-64b339f7]{\n    margin: 0 25px;\n    padding-top: 32px;\n}\n.size-img[data-v-64b339f7]{ \n    width: 100px; \n    height: 100px;\n}\n.color-w[data-v-64b339f7] { color: #EA5771\n}\n.color-m[data-v-64b339f7]{ color:#1E88E5}\n@media (max-width: 320px) {\n.card-icon[data-v-64b339f7]{ display: none;\n}\n}\n", ""]);
+exports.push([module.i, "\nhr[data-v-64b339f7]{ width: 100%\n}\n.md-button[data-v-64b339f7], .md-button-clean[data-v-64b339f7]{\r\n    background-color: white;\n}\n.card-icon[data-v-64b339f7] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\n.margin-x[data-v-64b339f7]{\r\n    margin: 0 25px;\r\n    padding-top: 32px;\n}\n.size-img[data-v-64b339f7]{ \r\n    width: 100px; \r\n    height: 100px;\n}\n.color-w[data-v-64b339f7] { color: #EA5771\n}\n.color-m[data-v-64b339f7]{ color:#1E88E5}\n@media (max-width: 320px) {\n.card-icon[data-v-64b339f7]{ display: none;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -129503,8 +129503,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/PNI/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/PNI/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\PNI\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\PNI\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

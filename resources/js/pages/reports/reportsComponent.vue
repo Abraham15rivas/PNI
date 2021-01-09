@@ -10,13 +10,19 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center">Seleccionar tipos de rangos</span>
-                        <md-field>
-                            <label for="state">Rangos</label>
-                            <md-select v-model="ranges" name="ranges" id="ranges">
-                                <md-option value="select">Seleccionar un tipo</md-option>
-                                <md-option value="date">Fechas</md-option>
-                            </md-select>
-                        </md-field>
+                        <div class="card-content">
+                            <span class="card-title center">Seleccionar tipos de reportes</span>
+                            <md-field>
+                                <label for="state"></label>
+                                <md-select v-model="typeQuery" name="typeQuery" id="typeQuery">
+                                    <md-option :value="0">Seleccionar un tipo</md-option>
+                                    <md-option :value="1">Investigadores e Investigadoras</md-option>
+                                    <md-option :value="2">Interés de Investigación</md-option>
+                                    <md-option :value="3">Perfil de Investigación</md-option>
+                                    <md-option :value="4">Modulo de Investigación Actual</md-option>
+                                </md-select>
+                            </md-field>                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,21 +46,8 @@
             </div>
             <div class="col s12 m12" v-if="readySelectedDate">
                 <div class="card">
-                    <div class="card-content">
-                        <span class="card-title center">Seleccionar tipos de reportes</span>
-                        <md-field>
-                            <label for="state"></label>
-                            <md-select v-model="typeQuery" name="typeQuery" id="typeQuery">
-                                <md-option :value="0">Seleccionar un tipo</md-option>
-                                <md-option :value="1">Investigadores e Investigadoras</md-option>
-                                <md-option :value="2">Interés de Investigación</md-option>
-                                <md-option :value="3">Perfil de Investigación</md-option>
-                                <md-option :value="4">Modulo de Investigación Actual</md-option>
-                            </md-select>
-                        </md-field>                        
-                    </div>
-                    <div class="card-footer" v-if="!loadSelect">
-                        <button class="btn btn-success right" @click="sendRanges">Solicitar reporte</button>
+                    <div class="card-content center" v-if="!loadSelect">
+                        <button class="btn btn-success" @click="sendRanges">Solicitar reporte</button>
                     </div>
                 </div>
             </div>
@@ -94,10 +87,10 @@ export default {
         }
     },
     methods: {
-        async dateMinima () {
+        async dateMinima (value) {
             try {
-                const url = "reports/date_min"
-                let response = await axios.get(url)
+                let url = `reports/date_min/${ value }`
+                const response = await axios.get(url)
                 let data = response.data
                 if (data) {
                     this.dateMin = data
@@ -160,11 +153,11 @@ export default {
                 this.readySelectedDate = true
             }
         },
-        ranges () {
-            if (this.ranges == "date") {
+        typeQuery () {
+            if (this.typeQuery != 0) {
                 this.loadSelect = false
                 this.loadDate = true
-                this.validateDateNow
+                this.dateMinima(this.typeQuery)
             } else {
                 this.loadSelect = true
                 this.loadDate = false
@@ -173,7 +166,7 @@ export default {
         }
     },
     created () {
-        this.dateMinima()
+        //this.dateMinima()
     }
 }
 </script>

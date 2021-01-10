@@ -186,7 +186,7 @@ class InvestigatorController extends Controller {
             "groupAverageAge"=>$groupAverageAge
         ]);
         
-        return $data->toJson();
+        return ($since && $until) == null ? $data->toJson() : $data;
     }
 
     public function rangeAge ($investigators) {
@@ -415,7 +415,7 @@ class InvestigatorController extends Controller {
             "groupModeInvestigation"=>$groupModeInvestigation
         ]);
 
-        return $data->toJson();
+        return ($since && $until) == null ? $data->toJson() : $data;
     }
 
     public function institutionType ($investigators) {
@@ -551,7 +551,7 @@ class InvestigatorController extends Controller {
             "investigations_time"=>$groupTime
         ]);
         
-        return $data->toJson();
+        return ($since && $until) == null ? $data->toJson() : $data;
     }
 
     public function current ($since = null, $until = null) {
@@ -655,7 +655,7 @@ class InvestigatorController extends Controller {
             "investigations_time" =>$groupTime
         ]);
 
-        return $data->toJson();
+        return ($since && $until) == null ? $data->toJson() : $data;
     }
 
     public function searchMunicipality ($state_id) {
@@ -748,7 +748,7 @@ class InvestigatorController extends Controller {
         return $data->toJson();
     }
 
-    public function allMunicipalities (Satate $state)
+    public function allMunicipalities (State $state)
     {
         $groupMunicipality = collect();
         foreach ($state->municipalities as $muni) {

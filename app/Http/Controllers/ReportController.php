@@ -19,13 +19,13 @@ class ReportController extends Controller
         } else if ($request->value == 4) {
             $date = ActualInvestigation::orderBy('fecha_registro')->first(['fecha_registro'])->fecha_registro;
         } else {
-            return 0;
+            $date = Carbon::now();
         }
         $date_min = Carbon::parse($date)->format('Y-m-d');
         return response()->json($date_min);
     }
 
-    public function pdf (Request $request)
+    public function report (Request $request)
     {
         $clase = new InvestigatorController();
         $dateNow =  Carbon::now();
@@ -54,13 +54,13 @@ class ReportController extends Controller
         endswitch;
 
         if (!$value == false) {
-            $this->download($name, $value, $request->typeQuery);
+            $this->downloadPdf($name, $value, $request->typeQuery);
         }
-       
+        
         return response()->json($name);
     }
 
-    public function download($name, $value, $view)
+    public function downloadPdf($name, $value, $view)
     {
         $data = [
             'data' => $value,

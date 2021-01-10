@@ -9,20 +9,17 @@
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title center">Seleccionar tipos de rangos</span>
-                        <div class="card-content">
-                            <span class="card-title center">Seleccionar tipos de reportes</span>
-                            <md-field>
-                                <label for="state"></label>
-                                <md-select v-model="typeQuery" name="typeQuery" id="typeQuery">
-                                    <md-option :value="0">Seleccionar un tipo</md-option>
-                                    <md-option :value="1">Investigadores e Investigadoras</md-option>
-                                    <md-option :value="2">Interés de Investigación</md-option>
-                                    <md-option :value="3">Perfil de Investigación</md-option>
-                                    <md-option :value="4">Modulo de Investigación Actual</md-option>
-                                </md-select>
-                            </md-field>                        
-                        </div>
+                        <span class="card-title center">Seleccionar tipos de reportes</span>
+                        <md-field v-if="field">
+                            <label for="state"></label>
+                            <md-select v-model="typeQuery" name="typeQuery" id="typeQuery">
+                                <md-option :value="0">Seleccionar un tipo</md-option>
+                                <md-option :value="1">Investigadores e Investigadoras</md-option>
+                                <md-option :value="2">Interés de Investigación</md-option>
+                                <md-option :value="3">Perfil de Investigación</md-option>
+                                <md-option :value="4">Modulo de Investigación Actual</md-option>
+                            </md-select>
+                        </md-field>                        
                     </div>
                 </div>
             </div>
@@ -32,7 +29,7 @@
                         <div v-if="loadSelect">
                             <span class="card-title center">Seleccionar rangos de fecha</span>
                             <i class="material-icons">picture_as_pdf</i>
-                            <span class="card-title">No ha seleccionado ningún tipo rango</span>
+                            <span class="card-title">No ha seleccionado ningún tipo de reporte</span>
                         </div>
                         <div v-if="loadDate">
                             <span class="card-title center">Seleccionar fechas</span>
@@ -72,6 +69,7 @@ import moment from 'moment'
 export default {
     data () {
         return {
+            field: false,
             loadSelect: true,
             loadDate: false,
             ready: false,
@@ -103,7 +101,7 @@ export default {
         },
         async sendRanges () {
             try {
-                const url = "reports/pdf"
+                const url = "reports/create"
                 let params = {
                     typeQuery: this.typeQuery,
                     since: this.since,
@@ -165,8 +163,8 @@ export default {
             }
         }
     },
-    created () {
-        //this.dateMinima()
+    mounted () {
+        this.field = true
     }
 }
 </script>

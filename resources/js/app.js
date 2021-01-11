@@ -21,6 +21,7 @@ import researcherComponent from './pages/researcher/researcherComponent';
 import researchComponent from './pages/research/researchComponent';
 import profileResearchComponent from './pages/profileResearch/profileResearchComponent';
 import currentResearchComponent from './pages/currentResearch/currentResearchComponent';
+import reportComponent from './pages/reports/reportsComponent';
 
 const router = new VueRouter({
     routes: [
@@ -33,7 +34,7 @@ const router = new VueRouter({
             component: homeComponent
         },
         {
-            path: '/researcher',
+            path: '/investigadores',
             component: researcherComponent
         },
         {
@@ -47,6 +48,10 @@ const router = new VueRouter({
         {
             path: '/currentResearch',
             component: currentResearchComponent
+        },
+        {
+            path: '/reports',
+            component: reportComponent
         }
     ],
     mode: 'history'

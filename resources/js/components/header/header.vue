@@ -44,7 +44,7 @@
             </li>
             <li class="waves-effect">
               <router-link
-                to="/researcher"
+                to="/investigadores"
                 class="collapsible-header"
                 tabindex="0">
                 <span style="font-size: 13px"> Investigadores e Investigadoras</span><i class="material-icons">people</i>
@@ -79,6 +79,17 @@
                 >
               </router-link>
             </li>
+            <li class="waves-effect">
+              <router-link
+                to="/reports"
+                class="collapsible-header"
+                tabindex="0"
+              >
+                Reportes<i class="material-icons"
+                  >description</i
+                >
+              </router-link>
+            </li>
           </ul>
         </li>
       </ul>
@@ -93,13 +104,9 @@ export default {
       sidebar: false,
     };
   },
-  mounted() {
-    console.log("Componente montado.");
-  },
   methods: {
     collapse() {
       this.sidebar = !this.sidebar;
-      console.log(this.sidebar);
     },
   },
 };

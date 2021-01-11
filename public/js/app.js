@@ -2851,10 +2851,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      typeReport: '',
       field: false,
       loadSelect: true,
       loadDate: false,
@@ -2923,6 +2941,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.prev = 0;
                 url = "reports/create";
                 params = {
+                  typeReport: _this2.typeReport,
                   typeQuery: _this2.typeQuery,
                   since: _this2.since,
                   until: _this2.until
@@ -3514,6 +3533,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.promedios = _this.averageAges(res.data.groupAverageAge); // this.genero  = this.stateGenero(res.data.groupAge);
 
                 _this.profesions = _this.groupInv(res.data.groupProfesion, 'profesion');
+                var data = res.data.groupStates;
+                var nameStates = new Array();
+                var num = new Array();
+
+                if (data) {
+                  data.forEach(function (element) {
+                    nameStates.push(element.estado);
+                    num.push(element.total);
+                  });
+                  _this.dataStates = data;
+                }
+
+                _this.datacollection = {
+                  labels: nameStates,
+                  datasets: [{
+                    label: 'Total investigadores por estado',
+                    backgroundColor: '#1976d2',
+                    hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                    data: num
+                  }]
+                };
+                _this.show.dataState = true;
+                _this.load = false;
               });
 
             case 3:
@@ -24345,7 +24387,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.sidenav .logo-container[data-v-62e37494] {\r\n  padding: 0 16px;\r\n  height: 94px;\r\n  line-height: 64px;\r\n  font-size: 24px;\r\n  box-sizing: content-box;\n}\n.sidenav .collapsible > li.waves-effect[data-v-62e37494] {\r\n  display: block;\n}\n.sidenav .collapsible li[data-v-62e37494],\r\n.sidenav.fixed .collapsible li[data-v-62e37494] {\r\n  padding: 0;\n}\n.logo-min[data-v-62e37494] {\r\n  width: 195px;\r\n  height: 85px;\r\n  margin-top: 6px;\n}\n.cintillo-min[data-v-62e37494] {\r\n  width: 100%;\r\n  height: 100px;\n}\n.header-logo[data-v-62e37494] {\r\n  position: fixed;\r\n  right: 10px;\n}\n.brand-logo[data-v-62e37494] {\r\n  width: 100%;\n}\n.logo-sidebar[data-v-62e37494] {\r\n  height: 110px;\r\n  margin: 0 auto;\r\n  display: block;\n}\n.top-m[data-v-62e37494] {\r\n  margin-top: 10px;\n}\n@media (max-width: 992px) {\n.sidenav-collapse[data-v-62e37494] {\r\n    transform: translateX(0%);\r\n    transition: transform 300ms linear;\n}\n.button-collapse[data-v-62e37494] {\r\n    margin-left: 312px;\r\n    transition: margin-left 300ms linear;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.sidenav .logo-container[data-v-62e37494] {\n  padding: 0 16px;\n  height: 94px;\n  line-height: 64px;\n  font-size: 24px;\n  box-sizing: content-box;\n}\n.sidenav .collapsible > li.waves-effect[data-v-62e37494] {\n  display: block;\n}\n.sidenav .collapsible li[data-v-62e37494],\n.sidenav.fixed .collapsible li[data-v-62e37494] {\n  padding: 0;\n}\n.logo-min[data-v-62e37494] {\n  width: 195px;\n  height: 85px;\n  margin-top: 6px;\n}\n.cintillo-min[data-v-62e37494] {\n  width: 100%;\n  height: 100px;\n}\n.header-logo[data-v-62e37494] {\n  position: fixed;\n  right: 10px;\n}\n.brand-logo[data-v-62e37494] {\n  width: 100%;\n}\n.logo-sidebar[data-v-62e37494] {\n  height: 110px;\n  margin: 0 auto;\n  display: block;\n}\n.top-m[data-v-62e37494] {\n  margin-top: 10px;\n}\n@media (max-width: 992px) {\n.sidenav-collapse[data-v-62e37494] {\n    transform: translateX(0%);\n    transition: transform 300ms linear;\n}\n.button-collapse[data-v-62e37494] {\n    margin-left: 312px;\n    transition: margin-left 300ms linear;\n}\n}\n", ""]);
 
 // exports
 
@@ -24364,7 +24406,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.margin-x[data-v-54e7490d]{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\n.total-register[data-v-54e7490d]{\r\n\tfont-size: 40px;\r\n    margin-top: -8px;\r\n    margin-bottom: 0px;\r\n    text-align: center;\n}\n.icon-total-register[data-v-54e7490d]{\r\n\twidth: 110px;\r\n\theight: 110px;\n}\n.card-icon[data-v-54e7490d] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.margin-x[data-v-54e7490d]{\n    margin: 0 50px;\n    padding-top: 32px;\n}\n.total-register[data-v-54e7490d]{\n\tfont-size: 40px;\n    margin-top: -8px;\n    margin-bottom: 0px;\n    text-align: center;\n}\n.icon-total-register[data-v-54e7490d]{\n\twidth: 110px;\n\theight: 110px;\n}\n.card-icon[data-v-54e7490d] {\n    background: #e3f2fd;\n    display: flex;\n    align-items: center;\n    padding: 0px 8px 0px 16px;\n}\n\n", ""]);
 
 // exports
 
@@ -24383,7 +24425,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.mt[data-v-b4ab9052]{\r\n    margin-top: 70px;\r\n    margin-bottom: 100px;\n}\n.padding[data-v-b4ab9052]{\r\n    padding-left: 50px;\r\n    padding-right: 50px;\r\n    font-family: \"Nunito\", Times, serif;\n}\n.imagen-portada[data-v-b4ab9052]{ width: 400px;\n}\n.section-imagen[data-v-b4ab9052]{\r\n    display: flex;\r\n    align-items: center;\r\n    height: 40vh;\n}\r\n", ""]);
+exports.push([module.i, "\n.mt[data-v-b4ab9052]{\n    margin-top: 70px;\n    margin-bottom: 100px;\n}\n.padding[data-v-b4ab9052]{\n    padding-left: 50px;\n    padding-right: 50px;\n    font-family: \"Nunito\", Times, serif;\n}\n.imagen-portada[data-v-b4ab9052]{ width: 400px;\n}\n.section-imagen[data-v-b4ab9052]{\n    display: flex;\n    align-items: center;\n    height: 40vh;\n}\n", ""]);
 
 // exports
 
@@ -24402,7 +24444,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.total-register[data-v-768de6a6]{\r\n\tfont-size: 40px;\r\n    margin-top: -8px;\r\n    margin-bottom: 0px;\r\n    text-align: center;\n}\n.icon-total-register[data-v-768de6a6]{\r\n\twidth: 110px;\r\n\theight: 110px;\n}\n.card-icon[data-v-768de6a6] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\n.title-card[data-v-768de6a6] {\r\n    text-align: center;\r\n    margin-top: 0px;\n}\n.separate[data-v-768de6a6] {\r\n    margin: 48px 64px;\n}\n.margin-x[data-v-768de6a6]{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\n.card[data-v-768de6a6]:hover {\r\n    background: #e3f2fd;\n}\r\n", ""]);
+exports.push([module.i, "\n.total-register[data-v-768de6a6]{\n\tfont-size: 40px;\n    margin-top: -8px;\n    margin-bottom: 0px;\n    text-align: center;\n}\n.icon-total-register[data-v-768de6a6]{\n\twidth: 110px;\n\theight: 110px;\n}\n.card-icon[data-v-768de6a6] {\n    background: #e3f2fd;\n    display: flex;\n    align-items: center;\n    padding: 0px 8px 0px 16px;\n}\n.title-card[data-v-768de6a6] {\n    text-align: center;\n    margin-top: 0px;\n}\n.separate[data-v-768de6a6] {\n    margin: 48px 64px;\n}\n.margin-x[data-v-768de6a6]{\n    margin: 0 50px;\n    padding-top: 32px;\n}\n.card[data-v-768de6a6]:hover {\n    background: #e3f2fd;\n}\n", ""]);
 
 // exports
 
@@ -24421,7 +24463,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.margin-x{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\n.td-title{\r\n    color: #1E88E5;\r\n    cursor: pointer;\n}\n.td-title:hover{ color: #000\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.margin-x{\n    margin: 0 50px;\n    padding-top: 32px;\n}\n.td-title{\n    color: #1E88E5;\n    cursor: pointer;\n}\n.td-title:hover{ color: #000\n}\n\n", ""]);
 
 // exports
 
@@ -79813,6 +79855,63 @@ var render = function() {
     _vm._v(" "),
     !_vm.ready
       ? _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col s12" }, [
+            _c("div", { staticClass: "card" }, [
+              _c(
+                "div",
+                { staticClass: "card-content" },
+                [
+                  _c("span", { staticClass: "card-title center" }, [
+                    _vm._v("Seleccionar tipo de reporte")
+                  ]),
+                  _vm._v(" "),
+                  _vm.field
+                    ? _c(
+                        "md-field",
+                        [
+                          _c("label", { attrs: { for: "state" } }),
+                          _vm._v(" "),
+                          _c(
+                            "md-select",
+                            {
+                              attrs: { name: "typeReport", id: "typeReport" },
+                              model: {
+                                value: _vm.typeReport,
+                                callback: function($$v) {
+                                  _vm.typeReport = $$v
+                                },
+                                expression: "typeReport"
+                              }
+                            },
+                            [
+                              _c("md-option", { attrs: { value: 0 } }, [
+                                _vm._v("Seleccionar un tipo")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: "PDF" } }, [
+                                _vm._v("PDF")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: "EXCEL" } }, [
+                                _vm._v("Excel")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.ready && _vm.typeReport != ""
+      ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col s12 m6" }, [
             _c("div", { staticClass: "card" }, [
               _c(
@@ -79820,7 +79919,7 @@ var render = function() {
                 { staticClass: "card-content" },
                 [
                   _c("span", { staticClass: "card-title center" }, [
-                    _vm._v("Seleccionar tipos de reportes")
+                    _vm._v("Seleccionar tipos de estadisticas")
                   ]),
                   _vm._v(" "),
                   _vm.field
@@ -79981,7 +80080,10 @@ var render = function() {
               ])
             : _vm._e()
         ])
-      : _c("div", { staticClass: "row" }, [
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.ready
+      ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col s12 m12" }, [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-content" }, [
@@ -80006,6 +80108,7 @@ var render = function() {
             ])
           ])
         ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -129967,8 +130070,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\PNI\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\PNI\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/PNI/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/PNI/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

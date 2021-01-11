@@ -54,20 +54,34 @@ class ReportController extends Controller
         endswitch;
 
         if (!$value == false) {
-            $this->downloadPdf($name, $value, $request->typeQuery);
+            if ($request->typeReport == 'PDF') {
+                $this->downloadPdf($name, $value, $request);
+            } else if ($request->typeReport == 'EXCEL') {
+                $this->downloadExcel($name, $value, $request);
+            }
         }
         
         return response()->json($name);
     }
 
-    public function downloadPdf($name, $value, $view)
+    public function downloadPdf($name, $value, $request)
     {
         $data = [
             'data' => $value,
-            'view' => $view
+            'view' => $request->typeQuery,
+            'dates' => [
+                'since' => $request->since,
+                'until' => $request->until
+            ] 
         ];
         $content = PDF::loadView('reports.partials-pdf.main', $data)->output();
         Storage::disk('public')->put("pdf/$name", $content);
+    }
+
+    public function downloadExcel($name, $value, $request)
+    {
+        return "Excel";
+        // Logica del pdf
     }
 
     public function deleteReport ($name)

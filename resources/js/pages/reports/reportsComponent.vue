@@ -6,10 +6,27 @@
             </div>
         </div>
         <div class="row" v-if="!ready">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title center">Seleccionar tipo de reporte</span>
+                        <md-field v-if="field">
+                            <label for="state"></label>
+                            <md-select v-model="typeReport" name="typeReport" id="typeReport">
+                                <md-option :value="0">Seleccionar un tipo</md-option>
+                                <md-option :value="'PDF'">PDF</md-option>
+                                <md-option :value="'EXCEL'">Excel</md-option>
+                            </md-select>
+                        </md-field>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" v-if="!ready && typeReport != ''">
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title center">Seleccionar tipos de reportes</span>
+                        <span class="card-title center">Seleccionar tipos de estadisticas</span>
                         <md-field v-if="field">
                             <label for="state"></label>
                             <md-select v-model="typeQuery" name="typeQuery" id="typeQuery">
@@ -49,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <div class="row" v-else>
+        <div class="row" v-if="ready">
             <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content">
@@ -69,6 +86,7 @@ import moment from 'moment'
 export default {
     data () {
         return {
+            typeReport: '',
             field: false,
             loadSelect: true,
             loadDate: false,
@@ -103,6 +121,7 @@ export default {
             try {
                 const url = "reports/create"
                 let params = {
+                    typeReport: this.typeReport,
                     typeQuery: this.typeQuery,
                     since: this.since,
                     until: this.until

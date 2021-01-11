@@ -210,6 +210,28 @@
                     this.promedios     = this.averageAges(res.data.groupAverageAge);
                    // this.genero  = this.stateGenero(res.data.groupAge);
                     this.profesions    = this.groupInv(res.data.groupProfesion, 'profesion');   
+
+                    let data = res.data.groupStates;
+                    let nameStates = new Array();
+                    let num    = new Array();
+                    if (data) {
+                        data.forEach(element => {
+                            nameStates.push(element.estado);
+                            num.push(element.total)
+                        });   
+                        this.dataStates = data;                        
+                    }
+                    this.datacollection = {
+                        labels: nameStates,
+                        datasets: [{
+                            label: 'Total investigadores por estado',
+                            backgroundColor: '#1976d2',
+                            hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                            data: num
+                        }]
+                    }
+                    this.show.dataState = true;
+                    this.load = false;    
                 });   
         },
         methods:{

@@ -4,14 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{
-    Investigator, 
-    Interest, 
-    Profesion, 
-    State, 
-    InstitutionType, 
-    ActualInvestigation, 
-    InvestigatorProfile,
-    ProfileInvestigation, 
+    Investigator, Interest, Profesion, State, InstitutionType, ActualInvestigation, InvestigatorProfile,ProfileInvestigation, 
     InvestigationType,
     InvestigationLine,
     InvestigationTime,
@@ -24,9 +17,16 @@ use Carbon\Carbon;
 
 class InvestigatorController extends Controller {
     
-    public function index(){
+    public function index ($since = null, $until = null) {
+        // Filtrar por fechas para los reportes
+        if (!($since && $until) == null) {
+            $investigators = Investigator::where('fecha_creacion', '>=', $since)
+                                            ->where('fecha_creacion', '<=', Carbon::parse($until)->addDay())
+                                            ->get();
+        } else {
+            $investigators = Investigator::get();
+        }
         //obtener datos masivos
-        $investigators = Investigator::get();
         $profesion = Profesion::get();
         $states = State::get();
 
@@ -140,8 +140,13 @@ class InvestigatorController extends Controller {
                 foreach($genre->ageGroup as $keyA => $age){
                     $ageGroup->push([$keyA=>count($age)]);
                 }
-
-                $val->genreGroup->push([$keyG == 2 ? 'Masculino' : 'Femenino'=>$ageGroup]);
+                if($keyG == 2){
+                    $val->genreGroup->push(['Masculino'=>$ageGroup]);
+                }elseif($keyG == 1){
+                    $val->genreGroup->push(['Femenino'=>$ageGroup]);
+                }else{
+                    $val->genreGroup->push(['Otro'=>$ageGroup]);
+                }                
             }
 
             $groupStateAge->push(["estado"=>$name,"data"=>$val->genreGroup]);
@@ -181,7 +186,7 @@ class InvestigatorController extends Controller {
             "groupAverageAge"=>$groupAverageAge
         ]);
         
-        return $data->toJson();
+        return ($since && $until) == null ? $data->toJson() : $data;
     }
 
     public function rangeAge ($investigators) {
@@ -261,10 +266,16 @@ class InvestigatorController extends Controller {
         return $groupAverageAge;
     }
 
-    public function interest ()
-    {
+    public function interest ($since = null, $until = null) {
+        // Filtrar por fechas para los reportes
+        if (!($since && $until) == null) {
+            $investigators = Investigator::where('fecha_creacion', '>=', $since)
+                                            ->where('fecha_creacion', '<=', Carbon::parse($until)->addDay())
+                                            ->get(['interes_inv', 'id_genero', 'id_tipo_institucion', 'inv_actual', 'id_modo_investifgacion']);
+        } else {
+            $investigators = Investigator::get(['interes_inv', 'id_genero', 'id_tipo_institucion', 'inv_actual', 'id_modo_investifgacion']);
+        }
         //obtener datos masivos
-        $investigators = Investigator::get(['interes_inv', 'id_genero', 'id_tipo_institucion', 'inv_actual', 'id_modo_investifgacion']);
         $investigationMode = InvestigationMode::get();
         $interests = Interest::orderBy('id_lineas_presidenciales', 'asc')->get(['nombre_lineas_presidenciales', 'id_lineas_presidenciales']);
         $actualInvestigations = $interests;
@@ -404,7 +415,7 @@ class InvestigatorController extends Controller {
             "groupModeInvestigation"=>$groupModeInvestigation
         ]);
 
-        return $data->toJson();
+        return ($since && $until) == null ? $data->toJson() : $data;
     }
 
     public function institutionType ($investigators) {
@@ -440,8 +451,15 @@ class InvestigatorController extends Controller {
         return $newArray;
     }
 
-    public function profile(){
-        $profiles = InvestigatorProfile::get();
+    public function profile ($since = null, $until = null) {
+        // Filtrar por fechas para los reportes
+        if (!($since && $until) == null) {
+            $profiles = InvestigatorProfile::where('fecha_creacion', '>=', $since)
+                                            ->where('fecha_creacion', '<=', Carbon::parse($until)->addDay())
+                                            ->get();
+        } else {
+            $profiles = InvestigatorProfile::get();
+        }
         $profileInvestigations = ProfileInvestigation::get();
         $line = InvestigationLine::get();
         $times = InvestigationTime::get();
@@ -533,11 +551,18 @@ class InvestigatorController extends Controller {
             "investigations_time"=>$groupTime
         ]);
         
-        return $data->toJson();
+        return ($since && $until) == null ? $data->toJson() : $data;
     }
 
-    public function current () {
-        $investigation_current = ActualInvestigation::get();
+    public function current ($since = null, $until = null) {
+        // Filtrar por fechas para los reportes
+        if (!($since && $until) == null) {
+            $investigation_current = ActualInvestigation::where('fecha_registro', '>=', $since)
+                                            ->where('fecha_registro', '<=', Carbon::parse($until)->addDay())
+                                            ->get();
+        } else {
+            $investigation_current = ActualInvestigation::get();
+        }
         $institutionsType = InstitutionType::get();
         $types = InvestigationType::get();
         $line = InvestigationLine::get();
@@ -630,7 +655,7 @@ class InvestigatorController extends Controller {
             "investigations_time" =>$groupTime
         ]);
 
-        return $data->toJson();
+        return ($since && $until) == null ? $data->toJson() : $data;
     }
 
     public function searchMunicipality ($state_id) {
@@ -723,7 +748,7 @@ class InvestigatorController extends Controller {
         return $data->toJson();
     }
 
-    public function allMunicipalities (Satate $state)
+    public function allMunicipalities (State $state)
     {
         $groupMunicipality = collect();
         foreach ($state->municipalities as $muni) {

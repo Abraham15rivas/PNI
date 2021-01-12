@@ -13,6 +13,11 @@ Route::prefix('statistics')->group(function () {
     Route::get('/investigators/parish/{municipality_id?}','InvestigatorController@searchParish');
 });
 
+Route::prefix('reports')->group(function () {
+    Route::post('/pdf', 'ReportController@pdf');
+    Route::delete('/delete/pdf/{name}', 'ReportController@deleteReport');
+});
+
 Route::get('', function () {
     return view('layouts.app');
 });
@@ -21,7 +26,7 @@ Route::get('home', function () {
     return view('layouts.app');
 });
 
-Route::get('researcher', function () {
+Route::get('investigadores', function () {
     return view('layouts.app');
 });
 
@@ -37,3 +42,6 @@ Route::get('currentResearch', function () {
     return view('layouts.app');
 });
 
+Route::get('reports', function () {
+    return view('layouts.app');
+});

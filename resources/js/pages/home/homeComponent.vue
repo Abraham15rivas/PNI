@@ -24,13 +24,10 @@
     padding-right: 50px;
     font-family: "Nunito", Times, serif;
 }
-
 .imagen-portada{ width: 400px; }
-
 .section-imagen{
     display: flex;
     align-items: center;
     height: 40vh;
 }
-
 </style>

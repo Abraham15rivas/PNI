@@ -9,12 +9,14 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+Vue.component('loader', require('./components/loader.vue').default);
+
 Vue.component('header-vue', require('./components/header/header.vue').default);
-Vue.component('line-charts', require('./components/line/line.vue').default);
-Vue.component('doughnut-charts', require('./components/doughnut/doughnut.vue').default);
-Vue.component('pie-charts', require('./components/pie/pie.vue').default);
-Vue.component('horizontalBar-charts', require('./components/horizontalBar/horizontalBar.vue').default);
-Vue.component('bar-charts', require('./components/bar/bar.vue').default);
+Vue.component('line-charts', require('./components/charts/line/line.vue').default);
+Vue.component('doughnut-charts', require('./components/charts/doughnut/doughnut.vue').default);
+Vue.component('pie-charts', require('./components/charts/pie/pie.vue').default);
+Vue.component('horizontalBar-charts', require('./components/charts/horizontalBar/horizontalBar.vue').default);
+Vue.component('bar-charts', require('./components/charts/bar/bar.vue').default);
 
 import homeComponent from './pages/home/homeComponent';
 import researcherComponent from './pages/researcher/researcherComponent';
@@ -56,7 +58,6 @@ const router = new VueRouter({
     ],
     mode: 'history'
 })
-
 
 const app = new Vue({
     el: '#app',

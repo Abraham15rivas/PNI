@@ -1911,10 +1911,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bar/bar.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/bar/bar.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/charts/bar/bar.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/charts/bar/bar.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1942,10 +1942,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/doughnut/doughnut.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/doughnut/doughnut.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/charts/doughnut/doughnut.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/charts/doughnut/doughnut.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1956,6 +1956,99 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DoughnutChart",
   "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Doughnut"],
+  props: {
+    chartdata: {
+      type: Object,
+      "default": null
+    },
+    options: {
+      type: Object,
+      "default": null
+    }
+  },
+  mounted: function mounted() {
+    this.renderChart(this.chartdata, this.options);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/charts/horizontalBar/horizontalBar.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/charts/horizontalBar/horizontalBar.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "HorizontalBar",
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["HorizontalBar"],
+  props: {
+    chartdata: {
+      type: Object,
+      "default": null
+    },
+    options: {
+      type: Object,
+      "default": null
+    }
+  },
+  mounted: function mounted() {
+    this.renderChart(this.chartdata, this.options);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/charts/line/line.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/charts/line/line.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "LineChart",
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Line"],
+  props: {
+    chartdata: {
+      type: Object,
+      "default": null
+    },
+    options: {
+      type: Object,
+      "default": null
+    }
+  },
+  mounted: function mounted() {
+    this.renderChart(this.chartdata, this.options);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/charts/pie/pie.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/charts/pie/pie.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "PieChart",
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Pie"],
   props: {
     chartdata: {
       type: Object,
@@ -2096,94 +2189,43 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/horizontalBar/horizontalBar.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/horizontalBar/horizontalBar.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loader.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/loader.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "HorizontalBar",
-  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["HorizontalBar"],
-  props: {
-    chartdata: {
-      type: Object,
-      "default": null
-    },
-    options: {
-      type: Object,
-      "default": null
-    }
+  data: function data() {
+    return {
+      load: false
+    };
   },
   mounted: function mounted() {
-    this.renderChart(this.chartdata, this.options);
-  }
-});
+    var _this = this;
 
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/line/line.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/line/line.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "LineChart",
-  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Line"],
-  props: {
-    chartdata: {
-      type: Object,
-      "default": null
-    },
-    options: {
-      type: Object,
-      "default": null
-    }
-  },
-  mounted: function mounted() {
-    this.renderChart(this.chartdata, this.options);
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pie/pie.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pie/pie.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "PieChart",
-  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Pie"],
-  props: {
-    chartdata: {
-      type: Object,
-      "default": null
-    },
-    options: {
-      type: Object,
-      "default": null
-    }
-  },
-  mounted: function mounted() {
-    this.renderChart(this.chartdata, this.options);
+    setTimeout(function () {
+      return _this.load = true;
+    }, 0);
+    setTimeout(function () {
+      return _this.load = false;
+    }, 7000);
   }
 });
 
@@ -2292,8 +2334,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           radius: 20
         }
       },
-      backgroundColor: ['rgba(41, 98, 255, 0.5)', 'rgba(98, 0, 234, 0.5)', 'rgba(0, 191, 165, 0.5)', 'rgba(230, 74, 25, 0.5)', 'rgba(66, 66, 66, 0.5)', 'rgba(197, 17, 98, 0.5)', 'rgba(255, 214, 0, 0.5)', 'rgba(183, 28, 28, 0.5)'],
-      borderColor: ['rgba(41, 98, 255, 1)', 'rgba(98, 0, 234, 1)', 'rgba(0, 191, 165, 1)', 'rgba(230, 74, 25, 1)', 'rgba(66, 66, 66, 1)', 'rgba(197, 17, 98, 1)', 'rgba(255, 214, 0, 1)', 'rgba(183, 28, 28, 1)'],
+      backgroundColor: ['rgba(41, 98, 255, .5)', 'rgba(98, 0, 234, .5)', 'rgba(0, 191, 165, .5)', 'rgba(230, 74, 25, .5)', 'rgba(66, 66, 66, .5)', 'rgba(197, 17, 98, .5)', 'rgba(255, 214, 0, .5)', 'rgba(183, 28, 28, .5)', 'rgba(63, 191, 63, .5)', 'rgba(59,18,98,.5)', 'rgba(59,255,255, .5)'],
+      borderColor: ['rgba(41, 98, 255, 1)', 'rgba(98, 0, 234, 1)', 'rgba(0, 191, 165, 1)', 'rgba(230, 74, 25, 1)', 'rgba(66, 66, 66, 1)', 'rgba(197, 17, 98, 1)', 'rgba(255, 214, 0, 1)', 'rgba(183, 28, 28, 1)', 'rgba(63, 191, 63, 1)', 'rgba(59,18,98,1)', 'rgba(59,255,255, 1)'],
       total_investigation: 0,
       //Group Institution
       institution: {},
@@ -2604,9 +2646,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      load: false,
       // Opciones Predefinidas
       options: {
         legend: {
@@ -2660,7 +2704,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               url = 'statistics/investigators/profile';
               axios.get(url).then(function (res) {
                 if (res.statusText === "OK") {
-                  // console.log(res.data);
                   //Cantidad de Perfil del investigador
                   _this.profileResearcher = res.data.total_profiles;
                   _this.show.profileResearcher = _this.profileResearcher ? true : false; //Cantidad de Perfil del investigacion
@@ -2818,10 +2861,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      typeReport: '',
+      field: false,
       loadSelect: true,
       loadDate: false,
       ready: false,
@@ -2830,67 +2882,108 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       since: "",
       until: "",
       dateActual: moment__WEBPACK_IMPORTED_MODULE_1___default()().format('YYYY-MM-DD'),
-      dateMin: "2018-02-02",
+      dateMin: "",
       readySelectedDate: false,
       typeQuery: 0,
       routeName: ""
     };
   },
   methods: {
-    sendRanges: function sendRanges() {
+    dateMinima: function dateMinima(value) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var url, params, response, data;
+        var url, response, data;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                url = "reports/pdf";
-                params = {
-                  typeQuery: _this.typeQuery,
-                  since: _this.since,
-                  until: _this.until
-                };
-                _context.next = 5;
-                return axios.post(url, params);
+                url = "reports/date_min/".concat(value);
+                _context.next = 4;
+                return axios.get(url);
 
-              case 5:
+              case 4:
                 response = _context.sent;
                 data = response.data;
 
                 if (data) {
-                  _this.ready = true;
-                  _this.routeName = data;
-                  _this.valueDoc = "/storage/pdf/".concat(data);
+                  _this.dateMin = data;
                 } else {
-                  alert("Error al enviar");
-                  _this.ready = false;
+                  console.log('Error', data);
                 }
 
-                _context.next = 13;
+                _context.next = 12;
                 break;
 
-              case 10:
-                _context.prev = 10;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](0);
                 console.log(_context.t0);
 
-              case 13:
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 10]]);
+        }, _callee, null, [[0, 9]]);
+      }))();
+    },
+    sendRanges: function sendRanges() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var url, params, response, data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                url = "reports/create";
+                params = {
+                  typeReport: _this2.typeReport,
+                  typeQuery: _this2.typeQuery,
+                  since: _this2.since,
+                  until: _this2.until
+                };
+                _context2.next = 5;
+                return axios.post(url, params);
+
+              case 5:
+                response = _context2.sent;
+                data = response.data;
+
+                if (data) {
+                  _this2.ready = true;
+                  _this2.routeName = data;
+                  _this2.valueDoc = "/storage/pdf/".concat(data);
+                } else {
+                  alert("Error al enviar");
+                  _this2.ready = false;
+                }
+
+                _context2.next = 13;
+                break;
+
+              case 10:
+                _context2.prev = 10;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+
+              case 13:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 10]]);
       }))();
     },
     download: function download() {
-      var _this2 = this;
+      var _this3 = this;
 
       setTimeout(function () {
         try {
-          var url = "reports/delete/pdf/".concat(_this2.routeName);
+          var url = "reports/delete/pdf/".concat(_this3.routeName);
           var response = axios["delete"](url).then(function (response) {
             var data = response.data;
 
@@ -2917,17 +3010,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.readySelectedDate = true;
       }
     },
-    ranges: function ranges() {
-      if (this.ranges == "date") {
+    typeQuery: function typeQuery() {
+      if (this.typeQuery != 0) {
         this.loadSelect = false;
         this.loadDate = true;
-        this.validateDateNow;
+        this.dateMinima(this.typeQuery);
       } else {
         this.loadSelect = true;
         this.loadDate = false;
         this.readySelectedDate = false;
       }
     }
+  },
+  mounted: function mounted() {
+    this.field = true;
   }
 });
 
@@ -3024,6 +3120,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3036,31 +3134,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           radius: 20
         }
       },
-      backgroundColor: ['rgba(41, 98, 255, 0.5)', 'rgba(98, 0, 234, 0.5)', 'rgba(0, 191, 165, 0.5)', 'rgba(230, 74, 25, 0.5)', 'rgba(66, 66, 66, 0.5)', 'rgba(197, 17, 98, 0.5)', 'rgba(255, 214, 0, 0.5)', 'rgba(183, 28, 28, 0.5)'],
-      borderColor: ['rgba(41, 98, 255, 1)', 'rgba(98, 0, 234, 1)', 'rgba(0, 191, 165, 1)', 'rgba(230, 74, 25, 1)', 'rgba(66, 66, 66, 1)', 'rgba(197, 17, 98, 1)', 'rgba(255, 214, 0, 1)', 'rgba(183, 28, 28, 1)'],
-
-      /*
-          rgba(41, 98, 255)   Violeta
-          rgba(98, 0, 234)    Azul
-          rgba(0, 191, 165)   Turquesa
-          rgba(66, 66, 66)    Gris
-          rgba(197, 17, 98)   Fucsia
-          rgba(230, 74, 25)   Naranja
-          rgba(255, 214, 0)   Amarillo
-          rgba(183, 28, 28)   Rojo
-      */
-      //Grupo de institucion 
+      backgroundColor: ['rgba(41, 98, 255, .5)', 'rgba(98, 0, 234, .5)', 'rgba(0, 191, 165, .5)', 'rgba(230, 74, 25, .5)', 'rgba(66, 66, 66, .5)', 'rgba(197, 17, 98, .5)', 'rgba(255, 214, 0, .5)', 'rgba(183, 28, 28, .5)', 'rgba(63, 191, 63, .5)', 'rgba(59,18,98, .5)', 'rgba(59,255,255, .5)', 'rgba(255,163,0,.5)'],
+      borderColor: ['rgba(41, 98, 255, 1)', //violeta   
+      'rgba(98, 0, 234, 1)', //azul  
+      'rgba(0, 191, 165, 1)', //turquesa
+      'rgba(230, 74, 25, 1)', //gris
+      'rgba(66, 66, 66, 1)', //fucsia
+      'rgba(197, 17, 98, 1)', //naranja
+      'rgba(255, 214, 0, 1)', //amarillo
+      'rgba(183, 28, 28, 1)', //rojo
+      'rgba(63, 191, 63, 1)', 'rgba(59,18,98,1)', 'rgba(59,255,255, 1)', 'rgba(255,163,0,1)'],
       institution: {},
+      //Grupo de institucion 
       loadedIns: false,
-      //Grupo de Interes
       interest: {},
+      //Grupo de Interes
       dataInterest: {},
       loadedInt: false,
-      //Grupo de Interes
       actualInt: {},
+      //Grupo de Interes
       loadedAct: false,
-      //Como investiga
       modeInv: {},
+      //Como investiga
       loadedModeInv: false
     };
   },
@@ -3165,7 +3260,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         labels: labels,
         datasets: [{
           data: info,
-          label: 'Cantidad de Investigadores',
           backgroundColor: this.backgroundColor,
           borderColor: this.borderColor,
           hoverBackgroundColor: this.borderColor,
@@ -3212,6 +3306,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3369,13 +3478,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
+    var _ref;
+
+    return _ref = {
       total_investigators: "",
       investigators_mens: "",
       investigators_womens: "",
-      datacollection: {},
       datacollectionn: {},
-      dataStates: [],
       dataStates2: [],
       dataStatesAge: [],
       dataMunicipalities: [],
@@ -3384,119 +3493,112 @@ __webpack_require__.r(__webpack_exports__);
       averageAge: [],
       loading: true,
       edadGraph: [],
-      selectedState: 0,
-      selectedStateAge: 0,
-      selectedMunicipality: 0,
-      proFeme: '',
-      proMasc: '',
-      proTotal: '',
-      minFeme: '',
-      minMasc: '',
-      minTotal: '',
-      maxFeme: '',
-      maxMasc: '',
-      maxTotal: '',
-      show: {
-        dataAge: false,
-        dataState: false,
-        dataStateAge: false
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        scales: {
-          yAxes: [{
-            ticks: {
-              suggestedMin: 0,
-              stepSize: 1
-            }
-          }]
-        }
+      load: false,
+      investigators: {},
+      //render investigadores
+      inv: {},
+      //data investigators
+      datacollection: {},
+      //render chart states
+      dataStates: []
+    }, _defineProperty(_ref, "dataMunicipalities", []), _defineProperty(_ref, "dataParish", []), _defineProperty(_ref, "selectedState", 0), _defineProperty(_ref, "selectedStateAge", 0), _defineProperty(_ref, "selectedMunicipality", 0), _defineProperty(_ref, "profesions", []), _defineProperty(_ref, "averageAge", []), _defineProperty(_ref, "rangeAges", {}), _defineProperty(_ref, "genero", {}), _defineProperty(_ref, "av", {}), _defineProperty(_ref, "promedios", {}), _defineProperty(_ref, "show", {
+      dataAge: false,
+      dataState: false,
+      dataStateAge: false
+    }), _defineProperty(_ref, "options", {
+      responsive: true,
+      maintainAspectRatio: true,
+      scales: {
+        yAxes: [{
+          ticks: {
+            suggestedMin: 0,
+            stepSize: 1
+          }
+        }]
       }
-    };
+    }), _ref;
   },
   mounted: function mounted() {
-    this.loading = true;
-    this.totalInvestigators();
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var url;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              url = 'statistics/investigators';
+              _this.load = true;
+              axios.get(url).then(function (res) {
+                _this.investigators = _this.totalInvestigators(res.data);
+                _this.rangeAges = _this.rangeAge(res.data.groupRangeAge);
+                _this.promedios = _this.averageAges(res.data.groupAverageAge); // this.genero  = this.stateGenero(res.data.groupAge);
+
+                _this.profesions = _this.groupInv(res.data.groupProfesion, 'profesion');
+                _this.dataStatesAge = res.data.groupAge;
+                var data = res.data.groupStates;
+                var nameStates = new Array();
+                var num = new Array();
+
+                if (data) {
+                  data.forEach(function (element) {
+                    nameStates.push(element.estado);
+                    num.push(element.total);
+                  });
+                  _this.dataStates = data;
+                  _this.dataStates2 = data;
+                }
+
+                _this.datacollection = {
+                  labels: nameStates,
+                  datasets: [{
+                    label: 'Total investigadores por estado',
+                    backgroundColor: '#1976d2',
+                    hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                    data: num
+                  }]
+                };
+                _this.show.dataState = true;
+                _this.load = false;
+              });
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   methods: {
-    totalInvestigators: function totalInvestigators() {
-      var _this = this;
+    totalInvestigators: function totalInvestigators(data) {
+      this.inv.total_inv = data.total_investigators; //TOTAL DE INVESTIGADORES
 
-      var url = 'statistics/investigators';
-      axios.get(url).then(function (res) {
-        _this.total_investigators = res.data.total_investigators; //TOTAL DE INVESTIGADORES
+      this.inv.inv_mens = data.investigators_mens; //TOTAL DE INVESTIGADORES HOMBRES
 
-        _this.investigators_mens = res.data.investigators_mens; //TOTAL DE INVESTIGADORES HOMBRES
+      this.inv.inv_womens = data.investigators_womens; //TOTAL DE INVESTIGADORAS                
 
-        _this.investigators_womens = res.data.investigators_womens; //TOTAL DE INVESTIGADORAS   
-
-        var states = res.data.groupStates;
-        var nameStates = new Array();
-        var num = new Array();
-
-        if (states) {
-          states.forEach(function (element) {
-            nameStates.push(element.estado);
-            num.push(element.total);
-          });
-          _this.dataStates = states;
-          _this.dataStates2 = states;
-        }
-
-        _this.datacollection = {
-          labels: nameStates,
-          datasets: [{
-            label: 'Total investigadores por estado',
-            backgroundColor: '#1976d2',
-            data: num
-          }]
-        }; //Grafica de 
-
-        _this.profesions = _this.groupInv(res.data.groupProfesion, 'profesion');
-        _this.dataStatesAge = res.data.groupAge;
-        var rangeAge = res.data.groupRangeAge;
-        var range = new Array();
-        var totalRange = new Array();
-
-        if (rangeAge) {
-          rangeAge.forEach(function (element) {
-            range.push(element.titulo);
-            totalRange.push(element.total);
-          });
-        }
-
-        _this.datacollectionn = {
-          labels: range,
-          datasets: [{
-            label: 'Rango de edades',
-            backgroundColor: '#1976d2',
-            data: totalRange
-          }]
-        };
-        _this.averageAge = res.data.groupAverageAge;
-        _this.proMasc = _this.averageAge.promedio.masculino;
-        _this.proFeme = _this.averageAge.promedio.femenino;
-        _this.proTotal = _this.averageAge.promedio.total;
-        _this.minMasc = _this.averageAge.minima.masculino;
-        _this.minFeme = _this.averageAge.minima.femenino;
-        _this.minTotal = _this.averageAge.minima.total;
-        _this.maxMasc = _this.averageAge.maxima.masculino;
-        _this.maxFeme = _this.averageAge.maxima.femenino;
-        _this.maxTotal = _this.averageAge.maxima.total;
-        _this.show.dataState = true;
-        _this.show.dataAge = true;
-        _this.loading = false;
-      })["catch"](function (err) {
-        console.log(err);
-      });
+      return this.inv;
+    },
+    averageAges: function averageAges(data) {
+      this.av.proMasc = data.promedio.masculino;
+      this.av.proFeme = data.promedio.femenino;
+      this.av.proTotal = data.promedio.total;
+      this.av.minMasc = data.minima.masculino;
+      this.av.minFeme = data.minima.femenino;
+      this.av.minTotal = data.minima.total;
+      this.av.maxMasc = data.maxima.masculino;
+      this.av.maxFeme = data.maxima.femenino;
+      this.av.maxTotal = data.maxima.total;
+      return this.av;
     },
     changeState: function changeState() {
       var _this2 = this;
 
-      var stateName = this.dataStates2.find(function (val) {
+      var stateName = this.dataStates.find(function (val) {
         return val.id == _this2.selectedStateAge;
       }).estado;
+      console.log("nombre", stateName);
       var arrayState = this.dataStatesAge.find(function (val) {
         return val.estado == stateName;
       });
@@ -3513,16 +3615,38 @@ __webpack_require__.r(__webpack_exports__);
         this.show.dataStateAge = true;
       }
     },
+    rangeAge: function rangeAge(data) {
+      var range = [];
+      var totalRange = [];
+
+      if (data) {
+        data.forEach(function (element) {
+          range.push(element.titulo);
+          totalRange.push(element.total);
+        });
+      }
+
+      var dataCollection = {
+        labels: range,
+        datasets: [{
+          label: 'Rango de edades',
+          backgroundColor: '#1976d2',
+          hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+          data: totalRange
+        }]
+      };
+      this.show.dataAge = true;
+      return dataCollection;
+    },
     searchMunicipalities: function searchMunicipalities() {
       var _this3 = this;
 
       this.show.dataState = false;
-      this.loading = true;
       var url = "statistics/investigators/municipality/".concat(this.selectedState);
       axios.get(url).then(function (res) {
         var municipalities = res.data.municipios;
-        var nameMunicipality = new Array();
-        var num = new Array();
+        var nameMunicipality = [];
+        var num = [];
 
         if (municipalities) {
           municipalities.forEach(function (element) {
@@ -3539,11 +3663,11 @@ __webpack_require__.r(__webpack_exports__);
               return v.id == _this3.selectedState;
             }).estado + ' por Municipios',
             backgroundColor: '#1976d2',
+            hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
             data: num
           }]
         };
         _this3.show.dataState = true;
-        _this3.loading = false;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -3552,12 +3676,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       this.show.dataState = false;
-      this.loading = true;
       var url = "statistics/investigators/parish/".concat(this.selectedMunicipality);
       axios.get(url).then(function (res) {
         var parish = res.data.parroquias;
-        var nameParish = new Array();
-        var num = new Array();
+        var nameParish = [];
+        var num = [];
 
         if (parish) {
           parish.forEach(function (element) {
@@ -3574,11 +3697,11 @@ __webpack_require__.r(__webpack_exports__);
               return v.id == _this4.selectedMunicipality;
             }).municipio + ' por Parroquias',
             backgroundColor: '#1976d2',
+            hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
             data: num
           }]
         };
         _this4.show.dataState = true;
-        _this4.loading = false;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -3608,8 +3731,8 @@ __webpack_require__.r(__webpack_exports__);
         data.datasets.push({
           data: info,
           label: 'Total',
-          backgroundColor: 'rgba(66, 66, 66, 0.5)',
-          borderColor: 'rgba(66, 66, 66, 1)',
+          backgroundColor: 'rgba(66, 66, 66, 1)',
+          borderColor: '#000',
           hoverBackgroundColor: 'rgba(66, 66, 66, 1)',
           borderWidth: 1,
           hoverBorderWidth: 2
@@ -3619,16 +3742,14 @@ __webpack_require__.r(__webpack_exports__);
       if (female.length > 0) data.datasets.push({
         data: female,
         label: 'Femenino',
-        backgroundColor: 'rgba(255, 214, 0, 0.5)',
-        borderColor: 'rgba(255, 214, 0, 1)',
-        hoverBackgroundColor: 'rgba(255, 214, 0, 1)',
+        backgroundColor: '#EA7CBB',
         borderWidth: 1,
         hoverBorderWidth: 2
       });
       if (male.length > 0) data.datasets.push({
         data: male,
         label: 'Masculino',
-        backgroundColor: 'rgba(41, 98, 255, 0.5)',
+        backgroundColor: '#1E88E5',
         borderColor: 'rgba(41, 98, 255, 1)',
         hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
         borderWidth: 1,
@@ -24232,6 +24353,25 @@ return src;
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loader.vue?vue&type=style&index=0&lang=scss&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/loader.vue?vue&type=style&index=0&lang=scss& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "#preloader {\n  background-color: #162531;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1000;\n}\n#loader {\n  display: block;\n  position: relative;\n  left: 50%;\n  top: 50%;\n  width: 150px;\n  height: 150px;\n  margin: -75px 0 0 -75px;\n  border-radius: 50%;\n  border: 3px solid transparent;\n  border-top-color: #1e98d4;\n  -webkit-animation: spin 2s linear infinite;\n  animation: spin 2s linear infinite;\n}\n#loader:before {\n  content: \"\";\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  right: 5px;\n  bottom: 5px;\n  border-radius: 50%;\n  border: 3px solid transparent;\n  border-top-color: #2a92d0;\n  -webkit-animation: spin 3s linear infinite;\n  animation: spin 3s linear infinite;\n}\n#loader:after {\n  content: \"\";\n  position: absolute;\n  top: 15px;\n  left: 15px;\n  right: 15px;\n  bottom: 15px;\n  border-radius: 50%;\n  border: 3px solid transparent;\n  border-top-color: #507cbe;\n  -webkit-animation: spin 1.5s linear infinite;\n  animation: spin 1.5s linear infinite;\n}\nh5.text {\n  display: inline-block;\n  position: relative;\n  top: 50%;\n  left: 45%;\n  transform: translate(-50%, -50%);\n  color: #fff;\n}\n.load-icon {\n  display: inline-block;\n  position: relative;\n  top: 40%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  color: #fff;\n}\n@-webkit-keyframes spin {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n@keyframes spin {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-material/dist/vue-material.min.css":
 /*!*********************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-material/dist/vue-material.min.css ***!
@@ -24339,7 +24479,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.margin-x{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.margin-x{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\n.td-title{\r\n    color: #1E88E5;\r\n    cursor: pointer;\n}\n.td-title:hover{ color: #000\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -24358,7 +24498,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nhr[data-v-64b339f7]{ width: 100%\n}\n.md-button[data-v-64b339f7], .md-button-clean[data-v-64b339f7]{\r\n    background-color: white;\n}\n.card-icon[data-v-64b339f7] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\n.margin-x[data-v-64b339f7]{\r\n    margin: 0 25px;\r\n    padding-top: 32px;\n}\n.size-img[data-v-64b339f7]{ \r\n    width: 100px; \r\n    height: 100px;\n}\n.color-w[data-v-64b339f7] { color: #EA5771\n}\n.color-m[data-v-64b339f7]{ color:#1E88E5}\n@media (max-width: 320px) {\n.card-icon[data-v-64b339f7]{ display: none;\n}\n}\r\n", ""]);
+exports.push([module.i, "\nhr[data-v-64b339f7]{ width: 100%\n}\n.md-button[data-v-64b339f7], .md-button-clean[data-v-64b339f7]{ background-color: white;\n}\n.card-icon[data-v-64b339f7] {\n    background: #e3f2fd;\n    display: flex;\n    align-items: center;\n    padding: 0px 8px 0px 16px;\n}\n.margin-x[data-v-64b339f7]{\n    margin: 0 25px;\n    padding-top: 32px;\n}\n.size-img[data-v-64b339f7]{ \n    width: 100px; \n    height: 100px;\n}\n.color-w[data-v-64b339f7] { color: #EA5771\n}\n.color-m[data-v-64b339f7]{ color:#1E88E5}\n@media (max-width: 320px) {\n.card-icon[data-v-64b339f7]{ display: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -77475,6 +77615,36 @@ try {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loader.vue?vue&type=style&index=0&lang=scss&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/loader.vue?vue&type=style&index=0&lang=scss& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./loader.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loader.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/header/header.vue?vue&type=style&index=0&id=62e37494&scoped=true&lang=css&":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/header/header.vue?vue&type=style&index=0&id=62e37494&scoped=true&lang=css& ***!
@@ -78774,6 +78944,48 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loader.vue?vue&type=template&id=155ec09e&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/loader.vue?vue&type=template&id=155ec09e& ***!
+  \*********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      directives: [
+        { name: "show", rawName: "v-show", value: _vm.load, expression: "load" }
+      ],
+      attrs: { id: "preloader" }
+    },
+    [
+      _c("div", { attrs: { id: "loader" } }),
+      _vm._v(" "),
+      _c("img", {
+        staticClass: "load-icon",
+        attrs: { src: "images/buscar.svg", width: "65px", alt: "" }
+      }),
+      _vm._v(" "),
+      _c("h5", { staticClass: "text" }, [_vm._v("Cargando datos...")])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/currentResearch/currentResearchComponent.vue?vue&type=template&id=54e7490d&scoped=true&":
 /*!**************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/currentResearch/currentResearchComponent.vue?vue&type=template&id=54e7490d&scoped=true& ***!
@@ -78793,7 +79005,7 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12 m6 offset-m3 l4 offset-l4" }, [
+      _c("div", { staticClass: "col s12 m6 offset-m3" }, [
         _c("div", { staticClass: "card horizontal" }, [
           _vm._m(1),
           _vm._v(" "),
@@ -78823,7 +79035,7 @@ var render = function() {
               _vm._v(" "),
               _vm.loadedIns
                 ? _c("doughnut-charts", {
-                    attrs: { chartdata: _vm.institution }
+                    attrs: { chartdata: _vm.institution, height: 325 }
                   })
                 : _vm._e()
             ],
@@ -78844,7 +79056,7 @@ var render = function() {
               _vm._v(" "),
               _vm.loadedInvType
                 ? _c("bar-charts", {
-                    attrs: { chartdata: _vm.investigation_type }
+                    attrs: { chartdata: _vm.investigation_type, height: 325 }
                   })
                 : _vm._e()
             ],
@@ -78867,7 +79079,7 @@ var render = function() {
               _vm._v(" "),
               _vm.loadedInvLine
                 ? _c("horizontalBar-charts", {
-                    attrs: { chartdata: _vm.investigation_line, height: 250 }
+                    attrs: { chartdata: _vm.investigation_line, height: 225 }
                   })
                 : _vm._e()
             ],
@@ -79279,6 +79491,63 @@ var render = function() {
     _vm._v(" "),
     !_vm.ready
       ? _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col s12" }, [
+            _c("div", { staticClass: "card" }, [
+              _c(
+                "div",
+                { staticClass: "card-content" },
+                [
+                  _c("span", { staticClass: "card-title center" }, [
+                    _vm._v("Seleccionar tipo de reporte")
+                  ]),
+                  _vm._v(" "),
+                  _vm.field
+                    ? _c(
+                        "md-field",
+                        [
+                          _c("label", { attrs: { for: "state" } }),
+                          _vm._v(" "),
+                          _c(
+                            "md-select",
+                            {
+                              attrs: { name: "typeReport", id: "typeReport" },
+                              model: {
+                                value: _vm.typeReport,
+                                callback: function($$v) {
+                                  _vm.typeReport = $$v
+                                },
+                                expression: "typeReport"
+                              }
+                            },
+                            [
+                              _c("md-option", { attrs: { value: 0 } }, [
+                                _vm._v("Seleccionar un tipo")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: "PDF" } }, [
+                                _vm._v("PDF")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: "EXCEL" } }, [
+                                _vm._v("Excel")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.ready && _vm.typeReport != ""
+      ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col s12 m6" }, [
             _c("div", { staticClass: "card" }, [
               _c(
@@ -79286,42 +79555,54 @@ var render = function() {
                 { staticClass: "card-content" },
                 [
                   _c("span", { staticClass: "card-title center" }, [
-                    _vm._v("Seleccionar tipos de rangos")
+                    _vm._v("Seleccionar tipos de estadisticas")
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "md-field",
-                    [
-                      _c("label", { attrs: { for: "state" } }, [
-                        _vm._v("Rangos")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "md-select",
-                        {
-                          attrs: { name: "ranges", id: "ranges" },
-                          model: {
-                            value: _vm.ranges,
-                            callback: function($$v) {
-                              _vm.ranges = $$v
-                            },
-                            expression: "ranges"
-                          }
-                        },
+                  _vm.field
+                    ? _c(
+                        "md-field",
                         [
-                          _c("md-option", { attrs: { value: "select" } }, [
-                            _vm._v("Seleccionar un tipo")
-                          ]),
+                          _c("label", { attrs: { for: "state" } }),
                           _vm._v(" "),
-                          _c("md-option", { attrs: { value: "date" } }, [
-                            _vm._v("Fechas")
-                          ])
+                          _c(
+                            "md-select",
+                            {
+                              attrs: { name: "typeQuery", id: "typeQuery" },
+                              model: {
+                                value: _vm.typeQuery,
+                                callback: function($$v) {
+                                  _vm.typeQuery = $$v
+                                },
+                                expression: "typeQuery"
+                              }
+                            },
+                            [
+                              _c("md-option", { attrs: { value: 0 } }, [
+                                _vm._v("Seleccionar un tipo")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: 1 } }, [
+                                _vm._v("Investigadores e Investigadoras")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: 2 } }, [
+                                _vm._v("Interés de Investigación")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: 3 } }, [
+                                _vm._v("Perfil de Investigación")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: 4 } }, [
+                                _vm._v("Modulo de Investigación Actual")
+                              ])
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
-                    ],
-                    1
-                  )
+                    : _vm._e()
                 ],
                 1
               )
@@ -79342,7 +79623,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("span", { staticClass: "card-title" }, [
-                        _vm._v("No ha seleccionado ningún tipo rango")
+                        _vm._v("No ha seleccionado ningún tipo de reporte")
                       ])
                     ])
                   : _vm._e(),
@@ -79419,67 +79700,12 @@ var render = function() {
           _vm.readySelectedDate
             ? _c("div", { staticClass: "col s12 m12" }, [
                 _c("div", { staticClass: "card" }, [
-                  _c(
-                    "div",
-                    { staticClass: "card-content" },
-                    [
-                      _c("span", { staticClass: "card-title center" }, [
-                        _vm._v("Seleccionar tipos de reportes")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", { attrs: { for: "state" } }),
-                          _vm._v(" "),
-                          _c(
-                            "md-select",
-                            {
-                              attrs: { name: "typeQuery", id: "typeQuery" },
-                              model: {
-                                value: _vm.typeQuery,
-                                callback: function($$v) {
-                                  _vm.typeQuery = $$v
-                                },
-                                expression: "typeQuery"
-                              }
-                            },
-                            [
-                              _c("md-option", { attrs: { value: 0 } }, [
-                                _vm._v("Seleccionar un tipo")
-                              ]),
-                              _vm._v(" "),
-                              _c("md-option", { attrs: { value: 1 } }, [
-                                _vm._v("Investigadores e Investigadoras")
-                              ]),
-                              _vm._v(" "),
-                              _c("md-option", { attrs: { value: 2 } }, [
-                                _vm._v("Interés de Investigación")
-                              ]),
-                              _vm._v(" "),
-                              _c("md-option", { attrs: { value: 3 } }, [
-                                _vm._v("Perfil de Investigación")
-                              ]),
-                              _vm._v(" "),
-                              _c("md-option", { attrs: { value: 4 } }, [
-                                _vm._v("Modulo de Investigación Actual")
-                              ])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
                   !_vm.loadSelect
-                    ? _c("div", { staticClass: "card-footer" }, [
+                    ? _c("div", { staticClass: "card-content center" }, [
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-success right",
+                            staticClass: "btn btn-success",
                             on: { click: _vm.sendRanges }
                           },
                           [_vm._v("Solicitar reporte")]
@@ -79490,7 +79716,10 @@ var render = function() {
               ])
             : _vm._e()
         ])
-      : _c("div", { staticClass: "row" }, [
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.ready
+      ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col s12 m12" }, [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-content" }, [
@@ -79515,6 +79744,7 @@ var render = function() {
             ])
           ])
         ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -79556,6 +79786,29 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col s12 m12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-content" },
+            [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Interés de Investigación")
+              ]),
+              _vm._v(" "),
+              _vm.loadedInt
+                ? _c("line-charts", {
+                    attrs: { chartdata: _vm.interest, height: 180 }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col s12 m6" }, [
         _c("div", { staticClass: "card" }, [
           _c(
@@ -79568,7 +79821,7 @@ var render = function() {
               _vm._v(" "),
               _vm.loadedIns
                 ? _c("doughnut-charts", {
-                    attrs: { chartdata: _vm.institution }
+                    attrs: { chartdata: _vm.institution, height: 200 }
                   })
                 : _vm._e()
             ],
@@ -79584,11 +79837,13 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Interés de Investigación")
+                _vm._v("Como Investiga")
               ]),
               _vm._v(" "),
-              _vm.loadedInt
-                ? _c("line-charts", { attrs: { chartdata: _vm.interest } })
+              _vm.loadedModeInv
+                ? _c("horizontalBar-charts", {
+                    attrs: { chartdata: _vm.modeInv, height: 200 }
+                  })
                 : _vm._e()
             ],
             1
@@ -79598,7 +79853,30 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12 m6" }, [
+      _c("div", { staticClass: "col s12 m12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-content" },
+            [
+              _c("span", { staticClass: "card-title center" }, [
+                _vm._v("Investigación Actual")
+              ]),
+              _vm._v(" "),
+              _vm.loadedAct
+                ? _c("horizontalBar-charts", {
+                    attrs: { chartdata: _vm.actualInt, height: 180 }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col s12 m12" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-content" }, [
             _c("span", { staticClass: "card-title center" }, [
@@ -79613,7 +79891,9 @@ var render = function() {
                     "tbody",
                     _vm._l(_vm.dataInterest, function(item, index) {
                       return _c("tr", { key: index }, [
-                        _c("td", [_vm._v(_vm._s(item.titulo))]),
+                        _c("td", { staticClass: "td-title" }, [
+                          _vm._v(_vm._s(item.titulo))
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(item.masculino))]),
                         _vm._v(" "),
@@ -79627,50 +79907,6 @@ var render = function() {
                 : _vm._e()
             ])
           ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col s12 m6" }, [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "div",
-            { staticClass: "card-content" },
-            [
-              _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Investigación Actual")
-              ]),
-              _vm._v(" "),
-              _vm.loadedAct
-                ? _c("horizontalBar-charts", {
-                    attrs: { chartdata: _vm.actualInt }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12 m8 offset-m2" }, [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "div",
-            { staticClass: "card-content" },
-            [
-              _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Como Investiga")
-              ]),
-              _vm._v(" "),
-              _vm.loadedModeInv
-                ? _c("horizontalBar-charts", {
-                    attrs: { chartdata: _vm.modeInv, height: 250 }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
         ])
       ])
     ])
@@ -79729,363 +79965,399 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "margin-x" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12 m7" }, [
-        _c("div", { staticClass: "card horizontal" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-stacked" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("h5", { staticClass: "center-align" }, [
-                _vm._v("Total de investigadores registrados")
-              ]),
-              _vm._v(" "),
-              _c("h4", { staticClass: "center-align" }, [
-                _vm._v(_vm._s(_vm.total_investigators))
+  return _c(
+    "div",
+    { staticClass: "margin-x" },
+    [
+      _c("loader", { attrs: { load: _vm.load } }),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12 m7" }, [
+          _c("div", { staticClass: "card horizontal" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-stacked" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("h5", { staticClass: "center-align" }, [
+                  _vm._v("Total de investigadores registrados")
+                ]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "center-align" }, [
+                  _vm._v(_vm._s(_vm.investigators.total_inv))
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col s12 m5" }, [
+          _c("div", { staticClass: "card horizontal" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-stacked" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col s12 m12 xl6" }, [
+                    _c("h5", { staticClass: "center-align color-w ml-5" }, [
+                      _vm._v("Mujeres")
+                    ]),
+                    _vm._v(" "),
+                    _c("h5", { staticClass: "center-align color-w" }, [
+                      _vm._v(_vm._s(_vm.investigators.inv_womens))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col s12 m12 xl6" }, [
+                    _c("h5", { staticClass: "center-align color-m" }, [
+                      _vm._v("Hombres")
+                    ]),
+                    _vm._v(" "),
+                    _c("h5", { staticClass: "center-align color-m" }, [
+                      _vm._v(_vm._s(_vm.investigators.inv_mens))
+                    ])
+                  ])
+                ])
               ])
             ])
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col s12 m5" }, [
-        _c("div", { staticClass: "card horizontal" }, [
-          _vm._m(2),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-stacked" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col s12 m12 xl6" }, [
-                  _c("h5", { staticClass: "center-align color-w ml-5" }, [
-                    _vm._v("Mujeres")
-                  ]),
-                  _vm._v(" "),
-                  _c("h5", { staticClass: "center-align color-w" }, [
-                    _vm._v(_vm._s(_vm.investigators_womens))
-                  ])
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c(
+              "div",
+              { staticClass: "card-content center" },
+              [
+                _c("span", { staticClass: "card-title" }, [
+                  _vm._v("Investigadores por rango de edad")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col s12 m12 xl6" }, [
-                  _c("h5", { staticClass: "center-align color-m" }, [
-                    _vm._v("Hombres")
-                  ]),
-                  _vm._v(" "),
-                  _c("h5", { staticClass: "center-align color-m" }, [
-                    _vm._v(_vm._s(_vm.investigators_mens))
-                  ])
-                ])
-              ])
-            ])
+                _vm.show.dataAge
+                  ? _c("bar-charts", {
+                      attrs: { chartdata: _vm.rangeAges, height: 180 }
+                    })
+                  : _vm._e()
+              ],
+              1
+            )
           ])
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "div",
-            { staticClass: "card-content center" },
-            [
-              _c("span", { staticClass: "card-title" }, [
-                _vm._v("Investigadores por rango de edad")
-              ]),
-              _vm._v(" "),
-              _vm.show.dataAge
-                ? _c("bar-charts", {
-                    attrs: { chartdata: _vm.datacollectionn, height: 180 }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "div",
-            { staticClass: "card-content center" },
-            [
-              _c("span", { staticClass: "card-title" }, [
-                _vm._v("Investigadores por estados")
-              ]),
-              _vm._v(" "),
-              _vm.show.dataState
-                ? _c("bar-charts", {
-                    attrs: { chartdata: _vm.datacollection, height: 180 }
-                  })
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "row", staticStyle: { padding: "0px 24px" } },
-            [
-              _vm.dataStates.length > 0
-                ? _c(
-                    "div",
-                    { staticClass: "col s6" },
-                    [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", { attrs: { for: "state" } }, [
-                            _vm._v("Estados")
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "md-select",
-                            {
-                              attrs: { name: "state", id: "state" },
-                              on: {
-                                "md-selected": function($event) {
-                                  return _vm.searchMunicipalities()
-                                }
-                              },
-                              model: {
-                                value: _vm.selectedState,
-                                callback: function($$v) {
-                                  _vm.selectedState = $$v
-                                },
-                                expression: "selectedState"
-                              }
-                            },
-                            _vm._l(_vm.dataStates, function(state, index) {
-                              return _c(
-                                "md-option",
-                                { key: index, attrs: { value: state.id } },
-                                [_vm._v(_vm._s(state.estado))]
-                              )
-                            }),
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.dataMunicipalities.length > 0
-                ? _c(
-                    "div",
-                    { staticClass: "col s6" },
-                    [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", { attrs: { for: "state" } }, [
-                            _vm._v("Municipios")
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "md-select",
-                            {
-                              attrs: {
-                                name: "municipality",
-                                id: "municipality"
-                              },
-                              on: {
-                                "md-selected": function($event) {
-                                  return _vm.searchParish()
-                                }
-                              },
-                              model: {
-                                value: _vm.selectedMunicipality,
-                                callback: function($$v) {
-                                  _vm.selectedMunicipality = $$v
-                                },
-                                expression: "selectedMunicipality"
-                              }
-                            },
-                            _vm._l(_vm.dataMunicipalities, function(
-                              mun,
-                              index
-                            ) {
-                              return _c(
-                                "md-option",
-                                { key: index, attrs: { value: mun.id } },
-                                [_vm._v(_vm._s(mun.municipio))]
-                              )
-                            }),
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e()
-            ]
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "div",
-            { staticClass: "card-content center" },
-            [
-              _c("span", { staticClass: "card-title" }, [
-                _vm._v("Investigadores por Edades")
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "row", staticStyle: { padding: "0px 24px" } },
-                [
-                  _vm.dataStates.length > 0
-                    ? _c(
-                        "div",
-                        { staticClass: "col s12" },
-                        [
-                          _c(
-                            "md-field",
-                            [
-                              _c("label", { attrs: { for: "stateAge" } }, [
-                                _vm._v("Seleccione un estado")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "md-select",
-                                {
-                                  attrs: { name: "stateAge", id: "stateAge" },
-                                  on: {
-                                    "md-selected": function($event) {
-                                      return _vm.changeState()
-                                    }
-                                  },
-                                  model: {
-                                    value: _vm.selectedStateAge,
-                                    callback: function($$v) {
-                                      _vm.selectedStateAge = $$v
-                                    },
-                                    expression: "selectedStateAge"
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c(
+              "div",
+              { staticClass: "card-content center" },
+              [
+                _c("span", { staticClass: "card-title" }, [
+                  _vm._v("Investigadores por estados")
+                ]),
+                _vm._v(" "),
+                _vm.show.dataState
+                  ? _c("bar-charts", {
+                      attrs: { chartdata: _vm.datacollection, height: 180 }
+                    })
+                  : _vm._e()
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row", staticStyle: { padding: "0px 24px" } },
+              [
+                _vm.dataMunicipalities.length > 0
+                  ? _c(
+                      "div",
+                      { staticClass: "col s4" },
+                      [
+                        _c(
+                          "md-button",
+                          {
+                            staticClass: "md-primary md-raised",
+                            attrs: { onClick: "window.location.reload()" }
+                          },
+                          [_vm._v("Recargar")]
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.dataStates.length > 0
+                  ? _c(
+                      "div",
+                      { staticClass: "col s4" },
+                      [
+                        _c(
+                          "md-field",
+                          [
+                            _c("label", { attrs: { for: "state" } }, [
+                              _vm._v("Estados")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "md-select",
+                              {
+                                attrs: { name: "state", id: "state" },
+                                on: {
+                                  "md-selected": function($event) {
+                                    return _vm.searchMunicipalities()
                                   }
                                 },
-                                _vm._l(_vm.dataStates2, function(state, index) {
-                                  return _c(
-                                    "md-option",
-                                    { key: index, attrs: { value: state.id } },
-                                    [_vm._v(_vm._s(state.estado))]
-                                  )
-                                }),
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e()
-                ]
-              ),
-              _vm._v(" "),
-              _vm.show.dataStateAge
-                ? _c("bar-charts", {
-                    attrs: {
-                      chartdata: _vm.edadGraph,
-                      options: _vm.options,
-                      height: 180
-                    }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col m8 offset-m2" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-content" }, [
-            _c(
-              "table",
-              {
-                staticClass: "table table-striped table-hover responsive-table"
-              },
-              [
-                _vm._m(3),
+                                model: {
+                                  value: _vm.selectedState,
+                                  callback: function($$v) {
+                                    _vm.selectedState = $$v
+                                  },
+                                  expression: "selectedState"
+                                }
+                              },
+                              _vm._l(_vm.dataStates, function(state, index) {
+                                return _c(
+                                  "md-option",
+                                  { key: index, attrs: { value: state.id } },
+                                  [_vm._v(_vm._s(state.estado))]
+                                )
+                              }),
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("tbody", [
-                  _c("tr", [
-                    _c("td", [_vm._v("Promedio")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.proMasc))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.proFeme))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.proTotal))])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("Maxima")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.maxMasc))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.maxFeme))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.maxTotal))])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("Minima")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.minMasc))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.minFeme))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.minTotal))])
-                  ])
-                ])
+                _vm.dataMunicipalities.length > 0
+                  ? _c(
+                      "div",
+                      { staticClass: "col s4" },
+                      [
+                        _c(
+                          "md-field",
+                          [
+                            _c("label", { attrs: { for: "state" } }, [
+                              _vm._v("Municipios")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "md-select",
+                              {
+                                attrs: {
+                                  name: "municipality",
+                                  id: "municipality"
+                                },
+                                on: {
+                                  "md-selected": function($event) {
+                                    return _vm.searchParish()
+                                  }
+                                },
+                                model: {
+                                  value: _vm.selectedMunicipality,
+                                  callback: function($$v) {
+                                    _vm.selectedMunicipality = $$v
+                                  },
+                                  expression: "selectedMunicipality"
+                                }
+                              },
+                              _vm._l(_vm.dataMunicipalities, function(
+                                mun,
+                                index
+                              ) {
+                                return _c(
+                                  "md-option",
+                                  { key: index, attrs: { value: mun.id } },
+                                  [_vm._v(_vm._s(mun.municipio))]
+                                )
+                              }),
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e()
               ]
             )
           ])
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col s12" }, [
-        _c("div", { staticClass: "card card-bg" }, [
-          _c(
-            "div",
-            { staticClass: "card-content center" },
-            [
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c(
+              "div",
+              { staticClass: "card-content center" },
+              [
+                _c("span", { staticClass: "card-title" }, [
+                  _vm._v("Investigadores por Edades")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "row", staticStyle: { padding: "0px 24px" } },
+                  [
+                    _vm.dataStates.length > 0
+                      ? _c(
+                          "div",
+                          { staticClass: "col s12" },
+                          [
+                            _c(
+                              "md-field",
+                              [
+                                _c("label", { attrs: { for: "stateAge" } }, [
+                                  _vm._v("Seleccione un estado")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "md-select",
+                                  {
+                                    attrs: { name: "stateAge", id: "stateAge" },
+                                    on: {
+                                      "md-selected": function($event) {
+                                        return _vm.changeState()
+                                      }
+                                    },
+                                    model: {
+                                      value: _vm.selectedStateAge,
+                                      callback: function($$v) {
+                                        _vm.selectedStateAge = $$v
+                                      },
+                                      expression: "selectedStateAge"
+                                    }
+                                  },
+                                  _vm._l(_vm.dataStates2, function(
+                                    state,
+                                    index
+                                  ) {
+                                    return _c(
+                                      "md-option",
+                                      {
+                                        key: index,
+                                        attrs: { value: state.id }
+                                      },
+                                      [_vm._v(_vm._s(state.estado))]
+                                    )
+                                  }),
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.show.dataStateAge
+                  ? _c("bar-charts", {
+                      attrs: {
+                        chartdata: _vm.edadGraph,
+                        options: _vm.options,
+                        height: 180
+                      }
+                    })
+                  : _vm._e()
+              ],
+              1
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col m8 offset-m2" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-content center" }, [
               _c("span", { staticClass: "card-title" }, [
-                _vm._v("Investigadores por Profesión")
+                _vm._v("Promedio de edades")
               ]),
               _vm._v(" "),
-              _vm.show.dataState
-                ? _c("bar-charts", {
-                    attrs: { chartdata: _vm.profesions, height: 150 }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
+              _c(
+                "table",
+                {
+                  staticClass:
+                    "table table-striped table-hover responsive-table"
+                },
+                [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _c("tr", [
+                      _c("td", [_vm._v("Promedio")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.promedios.proMasc))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.promedios.proFeme))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.promedios.proTotal))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Maxima")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.promedios.maxMasc))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.promedios.maxFeme))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.promedios.maxTotal))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Minima")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.promedios.minMasc))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.promedios.minFeme))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.promedios.minTotal))])
+                    ])
+                  ])
+                ]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col s12" }, [
+          _c("div", { staticClass: "card card-bg" }, [
+            _c(
+              "div",
+              { staticClass: "card-content center" },
+              [
+                _c("span", { staticClass: "card-title" }, [
+                  _vm._v("Investigadores por Profesión")
+                ]),
+                _vm._v(" "),
+                _vm.show.dataState
+                  ? _c("bar-charts", {
+                      attrs: { chartdata: _vm.profesions, height: 150 }
+                    })
+                  : _vm._e()
+              ],
+              1
+            )
+          ])
         ])
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -128337,12 +128609,13 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.use(vue_material__WEBPACK_IMPORTED_MODULE_0___default.a);
 
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
+Vue.component('loader', __webpack_require__(/*! ./components/loader.vue */ "./resources/js/components/loader.vue")["default"]);
 Vue.component('header-vue', __webpack_require__(/*! ./components/header/header.vue */ "./resources/js/components/header/header.vue")["default"]);
-Vue.component('line-charts', __webpack_require__(/*! ./components/line/line.vue */ "./resources/js/components/line/line.vue")["default"]);
-Vue.component('doughnut-charts', __webpack_require__(/*! ./components/doughnut/doughnut.vue */ "./resources/js/components/doughnut/doughnut.vue")["default"]);
-Vue.component('pie-charts', __webpack_require__(/*! ./components/pie/pie.vue */ "./resources/js/components/pie/pie.vue")["default"]);
-Vue.component('horizontalBar-charts', __webpack_require__(/*! ./components/horizontalBar/horizontalBar.vue */ "./resources/js/components/horizontalBar/horizontalBar.vue")["default"]);
-Vue.component('bar-charts', __webpack_require__(/*! ./components/bar/bar.vue */ "./resources/js/components/bar/bar.vue")["default"]);
+Vue.component('line-charts', __webpack_require__(/*! ./components/charts/line/line.vue */ "./resources/js/components/charts/line/line.vue")["default"]);
+Vue.component('doughnut-charts', __webpack_require__(/*! ./components/charts/doughnut/doughnut.vue */ "./resources/js/components/charts/doughnut/doughnut.vue")["default"]);
+Vue.component('pie-charts', __webpack_require__(/*! ./components/charts/pie/pie.vue */ "./resources/js/components/charts/pie/pie.vue")["default"]);
+Vue.component('horizontalBar-charts', __webpack_require__(/*! ./components/charts/horizontalBar/horizontalBar.vue */ "./resources/js/components/charts/horizontalBar/horizontalBar.vue")["default"]);
+Vue.component('bar-charts', __webpack_require__(/*! ./components/charts/bar/bar.vue */ "./resources/js/components/charts/bar/bar.vue")["default"]);
 
 
 
@@ -128430,17 +128703,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/bar/bar.vue":
-/*!*********************************************!*\
-  !*** ./resources/js/components/bar/bar.vue ***!
-  \*********************************************/
+/***/ "./resources/js/components/charts/bar/bar.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/charts/bar/bar.vue ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _bar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bar.vue?vue&type=script&lang=js& */ "./resources/js/components/bar/bar.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _bar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bar.vue?vue&type=script&lang=js& */ "./resources/js/components/charts/bar/bar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
 
 
@@ -128461,36 +128734,36 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/bar/bar.vue"
+component.options.__file = "resources/js/components/charts/bar/bar.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/bar/bar.vue?vue&type=script&lang=js&":
-/*!**********************************************************************!*\
-  !*** ./resources/js/components/bar/bar.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************/
+/***/ "./resources/js/components/charts/bar/bar.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/charts/bar/bar.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_bar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./bar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/bar/bar.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_bar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./bar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/charts/bar/bar.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_bar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/doughnut/doughnut.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/components/doughnut/doughnut.vue ***!
-  \*******************************************************/
+/***/ "./resources/js/components/charts/doughnut/doughnut.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/charts/doughnut/doughnut.vue ***!
+  \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _doughnut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./doughnut.vue?vue&type=script&lang=js& */ "./resources/js/components/doughnut/doughnut.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _doughnut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./doughnut.vue?vue&type=script&lang=js& */ "./resources/js/components/charts/doughnut/doughnut.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
 
 
@@ -128511,22 +128784,172 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/doughnut/doughnut.vue"
+component.options.__file = "resources/js/components/charts/doughnut/doughnut.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/doughnut/doughnut.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/doughnut/doughnut.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
+/***/ "./resources/js/components/charts/doughnut/doughnut.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/charts/doughnut/doughnut.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_doughnut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./doughnut.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/doughnut/doughnut.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_doughnut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./doughnut.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/charts/doughnut/doughnut.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_doughnut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/charts/horizontalBar/horizontalBar.vue":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/charts/horizontalBar/horizontalBar.vue ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _horizontalBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./horizontalBar.vue?vue&type=script&lang=js& */ "./resources/js/components/charts/horizontalBar/horizontalBar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _horizontalBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/charts/horizontalBar/horizontalBar.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/charts/horizontalBar/horizontalBar.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/charts/horizontalBar/horizontalBar.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_horizontalBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./horizontalBar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/charts/horizontalBar/horizontalBar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_horizontalBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/charts/line/line.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/charts/line/line.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _line_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./line.vue?vue&type=script&lang=js& */ "./resources/js/components/charts/line/line.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _line_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/charts/line/line.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/charts/line/line.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/charts/line/line.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_line_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./line.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/charts/line/line.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_line_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/charts/pie/pie.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/charts/pie/pie.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _pie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pie.vue?vue&type=script&lang=js& */ "./resources/js/components/charts/pie/pie.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _pie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/charts/pie/pie.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/charts/pie/pie.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/charts/pie/pie.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./pie.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/charts/pie/pie.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -128617,28 +129040,31 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/horizontalBar/horizontalBar.vue":
-/*!*****************************************************************!*\
-  !*** ./resources/js/components/horizontalBar/horizontalBar.vue ***!
-  \*****************************************************************/
+/***/ "./resources/js/components/loader.vue":
+/*!********************************************!*\
+  !*** ./resources/js/components/loader.vue ***!
+  \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _horizontalBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./horizontalBar.vue?vue&type=script&lang=js& */ "./resources/js/components/horizontalBar/horizontalBar.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
+/* harmony import */ var _loader_vue_vue_type_template_id_155ec09e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./loader.vue?vue&type=template&id=155ec09e& */ "./resources/js/components/loader.vue?vue&type=template&id=155ec09e&");
+/* harmony import */ var _loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loader.vue?vue&type=script&lang=js& */ "./resources/js/components/loader.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _loader_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./loader.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/components/loader.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
 
 
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  _horizontalBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
-  render,
-  staticRenderFns,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _loader_vue_vue_type_template_id_155ec09e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _loader_vue_vue_type_template_id_155ec09e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -128648,122 +129074,56 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/horizontalBar/horizontalBar.vue"
+component.options.__file = "resources/js/components/loader.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/horizontalBar/horizontalBar.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/horizontalBar/horizontalBar.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************/
+/***/ "./resources/js/components/loader.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/loader.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_horizontalBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./horizontalBar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/horizontalBar/horizontalBar.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_horizontalBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./loader.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loader.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/line/line.vue":
-/*!***********************************************!*\
-  !*** ./resources/js/components/line/line.vue ***!
-  \***********************************************/
-/*! exports provided: default */
+/***/ "./resources/js/components/loader.vue?vue&type=style&index=0&lang=scss&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/loader.vue?vue&type=style&index=0&lang=scss& ***!
+  \******************************************************************************/
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _line_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./line.vue?vue&type=script&lang=js& */ "./resources/js/components/line/line.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  _line_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
-  render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/line/line.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_loader_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./loader.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loader.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_loader_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_loader_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_loader_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_loader_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_loader_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ "./resources/js/components/line/line.vue?vue&type=script&lang=js&":
-/*!************************************************************************!*\
-  !*** ./resources/js/components/line/line.vue?vue&type=script&lang=js& ***!
-  \************************************************************************/
-/*! exports provided: default */
+/***/ "./resources/js/components/loader.vue?vue&type=template&id=155ec09e&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/loader.vue?vue&type=template&id=155ec09e& ***!
+  \***************************************************************************/
+/*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_line_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./line.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/line/line.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_line_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_loader_vue_vue_type_template_id_155ec09e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./loader.vue?vue&type=template&id=155ec09e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loader.vue?vue&type=template&id=155ec09e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_loader_vue_vue_type_template_id_155ec09e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/***/ }),
-
-/***/ "./resources/js/components/pie/pie.vue":
-/*!*********************************************!*\
-  !*** ./resources/js/components/pie/pie.vue ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _pie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pie.vue?vue&type=script&lang=js& */ "./resources/js/components/pie/pie.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_loader_vue_vue_type_template_id_155ec09e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  _pie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
-  render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/pie/pie.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/pie/pie.vue?vue&type=script&lang=js&":
-/*!**********************************************************************!*\
-  !*** ./resources/js/components/pie/pie.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./pie.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pie/pie.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

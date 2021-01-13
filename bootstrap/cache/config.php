@@ -1,16 +1,16 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'Laravel',
+    'name' => 'PNI',
     'env' => 'local',
     'debug' => true,
     'url' => 'http://localhost',
     'asset_url' => NULL,
-    'timezone' => 'UTC',
+    'timezone' => 'America/Caracas',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:ntWnkSWVaUUyNrf1GRS6RKfYNeWXmjqJksSe9UoDPpk=',
+    'key' => 'base64:14MCI3j5pgFdPuEmqkIWyMzF0F8LtQYmEPH1EzAch0o=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -36,10 +36,11 @@
       19 => 'Illuminate\\Translation\\TranslationServiceProvider',
       20 => 'Illuminate\\Validation\\ValidationServiceProvider',
       21 => 'Illuminate\\View\\ViewServiceProvider',
-      22 => 'App\\Providers\\AppServiceProvider',
-      23 => 'App\\Providers\\AuthServiceProvider',
-      24 => 'App\\Providers\\EventServiceProvider',
-      25 => 'App\\Providers\\RouteServiceProvider',
+      22 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+      23 => 'App\\Providers\\AppServiceProvider',
+      24 => 'App\\Providers\\AuthServiceProvider',
+      25 => 'App\\Providers\\EventServiceProvider',
+      26 => 'App\\Providers\\RouteServiceProvider',
     ),
     'aliases' => 
     array (
@@ -79,6 +80,7 @@
       'URL' => 'Illuminate\\Support\\Facades\\URL',
       'Validator' => 'Illuminate\\Support\\Facades\\Validator',
       'View' => 'Illuminate\\Support\\Facades\\View',
+      'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
   'auth' => 
@@ -177,7 +179,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => '/var/www/html/PNI/storage/framework/cache/data',
+        'path' => 'C:\\laragon\\www\\PNI\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -216,7 +218,7 @@
         'endpoint' => NULL,
       ),
     ),
-    'prefix' => 'laravel_cache',
+    'prefix' => 'pni_cache',
   ),
   'cors' => 
   array (
@@ -265,7 +267,7 @@
         'host' => '127.0.0.1',
         'port' => '5432',
         'database' => 'pni',
-        'username' => 'desarrollo',
+        'username' => 'postgres',
         'password' => '123456',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
@@ -285,7 +287,7 @@
         'host' => '127.0.0.1',
         'port' => '5432',
         'database' => 'pni',
-        'username' => 'desarrollo',
+        'username' => 'postgres',
         'password' => '123456',
         'charset' => 'utf8',
         'prefix' => '',
@@ -300,7 +302,7 @@
         'host' => '127.0.0.1',
         'port' => '5432',
         'database' => 'pni',
-        'username' => 'desarrollo',
+        'username' => 'postgres',
         'password' => '123456',
         'charset' => 'utf8',
         'prefix' => '',
@@ -314,7 +316,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'laravel_database_',
+        'prefix' => 'pni_database_',
       ),
       'default' => 
       array (
@@ -334,6 +336,29 @@
       ),
     ),
   ),
+  'dompdf' => 
+  array (
+    'show_warnings' => false,
+    'orientation' => 'portrait',
+    'defines' => 
+    array (
+      'font_dir' => 'C:\\laragon\\www\\PNI\\storage\\fonts/',
+      'font_cache' => 'C:\\laragon\\www\\PNI\\storage\\fonts/',
+      'temp_dir' => 'C:\\Users\\abrah\\AppData\\Local\\Temp',
+      'chroot' => 'C:\\laragon\\www\\PNI',
+      'enable_font_subsetting' => false,
+      'pdf_backend' => 'CPDF',
+      'default_media_type' => 'screen',
+      'default_paper_size' => 'a4',
+      'default_font' => 'serif',
+      'dpi' => 96,
+      'enable_php' => false,
+      'enable_javascript' => true,
+      'enable_remote' => true,
+      'font_height_ratio' => 1.1,
+      'enable_html5_parser' => false,
+    ),
+  ),
   'filesystems' => 
   array (
     'default' => 'local',
@@ -343,12 +368,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => '/var/www/html/PNI/storage/app',
+        'root' => 'C:\\laragon\\www\\PNI\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => '/var/www/html/PNI/storage/app/public',
+        'root' => 'C:\\laragon\\www\\PNI\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -365,7 +390,7 @@
     ),
     'links' => 
     array (
-      '/var/www/html/PNI/public/storage' => '/var/www/html/PNI/storage/app/public',
+      'C:\\laragon\\www\\PNI\\public\\storage' => 'C:\\laragon\\www\\PNI\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -399,13 +424,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => '/var/www/html/PNI/storage/logs/laravel.log',
+        'path' => 'C:\\laragon\\www\\PNI\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => '/var/www/html/PNI/storage/logs/laravel.log',
+        'path' => 'C:\\laragon\\www\\PNI\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -455,7 +480,7 @@
       ),
       'emergency' => 
       array (
-        'path' => '/var/www/html/PNI/storage/logs/laravel.log',
+        'path' => 'C:\\laragon\\www\\PNI\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -504,15 +529,15 @@
     ),
     'from' => 
     array (
-      'address' => NULL,
-      'name' => 'Laravel',
+      'address' => 'hello@example.com',
+      'name' => 'Example',
     ),
     'markdown' => 
     array (
       'theme' => 'default',
       'paths' => 
       array (
-        0 => '/var/www/html/PNI/resources/views/vendor/mail',
+        0 => 'C:\\laragon\\www\\PNI\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -591,7 +616,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => '/var/www/html/PNI/storage/framework/sessions',
+    'files' => 'C:\\laragon\\www\\PNI\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -600,7 +625,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'laravel_session',
+    'cookie' => 'pni_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => NULL,
@@ -611,9 +636,9 @@
   array (
     'paths' => 
     array (
-      0 => '/var/www/html/PNI/resources/views',
+      0 => 'C:\\laragon\\www\\PNI\\resources\\views',
     ),
-    'compiled' => '/var/www/html/PNI/storage/framework/views',
+    'compiled' => 'C:\\laragon\\www\\PNI\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -644,6 +669,112 @@
     'remote_sites_path' => '',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
+  ),
+  'excel' => 
+  array (
+    'exports' => 
+    array (
+      'chunk_size' => 1000,
+      'pre_calculate_formulas' => false,
+      'strict_null_comparison' => false,
+      'csv' => 
+      array (
+        'delimiter' => ',',
+        'enclosure' => '"',
+        'line_ending' => '
+',
+        'use_bom' => false,
+        'include_separator_line' => false,
+        'excel_compatibility' => false,
+      ),
+      'properties' => 
+      array (
+        'creator' => '',
+        'lastModifiedBy' => '',
+        'title' => '',
+        'description' => '',
+        'subject' => '',
+        'keywords' => '',
+        'category' => '',
+        'manager' => '',
+        'company' => '',
+      ),
+    ),
+    'imports' => 
+    array (
+      'read_only' => true,
+      'ignore_empty' => false,
+      'heading_row' => 
+      array (
+        'formatter' => 'slug',
+      ),
+      'csv' => 
+      array (
+        'delimiter' => ',',
+        'enclosure' => '"',
+        'escape_character' => '\\',
+        'contiguous' => false,
+        'input_encoding' => 'UTF-8',
+      ),
+      'properties' => 
+      array (
+        'creator' => '',
+        'lastModifiedBy' => '',
+        'title' => '',
+        'description' => '',
+        'subject' => '',
+        'keywords' => '',
+        'category' => '',
+        'manager' => '',
+        'company' => '',
+      ),
+    ),
+    'extension_detector' => 
+    array (
+      'xlsx' => 'Xlsx',
+      'xlsm' => 'Xlsx',
+      'xltx' => 'Xlsx',
+      'xltm' => 'Xlsx',
+      'xls' => 'Xls',
+      'xlt' => 'Xls',
+      'ods' => 'Ods',
+      'ots' => 'Ods',
+      'slk' => 'Slk',
+      'xml' => 'Xml',
+      'gnumeric' => 'Gnumeric',
+      'htm' => 'Html',
+      'html' => 'Html',
+      'csv' => 'Csv',
+      'tsv' => 'Csv',
+      'pdf' => 'Dompdf',
+    ),
+    'value_binder' => 
+    array (
+      'default' => 'Maatwebsite\\Excel\\DefaultValueBinder',
+    ),
+    'cache' => 
+    array (
+      'driver' => 'memory',
+      'batch' => 
+      array (
+        'memory_limit' => 60000,
+      ),
+      'illuminate' => 
+      array (
+        'store' => NULL,
+      ),
+    ),
+    'transactions' => 
+    array (
+      'handler' => 'db',
+    ),
+    'temporary_files' => 
+    array (
+      'local_path' => 'C:\\laragon\\www\\PNI\\storage\\framework/laravel-excel',
+      'remote_disk' => NULL,
+      'remote_prefix' => NULL,
+      'force_resync_remote' => NULL,
+    ),
   ),
   'trustedproxy' => 
   array (

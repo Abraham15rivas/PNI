@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use App\Exports\ReportExport;
 
 class ReportController extends Controller
 {
@@ -69,6 +70,7 @@ class ReportController extends Controller
         $data = [
             'data' => $value,
             'view' => $request->typeQuery,
+            'typeReport' => $request->typeReport,
             'dates' => [
                 'since' => $request->since,
                 'until' => $request->until
@@ -80,8 +82,8 @@ class ReportController extends Controller
 
     public function downloadExcel($name, $value, $request)
     {
-        return "Excel";
-        // Logica del pdf
+        return (new ReportExport($value))->store('reporte.xlsx', 'local');
+        // return Excel::download(new ReportExport, 'reporte.xlsx');
     }
 
     public function deleteReport ($name)

@@ -1,4 +1,4 @@
-<h4>Indicador del tipo de institución e interés de investigación de las investigadoras e investigadores</h4>
+<h4>Indicador del Módulo de la Investigación Actual</h4>
 <div>
     <h6>Rangos de fechas</h6>
     <span>Desdes: {{ $dates['since'] }}</span>
@@ -6,10 +6,10 @@
 </div>
 <table border="1" class="table table-bordered">
     <tr>
-        <th>Total de investigadores</th>
+        <th>Total Registrados en el Módulo de la Investigación</th>
     </tr>
     <tr>        
-        <td>{{ $data['total_investigators'] }}</td>
+        <td>{{ $data['total_investigation'] }}</td>
     </tr>
 </table>
 <!-- tabla 1 -->
@@ -23,62 +23,75 @@
         @foreach($data['groupInstitution'] as $key => $value)
         <tr>
             <td>{{ ($key + 1) }}</td>
-            <td>{{ $value['titulo'] }}</td>       
+            <td>{{ $value['institution_type'] }}</td>       
             <td>{{ $value['total'] }}</td>
         </tr>
         @endforeach
     </table>
 @endif
 <!-- tabla 2 -->
-@if(!empty($data['groupInterest']))
+@if(!empty($data['investigations_type']))
     <table border="1" class="table table-bordered">
         <tr>
             <th>#</th>
-            <th>Interés de Investigación por Género</th>
+            <th>Tipo de Investigación</th>
             <th>Total</th>
-            <th>Masculino</th>
-            <th>Femenino</th>
         </tr>
-        @foreach($data['groupInterest'] as $key => $value)
+        @foreach($data['investigations_type'] as $key => $value)
         <tr>
             <td>{{ ($key + 1) }}</td>
-            <td>{{ $value['titulo'] }}</td>       
+            <td>{{ $value['type_investigation'] }}</td>       
             <td>{{ $value['total'] }}</td>
-            <td>{{ $value['femenino'] }}</td>       
-            <td>{{ $value['masculino'] }}</td>
         </tr>
         @endforeach
     </table>
 @endif
 <!-- tabla 3 -->
-@if(!empty($data['actualInvestigation']))
+@if(!empty($data['investigations_line']))
     <table border="1" class="table table-bordered">
         <tr>
             <th>#</th>
-            <th>Investigación Actual</th>
+            <th>Línea de Investigación</th>
             <th>Total</th>
         </tr>
-        @foreach($data['actualInvestigation'] as $key => $value)
+        @foreach($data['investigations_line'] as $key => $value)
         <tr>
             <td>{{ ($key + 1) }}</td>
-            <td>{{ $value['titulo'] }}</td>       
+            <td>{{ $value['line_investigation'] }}</td>       
             <td>{{ $value['total'] }}</td>
         </tr>
         @endforeach
     </table>
 @endif
 <!-- tabla 4 -->
-@if(!empty($data['groupModeInvestigation']))
+@if(!empty($data['institutions_type']))
     <table border="1" class="table table-bordered">
         <tr>
             <th>#</th>
-            <th>Como Investiga</th>
+            <th>Fase de la Investigación</th>
             <th>Total</th>
         </tr>
-        @foreach($data['groupModeInvestigation'] as $key => $value)
+        @foreach($data['institutions_type'] as $key => $value)
         <tr>
             <td>{{ ($key + 1) }}</td>
-            <td>{{ $value['titulo'] }}</td>       
+            <td>{{ $value['institution_type'] }}</td>       
+            <td>{{ $value['total'] }}</td>
+        </tr>
+        @endforeach
+    </table>
+@endif
+<!-- tabla 5 -->
+@if(!empty($data['investigations_time']))
+    <table border="1" class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Tiempo de la Investigación</th>
+            <th>Total</th>
+        </tr>
+        @foreach($data['investigations_time'] as $key => $value)
+        <tr>
+            <td>{{ ($key + 1) }}</td>
+            <td>{{ $value['investigation_time'] }}</td>       
             <td>{{ $value['total'] }}</td>
         </tr>
         @endforeach

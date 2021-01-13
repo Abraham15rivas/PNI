@@ -82,6 +82,27 @@
             </div>
         </div>
         <div class="row">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content center">
+                        <span class="card-title">Investigadores por Edades</span>
+                        <div class="row" style="padding: 0px 24px">
+                            <div class="col s12" v-if="dataStates.length > 0">
+                                <md-field>
+                                    <label for="stateAge">Seleccione un estado</label>
+                                    <md-select v-model="selectedStateAge" name="stateAge" id="stateAge" v-on:md-selected="changeState()">
+                                        <md-option v-for="(state,index) of dataStates2" :key="index" :value="state.id">{{state.estado}}</md-option>
+                                    </md-select>
+                                </md-field>
+                            </div>
+                        </div> 
+                        <bar-charts v-if="show.dataStateAge" :chartdata="edadGraph" :options="options" :height="180"></bar-charts>
+                    </div>                    
+                                       
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col m8 offset-m2">
                 <div class="card">
                     <div class="card-content">
@@ -142,13 +163,17 @@
                 datacollection: {},
                 datacollectionn: {},
                 dataStates:[],
+                dataStates2:[],
+                dataStatesAge:[],
                 dataMunicipalities:[],
                 dataParish:[],
                 profesions: [],
                 averageAge: [],
                 loading:true,
+                edadGraph: [],
 
                 selectedState:0,
+                selectedStateAge:0,
                 selectedMunicipality:0,
 
                 proFeme: '',
@@ -165,7 +190,20 @@
 
                 show: {
                     dataAge: false,
-                    dataState: false
+                    dataState: false,
+                    dataStateAge: false
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                    yAxes: [{
+                        ticks: {
+                        suggestedMin: 0,
+                        stepSize: 1,
+                        }
+                    }]
+                    }
                 }
             }
         },
@@ -194,6 +232,7 @@
                                 num.push(element.total)
                             });   
                             this.dataStates = states;                        
+                            this.dataStates2 = states;                        
                         }
                         this.datacollection = {
                             labels: nameStates,
@@ -206,6 +245,7 @@
                         
                         //Grafica de 
                         this.profesions = this.groupInv(res.data.groupProfesion, 'profesion');
+                        this.dataStatesAge = res.data.groupAge;
 
                         let rangeAge = res.data.groupRangeAge;
                         let range = new Array();
@@ -247,7 +287,22 @@
                         console.log(err);  
                     })
             },
-
+            changeState(){
+                
+                let stateName = this.dataStates2.find(val => val.id == this.selectedStateAge).estado;
+                let arrayState = this.dataStatesAge.find(val => val.estado == stateName);
+                let self = this;
+                if(this.show.dataStateAge){
+                    this.show.dataStateAge = false;
+                    setTimeout(function(){
+                        self.edadGraph = self.groupInv(_.sortBy(Object.values(arrayState.data),['age']), 'age', false);
+                        self.show.dataStateAge = true;
+                    },100);
+                }else{
+                    this.edadGraph = this.groupInv(_.sortBy(Object.values(arrayState.data),['age']), 'age', false);
+                    this.show.dataStateAge = true;
+                }
+            },
             searchMunicipalities(){
                 this.show.dataState = false;
                 this.loading = true;
@@ -316,26 +371,33 @@
                         console.log(err);  
                     })
             },
-            groupInv(items, title){ //Funcion para agregar graficas
+            groupInv(items, title, flagTotal = true){ //Funcion para agregar graficas
                 let labels = [];
                 let info = [];
                 let female = [];
                 let male = [];
 
                 items.forEach(item => {
-                    let palabra = item[title].toLowerCase();
-                    labels.push(palabra[0].toUpperCase() + palabra.slice(1));
+
+                    let palabra = typeof item[title] == 'string' ? item[title].toLowerCase() : item[title];
+                    let newString = typeof item[title] == 'string' ? palabra[0].toUpperCase() + palabra.slice(1) : palabra;
+                    labels.push(newString);
                     info.push(item.total);
 
-                    if(item?.female)
+                    if(typeof item?.female == 'number')
                         female.push(item.female);
 
-                    if(item?.male)
+                    if(typeof item?.male == 'number')
                         male.push(item.male);
                 });
                 let data = {
                     labels: labels,
-                    datasets: [{
+                    datasets: [],
+                    scaleStartValue : 0,
+                }
+
+                if(flagTotal){
+                    data.datasets.push({
                         data: info,
                         label: 'Total',
                         backgroundColor: 'rgba(66, 66, 66, 0.5)',
@@ -343,8 +405,7 @@
                         hoverBackgroundColor: 'rgba(66, 66, 66, 1)',
                         borderWidth: 1,
                         hoverBorderWidth: 2,    
-                    }
-                    ],
+                    })
                 }
 
                 if(female.length > 0)

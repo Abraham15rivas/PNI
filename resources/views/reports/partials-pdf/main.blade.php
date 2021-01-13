@@ -1,6 +1,6 @@
 @extends('reports.app')
 
-@section('content')
+@section('content-pdf')
 
     @includeWhen($view == 1, 'reports.partials-pdf.view_pdf_investigadores')
     @includeWhen($view == 2, 'reports.partials-pdf.view_pdf_intereses')

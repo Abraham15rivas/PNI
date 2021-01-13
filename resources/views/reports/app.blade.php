@@ -4,14 +4,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>PDF | PNI</title>
+        <title>Reporte | PNI</title>
 
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                	@yield('content')
+                    @if ($typeReport == 'PDF')
+                	    @yield('content-pdf')
+                    @elseif ($typeReport == 'EXCEL')
+                        @yield('content-excel')
+                    @endif
                 </div>
             </div>
         </div>

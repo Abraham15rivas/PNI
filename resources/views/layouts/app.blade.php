@@ -33,12 +33,16 @@
                 padding-left: 300px;
             }
         }
+        .v-enter-active, .fade-leave-active { transition: opacity 2.5s }
+        .v-enter, .v-leave-to{ opacity: 0 }        
     </style>
 </head>
 <body class="has-fixed-sidenav">
     <div id="app">
-        <header-vue></header-vue>
-        <router-view></router-view>
+        <header-vue></header-vue>        
+        <transition>       
+            <router-view></router-view>
+        </transition>        
     </div>
 </body>
 </html>

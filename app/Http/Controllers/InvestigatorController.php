@@ -130,10 +130,21 @@ class InvestigatorController extends Controller {
                 $investigator->age = Carbon::parse($investigator->fecha_nac)->age;
             }
 
-            $genreGroup = $val->groupBy('id_genero');
-            $val->genreGroup = collect();
+            $ageGroup = $val->groupBy('age');
+            $val->ageGroup = collect();
 
-            foreach ($genreGroup as $keyG => $genre) {
+            foreach($ageGroup->sortBy('age') as $keyA => $age){
+                $age->genreGroup = $age->groupBy('id_genero');
+                $genreGroup = collect();
+
+                $val->ageGroup->push([
+                    'age'=>$keyA,
+                    'male'=>$age->where('id_genero',2)->count(),
+                    'female'=>$age->where('id_genero',1)->count()
+                ]);
+            }
+
+            /*foreach ($genreGroup as $keyG => $genre) {
                 $genre->ageGroup = $genre->groupBy('age');
                 $ageGroup = collect();
 
@@ -146,10 +157,11 @@ class InvestigatorController extends Controller {
                     $val->genreGroup->push(['Femenino'=>$ageGroup]);
                 }else{
                     $val->genreGroup->push(['Otro'=>$ageGroup]);
-                }                
-            }
+                }
+                
+            }*/
 
-            $groupStateAge->push(["estado"=>$name,"data"=>$val->genreGroup]);
+            $groupStateAge->push(["estado"=>$name,"data"=>$val->ageGroup->sortBy('age')]);
         }
 
         //Investigadores agrupados por mes

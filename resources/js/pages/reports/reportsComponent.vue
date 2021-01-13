@@ -14,8 +14,8 @@
                             <label for="state"></label>
                             <md-select v-model="typeReport" name="typeReport" id="typeReport">
                                 <md-option :value="0">Seleccionar un tipo</md-option>
-                                <md-option :value="'PDF'">PDF</md-option>
-                                <md-option :value="'EXCEL'">Excel</md-option>
+                                <md-option :value="'pdf'">PDF</md-option>
+                                <md-option :value="'xlsx'">Excel</md-option>
                             </md-select>
                         </md-field>                        
                     </div>
@@ -131,7 +131,7 @@ export default {
                 if (data) {
                     this.ready = true
                     this.routeName = data
-                    this.valueDoc = `/storage/pdf/${data}`
+                    this.valueDoc = `/storage/${this.typeReport}/${data}`
                 } else {
                     alert("Error al enviar")
                     this.ready = false
@@ -143,7 +143,7 @@ export default {
         download () {    
             setTimeout(() => {
                 try {
-                    const url = `reports/delete/pdf/${this.routeName}` 
+                    const url = `reports/delete/${this.typeReport}/${this.routeName}` 
                     let response = axios.delete(url).then((response) => {
                     let data = response.data
                         if (data) {

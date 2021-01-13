@@ -2,24 +2,22 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class ReportExport implements FromCollection
+class ReportExport implements FromView
 {
-    use Exportable;
     /**
     * @return \Illuminate\Support\Collection
     */
     protected $value;
 
-    public function __construct($value){
+    public function __construct(array $value){
         $this->value = $value;
     }
-
-    public function collection()
+    
+    public function view(): View
     {
-        dd($this->value);
-        return $this->value;
+        return view('reports.partials-pdf.main', $this->value);
     }
 }

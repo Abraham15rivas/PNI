@@ -43,11 +43,12 @@
         </tr>
         @foreach($data['groupMonth'] as $key => $value)
         <tr>
-            <td>{{ $loop->interation }}</td>
-            <td>{{ $key }}</td>
-            <td>{{ $value }}</td>
+            <td>{{ ($key + 1) }}</td>
+            <td>{{ $value['Month'] }}</td>
+            <td>{{ $value['Total'] }}</td>
         </tr>
         @endforeach
+            
     </table>
 @endif
 <!-- tabla 3 -->
@@ -94,27 +95,27 @@
     <table border="1" class="table table-bordered">
         <tr>
             <th>Edades</th>
+            <th>Masculino</th>
+            <th>Femenino</th>
+            <th>Total</th>
+        </tr>
+        <tr>
             <th>Promedio</th>
-            <th>minima</th>
-            <th>maxima</th>
+            <td>{{ $data['groupAverageAge']['promedio']['masculino'] }}</td>
+            <td>{{ $data['groupAverageAge']['promedio']['femenino'] }}</td>
+            <td>{{ $data['groupAverageAge']['promedio']['total'] }}</td>
         </tr>
         <tr>
-            <td>Masculino</td>
-            <td>{{ $data['groupAverageAge']->promedio->masculino }}</td>       
-            <td>{{ $data['groupAverageAge']->minima->masculino }}</td>
-            <td>{{ $data['groupAverageAge']->maximo->masculino }}</td>
+            <th>Maxima</th>
+            <td>{{ $data['groupAverageAge']['maxima']['masculino'] }}</td>
+            <td>{{ $data['groupAverageAge']['maxima']['femenino'] }}</td>
+            <td>{{ $data['groupAverageAge']['maxima']['total'] }}</td>
         </tr>
         <tr>
-            <td>Femenino</td>
-            <td>{{ $data['groupAverageAge']->promedio->femenino }}</td>       
-            <td>{{ $data['groupAverageAge']->minima->femenino }}</td>
-            <td>{{ $data['groupAverageAge']->maximo->femenino }}</td>
-        </tr>
-        <tr>
-            <td>Totales</td>
-            <td>{{ $data['groupAverageAge']->promedio->total }}</td>       
-            <td>{{ $data['groupAverageAge']->minima->total }}</td>
-            <td>{{ $data['groupAverageAge']->maximo->total }}</td>
+            <th>Minima</th>
+            <td>{{ $data['groupAverageAge']['minima']['masculino'] }}</td>
+            <td>{{ $data['groupAverageAge']['minima']['femenino'] }}</td>
+            <td>{{ $data['groupAverageAge']['minima']['total'] }}</td>
         </tr>
     </table>
 @endif

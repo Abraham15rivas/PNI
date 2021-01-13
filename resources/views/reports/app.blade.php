@@ -11,9 +11,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    @if ($typeReport == 'PDF')
+                    @if ($typeReport == 'pdf')
                 	    @yield('content-pdf')
-                    @elseif ($typeReport == 'EXCEL')
+                    @elseif ($typeReport == 'xlsx')
                         @yield('content-excel')
                     @endif
                 </div>

@@ -69,6 +69,7 @@ class ReportController extends Controller
         $data = [
             'data' => $value,
             'view' => $request->typeQuery,
+            'typeReport' => $request->typeReport,
             'dates' => [
                 'since' => $request->since,
                 'until' => $request->until

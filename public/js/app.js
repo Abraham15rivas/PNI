@@ -3314,8 +3314,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -3478,19 +3476,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    var _ref;
-
-    return _ref = {
+    return {
+      totalGroupStates: [],
       total_investigators: "",
       investigators_mens: "",
       investigators_womens: "",
-      datacollectionn: {},
       dataStates2: [],
       dataStatesAge: [],
-      dataMunicipalities: [],
-      dataParish: [],
-      profesions: [],
-      averageAge: [],
       loading: true,
       edadGraph: [],
       load: false,
@@ -3500,23 +3492,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       //data investigators
       datacollection: {},
       //render chart states
-      dataStates: []
-    }, _defineProperty(_ref, "dataMunicipalities", []), _defineProperty(_ref, "dataParish", []), _defineProperty(_ref, "selectedState", 0), _defineProperty(_ref, "selectedStateAge", 0), _defineProperty(_ref, "selectedMunicipality", 0), _defineProperty(_ref, "profesions", []), _defineProperty(_ref, "averageAge", []), _defineProperty(_ref, "rangeAges", {}), _defineProperty(_ref, "genero", {}), _defineProperty(_ref, "av", {}), _defineProperty(_ref, "promedios", {}), _defineProperty(_ref, "show", {
-      dataAge: false,
-      dataState: false,
-      dataStateAge: false
-    }), _defineProperty(_ref, "options", {
-      responsive: true,
-      maintainAspectRatio: true,
-      scales: {
-        yAxes: [{
-          ticks: {
-            suggestedMin: 0,
-            stepSize: 1
-          }
-        }]
+      dataStates: [],
+      //data states
+      dataMunicipalities: [],
+      //data municpalities
+      dataParish: [],
+      //data parish
+      selectedState: 0,
+      selectedStateAge: 0,
+      selectedMunicipality: 0,
+      profesions: [],
+      averageAge: [],
+      rangeAges: {},
+      genero: {},
+      av: {},
+      //average de edades
+      promedios: {},
+      // promedio de edades
+      show: {
+        dataAge: false,
+        dataState: false,
+        dataStateAge: false
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              suggestedMin: 0,
+              stepSize: 1
+            }
+          }]
+        }
       }
-    }), _ref;
+    };
   },
   mounted: function mounted() {
     var _this = this;
@@ -3532,32 +3542,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               axios.get(url).then(function (res) {
                 _this.investigators = _this.totalInvestigators(res.data);
                 _this.rangeAges = _this.rangeAge(res.data.groupRangeAge);
-                _this.promedios = _this.averageAges(res.data.groupAverageAge); // this.genero  = this.stateGenero(res.data.groupAge);
-
+                _this.promedios = _this.averageAges(res.data.groupAverageAge);
                 _this.profesions = _this.groupInv(res.data.groupProfesion, 'profesion');
                 _this.dataStatesAge = res.data.groupAge;
-                var data = res.data.groupStates;
-                var nameStates = new Array();
-                var num = new Array();
+                _this.totalGroupStates = res.data.groupStates;
 
-                if (data) {
-                  data.forEach(function (element) {
-                    nameStates.push(element.estado);
-                    num.push(element.total);
-                  });
-                  _this.dataStates = data;
-                  _this.dataStates2 = data;
-                }
+                _this.gruopStates();
 
-                _this.datacollection = {
-                  labels: nameStates,
-                  datasets: [{
-                    label: 'Total investigadores por estado',
-                    backgroundColor: '#1976d2',
-                    hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
-                    data: num
-                  }]
-                };
                 _this.show.dataState = true;
                 _this.load = false;
               });
@@ -3571,6 +3562,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }))();
   },
   methods: {
+    gruopStates: function gruopStates() {
+      var _this2 = this;
+
+      this.show.dataState = false;
+      this.dataParish = [];
+      this.dataMunicipalities = [];
+      var data = this.totalGroupStates;
+      var nameStates = new Array();
+      var num = new Array();
+
+      if (data) {
+        data.forEach(function (element) {
+          nameStates.push(element.estado);
+          num.push(element.total);
+        });
+        this.dataStates = data;
+        this.dataStates2 = data;
+      }
+
+      this.datacollection = {
+        labels: nameStates,
+        datasets: [{
+          label: 'Total investigadores por estado',
+          backgroundColor: '#1976d2',
+          hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+          data: num
+        }]
+      };
+      setTimeout(function () {
+        return _this2.show.dataState = true;
+      }, 1000);
+    },
     totalInvestigators: function totalInvestigators(data) {
       this.inv.total_inv = data.total_investigators; //TOTAL DE INVESTIGADORES
 
@@ -3593,10 +3616,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.av;
     },
     changeState: function changeState() {
-      var _this2 = this;
+      var _this3 = this;
 
       var stateName = this.dataStates.find(function (val) {
-        return val.id == _this2.selectedStateAge;
+        return val.id == _this3.selectedStateAge;
       }).estado;
       console.log("nombre", stateName);
       var arrayState = this.dataStatesAge.find(function (val) {
@@ -3639,7 +3662,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return dataCollection;
     },
     searchMunicipalities: function searchMunicipalities() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.show.dataState = false;
       var url = "statistics/investigators/municipality/".concat(this.selectedState);
@@ -3653,27 +3676,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             nameMunicipality.push(element.municipio);
             num.push(element.total);
           });
-          _this3.dataMunicipalities = municipalities;
+          _this4.dataMunicipalities = municipalities;
         }
 
-        _this3.datacollection = {
+        _this4.datacollection = {
           labels: nameMunicipality,
           datasets: [{
-            label: 'Total investigadores del estado ' + _this3.dataStates.find(function (v) {
-              return v.id == _this3.selectedState;
+            label: 'Total investigadores del estado ' + _this4.dataStates.find(function (v) {
+              return v.id == _this4.selectedState;
             }).estado + ' por Municipios',
             backgroundColor: '#1976d2',
             hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
             data: num
           }]
         };
-        _this3.show.dataState = true;
+        _this4.show.dataState = true;
       })["catch"](function (err) {
         console.log(err);
       });
     },
     searchParish: function searchParish() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.show.dataState = false;
       var url = "statistics/investigators/parish/".concat(this.selectedMunicipality);
@@ -3687,21 +3710,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             nameParish.push(element.parroquia);
             num.push(element.total);
           });
-          _this4.dataParish = parish;
+          _this5.dataParish = parish;
         }
 
-        _this4.datacollection = {
+        _this5.datacollection = {
           labels: nameParish,
           datasets: [{
-            label: 'Total investigadores del Municipio ' + _this4.dataMunicipalities.find(function (v) {
-              return v.id == _this4.selectedMunicipality;
+            label: 'Total investigadores del Municipio ' + _this5.dataMunicipalities.find(function (v) {
+              return v.id == _this5.selectedMunicipality;
             }).municipio + ' por Parroquias',
             backgroundColor: '#1976d2',
             hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
             data: num
           }]
         };
-        _this4.show.dataState = true;
+        _this5.show.dataState = true;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -80081,7 +80104,11 @@ var render = function() {
                           "md-button",
                           {
                             staticClass: "md-primary md-raised",
-                            attrs: { onClick: "window.location.reload()" }
+                            on: {
+                              click: function($event) {
+                                return _vm.gruopStates()
+                              }
+                            }
                           },
                           [_vm._v("Recargar")]
                         )

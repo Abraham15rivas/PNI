@@ -49,7 +49,7 @@
                 <div class="card">
                     <div class="card-content center">
                         <span class="card-title">Investigadores por rango de edad</span>
-                        <bar-charts v-if="show.dataAge" :chartdata="rangeAges   " :height="180"></bar-charts>
+                        <bar-charts v-if="show.dataAge" :chartdata="rangeAges" :height="180"></bar-charts>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                     </div>                    
                     <div class="row" style="padding: 0px 24px">
                          <div class="col s4" v-if="dataMunicipalities.length > 0">
-                            <md-button class="md-primary md-raised" onClick="window.location.reload()">Recargar</md-button>
+                            <md-button class="md-primary md-raised" @click="gruopStates()">Recargar</md-button>
                         </div>
                         <div class="col s4" v-if="dataStates.length > 0">
                             <md-field>
@@ -162,16 +162,12 @@
     export default {
         data() {
             return {
+                totalGroupStates: [],
                 total_investigators: "",
                 investigators_mens: "",
                 investigators_womens: "",
-                datacollectionn: {},
                 dataStates2:[],
                 dataStatesAge:[],
-                dataMunicipalities:[],
-                dataParish:[],
-                profesions: [],
-                averageAge: [],
                 loading:true,
                 edadGraph: [],
                 load: false,
@@ -224,34 +220,42 @@
                     this.investigators = this.totalInvestigators(res.data);
                     this.rangeAges     = this.rangeAge(res.data.groupRangeAge);
                     this.promedios     = this.averageAges(res.data.groupAverageAge);
-                   // this.genero  = this.stateGenero(res.data.groupAge);
                     this.profesions    = this.groupInv(res.data.groupProfesion, 'profesion');   
                     this.dataStatesAge = res.data.groupAge;
-                    let data = res.data.groupStates;
-                    let nameStates = new Array();
-                    let num    = new Array();
-                    if (data) {
-                        data.forEach(element => {
-                            nameStates.push(element.estado);
-                            num.push(element.total)
-                        });   
-                        this.dataStates = data;                        
-                        this.dataStates2 = data;                        
-                    }
-                    this.datacollection = {
-                        labels: nameStates,
-                        datasets: [{
-                            label: 'Total investigadores por estado',
-                            backgroundColor: '#1976d2',
-                            hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
-                            data: num
-                        }]
-                    }
+                    this.totalGroupStates = res.data.groupStates
+                    this.gruopStates()
                     this.show.dataState = true;
                     this.load = false;    
                 });   
         },
         methods:{
+            gruopStates() {
+                this.show.dataState = false;
+                this.dataParish = []
+                this.dataMunicipalities = []
+                let data = this.totalGroupStates
+                let nameStates = new Array();
+                let num = new Array();
+                if (data) {
+                    data.forEach(element => {
+                        nameStates.push(element.estado);
+                        num.push(element.total)
+                    });   
+                    this.dataStates = data;                        
+                    this.dataStates2 = data;                        
+                }
+                this.datacollection = {
+                    labels: nameStates,
+                    datasets: [{
+                        label: 'Total investigadores por estado',
+                        backgroundColor: '#1976d2',
+                        hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                        data: num
+                    }]
+                }
+                setTimeout(() => this.show.dataState = true, 1000)  
+                
+            },
             totalInvestigators(data){               
                 this.inv.total_inv  = data.total_investigators;  //TOTAL DE INVESTIGADORES
                 this.inv.inv_mens   = data.investigators_mens;   //TOTAL DE INVESTIGADORES HOMBRES

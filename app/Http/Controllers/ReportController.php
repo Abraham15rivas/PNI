@@ -8,7 +8,6 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use App\Exports\ReportExport;
-use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 {
@@ -75,8 +74,6 @@ class ReportController extends Controller
 
         if ($request->typeReport == 'pdf') {
             $content = $this->downloadPdf($name, $data);
-        } else if ($request->typeReport == 'xlsx') {
-            $content = $this->downloadExcel($name, $data);
         }
 
         Storage::disk('public')->put("$request->typeReport/$name", $content);
@@ -85,11 +82,6 @@ class ReportController extends Controller
     public function downloadPdf($name, $data)
     {
         return $content = PDF::loadView('reports.partials-pdf.main', $data)->output();
-    }
-
-    public function downloadExcel($name, $data)
-    {
-        return $content = new ReportExport($data);
     }
 
     public function deleteReport ($typeReport, $name)

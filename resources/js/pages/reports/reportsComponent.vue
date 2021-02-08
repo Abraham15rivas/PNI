@@ -15,7 +15,6 @@
                             <md-select v-model="typeReport" name="typeReport" id="typeReport">
                                 <md-option :value="0">Seleccionar un tipo</md-option>
                                 <md-option :value="'pdf'">PDF</md-option>
-                                <md-option :value="'xlsx'">Excel</md-option>
                             </md-select>
                         </md-field>                        
                     </div>

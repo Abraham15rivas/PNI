@@ -7,12 +7,12 @@
         </div>
         
         <div class="row">
-            <div class="col s12 m6 offset-m3 l4 offset-l4">
+            <div class="col s12 m6 offset-m3">
                 <div class="card horizontal">
                     <div class="card-image card-icon">
                         <img class="icon-total-register" src="images/registro.svg">
                     </div>
-                    <div class="card-stacked">
+                    <div class="card-stacked"> 
                         <div class="card-content">
                             <h6 class="center-align title-card">Total Registrados en el Módulo de la Investigación</h6>
                         </div>
@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center">Tipo de Institución</span>
-                        <doughnut-charts v-if="loadedIns" :chartdata="institution"></doughnut-charts>
+                        <doughnut-charts v-if="loadedIns" :chartdata="institution" :height="325"></doughnut-charts>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Tipo de Investigación</span>
-                        <bar-charts v-if="loadedInvType" :chartdata="investigation_type"></bar-charts>
+                        <bar-charts v-if="loadedInvType" :chartdata="investigation_type" :height="325"></bar-charts>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
             <div class="card">
                 <div class="card-content">
                     <span class="card-title center">Línea de Investigación</span>
-                    <horizontalBar-charts v-if="loadedInvLine" :chartdata="investigation_line" :height="250"></horizontalBar-charts>
+                    <horizontalBar-charts v-if="loadedInvLine" :chartdata="investigation_line" :height="225"></horizontalBar-charts>
                 </div>
             </div>
             </div>
@@ -86,25 +86,33 @@
                     }
                 },
                 backgroundColor: [
-                    'rgba(41, 98, 255, 0.5)',
-                    'rgba(98, 0, 234, 0.5)',
-                    'rgba(0, 191, 165, 0.5)',
-                    'rgba(230, 74, 25, 0.5)',
-                    'rgba(66, 66, 66, 0.5)',
-                    'rgba(197, 17, 98, 0.5)',
-                    'rgba(255, 214, 0, 0.5)',
-                    'rgba(183, 28, 28, 0.5)'
-                ],
-                borderColor: [
-                    'rgba(41, 98, 255, 1)',
-                    'rgba(98, 0, 234, 1)',
-                    'rgba(0, 191, 165, 1)',
-                    'rgba(230, 74, 25, 1)',
-                    'rgba(66, 66, 66, 1)',
-                    'rgba(197, 17, 98, 1)',
-                    'rgba(255, 214, 0, 1)',
-                    'rgba(183, 28, 28, 1)'
-                ],
+                '#082A44',
+                '#3D9EE8',
+                '#9ECEF4',
+                '#10E7D9',
+                '#24D8A0',
+                '#0D426B',
+                '#1D4C7A',
+                '#5194D6',
+                '#2DA8C8',
+                '#10E7D9',
+                '#1D4C7A',
+                '#1781A1'
+            ],
+            borderColor: [
+                '#2DA8C8', 
+                '#00B0F0',   
+                '#24D8A0', 
+                '#7AE9C6', 
+                '#0EE3D7',  
+                '#001E5E', 
+                '#52C3E3', 
+                '#082A44',
+                '#3D9EE8',
+                '#9ECEF4',
+                '#0D426B',
+                '#1D4C7A'
+            ],
 
                 total_investigation: 0,
 
@@ -220,17 +228,15 @@
 
                 let data = {
                     labels: labels,
-                    datasets: [
-                        {
-                            data: info,
-                            label: 'Total',
-                            backgroundColor: this.backgroundColor,
-                            borderColor: this.borderColor,
-                            hoverBackgroundColor: this.borderColor,
-                            borderWidth: 1,
-                            hoverBorderWidth: 2
-                        }
-                    ]
+                    datasets: [{
+                        data: info,
+                        label: 'Total',
+                        backgroundColor: this.backgroundColor,
+                        borderColor: this.borderColor,
+                        hoverBackgroundColor: this.borderColor,
+                        borderWidth: 1,
+                        hoverBorderWidth: 2
+                    }]
                 }
                 this.loadedInvLine = true;
                 return data;
@@ -250,18 +256,16 @@
 
                 let data = {
                     labels: labels,
-                    datasets: [
-                        {
-                            data: info,
-                            label: 'Total',
-                            backgroundColor: ["rgba(0, 0, 0, 0)"],
-                            borderColor: this.borderColor,
-                            hoverBackgroundColor: this.borderColor,
-                            borderWidth: 1,
-                            hoverBorderWidth: 30,
-                            steppedLine: "middle"
-                        }
-                    ]
+                    datasets: [{
+                        data: info,
+                        label: 'Total',
+                        backgroundColor: ["rgba(0, 0, 0, 0)"],
+                        borderColor: this.borderColor,
+                        hoverBackgroundColor: this.borderColor,
+                        borderWidth: 1,
+                        hoverBorderWidth: 30,
+                        steppedLine: "middle"
+                    }]
                 }
                 this.loadedPhaseInv = true;
                 return data;

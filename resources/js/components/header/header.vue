@@ -29,7 +29,7 @@
       >
         <li>
           <div class="logo-container">
-            <img src="images/pni.png" class="logo-sidebar" />
+            <img src="images/pni_logo_nuevo.png" class="logo-sidebar" />
           </div>
         </li>
         <li>

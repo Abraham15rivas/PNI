@@ -108,64 +108,37 @@
 export default {
     data(){
         return {
-            // Opciones Predefinidas
+            load: false,// Opciones Predefinidas
             options: {
-                legend: {
-                    align: "end"
-                },
-                element: {
-                    radius: 20
-                }
+                legend:  { align: "end" },
+                element: { radius: 20 }
             },
             backgroundColor: [
-                'rgba(41, 98, 255, 0.5)',
-                'rgba(98, 0, 234, 0.5)',
-                'rgba(0, 191, 165, 0.5)',
-                'rgba(230, 74, 25, 0.5)',
-                'rgba(66, 66, 66, 0.5)',
-                'rgba(197, 17, 98, 0.5)',
-                'rgba(255, 214, 0, 0.5)',
-                'rgba(183, 28, 28, 0.5)'
+                '#082A44', '#3D9EE8', '#9ECEF4',
+                '#10E7D9', '#24D8A0', '#0D426B', 
+                '#1D4C7A', '#5194D6', '#2DA8C8',
+                '#10E7D9', '#1D4C7A', '#1781A1'
             ],
             borderColor: [
-                'rgba(41, 98, 255, 1)',
-                'rgba(98, 0, 234, 1)',
-                'rgba(0, 191, 165, 1)',
-                'rgba(230, 74, 25, 1)',
-                'rgba(66, 66, 66, 1)',
-                'rgba(197, 17, 98, 1)',
-                'rgba(255, 214, 0, 1)',
-                'rgba(183, 28, 28, 1)'
+                '#2DA8C8', '#00B0F0', '#24D8A0', 
+                '#7AE9C6', '#0EE3D7', '#001E5E', 
+                '#52C3E3', '#082A44', '#3D9EE8', 
+                '#9ECEF4','#0D426B','#1D4C7A'
             ],
 
-            //Cantidad de Perfil del investigador
-            profileResearcher: Number,
+            profileResearcher: Number, //Cantidad de Perfil del investigador
 
-            //Cantidad de Perfil del investigacion
-            profileResearch: Number,
+            profileResearch: Number, //Cantidad de Perfil del investigacion
 
-            //academic_levels
-            //Nivel Academico
-            academicLevel: {},
+            academicLevel: {}, //Nivel Academico
+
+            timeInvestigation: {}, //Tiempo de Investigacion
             
-            //investigations_time
-            //Tiempo de Investigacion
-            timeInvestigation: {},
+            typeInvestigation: {}, //Tipo de Investigacion
 
+            typeInstitution: {}, //Tipo de Institucion
 
-            //type_investigation
-            //Tipo de Investigacion
-            typeInvestigation: {},
-
-            //institutions_type
-            //Tipo de Institucion
-            typeInstitution: {},
-
-            //investigations_line
-            //linea de Investigacion
-            lineInvestigation: {},
-
-
+            lineInvestigation: {}, //linea de Investigacion
             
             show:{
                 profileResearcher: false,
@@ -176,24 +149,19 @@ export default {
                 typeInstitution: false,
                 lineInvestigation: false,
             }
-
-
         }
     },
     async mounted() {
-        let url = 'statistics/investigators/profile';
+        const url = 'statistics/investigators/profile';
         axios.get(url)
             .then(res => {
                 if(res.statusText === "OK"){
-                    // console.log(res.data);
-                    //Cantidad de Perfil del investigador
-                    this.profileResearcher = res.data.total_profiles;
+                    
+                    this.profileResearcher = res.data.total_profiles; //Cantidad de Perfil del investigador
                     this.show.profileResearcher = this.profileResearcher ? true : false;
 
-                    //Cantidad de Perfil del investigacion
-                    this.profileResearch = res.data.total_profiles_investigations;
+                    this.profileResearch = res.data.total_profiles_investigations; //Cantidad de Perfil del investigacion
                     this.show.profileResearch = this.profileResearch ? true : false;
-
 
                     //Nivel Academico
                     this.academicLevel = this.groupInv(res.data.academic_levels, 'academic_level');
@@ -250,6 +218,7 @@ export default {
 }
 </script>
 <style scoped>
+
 .total-register{
 	font-size: 40px;
     margin-top: -8px;
@@ -274,16 +243,12 @@ export default {
     margin-top: 0px;
 }
 
-.separate {
-    margin: 48px 64px;
-}
+.separate { margin: 48px 64px; }
 
 .margin-x{
     margin: 0 50px;
     padding-top: 32px;
 }
 
-.card:hover {
-    background: #e3f2fd;
-}
+.card:hover { background: #e3f2fd; }
 </style>

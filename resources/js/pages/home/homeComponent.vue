@@ -8,13 +8,14 @@
 
         <div class="row">
             <div class="col m12 s12 center-align">
-                <img src="images/covid-19.svg" class="imagen-portada center-align" alt="">
+                <img src="images/pni_logo_nuevo.png" class="imagen-portada center-align" alt="">
             </div>
         </div>        
     </div>
 </template>
 
 <style scoped>
+
 .mt{
     margin-top: 70px;
     margin-bottom: 100px;

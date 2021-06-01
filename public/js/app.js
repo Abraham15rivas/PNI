@@ -79379,7 +79379,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "col m12 s12 center-align" }, [
           _c("img", {
             staticClass: "imagen-portada center-align",
-            attrs: { src: "images/covid-19.svg", alt: "" }
+            attrs: { src: "images/pni_logo_nuevo.png", alt: "" }
           })
         ])
       ])

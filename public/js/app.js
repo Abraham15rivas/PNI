@@ -3106,16 +3106,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var url;
+      var url, dataInterest, filter;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               url = 'statistics/investigators/interest';
               axios.get(url).then(function (res) {
+                dataInterest = res.data.groupInterest;
+                filter = dataInterest.filter(function (element) {
+                  return element.total > 0;
+                });
                 _this.institution = _this.groupInstitution(res.data.groupInstitution);
-                _this.dataInterest = res.data.groupInterest;
-                _this.interest = _this.groupInterest(res.data.groupInterest);
+                _this.interest = _this.groupInterest(filter);
                 _this.actualInt = _this.groupActualInt(res.data.actualInvestigation);
                 _this.modeInv = _this.groupInv(res.data.groupModeInvestigation, 'titulo');
                 _this.loadedModeInv = _this.modeInv != {} ? true : false;

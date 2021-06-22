@@ -112,12 +112,19 @@ export default {
         }
     },
     async mounted () {
-        let url = 'statistics/investigators/interest';
+        const url = 'statistics/investigators/interest';
+        let dataInterest;
+        let filter;
         axios.get(url)
             .then(res => {
+
+                dataInterest = res.data.groupInterest;
+                filter = dataInterest.filter( element => {
+                    return element.total > 0
+                });
+                
                 this.institution = this.groupInstitution(res.data.groupInstitution);
-                this.dataInterest = res.data.groupInterest;
-                this.interest = this.groupInterest(res.data.groupInterest);
+                this.interest = this.groupInterest(filter);
                 this.actualInt = this.groupActualInt(res.data.actualInvestigation);
                 this.modeInv = this.groupInv(res.data.groupModeInvestigation, 'titulo');
                 this.loadedModeInv = this.modeInv != {} ? true : false;
@@ -159,6 +166,7 @@ export default {
             return data;
         },
         groupInterest(items){
+            
             let labels = [];
             let info = [];
             let content = [];

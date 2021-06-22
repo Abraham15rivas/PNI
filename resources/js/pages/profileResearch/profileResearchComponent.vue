@@ -109,16 +109,17 @@
 export default {
     data(){
         return {
+<<<<<<< HEAD
              load: false,
             // Opciones Predefinidas
+=======
+            load: false,// Opciones Predefinidas
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
             options: {
-                legend: {
-                    align: "end"
-                },
-                element: {
-                    radius: 20
-                }
+                legend:  { align: "end" },
+                element: { radius: 20 }
             },
+<<<<<<< HEAD
            backgroundColor: [
                 '#082A44',
                 '#3D9EE8',
@@ -146,27 +147,28 @@ export default {
                 '#9ECEF4',
                 '#0D426B',
                 '#1D4C7A'
+=======
+            backgroundColor: [
+                '#082A44', '#3D9EE8', '#9ECEF4',
+                '#10E7D9', '#24D8A0', '#0D426B', 
+                '#1D4C7A', '#5194D6', '#2DA8C8',
+                '#10E7D9', '#1D4C7A', '#1781A1'
+            ],
+            borderColor: [
+                '#2DA8C8', '#00B0F0', '#24D8A0', 
+                '#7AE9C6', '#0EE3D7', '#001E5E', 
+                '#52C3E3', '#082A44', '#3D9EE8', 
+                '#9ECEF4','#0D426B','#1D4C7A'
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
             ],
 
-            //Cantidad de Perfil del investigador
-            profileResearcher: Number,
+            profileResearcher: Number, //Cantidad de Perfil del investigador
 
-            //Cantidad de Perfil del investigacion
-            profileResearch: Number,
+            profileResearch: Number, //Cantidad de Perfil del investigacion
 
-            //academic_levels
-            //Nivel Academico
-            academicLevel: {},
-            
-            //investigations_time
-            //Tiempo de Investigacion
-            timeInvestigation: {},
+            academicLevel: {}, //Nivel Academico
 
-
-            //type_investigation
-            //Tipo de Investigacion
-            typeInvestigation: {},
-
+<<<<<<< HEAD
             //institutions_type
             //Tipo de Institucion
             typeInstitution: {},
@@ -174,6 +176,15 @@ export default {
             //investigations_line
             //linea de Investigacion
             lineInvestigation: {},
+=======
+            timeInvestigation: {}, //Tiempo de Investigacion
+            
+            typeInvestigation: {}, //Tipo de Investigacion
+
+            typeInstitution: {}, //Tipo de Institucion
+
+            lineInvestigation: {}, //linea de Investigacion
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
             
             show:{
                 profileResearcher: false,
@@ -184,8 +195,6 @@ export default {
                 typeInstitution: false,
                 lineInvestigation: false,
             }
-
-
         }
     },
     async mounted() {
@@ -193,12 +202,16 @@ export default {
         axios.get(url)
             .then(res => {
                 if(res.statusText === "OK"){
+<<<<<<< HEAD
                     //Cantidad de Perfil del investigador
                     this.profileResearcher = res.data.total_profiles;
+=======
+                    
+                    this.profileResearcher = res.data.total_profiles; //Cantidad de Perfil del investigador
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
                     this.show.profileResearcher = this.profileResearcher ? true : false;
 
-                    //Cantidad de Perfil del investigacion
-                    this.profileResearch = res.data.total_profiles_investigations;
+                    this.profileResearch = res.data.total_profiles_investigations; //Cantidad de Perfil del investigacion
                     this.show.profileResearch = this.profileResearch ? true : false;
 
                     //Nivel Academico
@@ -256,6 +269,7 @@ export default {
 }
 </script>
 <style scoped>
+
 .total-register{
 	font-size: 40px;
     margin-top: -8px;
@@ -280,16 +294,12 @@ export default {
     margin-top: 0px;
 }
 
-.separate {
-    margin: 48px 64px;
-}
+.separate { margin: 48px 64px; }
 
 .margin-x{
     margin: 0 50px;
     padding-top: 32px;
 }
 
-.card:hover {
-    background: #e3f2fd;
-}
+.card:hover { background: #e3f2fd; }
 </style>

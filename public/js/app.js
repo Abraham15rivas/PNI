@@ -2662,25 +2662,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       backgroundColor: ['#082A44', '#3D9EE8', '#9ECEF4', '#10E7D9', '#24D8A0', '#0D426B', '#1D4C7A', '#5194D6', '#2DA8C8', '#10E7D9', '#1D4C7A', '#1781A1'],
       borderColor: ['#2DA8C8', '#00B0F0', '#24D8A0', '#7AE9C6', '#0EE3D7', '#001E5E', '#52C3E3', '#082A44', '#3D9EE8', '#9ECEF4', '#0D426B', '#1D4C7A'],
+<<<<<<< HEAD
       //Cantidad de Perfil del investigador
+=======
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
       profileResearcher: Number,
-      //Cantidad de Perfil del investigacion
+      //Cantidad de Perfil del investigador
       profileResearch: Number,
-      //academic_levels
-      //Nivel Academico
+      //Cantidad de Perfil del investigacion
       academicLevel: {},
-      //investigations_time
-      //Tiempo de Investigacion
+      //Nivel Academico
       timeInvestigation: {},
-      //type_investigation
-      //Tipo de Investigacion
+      //Tiempo de Investigacion
       typeInvestigation: {},
-      //institutions_type
-      //Tipo de Institucion
+      //Tipo de Investigacion
       typeInstitution: {},
-      //investigations_line
-      //linea de Investigacion
+      //Tipo de Institucion
       lineInvestigation: {},
+      //linea de Investigacion
       show: {
         profileResearcher: false,
         profileResearch: false,
@@ -2704,11 +2703,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               url = 'statistics/investigators/profile';
               axios.get(url).then(function (res) {
                 if (res.statusText === "OK") {
+<<<<<<< HEAD
                   //Cantidad de Perfil del investigador
                   _this.profileResearcher = res.data.total_profiles;
                   _this.show.profileResearcher = _this.profileResearcher ? true : false; //Cantidad de Perfil del investigacion
+=======
+                  _this.profileResearcher = res.data.total_profiles; //Cantidad de Perfil del investigador
 
-                  _this.profileResearch = res.data.total_profiles_investigations;
+                  _this.show.profileResearcher = _this.profileResearcher ? true : false;
+                  _this.profileResearch = res.data.total_profiles_investigations; //Cantidad de Perfil del investigacion
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
+
                   _this.show.profileResearch = _this.profileResearch ? true : false; //Nivel Academico
 
                   _this.academicLevel = _this.groupInv(res.data.academic_levels, 'academic_level');
@@ -3154,16 +3159,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var url;
+      var url, dataInterest, filter;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               url = 'statistics/investigators/interest';
               axios.get(url).then(function (res) {
+                dataInterest = res.data.groupInterest;
+                filter = dataInterest.filter(function (element) {
+                  return element.total > 0;
+                });
                 _this.institution = _this.groupInstitution(res.data.groupInstitution);
-                _this.dataInterest = res.data.groupInterest;
-                _this.interest = _this.groupInterest(res.data.groupInterest);
+                _this.interest = _this.groupInterest(filter);
                 _this.actualInt = _this.groupActualInt(res.data.actualInvestigation);
                 _this.modeInv = _this.groupInv(res.data.groupModeInvestigation, 'titulo');
                 _this.loadedModeInv = _this.modeInv != {} ? true : false;
@@ -24473,7 +24481,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.total-register[data-v-768de6a6]{\r\n\tfont-size: 40px;\r\n    margin-top: -8px;\r\n    margin-bottom: 0px;\r\n    text-align: center;\n}\n.icon-total-register[data-v-768de6a6]{\r\n\twidth: 110px;\r\n\theight: 110px;\n}\n.card-icon[data-v-768de6a6] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\n.title-card[data-v-768de6a6] {\r\n    text-align: center;\r\n    margin-top: 0px;\n}\n.separate[data-v-768de6a6] {\r\n    margin: 48px 64px;\n}\n.margin-x[data-v-768de6a6]{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\n.card[data-v-768de6a6]:hover {\r\n    background: #e3f2fd;\n}\r\n", ""]);
+exports.push([module.i, "\n.total-register[data-v-768de6a6]{\r\n\tfont-size: 40px;\r\n    margin-top: -8px;\r\n    margin-bottom: 0px;\r\n    text-align: center;\n}\n.icon-total-register[data-v-768de6a6]{\r\n\twidth: 110px;\r\n\theight: 110px;\n}\n.card-icon[data-v-768de6a6] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\n.title-card[data-v-768de6a6] {\r\n    text-align: center;\r\n    margin-top: 0px;\n}\n.separate[data-v-768de6a6] { margin: 48px 64px;\n}\n.margin-x[data-v-768de6a6]{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\n.card[data-v-768de6a6]:hover { background: #e3f2fd;\n}\r\n", ""]);
 
 // exports
 
@@ -79896,6 +79904,8 @@ var render = function() {
                   _vm.field
                     ? _c(
                         "md-field",
+<<<<<<< HEAD
+=======
                         [
                           _c("label", { attrs: { for: "state" } }),
                           _vm._v(" "),
@@ -79938,6 +79948,88 @@ var render = function() {
       ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col s12 m6" }, [
             _c("div", { staticClass: "card" }, [
+              _c(
+                "div",
+                { staticClass: "card-content" },
+                [
+                  _c("span", { staticClass: "card-title center" }, [
+                    _vm._v("Seleccionar tipos de estadisticas")
+                  ]),
+                  _vm._v(" "),
+                  _vm.field
+                    ? _c(
+                        "md-field",
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
+                        [
+                          _c("label", { attrs: { for: "state" } }),
+                          _vm._v(" "),
+                          _c(
+                            "md-select",
+                            {
+<<<<<<< HEAD
+                              attrs: { name: "typeReport", id: "typeReport" },
+                              model: {
+                                value: _vm.typeReport,
+                                callback: function($$v) {
+                                  _vm.typeReport = $$v
+                                },
+                                expression: "typeReport"
+=======
+                              attrs: { name: "typeQuery", id: "typeQuery" },
+                              model: {
+                                value: _vm.typeQuery,
+                                callback: function($$v) {
+                                  _vm.typeQuery = $$v
+                                },
+                                expression: "typeQuery"
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
+                              }
+                            },
+                            [
+                              _c("md-option", { attrs: { value: 0 } }, [
+                                _vm._v("Seleccionar un tipo")
+                              ]),
+                              _vm._v(" "),
+<<<<<<< HEAD
+                              _c("md-option", { attrs: { value: "pdf" } }, [
+                                _vm._v("PDF")
+=======
+                              _c("md-option", { attrs: { value: 1 } }, [
+                                _vm._v("Investigadores e Investigadoras")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: 2 } }, [
+                                _vm._v("Interés de Investigación")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: 3 } }, [
+                                _vm._v("Perfil de Investigación")
+                              ]),
+                              _vm._v(" "),
+                              _c("md-option", { attrs: { value: 4 } }, [
+                                _vm._v("Modulo de Investigación Actual")
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.ready && _vm.typeReport != ""
+      ? _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col s12 m6" }, [
+            _c("div", { staticClass: "card" }, [
+<<<<<<< HEAD
               _c(
                 "div",
                 { staticClass: "card-content" },
@@ -79999,6 +80091,8 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "col s12 m6" }, [
             _c("div", { staticClass: "card" }, [
+=======
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
               _c("div", { staticClass: "card-content" }, [
                 _vm.loadSelect
                   ? _c("div", [
@@ -80185,8 +80279,13 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm.loadedInt
+<<<<<<< HEAD
                 ? _c("line-charts", {
                     attrs: { chartdata: _vm.interest, height: 180 }
+=======
+                ? _c("horizontalBar-charts", {
+                    attrs: { chartdata: _vm.interest, height: 325 }
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
                   })
                 : _vm._e()
             ],

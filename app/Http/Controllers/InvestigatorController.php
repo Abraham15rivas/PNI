@@ -289,7 +289,7 @@ class InvestigatorController extends Controller {
         }
         //obtener datos masivos
         $investigationMode = InvestigationMode::get();
-        $interests = Interest::orderBy('id_lineas_presidenciales', 'asc')->get(['nombre_lineas_presidenciales', 'id_lineas_presidenciales']);
+        $interests = Interest::orderBy('id_lineas_presidenciales', 'asc')->get(['nombre_lineas_presidenciales', 'id_lineas_presidenciales', 'grupo']);
         $actualInvestigations = $interests;
         $interests->push(["name"=> "TOTALES"]);
 
@@ -344,7 +344,7 @@ class InvestigatorController extends Controller {
             // Suma de totales
             $count_total_inv += $value;
 
-            $groupInterest[$i]["titulo"] = $name;
+            $groupInterest[$i]["titulo"] = trim($name);
             $groupInterest[$i]["id"] = $id;
             $groupInterest[$i]["total"] = $i == ($length - 1) ? $count_total_inv : $value;
             $groupInterest[$i]['femenino'] = 0;
@@ -379,6 +379,7 @@ class InvestigatorController extends Controller {
                 $selected = $actualInvestigations->where('id_lineas_presidenciales',$id);
 
                 foreach($selected as $pro){
+                    $grupo = $pro->grupo;
                     $name = $pro->nombre_lineas_presidenciales;
                     $id = $pro->id_lineas_presidenciales;
                 }
@@ -391,7 +392,7 @@ class InvestigatorController extends Controller {
                         return $investigation;
                     });
                 }else{
-                    $arrActual->push(["titulo"=>$name, "id"=>$id ,"total"=>1]);
+                    $arrActual->push(["titulo"=>trim($name), "id"=>$id ,"total"=>1, "grupo"=>$grupo]);
                 }
             }
 
@@ -406,7 +407,7 @@ class InvestigatorController extends Controller {
                 foreach ($selected as $pro) {
                     $groupModeInvestigation->push([
                         "id" => $key,
-                        "titulo" => $pro->modo_investigacion, 
+                        "titulo" => trim($pro->modo_investigacion), 
                         "total" => count($val)
                     ]);
                 }

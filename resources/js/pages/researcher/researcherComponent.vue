@@ -309,8 +309,8 @@
                     labels: range,
                     datasets: [{
                         label: 'Rango de edades',
-                        backgroundColor: '#1976d2',
-                        hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                        backgroundColor: '#082A44',
+                        hoverBackgroundColor: '#3D9EE8',
                         data: totalRange
                     }]
                 }               
@@ -338,8 +338,8 @@
                             labels: nameMunicipality,
                             datasets: [{
                                 label: 'Total investigadores del estado '+ this.dataStates.find(v => v.id == this.selectedState).estado +' por Municipios',
-                                backgroundColor: '#1976d2',
-                                hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                                backgroundColor: '#10E7D9',
+                                hoverBackgroundColor: '#24D8A0',
                                 data: num
                             }]
                         }                        
@@ -369,8 +369,8 @@
                             labels: nameParish,
                             datasets: [{
                                 label: 'Total investigadores del Municipio '+ this.dataMunicipalities.find(v => v.id == this.selectedMunicipality).municipio +' por Parroquias',
-                                backgroundColor: '#1976d2',
-                                hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                                backgroundColor: '#5194D6',
+                                hoverBackgroundColor: '#5194D6',
                                 data: num
                             }]
                         }
@@ -408,8 +408,7 @@
                     data.datasets.push({
                         data: info,
                         label: 'Total',
-                        backgroundColor: 'rgba(66, 66, 66, 1)',
-                        borderColor: '#000',
+                        backgroundColor: '#5194D6',
                         hoverBackgroundColor: 'rgba(66, 66, 66, 1)',
                         borderWidth: 1,
                         hoverBorderWidth: 2,    
@@ -420,7 +419,7 @@
                     data.datasets.push({
                         data: female,
                         label: 'Femenino',
-                        backgroundColor: '#EA7CBB',
+                        backgroundColor: '#2DA8C8',
                         borderWidth: 1,
                         hoverBorderWidth: 2,    
                     });
@@ -429,7 +428,7 @@
                     data.datasets.push({
                         data: male,
                         label: 'Masculino',
-                        backgroundColor: '#1E88E5',
+                        backgroundColor: '#10E7D9',
                         borderColor: 'rgba(41, 98, 255, 1)',
                         hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
                         borderWidth: 1,

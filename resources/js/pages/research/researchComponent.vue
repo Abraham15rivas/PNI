@@ -11,7 +11,11 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Interés de Investigación</span>
+<<<<<<< HEAD
                         <line-charts v-if="loadedInt" :chartdata="interest" :height="180"></line-charts>
+=======
+                        <horizontalBar-charts  v-if="loadedInt" :chartdata="interest" :height="325"></horizontalBar-charts>
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
                     </div>
                 </div>
             </div>
@@ -81,40 +85,49 @@ export default {
         return {
             // Opciones Predefinidas
             options: {
-                legend: {
-                    align: "end"
-                },
-                element: {
-                    radius: 20
-                }
+                legend: { align: "end" },
+                element: { radius: 20 }
             },
             backgroundColor: [
-                'rgba(41, 98, 255, .5)',
-                'rgba(98, 0, 234, .5)',
-                'rgba(0, 191, 165, .5)',
-                'rgba(230, 74, 25, .5)',
-                'rgba(66, 66, 66, .5)',
-                'rgba(197, 17, 98, .5)',
-                'rgba(255, 214, 0, .5)',
-                'rgba(183, 28, 28, .5)',
-                'rgba(63, 191, 63, .5)',
-                'rgba(59,18,98, .5)',
-                'rgba(59,255,255, .5)',
-                'rgba(255,163,0,.5)'
+<<<<<<< HEAD
+                '#082A44',
+                '#3D9EE8',
+                '#9ECEF4',
+                '#10E7D9',
+                '#24D8A0',
+                '#0D426B',
+                '#1D4C7A',
+                '#5194D6',
+                '#2DA8C8',
+                '#10E7D9',
+                '#1D4C7A',
+                '#1781A1'
             ],
             borderColor: [
-                'rgba(41, 98, 255, 1)', //violeta   
-                'rgba(98, 0, 234, 1)',  //azul  
-                'rgba(0, 191, 165, 1)', //turquesa
-                'rgba(230, 74, 25, 1)', //gris
-                'rgba(66, 66, 66, 1)',  //fucsia
-                'rgba(197, 17, 98, 1)', //naranja
-                'rgba(255, 214, 0, 1)', //amarillo
-                'rgba(183, 28, 28, 1)',  //rojo
-                'rgba(63, 191, 63, 1)',
-                'rgba(59,18,98,1)',
-                'rgba(59,255,255, 1)',
-                'rgba(255,163,0,1)'
+                '#2DA8C8', 
+                '#00B0F0',   
+                '#24D8A0', 
+                '#7AE9C6', 
+                '#0EE3D7',  
+                '#001E5E', 
+                '#52C3E3', 
+                '#082A44',
+                '#3D9EE8',
+                '#9ECEF4',
+                '#0D426B',
+                '#1D4C7A'
+=======
+                '#082A44', '#3D9EE8', '#9ECEF4',
+                '#10E7D9', '#24D8A0', '#0D426B', 
+                '#1D4C7A', '#5194D6', '#2DA8C8', 
+                '#10E7D9', '#1D4C7A', '#1781A1'
+            ],
+            borderColor: [
+                '#2DA8C8', '#00B0F0', '#24D8A0', 
+                '#7AE9C6', '#0EE3D7', '#001E5E', 
+                '#52C3E3', '#082A44', '#3D9EE8', 
+                '#9ECEF4', '#0D426B', '#1D4C7A'
+>>>>>>> c4aa88f919662e97495c0e6616b9960912175be4
             ],
            
             institution: {}, //Grupo de institucion 
@@ -132,12 +145,19 @@ export default {
         }
     },
     async mounted () {
-        let url = 'statistics/investigators/interest';
+        const url = 'statistics/investigators/interest';
+        let dataInterest;
+        let filter;
         axios.get(url)
             .then(res => {
+
+                dataInterest = res.data.groupInterest;
+                filter = dataInterest.filter( element => {
+                    return element.total > 0
+                });
+                
                 this.institution = this.groupInstitution(res.data.groupInstitution);
-                this.dataInterest = res.data.groupInterest;
-                this.interest = this.groupInterest(res.data.groupInterest);
+                this.interest = this.groupInterest(filter);
                 this.actualInt = this.groupActualInt(res.data.actualInvestigation);
                 this.modeInv = this.groupInv(res.data.groupModeInvestigation, 'titulo');
                 this.loadedModeInv = this.modeInv != {} ? true : false;
@@ -179,6 +199,7 @@ export default {
             return data;
         },
         groupInterest(items){
+            
             let labels = [];
             let info = [];
             let content = [];

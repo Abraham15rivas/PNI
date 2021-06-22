@@ -34,19 +34,19 @@ class ReportController extends Controller
         switch ($request->typeQuery):
             case 1:
                 $value = $clase->index($request->since, $request->until);
-                $name = "Investigadores_$dateNow.pdf";
+                $name = "Investigadores_$dateNow.$request->typeReport";
                 break;
             case 2:
                 $value = $clase->interest($request->since, $request->until);
-                $name = "Intereses_investigadores_$dateNow.pdf";
+                $name = "Intereses_investigadores_$dateNow.$request->typeReport";
                 break;
             case 3:
                 $value = $clase->profile($request->since, $request->until);
-                $name = "Perfil_investigadores_$dateNow.pdf";
+                $name = "Perfil_investigadores_$dateNow.$request->typeReport";
                 break;
             case 4:
                 $value = $clase->current($request->since, $request->until);
-                $name = "Investigacion_actual_$dateNow.pdf";
+                $name = "Investigacion_actual_$dateNow.$request->typeReport";
                 break;
             default:
                 $name = "no hay documento";
@@ -55,18 +55,13 @@ class ReportController extends Controller
         endswitch;
 
         if (!$value == false) {
-            if ($request->typeReport == 'PDF') {
-                $this->downloadPdf($name, $value, $request);
-            } else if ($request->typeReport == 'EXCEL') {
-                $this->downloadExcel($name, $value, $request);
-            }
+            $this->dataStructure($name, $value, $request);
         }
         
         return response()->json($name);
     }
 
-    public function downloadPdf($name, $value, $request)
-    {
+    public function dataStructure ($name, $value, $request) {
         $data = [
             'data' => $value,
             'view' => $request->typeQuery,
@@ -74,21 +69,24 @@ class ReportController extends Controller
             'dates' => [
                 'since' => $request->since,
                 'until' => $request->until
-            ] 
+            ]
         ];
-        $content = PDF::loadView('reports.partials-pdf.main', $data)->output();
-        Storage::disk('public')->put("pdf/$name", $content);
+
+        if ($request->typeReport == 'pdf') {
+            $content = $this->downloadPdf($name, $data);
+        }
+
+        Storage::disk('public')->put("$request->typeReport/$name", $content);
     }
 
-    public function downloadExcel($name, $value, $request)
+    public function downloadPdf($name, $data)
     {
-        return (new ReportExport($value))->store('reporte.xlsx', 'local');
-        // return Excel::download(new ReportExport, 'reporte.xlsx');
+        return $content = PDF::loadView('reports.partials-pdf.main', $data)->output();
     }
 
-    public function deleteReport ($name)
+    public function deleteReport ($typeReport, $name)
     {
-        Storage::disk('public')->delete("pdf/$name");
+        Storage::disk('public')->delete("$typeReport/$name");
         return "true";
     }
 }

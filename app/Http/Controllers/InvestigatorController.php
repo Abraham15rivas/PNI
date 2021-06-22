@@ -175,7 +175,7 @@ class InvestigatorController extends Controller {
 
         $groupMonth = collect();
         foreach($groupM as $key => $month){
-            $groupMonth->push([$key=>count($month)]);
+            $groupMonth->push(["Month" => $key, "Total"=>count($month)]);
         }
 
         // Ordenar descendente los estados
@@ -198,7 +198,7 @@ class InvestigatorController extends Controller {
             "groupAverageAge"=>$groupAverageAge
         ]);
         
-        return ($since && $until) == null ? $data->toJson() : $data;
+        return ($since && $until) == null ? $data->toJson() : $data->toArray();
     }
 
     public function rangeAge ($investigators) {
@@ -427,7 +427,7 @@ class InvestigatorController extends Controller {
             "groupModeInvestigation"=>$groupModeInvestigation
         ]);
 
-        return ($since && $until) == null ? $data->toJson() : $data;
+        return ($since && $until) == null ? $data->toJson() : $data->toArray();
     }
 
     public function institutionType ($investigators) {
@@ -563,7 +563,7 @@ class InvestigatorController extends Controller {
             "investigations_time"=>$groupTime
         ]);
         
-        return ($since && $until) == null ? $data->toJson() : $data;
+        return ($since && $until) == null ? $data->toJson() : $data->toArray();
     }
 
     public function current ($since = null, $until = null) {
@@ -667,7 +667,7 @@ class InvestigatorController extends Controller {
             "investigations_time" =>$groupTime
         ]);
 
-        return ($since && $until) == null ? $data->toJson() : $data;
+        return ($since && $until) == null ? $data->toJson() : $data->toArray();
     }
 
     public function searchMunicipality ($state_id) {

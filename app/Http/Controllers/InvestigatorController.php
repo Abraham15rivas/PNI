@@ -4,7 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{
-    Investigator, Interest, Profesion, State, InstitutionType, ActualInvestigation, InvestigatorProfile,ProfileInvestigation, 
+    Investigator, 
+    Interest, 
+    Profesion, 
+    State, 
+    InstitutionType, 
+    ActualInvestigation, 
+    InvestigatorProfile,
+    ProfileInvestigation, 
     InvestigationType,
     InvestigationLine,
     InvestigationTime,
@@ -17,16 +24,9 @@ use Carbon\Carbon;
 
 class InvestigatorController extends Controller {
     
-    public function index ($since = null, $until = null) {
-        // Filtrar por fechas para los reportes
-        if (!($since && $until) == null) {
-            $investigators = Investigator::where('fecha_creacion', '>=', $since)
-                                            ->where('fecha_creacion', '<=', Carbon::parse($until)->addDay())
-                                            ->get();
-        } else {
-            $investigators = Investigator::get();
-        }
+    public function index(){
         //obtener datos masivos
+        $investigators = Investigator::get();
         $profesion = Profesion::get();
         $states = State::get();
 
@@ -175,7 +175,7 @@ class InvestigatorController extends Controller {
 
         $groupMonth = collect();
         foreach($groupM as $key => $month){
-            $groupMonth->push(["Month" => $key, "Total"=>count($month)]);
+            $groupMonth->push([$key=>count($month)]);
         }
 
         // Ordenar descendente los estados
@@ -198,7 +198,7 @@ class InvestigatorController extends Controller {
             "groupAverageAge"=>$groupAverageAge
         ]);
         
-        return ($since && $until) == null ? $data->toJson() : $data->toArray();
+        return $data->toJson();
     }
 
     public function rangeAge ($investigators) {
@@ -278,16 +278,10 @@ class InvestigatorController extends Controller {
         return $groupAverageAge;
     }
 
-    public function interest ($since = null, $until = null) {
-        // Filtrar por fechas para los reportes
-        if (!($since && $until) == null) {
-            $investigators = Investigator::where('fecha_creacion', '>=', $since)
-                                            ->where('fecha_creacion', '<=', Carbon::parse($until)->addDay())
-                                            ->get(['interes_inv', 'id_genero', 'id_tipo_institucion', 'inv_actual', 'id_modo_investifgacion']);
-        } else {
-            $investigators = Investigator::get(['interes_inv', 'id_genero', 'id_tipo_institucion', 'inv_actual', 'id_modo_investifgacion']);
-        }
+    public function interest ()
+    {
         //obtener datos masivos
+        $investigators = Investigator::get(['interes_inv', 'id_genero', 'id_tipo_institucion', 'inv_actual', 'id_modo_investifgacion']);
         $investigationMode = InvestigationMode::get();
         $interests = Interest::orderBy('id_lineas_presidenciales', 'asc')->get(['nombre_lineas_presidenciales', 'id_lineas_presidenciales', 'grupo']);
         $actualInvestigations = $interests;
@@ -428,7 +422,7 @@ class InvestigatorController extends Controller {
             "groupModeInvestigation"=>$groupModeInvestigation
         ]);
 
-        return ($since && $until) == null ? $data->toJson() : $data->toArray();
+        return $data->toJson();
     }
 
     public function institutionType ($investigators) {
@@ -464,15 +458,8 @@ class InvestigatorController extends Controller {
         return $newArray;
     }
 
-    public function profile ($since = null, $until = null) {
-        // Filtrar por fechas para los reportes
-        if (!($since && $until) == null) {
-            $profiles = InvestigatorProfile::where('fecha_creacion', '>=', $since)
-                                            ->where('fecha_creacion', '<=', Carbon::parse($until)->addDay())
-                                            ->get();
-        } else {
-            $profiles = InvestigatorProfile::get();
-        }
+    public function profile(){
+        $profiles = InvestigatorProfile::get();
         $profileInvestigations = ProfileInvestigation::get();
         $line = InvestigationLine::get();
         $times = InvestigationTime::get();
@@ -564,22 +551,14 @@ class InvestigatorController extends Controller {
             "investigations_time"=>$groupTime
         ]);
         
-        return ($since && $until) == null ? $data->toJson() : $data->toArray();
+        return $data->toJson();
     }
 
-    public function current ($since = null, $until = null) {
-        // Filtrar por fechas para los reportes
-        if (!($since && $until) == null) {
-            $investigation_current = ActualInvestigation::where('fecha_registro', '>=', $since)
-                                            ->where('fecha_registro', '<=', Carbon::parse($until)->addDay())
-                                            ->get();
-        } else {
-            $investigation_current = ActualInvestigation::get();
-        }
+    public function current () {
+        $investigation_current = ActualInvestigation::get();
         $institutionsType = InstitutionType::get();
         $types = InvestigationType::get();
         $line = InvestigationLine::get();
-        dd($line);
         $times = InvestigationTime::get();
         $phase = Phase::get();
 
@@ -669,7 +648,7 @@ class InvestigatorController extends Controller {
             "investigations_time" =>$groupTime
         ]);
 
-        return ($since && $until) == null ? $data->toJson() : $data->toArray();
+        return $data->toJson();
     }
 
     public function searchMunicipality ($state_id) {
@@ -762,7 +741,7 @@ class InvestigatorController extends Controller {
         return $data->toJson();
     }
 
-    public function allMunicipalities (State $state)
+    public function allMunicipalities (Satate $state)
     {
         $groupMunicipality = collect();
         foreach ($state->municipalities as $muni) {

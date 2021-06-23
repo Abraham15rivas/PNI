@@ -2646,11 +2646,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      // Opciones Predefinidas
       load: false,
       // Opciones Predefinidas
       options: {
@@ -2669,12 +2667,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       //Cantidad de Perfil del investigacion
       academicLevel: {},
       //Nivel Academico
-      //institutions_type
-      //Tipo de Institucion
+      timeInvestigation: {},
+      //Tiempo de Investigacion
+      typeInvestigation: {},
+      //Tipo de Investigacion
       typeInstitution: {},
-      //investigations_line
-      //linea de Investigacion
+      //Tipo de Institucion
       lineInvestigation: {},
+      //linea de Investigacion
       show: {
         profileResearcher: false,
         profileResearch: false,
@@ -2698,8 +2698,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               url = 'statistics/investigators/profile';
               axios.get(url).then(function (res) {
                 if (res.statusText === "OK") {
-                  //Cantidad de Perfil del investigador
-                  _this.profileResearcher = res.data.total_profiles;
+                  _this.profileResearcher = res.data.total_profiles; //Cantidad de Perfil del investigador
+
                   _this.show.profileResearcher = _this.profileResearcher ? true : false;
                   _this.profileResearch = res.data.total_profiles_investigations; //Cantidad de Perfil del investigacion
 
@@ -80182,8 +80182,8 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm.loadedInt
-                ? _c("line-charts", {
-                    attrs: { chartdata: _vm.interest, height: 180 }
+                ? _c("horizontalBar-charts", {
+                    attrs: { chartdata: _vm.interest, height: 325 }
                   })
                 : _vm._e()
             ],

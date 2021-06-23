@@ -80182,8 +80182,8 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm.loadedInt
-                ? _c("line-charts", {
-                    attrs: { chartdata: _vm.interest, height: 180 }
+                ? _c("horizontalBar-charts", {
+                    attrs: { chartdata: _vm.interest, height: 325 }
                   })
                 : _vm._e()
             ],

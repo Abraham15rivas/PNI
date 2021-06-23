@@ -579,6 +579,7 @@ class InvestigatorController extends Controller {
         $institutionsType = InstitutionType::get();
         $types = InvestigationType::get();
         $line = InvestigationLine::get();
+        dd($line);
         $times = InvestigationTime::get();
         $phase = Phase::get();
 

@@ -1,6 +1,5 @@
 <template>
     <div class="margin-x">
-        
         <div class="row">
             <div class="col s12">
                 <h5 class="black-text center">
@@ -109,39 +108,22 @@
 export default {
     data(){
         return {
-            // Opciones Predefinidas
             load: false,// Opciones Predefinidas
             options: {
                 legend:  { align: "end" },
                 element: { radius: 20 }
             },
-           backgroundColor: [
-                '#082A44',
-                '#3D9EE8',
-                '#9ECEF4',
-                '#10E7D9',
-                '#24D8A0',
-                '#0D426B',
-                '#1D4C7A',
-                '#5194D6',
-                '#2DA8C8',
-                '#10E7D9',
-                '#1D4C7A',
-                '#1781A1'
+            backgroundColor: [
+                '#082A44', '#3D9EE8', '#9ECEF4',
+                '#10E7D9', '#24D8A0', '#0D426B', 
+                '#1D4C7A', '#5194D6', '#2DA8C8',
+                '#10E7D9', '#1D4C7A', '#1781A1'
             ],
             borderColor: [
-                '#2DA8C8', 
-                '#00B0F0',   
-                '#24D8A0', 
-                '#7AE9C6', 
-                '#0EE3D7',  
-                '#001E5E', 
-                '#52C3E3', 
-                '#082A44',
-                '#3D9EE8',
-                '#9ECEF4',
-                '#0D426B',
-                '#1D4C7A'
+                '#2DA8C8', '#00B0F0', '#24D8A0', 
+                '#7AE9C6', '#0EE3D7', '#001E5E', 
+                '#52C3E3', '#082A44', '#3D9EE8', 
+                '#9ECEF4','#0D426B','#1D4C7A'
             ],
 
             profileResearcher: Number, //Cantidad de Perfil del investigador
@@ -150,13 +132,13 @@ export default {
 
             academicLevel: {}, //Nivel Academico
 
-            //institutions_type
-            //Tipo de Institucion
-            typeInstitution: {},
+            timeInvestigation: {}, //Tiempo de Investigacion
+            
+            typeInvestigation: {}, //Tipo de Investigacion
 
-            //investigations_line
-            //linea de Investigacion
-            lineInvestigation: {},
+            typeInstitution: {}, //Tipo de Institucion
+
+            lineInvestigation: {}, //linea de Investigacion
             
             show:{
                 profileResearcher: false,
@@ -174,8 +156,8 @@ export default {
         axios.get(url)
             .then(res => {
                 if(res.statusText === "OK"){
-                    //Cantidad de Perfil del investigador
-                    this.profileResearcher = res.data.total_profiles;
+                    
+                    this.profileResearcher = res.data.total_profiles; //Cantidad de Perfil del investigador
                     this.show.profileResearcher = this.profileResearcher ? true : false;
 
                     this.profileResearch = res.data.total_profiles_investigations; //Cantidad de Perfil del investigacion

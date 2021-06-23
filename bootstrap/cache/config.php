@@ -1,7 +1,7 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'Laravel',
+    'name' => 'PNI',
     'env' => 'local',
     'debug' => true,
     'url' => 'http://localhost',
@@ -216,7 +216,7 @@
         'endpoint' => NULL,
       ),
     ),
-    'prefix' => 'laravel_cache',
+    'prefix' => 'pni_cache',
   ),
   'cors' => 
   array (
@@ -314,7 +314,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'laravel_database_',
+        'prefix' => 'pni_database_',
       ),
       'default' => 
       array (
@@ -528,7 +528,7 @@
     'from' => 
     array (
       'address' => NULL,
-      'name' => 'Laravel',
+      'name' => 'PNI',
     ),
     'markdown' => 
     array (
@@ -623,7 +623,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'laravel_session',
+    'cookie' => 'pni_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => NULL,

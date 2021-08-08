@@ -4,25 +4,25 @@
         <div class="row">
             <div class="col s12">
                 <h5 class="center">
-                    Indicador de Investigadoras e Investigadores registrados en el Programa Nacional de Investigadores
+                    Indicador de Investigadoras e Investigadores Rregistrados en el Programa Nacional de Investigadores
                 </h5>
             </div>
         </div>
         <div class="row"> 
-            <div class="col s12 m7">
+            <div class="col s12 m4">
                 <div class="card horizontal">
                     <div class="card-image card-icon">
                         <img class="img-fluid size-img" src="images/registro.svg">
                     </div>
                     <div class="card-stacked">
                         <div class="card-body">
-                            <h5 class="center-align">Total de investigadores registrados</h5>
+                            <h5 class="center-align">Total de Investigadores Registrados</h5>
                             <h4 class="center-align">{{investigators.total_inv}}</h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col s12 m5">  
+            <div class="col s12 m8">  
                 <div class="card horizontal">
                     <div class="card-image card-icon">
                         <img class="icon-fm img-fluid size-img" src="images/genero.png">
@@ -30,14 +30,18 @@
                     <div class="card-stacked">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col s12 m12 xl6">
+                                <div class="col s12 m3 xl4">
                                     <h5 class="center-align color-w ml-5">Mujeres</h5>
                                     <h5 class="center-align color-w">{{investigators.inv_womens}}</h5>
                                 </div>
-                                <div class="col s12 m12 xl6">
+                                <div class="col s12 m3 xl4">
                                     <h5 class="center-align color-m">Hombres</h5>
                                     <h5 class="center-align color-m">{{investigators.inv_mens}}</h5>                                
-                                </div>    
+                                </div> 
+                                <div class="col s12 m3 xl4">
+                                    <h5 class="center-align color-g">Sin Contestar</h5>
+                                    <h5 class="center-align color-g">{{investigators.inv_mens}}</h5>                                
+                                </div>   
                             </div>
                         </div>
                     </div>
@@ -48,7 +52,7 @@
             <div class="col s12">
                 <div class="card">
                     <div class="card-content center">
-                        <span class="card-title">Investigadores por rango de edad</span>
+                        <span class="card-title">Investigadores por Rango de Edad</span>
                         <bar-charts v-if="show.dataAge" :chartdata="rangeAges" :height="180"></bar-charts>
                     </div>
                 </div>
@@ -58,7 +62,7 @@
             <div class="col s12">
                 <div class="card">
                     <div class="card-content center">
-                        <span class="card-title">Investigadores por estados</span>
+                        <span class="card-title">Investigadores por Estados</span>
                         <bar-charts v-if="show.dataState" :chartdata="datacollection" :height="180"></bar-charts>
                     </div>                    
                     <div class="row" style="padding: 0px 24px">
@@ -89,11 +93,11 @@
             <div class="col s12">
                 <div class="card">
                     <div class="card-content center">
-                        <span class="card-title">Investigadores por Edades</span>
+                        <span class="card-title">Investigadores por Edades Según su Ubicación Geográfica (Estado)</span>
                         <div class="row" style="padding: 0px 24px">
                             <div class="col s12" v-if="dataStates.length > 0">
                                 <md-field>
-                                    <label for="stateAge">Seleccione un estado</label>
+                                    <label for="stateAge">Seleccione un Estado</label>
                                     <md-select v-model="selectedStateAge" name="stateAge" id="stateAge" v-on:md-selected="changeState()">
                                         <md-option v-for="(state,index) of dataStates2" :key="index" :value="state.id">{{state.estado}}</md-option>
                                     </md-select>
@@ -110,7 +114,7 @@
             <div class="col m8 offset-m2">
                 <div class="card">
                     <div class="card-content center">
-                        <span class="card-title">Promedio de edades</span>
+                        <span class="card-title">Promedio de Edades</span>
                         <table class="table table-striped table-hover responsive-table">
                             <thead>
                                 <tr>
@@ -128,13 +132,13 @@
                                     <td>{{promedios.proTotal}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Maxima</td>
+                                    <td>Máxima</td>
                                     <td>{{promedios.maxMasc}}</td>
                                     <td>{{promedios.maxFeme}}</td>
                                     <td>{{promedios.maxTotal}}</td>                                    
                                 </tr>
                                 <tr>
-                                    <td>Minima</td>
+                                    <td>Mínima</td>
                                     <td>{{promedios.minMasc}}</td>
                                     <td>{{promedios.minFeme}}</td>
                                     <td>{{promedios.minTotal}}</td>
@@ -149,8 +153,8 @@
             <div class="col s12">
                 <div class="card card-bg">
                     <div class="card-content center">
-                        <span class="card-title">Investigadores por Profesión</span>
-                       <bar-charts v-if="show.dataState" :chartdata="profesions" :height="150"></bar-charts>
+                        <span class="card-title">Investigadores por Profesión Según el Género</span>
+                       <horizontalBar-charts v-if="show.dataState" :chartdata="profesions" :height="380"></horizontalBar-charts>
                     </div>
                 </div>
             </div>
@@ -247,9 +251,9 @@
                 this.datacollection = {
                     labels: nameStates,
                     datasets: [{
-                        label: 'Total investigadores por estado',
-                        backgroundColor: '#1976d2',
-                        hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                        label: 'Total de Investigadores por Estado',
+                        backgroundColor: '#082A44',
+                        hoverBackgroundColor: '#3D9EE8',
                         data: num
                     }]
                 }
@@ -337,9 +341,9 @@
                         this.datacollection = {
                             labels: nameMunicipality,
                             datasets: [{
-                                label: 'Total investigadores del estado '+ this.dataStates.find(v => v.id == this.selectedState).estado +' por Municipios',
-                                backgroundColor: '#10E7D9',
-                                hoverBackgroundColor: '#24D8A0',
+                                label: 'Total de Investigadores del Estado '+ this.dataStates.find(v => v.id == this.selectedState).estado +' por Municipios',
+                                backgroundColor: '#082A44',
+                                hoverBackgroundColor: '#3D9EE8',
                                 data: num
                             }]
                         }                        
@@ -368,9 +372,9 @@
                         this.datacollection = {
                             labels: nameParish,
                             datasets: [{
-                                label: 'Total investigadores del Municipio '+ this.dataMunicipalities.find(v => v.id == this.selectedMunicipality).municipio +' por Parroquias',
-                                backgroundColor: '#5194D6',
-                                hoverBackgroundColor: '#5194D6',
+                                label: 'Total Investigadores del Municipio '+ this.dataMunicipalities.find(v => v.id == this.selectedMunicipality).municipio +' por Parroquias',
+                                backgroundColor: '#082A44',
+                                hoverBackgroundColor: '#3D9EE8',
                                 data: num
                             }]
                         }
@@ -408,8 +412,8 @@
                     data.datasets.push({
                         data: info,
                         label: 'Total',
-                        backgroundColor: '#5194D6',
-                        hoverBackgroundColor: 'rgba(66, 66, 66, 1)',
+                        backgroundColor: '#082A44',
+                        hoverBackgroundColor: '#3D9EE8',
                         borderWidth: 1,
                         hoverBorderWidth: 2,    
                     })
@@ -419,7 +423,7 @@
                     data.datasets.push({
                         data: female,
                         label: 'Femenino',
-                        backgroundColor: '#2DA8C8',
+                        backgroundColor: '#EA5771',
                         borderWidth: 1,
                         hoverBorderWidth: 2,    
                     });
@@ -428,7 +432,7 @@
                     data.datasets.push({
                         data: male,
                         label: 'Masculino',
-                        backgroundColor: '#10E7D9',
+                        backgroundColor: '#1E88E5',
                         borderColor: 'rgba(41, 98, 255, 1)',
                         hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
                         borderWidth: 1,
@@ -464,6 +468,7 @@
 
     .color-w { color: #EA5771 }
     .color-m{ color:#1E88E5}
+    .color-g { color: #8a8787 }
 
     @media (max-width: 320px) { .card-icon{ display: none; } }
 </style>

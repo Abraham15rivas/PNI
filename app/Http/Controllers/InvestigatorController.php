@@ -92,8 +92,8 @@ class InvestigatorController extends Controller {
         // Ordenar descendente las profesiones y mostrar solo 10 primeros
         $grouprofesionArray = $this->orderDescUnkey($groupProfesion);
 
-        if (count($grouprofesionArray) > 10) {
-            $grouprofesionArray = array_slice($grouprofesionArray, 0, 10);
+        if (count($grouprofesionArray) > 20) {
+            $grouprofesionArray = array_slice($grouprofesionArray, 0, 20);
         } else {
             $grouprofesionArray = array_slice($grouprofesionArray, 0, count($grouprofesionArray));
         }

@@ -2426,12 +2426,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         labels: labels,
         datasets: [{
           data: info,
-          label: 'Total',
-          backgroundColor: ["rgba(0, 0, 0, 0)"],
-          borderColor: this.borderColor,
-          hoverBackgroundColor: this.borderColor,
+          label: 'Nº de Investigaciones',
+          backgroundColor: '#082A44',
+          hoverBackgroundColor: '#3D9EE8',
           borderWidth: 1,
-          hoverBorderWidth: 30,
+          hoverBorderWidth: 2,
           steppedLine: "middle"
         }]
       };
@@ -2479,12 +2478,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         labels: labels,
         datasets: [{
           data: info,
-          label: 'Total',
-          backgroundColor: ["rgba(0, 0, 0, 0)"],
-          borderColor: this.borderColor,
+          label: 'Fase de la Investigación',
+          backgroundColor: this.backgroundColor,
           hoverBackgroundColor: this.borderColor,
           borderWidth: 1,
-          hoverBorderWidth: 30,
+          hoverBorderWidth: 2,
           steppedLine: "middle"
         }]
       };
@@ -2506,12 +2504,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         labels: labels,
         datasets: [{
           data: info,
-          label: 'Total',
-          backgroundColor: ["rgba(0, 0, 0, 0)"],
-          borderColor: this.borderColor,
-          hoverBackgroundColor: this.borderColor,
+          label: 'Tiempo de Investigación',
+          backgroundColor: '#082A44',
+          hoverBackgroundColor: '#3D9EE8',
           borderWidth: 1,
-          hoverBorderWidth: 30,
+          hoverBorderWidth: 2,
           steppedLine: "middle"
         }]
       };
@@ -2745,7 +2742,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         labels: labels,
         datasets: [{
           data: info,
-          label: 'Series 1',
+          label: ' 1',
           backgroundColor: this.backgroundColor,
           borderColor: this.borderColor,
           hoverBackgroundColor: this.borderColor,
@@ -3288,10 +3285,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         labels: labels,
         datasets: [{
           data: info,
-          label: 'Series 1',
-          backgroundColor: this.backgroundColor,
-          borderColor: this.borderColor,
-          hoverBackgroundColor: this.borderColor,
+          label: 'Modo de Investigación',
+          backgroundColor: '#082A44',
+          hoverBackgroundColor: '#3D9EE8',
           borderWidth: 1,
           hoverBorderWidth: 2
         }]
@@ -3320,6 +3316,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -3590,9 +3590,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.datacollection = {
         labels: nameStates,
         datasets: [{
-          label: 'Total investigadores por estado',
-          backgroundColor: '#1976d2',
-          hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+          label: 'Total de Investigadores por Estado',
+          backgroundColor: '#082A44',
+          hoverBackgroundColor: '#3D9EE8',
           data: num
         }]
       };
@@ -3688,11 +3688,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this4.datacollection = {
           labels: nameMunicipality,
           datasets: [{
-            label: 'Total investigadores del estado ' + _this4.dataStates.find(function (v) {
+            label: 'Total de Investigadores del Estado ' + _this4.dataStates.find(function (v) {
               return v.id == _this4.selectedState;
             }).estado + ' por Municipios',
-            backgroundColor: '#10E7D9',
-            hoverBackgroundColor: '#24D8A0',
+            backgroundColor: '#082A44',
+            hoverBackgroundColor: '#3D9EE8',
             data: num
           }]
         };
@@ -3722,11 +3722,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this5.datacollection = {
           labels: nameParish,
           datasets: [{
-            label: 'Total investigadores del Municipio ' + _this5.dataMunicipalities.find(function (v) {
+            label: 'Total Investigadores del Municipio ' + _this5.dataMunicipalities.find(function (v) {
               return v.id == _this5.selectedMunicipality;
             }).municipio + ' por Parroquias',
-            backgroundColor: '#5194D6',
-            hoverBackgroundColor: '#5194D6',
+            backgroundColor: '#082A44',
+            hoverBackgroundColor: '#3D9EE8',
             data: num
           }]
         };
@@ -3760,8 +3760,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         data.datasets.push({
           data: info,
           label: 'Total',
-          backgroundColor: '#5194D6',
-          hoverBackgroundColor: 'rgba(66, 66, 66, 1)',
+          backgroundColor: '#082A44',
+          hoverBackgroundColor: '#3D9EE8',
           borderWidth: 1,
           hoverBorderWidth: 2
         });
@@ -3770,14 +3770,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (female.length > 0) data.datasets.push({
         data: female,
         label: 'Femenino',
-        backgroundColor: '#2DA8C8',
+        backgroundColor: '#EA5771',
         borderWidth: 1,
         hoverBorderWidth: 2
       });
       if (male.length > 0) data.datasets.push({
         data: male,
         label: 'Masculino',
-        backgroundColor: '#10E7D9',
+        backgroundColor: '#1E88E5',
         borderColor: 'rgba(41, 98, 255, 1)',
         hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
         borderWidth: 1,
@@ -24450,7 +24450,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.sidenav .logo-container[data-v-62e37494] {\r\n  padding: 0 16px;\r\n  height: 94px;\r\n  line-height: 64px;\r\n  font-size: 24px;\r\n  box-sizing: content-box;\n}\n.sidenav .collapsible > li.waves-effect[data-v-62e37494] {\r\n  display: block;\n}\n.sidenav .collapsible li[data-v-62e37494],\r\n.sidenav.fixed .collapsible li[data-v-62e37494] {\r\n  padding: 0;\n}\n.logo-min[data-v-62e37494] {\r\n  width: 195px;\r\n  height: 85px;\r\n  margin-top: 6px;\n}\n.cintillo-min[data-v-62e37494] {\r\n  width: 100%;\r\n  height: 100px;\n}\n.header-logo[data-v-62e37494] {\r\n  position: fixed;\r\n  right: 10px;\n}\n.brand-logo[data-v-62e37494] {\r\n  width: 100%;\n}\n.logo-sidebar[data-v-62e37494] {\r\n  height: 110px;\r\n  margin: 0 auto;\r\n  display: block;\n}\n.top-m[data-v-62e37494] {\r\n  margin-top: 10px;\n}\n@media (max-width: 992px) {\n.sidenav-collapse[data-v-62e37494] {\r\n    transform: translateX(0%);\r\n    transition: transform 300ms linear;\n}\n.button-collapse[data-v-62e37494] {\r\n    margin-left: 312px;\r\n    transition: margin-left 300ms linear;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.sidenav .logo-container[data-v-62e37494] {\r\n  padding: 0 16px;\r\n  height: 94px;\r\n  line-height: 64px;\r\n  font-size: 24px;\r\n  box-sizing: content-box;\n}\n.sidenav .collapsible > li.waves-effect[data-v-62e37494] {\r\n  display: block;\n}\n.sidenav .collapsible li[data-v-62e37494],\r\n.sidenav.fixed .collapsible li[data-v-62e37494] {\r\n  padding: 0;\n}\n.logo-min[data-v-62e37494] {\r\n  width: 195px;\r\n  height: 85px;\r\n  margin-top: 6px;\n}\n.cintillo-min[data-v-62e37494] {\r\n  width: 100%;\r\n  height: 100px;\n}\n.header-logo[data-v-62e37494] {\r\n  position: fixed;\r\n  right: 10px;\n}\n.brand-logo[data-v-62e37494] {\r\n  width: 100%;\n}\n.logo-sidebar[data-v-62e37494] {\r\n  height: 100px;\r\n  margin: 0 auto;\r\n  display: block;\n}\n.top-m[data-v-62e37494] {\r\n  margin-top: 10px;\n}\n@media (max-width: 992px) {\n.sidenav-collapse[data-v-62e37494] {\r\n    transform: translateX(0%);\r\n    transition: transform 300ms linear;\n}\n.button-collapse[data-v-62e37494] {\r\n    margin-left: 312px;\r\n    transition: margin-left 300ms linear;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -24545,7 +24545,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nhr[data-v-64b339f7]{ width: 100%\n}\n.md-button[data-v-64b339f7], .md-button-clean[data-v-64b339f7]{ background-color: white;\n}\n.card-icon[data-v-64b339f7] {\n    background: #e3f2fd;\n    display: flex;\n    align-items: center;\n    padding: 0px 8px 0px 16px;\n}\n.margin-x[data-v-64b339f7]{\n    margin: 0 25px;\n    padding-top: 32px;\n}\n.size-img[data-v-64b339f7]{ \n    width: 100px; \n    height: 100px;\n}\n.color-w[data-v-64b339f7] { color: #EA5771\n}\n.color-m[data-v-64b339f7]{ color:#1E88E5}\n@media (max-width: 320px) {\n.card-icon[data-v-64b339f7]{ display: none;\n}\n}\n", ""]);
+exports.push([module.i, "\nhr[data-v-64b339f7]{ width: 100%\n}\n.md-button[data-v-64b339f7], .md-button-clean[data-v-64b339f7]{ background-color: white;\n}\n.card-icon[data-v-64b339f7] {\n    background: #e3f2fd;\n    display: flex;\n    align-items: center;\n    padding: 0px 8px 0px 16px;\n}\n.margin-x[data-v-64b339f7]{\n    margin: 0 25px;\n    padding-top: 32px;\n}\n.size-img[data-v-64b339f7]{ \n    width: 100px; \n    height: 100px;\n}\n.color-w[data-v-64b339f7] { color: #EA5771\n}\n.color-m[data-v-64b339f7]{ color:#1E88E5}\n.color-g[data-v-64b339f7] { color: #8a8787\n}\n@media (max-width: 320px) {\n.card-icon[data-v-64b339f7]{ display: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -79457,7 +79457,9 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Tipo de Institución")
+                _vm._v(
+                  "Distribución de las Investigaciones por Tipo de Institución"
+                )
               ]),
               _vm._v(" "),
               _vm.loadedIns
@@ -79478,11 +79480,11 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Tipo de Investigación")
+                _vm._v("Cantidad de Investigaciones por Tipo de Investigación")
               ]),
               _vm._v(" "),
               _vm.loadedInvType
-                ? _c("bar-charts", {
+                ? _c("horizontalBar-charts", {
                     attrs: { chartdata: _vm.investigation_type, height: 325 }
                   })
                 : _vm._e()
@@ -79501,12 +79503,12 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Línea de Investigación")
+                _vm._v("Cantidad de Investigaciones por Línea de Investigación")
               ]),
               _vm._v(" "),
               _vm.loadedInvLine
                 ? _c("horizontalBar-charts", {
-                    attrs: { chartdata: _vm.investigation_line, height: 225 }
+                    attrs: { chartdata: _vm.investigation_line, height: 300 }
                   })
                 : _vm._e()
             ],
@@ -79524,12 +79526,12 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Fase de la Investigación")
+                _vm._v("Distribución de Investigaciones por Fase")
               ]),
               _vm._v(" "),
               _vm.loadedPhaseInv
-                ? _c("line-charts", {
-                    attrs: { chartdata: _vm.phase_investigation, height: 180 }
+                ? _c("doughnut-charts", {
+                    attrs: { chartdata: _vm.phase_investigation, height: 300 }
                   })
                 : _vm._e()
             ],
@@ -79545,12 +79547,14 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Tiempo de la Investigación")
+                _vm._v(
+                  "Distribución de Investigadores por Tiempo de Investigación"
+                )
               ]),
               _vm._v(" "),
               _vm.loadedTimeInv
-                ? _c("line-charts", {
-                    attrs: { chartdata: _vm.investigation_time, height: 180 }
+                ? _c("bar-charts", {
+                    attrs: { chartdata: _vm.investigation_time, height: 300 }
                   })
                 : _vm._e()
             ],
@@ -79628,18 +79632,115 @@ var staticRenderFns = [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col m12 s12 mt" }, [
           _c("h3", { staticClass: "center-align" }, [
-            _vm._v(
-              "Investigadores e Investigadoras Registrados en el Programa Nacional de Investigadores (PNI) "
-            )
+            _vm._v(" Programa Nacional de Investigadores (PNI) ")
           ])
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col m12 s12 center-align" }, [
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
           _c("img", {
             staticClass: "imagen-portada center-align",
-            attrs: { src: "images/pni_logo_nuevo.png", alt: "" }
+            attrs: { src: "images/clacso.png", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/minsalud.png", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/min_agua.png", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/covid19.png", alt: "" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/inn_min.png", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/cenipa.png", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/pdvsa.png", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/funvisis.png", alt: "" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/inia.png", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/fuvidit.png", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/ingeomin.png", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/motor_minero.png", alt: "" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col m3 s12 center-align" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/minec.png", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col m3 s12 center-align" }, [
+          _c("img", {
+            staticClass: "imagen-portada center-align",
+            attrs: { src: "images/ide.png", alt: "" }
           })
         ])
       ])
@@ -79698,12 +79799,12 @@ var render = function() {
             { staticClass: "card-content center" },
             [
               _c("span", { staticClass: "card-title title-card" }, [
-                _vm._v("Nivel Académico")
+                _vm._v("Distribución de Investigadores por Nivel Académico")
               ]),
               _vm._v(" "),
               _vm.show.academicLevel
                 ? _c("bar-charts", {
-                    attrs: { chartdata: _vm.academicLevel, height: 150 }
+                    attrs: { chartdata: _vm.academicLevel, height: 300 }
                   })
                 : _vm._e()
             ],
@@ -79743,12 +79844,12 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title title-card" }, [
-                _vm._v("Tipo de Investigación")
+                _vm._v("Cantidad de Investigaciones por Tipo de Investigación")
               ]),
               _vm._v(" "),
               _vm.show.typeInvestigation
                 ? _c("bar-charts", {
-                    attrs: { chartdata: _vm.typeInvestigation, height: 200 }
+                    attrs: { chartdata: _vm.typeInvestigation, height: 300 }
                   })
                 : _vm._e()
             ],
@@ -79764,12 +79865,12 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title title-card" }, [
-                _vm._v("Línea de Investigación")
+                _vm._v("Cantidad de Investigaciones por Línea de Investigación")
               ]),
               _vm._v(" "),
               _vm.show.lineInvestigation
                 ? _c("horizontalBar-charts", {
-                    attrs: { chartdata: _vm.lineInvestigation, height: 200 }
+                    attrs: { chartdata: _vm.lineInvestigation, height: 300 }
                   })
                 : _vm._e()
             ],
@@ -79787,12 +79888,14 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title title-card" }, [
-                _vm._v("Tipo de Institución")
+                _vm._v(
+                  "Distribución de las Investigaciones por Tipo de Institución"
+                )
               ]),
               _vm._v(" "),
               _vm.show.typeInstitution
-                ? _c("pie-charts", {
-                    attrs: { chartdata: _vm.typeInstitution, height: 200 }
+                ? _c("doughnut-charts", {
+                    attrs: { chartdata: _vm.typeInstitution, height: 300 }
                   })
                 : _vm._e()
             ],
@@ -79808,12 +79911,14 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title title-card" }, [
-                _vm._v("Tiempo de Investigación")
+                _vm._v(
+                  "Distribución de los Investigadores por Tiempo de Investigación"
+                )
               ]),
               _vm._v(" "),
               _vm.show.timeInvestigation
                 ? _c("bar-charts", {
-                    attrs: { chartdata: _vm.timeInvestigation, height: 200 }
+                    attrs: { chartdata: _vm.timeInvestigation, height: 300 }
                   })
                 : _vm._e()
             ],
@@ -80216,7 +80321,9 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Interés de Investigación")
+                _vm._v(
+                  "Cantidad de Investigadores por Interés de Investigación"
+                )
               ]),
               _vm._v(" "),
               _vm.loadedInt
@@ -80239,12 +80346,14 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Tipo de Institución")
+                _vm._v(
+                  "Distribución de las Investigaciones por Tipo de Institución"
+                )
               ]),
               _vm._v(" "),
               _vm.loadedIns
                 ? _c("doughnut-charts", {
-                    attrs: { chartdata: _vm.institution, height: 200 }
+                    attrs: { chartdata: _vm.institution, height: 300 }
                   })
                 : _vm._e()
             ],
@@ -80260,12 +80369,14 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Como Investiga")
+                _vm._v(
+                  "Modo de Investigación que Realizan los Investigadores e Investigadoras"
+                )
               ]),
               _vm._v(" "),
               _vm.loadedModeInv
                 ? _c("horizontalBar-charts", {
-                    attrs: { chartdata: _vm.modeInv, height: 200 }
+                    attrs: { chartdata: _vm.modeInv, height: 300 }
                   })
                 : _vm._e()
             ],
@@ -80283,7 +80394,9 @@ var render = function() {
             { staticClass: "card-content" },
             [
               _c("span", { staticClass: "card-title center" }, [
-                _vm._v("Investigación Actual")
+                _vm._v(
+                  "Tipo de Investigación actual que realizan los Investigadores e Investigadoras"
+                )
               ]),
               _vm._v(" "),
               _vm.loadedAct
@@ -80344,7 +80457,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "col s12" }, [
         _c("h5", { staticClass: "center-align" }, [
           _vm._v(
-            "Indicador del tipo de institución e interés de investigación de las investigadoras e investigadores"
+            "Indicadores Sobre el Interés de Investigación e Investigaciones por Tipo de Institución"
           )
         ])
       ])
@@ -80397,14 +80510,14 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col s12 m7" }, [
+        _c("div", { staticClass: "col s12 m4" }, [
           _c("div", { staticClass: "card horizontal" }, [
             _vm._m(1),
             _vm._v(" "),
             _c("div", { staticClass: "card-stacked" }, [
               _c("div", { staticClass: "card-body" }, [
                 _c("h5", { staticClass: "center-align" }, [
-                  _vm._v("Total de investigadores registrados")
+                  _vm._v("Total de Investigadores Registrados")
                 ]),
                 _vm._v(" "),
                 _c("h4", { staticClass: "center-align" }, [
@@ -80415,14 +80528,14 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col s12 m5" }, [
+        _c("div", { staticClass: "col s12 m8" }, [
           _c("div", { staticClass: "card horizontal" }, [
             _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "card-stacked" }, [
               _c("div", { staticClass: "card-body" }, [
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col s12 m12 xl6" }, [
+                  _c("div", { staticClass: "col s12 m3 xl4" }, [
                     _c("h5", { staticClass: "center-align color-w ml-5" }, [
                       _vm._v("Mujeres")
                     ]),
@@ -80432,12 +80545,22 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col s12 m12 xl6" }, [
+                  _c("div", { staticClass: "col s12 m3 xl4" }, [
                     _c("h5", { staticClass: "center-align color-m" }, [
                       _vm._v("Hombres")
                     ]),
                     _vm._v(" "),
                     _c("h5", { staticClass: "center-align color-m" }, [
+                      _vm._v(_vm._s(_vm.investigators.inv_mens))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col s12 m3 xl4" }, [
+                    _c("h5", { staticClass: "center-align color-g" }, [
+                      _vm._v("Sin Contestar")
+                    ]),
+                    _vm._v(" "),
+                    _c("h5", { staticClass: "center-align color-g" }, [
                       _vm._v(_vm._s(_vm.investigators.inv_mens))
                     ])
                   ])
@@ -80456,7 +80579,7 @@ var render = function() {
               { staticClass: "card-content center" },
               [
                 _c("span", { staticClass: "card-title" }, [
-                  _vm._v("Investigadores por rango de edad")
+                  _vm._v("Investigadores por Rango de Edad")
                 ]),
                 _vm._v(" "),
                 _vm.show.dataAge
@@ -80479,7 +80602,7 @@ var render = function() {
               { staticClass: "card-content center" },
               [
                 _c("span", { staticClass: "card-title" }, [
-                  _vm._v("Investigadores por estados")
+                  _vm._v("Investigadores por Estados")
                 ]),
                 _vm._v(" "),
                 _vm.show.dataState
@@ -80628,7 +80751,9 @@ var render = function() {
               { staticClass: "card-content center" },
               [
                 _c("span", { staticClass: "card-title" }, [
-                  _vm._v("Investigadores por Edades")
+                  _vm._v(
+                    "Investigadores por Edades Según su Ubicación Geográfica (Estado)"
+                  )
                 ]),
                 _vm._v(" "),
                 _c(
@@ -80644,7 +80769,7 @@ var render = function() {
                               "md-field",
                               [
                                 _c("label", { attrs: { for: "stateAge" } }, [
-                                  _vm._v("Seleccione un estado")
+                                  _vm._v("Seleccione un Estado")
                                 ]),
                                 _vm._v(" "),
                                 _c(
@@ -80710,7 +80835,7 @@ var render = function() {
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-content center" }, [
               _c("span", { staticClass: "card-title" }, [
-                _vm._v("Promedio de edades")
+                _vm._v("Promedio de Edades")
               ]),
               _vm._v(" "),
               _c(
@@ -80734,7 +80859,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Maxima")]),
+                      _c("td", [_vm._v("Máxima")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(_vm.promedios.maxMasc))]),
                       _vm._v(" "),
@@ -80744,7 +80869,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Minima")]),
+                      _c("td", [_vm._v("Mínima")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(_vm.promedios.minMasc))]),
                       _vm._v(" "),
@@ -80768,12 +80893,12 @@ var render = function() {
               { staticClass: "card-content center" },
               [
                 _c("span", { staticClass: "card-title" }, [
-                  _vm._v("Investigadores por Profesión")
+                  _vm._v("Investigadores por Profesión Según el Género")
                 ]),
                 _vm._v(" "),
                 _vm.show.dataState
-                  ? _c("bar-charts", {
-                      attrs: { chartdata: _vm.profesions, height: 150 }
+                  ? _c("horizontalBar-charts", {
+                      attrs: { chartdata: _vm.profesions, height: 380 }
                     })
                   : _vm._e()
               ],
@@ -80795,7 +80920,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "col s12" }, [
         _c("h5", { staticClass: "center" }, [
           _vm._v(
-            "\n                Indicador de Investigadoras e Investigadores registrados en el Programa Nacional de Investigadores\n            "
+            "\n                Indicador de Investigadoras e Investigadores Rregistrados en el Programa Nacional de Investigadores\n            "
           )
         ])
       ])

@@ -151,7 +151,7 @@ export default {
 }
 
 .logo-sidebar {
-  height: 110px;
+  height: 100px;
   margin: 0 auto;
   display: block;
 }

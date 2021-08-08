@@ -32,8 +32,8 @@
                 <div class="card">
                     <!-- <div class="card-content center blue lighten-5"> -->
                     <div class="card-content center">
-                        <span class="card-title title-card">Nivel Académico</span>
-                        <bar-charts v-if="show.academicLevel" :chartdata="academicLevel" :height="150"></bar-charts>
+                        <span class="card-title title-card">Distribución de Investigadores por Nivel Académico</span>
+                        <bar-charts v-if="show.academicLevel" :chartdata="academicLevel" :height="300"></bar-charts>
                     </div>
                 </div>
             </div>
@@ -67,16 +67,16 @@
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title title-card">Tipo de Investigación</span>
-                        <bar-charts  v-if="show.typeInvestigation" :chartdata="typeInvestigation" :height="200"></bar-charts>
+                        <span class="card-title title-card">Cantidad de Investigaciones por Tipo de Investigación</span>
+                        <bar-charts  v-if="show.typeInvestigation" :chartdata="typeInvestigation" :height="300"></bar-charts>
                     </div>
                 </div>
             </div>
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title title-card" >Línea de Investigación</span>
-                        <horizontalBar-charts v-if="show.lineInvestigation" :chartdata="lineInvestigation" :height="200" ></horizontalBar-charts>
+                        <span class="card-title title-card" >Cantidad de Investigaciones por Línea de Investigación</span>
+                        <horizontalBar-charts v-if="show.lineInvestigation" :chartdata="lineInvestigation" :height="300" ></horizontalBar-charts>
                     </div>
                 </div>
             </div>
@@ -87,16 +87,16 @@
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title title-card">Tipo de Institución</span>
-                        <pie-charts v-if="show.typeInstitution" :chartdata="typeInstitution" :height="200"></pie-charts>
+                        <span class="card-title title-card">Distribución de las Investigaciones por Tipo de Institución</span>
+                        <doughnut-charts v-if="show.typeInstitution" :chartdata="typeInstitution" :height="300"></doughnut-charts>
                     </div>
                 </div>
             </div>
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title title-card" >Tiempo de Investigación</span>
-                       <bar-charts v-if="show.timeInvestigation" :chartdata="timeInvestigation" :height="200"></bar-charts>
+                        <span class="card-title title-card" >Distribución de los Investigadores por Tiempo de Investigación</span>
+                       <bar-charts v-if="show.timeInvestigation" :chartdata="timeInvestigation" :height="300"></bar-charts>
                     </div>
                 </div>
             </div>
@@ -202,7 +202,7 @@ export default {
                 labels: labels,
                 datasets: [{
                     data: info,
-                    label: 'Series 1',
+                    label: ' 1',
                     backgroundColor: this.backgroundColor,
                     borderColor: this.borderColor,
                     hoverBackgroundColor: this.borderColor,

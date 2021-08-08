@@ -109,6 +109,8 @@ export default {
 
             modeInv: {}, //Como investiga
             loadedModeInv: false,
+
+            groups: {}, //Grupos
         }
     },
     async mounted () {
@@ -128,12 +130,26 @@ export default {
                 this.actualInt = this.groupActualInt(res.data.actualInvestigation);
                 this.modeInv = this.groupInv(res.data.groupModeInvestigation, 'titulo');
                 this.loadedModeInv = this.modeInv != {} ? true : false;
+                this.groups = res.data.allGroups;
+
+                if (this.groups.length > 0) {
+                    this.filterForGroup(this.groups, dataInterest)
+                }
             })
             .catch(err => {
                 console.log(err);
             })
     },
     methods: {
+        filterForGroup(group, data) {
+            data.forEach(element => {
+                group.forEach(ele => {
+                    if (element.grupo == ele.title) {
+                        ele.values.push(element)
+                    }
+                });
+            });
+        },
         groupInstitution(items){
             let labels = [];
             let info = []
@@ -171,6 +187,8 @@ export default {
             let info = [];
             let content = [];
 
+            console.log(items)
+
             items.forEach(item => {
                 if(item['titulo'] != "TOTALES"){
                     
@@ -185,7 +203,7 @@ export default {
                 datasets: [
                     {
                         data: info,
-                        label: 'Cantidad de Investigadores',
+                        label: 'Cantidad de investigaciones ',
                         backgroundColor: ["rgba(0, 0, 0, 0)"],
                         borderColor: this.borderColor,
                         hoverBackgroundColor: this.borderColor,
@@ -215,6 +233,7 @@ export default {
                 labels: labels,
                 datasets: [{
                     data: info,
+                    label: 'Cantidad total de investigaciones',
                     backgroundColor: this.backgroundColor,
                     borderColor: this.borderColor,
                     hoverBackgroundColor: this.borderColor,
@@ -267,4 +286,7 @@ export default {
 
 .td-title:hover{ color: #000 }
 
+.card .card-content {
+    cursor: pointer;
+}
 </style>

@@ -287,6 +287,17 @@ class InvestigatorController extends Controller {
         $actualInvestigations = $interests;
         $interests->push(["name"=> "TOTALES"]);
 
+        // Agrupar los grupos
+        $allGroups = collect();
+        $groups = Interest::select('grupo')->distinct()->get();
+
+        foreach($groups as &$element) {
+            $allGroups->push([
+                'title' => $element->grupo,
+                'values' => []
+            ]);
+        }
+
         // Numero de instituciones
         $groupInstitution = self::institutionType($investigators);
         
@@ -331,6 +342,7 @@ class InvestigatorController extends Controller {
         for ($i = 0; $i < $interests->count(); $i++) 
         {
             $length = $interests->count();
+            $group = $i == ($length - 1) ? $length : $interests[$i]->grupo;
             $name = $i == ($length - 1) ? $interests[$i]['name'] : $interests[$i]->nombre_lineas_presidenciales;
             $id = $i == ($length - 1) ? $length : $interests[$i]->id_lineas_presidenciales;
             $id_interest = $i == ($length - 1) ? 'Abi' : $interests[$i]->id_lineas_presidenciales;
@@ -338,6 +350,7 @@ class InvestigatorController extends Controller {
             // Suma de totales
             $count_total_inv += $value;
 
+            $groupInterest[$i]["grupo"] = $group;
             $groupInterest[$i]["titulo"] = trim($name);
             $groupInterest[$i]["id"] = $id;
             $groupInterest[$i]["total"] = $i == ($length - 1) ? $count_total_inv : $value;
@@ -419,7 +432,8 @@ class InvestigatorController extends Controller {
             "groupInstitution"=>$groupInstitution,
             "groupInterest"=>$groupInterest,
             "actualInvestigation"=>$arrActual,
-            "groupModeInvestigation"=>$groupModeInvestigation
+            "groupModeInvestigation"=>$groupModeInvestigation,
+            "allGroups"=>$allGroups
         ]);
 
         return $data->toJson();

@@ -2,16 +2,64 @@
     <div class="padding">
         <div class="row">
             <div class="col m12 s12 mt">
-                <h3 class="center-align" >Investigadores e Investigadoras Registrados en el Programa Nacional de Investigadores (PNI) </h3>
+                <h3 class="center-align" > Programa Nacional de Investigadores (PNI) </h3>
             </div>
         </div>
 
         <div class="row">
-            <div class="col m12 s12 center-align">
-                <img src="images/pni_logo_nuevo.png" class="imagen-portada center-align" alt="">
+            <div class="col m3 s12 center-align">
+                <img src="images/clacso.png" class="imagen-portada center-align" alt="">
             </div>
-        </div>        
-    </div>
+            <div class="col m3 s12 center-align">
+                <img src="images/minsalud.png" class="imagen-portada center-align" alt="">
+            </div>
+            <div class="col m3 s12 center-align">
+                <img src="images/min_agua.png" class="imagen-portada center-align" alt="">
+            </div>
+            <div class="col m3 s12 center-align">
+                <img src="images/covid19.png" class="imagen-portada center-align" alt="">
+            </div>
+        </div>    
+        <div class="row">
+            <div class="col m3 s12 center-align">
+                <img src="images/inn_min.png" class="imagen-portada center-align" alt="">
+            </div>
+            <div class="col m3 s12 center-align">
+                <img src="images/cenipa.png" class="imagen-portada center-align" alt="">
+            </div>
+            <div class="col m3 s12 center-align">
+                <img src="images/pdvsa.png" class="imagen-portada center-align" alt="">
+            </div>
+            <div class="col m3 s12 center-align">
+                <img src="images/funvisis.png" class="imagen-portada center-align" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m3 s12 center-align">
+                <img src="images/inia.png" class="imagen-portada center-align" alt="">
+            </div>
+            <div class="col m3 s12 center-align">
+                <img src="images/fuvidit.png" class="imagen-portada center-align" alt="">
+            </div>
+            <div class="col m3 s12 center-align">
+                <img src="images/ingeomin.png" class="imagen-portada center-align" alt="">
+            </div>
+            <div class="col m3 s12 center-align">
+                <img src="images/motor_minero.png" class="imagen-portada center-align" alt="">
+            </div>
+        </div>    
+        <div class="row">
+            <div class="col m3 s12 center-align">
+               
+            </div>
+            <div class="col m3 s12 center-align">
+                <img src="images/minec.png" class="imagen-portada center-align" alt="">
+            </div>
+            <div class="col m3 s12 center-align">
+                <img src="images/ide.png" class="imagen-portada center-align" alt="">
+            </div>
+        </div> 
+    </div>   
 </template>
 
 <style scoped>

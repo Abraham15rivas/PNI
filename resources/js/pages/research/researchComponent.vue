@@ -2,7 +2,7 @@
     <div class="margin-x">
         <div class="row">
             <div class="col s12">
-                <h5 class="center-align" >Indicador del tipo de institución e interés de investigación de las investigadoras e investigadores</h5>
+                <h5 class="center-align" >Indicadores Sobre el Interés de Investigación e Investigaciones por Tipo de Institución</h5>
             </div>
         </div>
 
@@ -10,7 +10,7 @@
             <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title center" >Interés de Investigación</span>
+                        <span class="card-title center" >Cantidad de Investigadores por Interés de Investigación</span>
                         <horizontalBar-charts  v-if="loadedInt" :chartdata="interest" :height="325"></horizontalBar-charts>
                     </div>
                 </div>
@@ -20,16 +20,16 @@
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title center">Tipo de Institución</span>
-                        <doughnut-charts v-if="loadedIns" :chartdata="institution" :height="200"></doughnut-charts>
+                        <span class="card-title center">Distribución de las Investigaciones por Tipo de Institución</span>
+                        <doughnut-charts v-if="loadedIns" :chartdata="institution" :height="300"></doughnut-charts>
                     </div>
                 </div>                
             </div>
              <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title center">Como Investiga</span>
-                        <horizontalBar-charts v-if="loadedModeInv" :chartdata="modeInv" :height="200"></horizontalBar-charts>
+                        <span class="card-title center">Modo de Investigación que Realizan los Investigadores e Investigadoras</span>
+                        <horizontalBar-charts v-if="loadedModeInv" :chartdata="modeInv" :height="300"></horizontalBar-charts>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
             <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title center" >Investigación Actual</span>
+                        <span class="card-title center" >Tipo de Investigación actual que realizan los Investigadores e Investigadoras</span>
                         <horizontalBar-charts v-if="loadedAct" :chartdata="actualInt" :height="180"></horizontalBar-charts>
                     </div>
                 </div>
@@ -109,6 +109,8 @@ export default {
 
             modeInv: {}, //Como investiga
             loadedModeInv: false,
+
+            groups: {}, //Grupos
         }
     },
     async mounted () {
@@ -128,12 +130,26 @@ export default {
                 this.actualInt = this.groupActualInt(res.data.actualInvestigation);
                 this.modeInv = this.groupInv(res.data.groupModeInvestigation, 'titulo');
                 this.loadedModeInv = this.modeInv != {} ? true : false;
+                this.groups = res.data.allGroups;
+
+                if (this.groups.length > 0) {
+                    this.filterForGroup(this.groups, dataInterest)
+                }
             })
             .catch(err => {
                 console.log(err);
             })
     },
     methods: {
+        filterForGroup(group, data) {
+            data.forEach(element => {
+                group.forEach(ele => {
+                    if (element.grupo == ele.title) {
+                        ele.values.push(element)
+                    }
+                });
+            });
+        },
         groupInstitution(items){
             let labels = [];
             let info = []
@@ -171,6 +187,8 @@ export default {
             let info = [];
             let content = [];
 
+            console.log(items)
+
             items.forEach(item => {
                 if(item['titulo'] != "TOTALES"){
                     
@@ -185,7 +203,7 @@ export default {
                 datasets: [
                     {
                         data: info,
-                        label: 'Cantidad de Investigadores',
+                        label: 'Cantidad de investigaciones ',
                         backgroundColor: ["rgba(0, 0, 0, 0)"],
                         borderColor: this.borderColor,
                         hoverBackgroundColor: this.borderColor,
@@ -215,6 +233,7 @@ export default {
                 labels: labels,
                 datasets: [{
                     data: info,
+                    label: 'Cantidad total de investigaciones',
                     backgroundColor: this.backgroundColor,
                     borderColor: this.borderColor,
                     hoverBackgroundColor: this.borderColor,
@@ -239,10 +258,9 @@ export default {
                 labels: labels,
                 datasets: [{
                     data: info,
-                    label: 'Series 1',
-                    backgroundColor: this.backgroundColor,
-                    borderColor: this.borderColor,
-                    hoverBackgroundColor: this.borderColor,
+                    label: 'Modo de Investigación',
+                    backgroundColor: '#082A44',
+                    hoverBackgroundColor: '#3D9EE8',
                     borderWidth: 1,
                     hoverBorderWidth: 2,
                     
@@ -267,4 +285,7 @@ export default {
 
 .td-title:hover{ color: #000 }
 
+.card .card-content {
+    cursor: pointer;
+}
 </style>

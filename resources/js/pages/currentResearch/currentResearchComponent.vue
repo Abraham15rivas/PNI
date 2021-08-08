@@ -28,7 +28,7 @@
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title center">Tipo de Institución</span>
+                        <span class="card-title center">Distribución de las Investigaciones por Tipo de Institución</span>
                         <doughnut-charts v-if="loadedIns" :chartdata="institution" :height="325"></doughnut-charts>
                     </div>
                 </div>
@@ -36,8 +36,8 @@
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title center" >Tipo de Investigación</span>
-                        <bar-charts v-if="loadedInvType" :chartdata="investigation_type" :height="325"></bar-charts>
+                        <span class="card-title center" >Cantidad de Investigaciones por Tipo de Investigación</span>
+                        <horizontalBar-charts v-if="loadedInvType" :chartdata="investigation_type" :height="325"></horizontalBar-charts>
                     </div>
                 </div>
             </div>
@@ -46,8 +46,8 @@
             <div class="col s12">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title center">Línea de Investigación</span>
-                    <horizontalBar-charts v-if="loadedInvLine" :chartdata="investigation_line" :height="225"></horizontalBar-charts>
+                    <span class="card-title center">Cantidad de Investigaciones por Línea de Investigación</span>
+                    <horizontalBar-charts v-if="loadedInvLine" :chartdata="investigation_line" :height="300"></horizontalBar-charts>
                 </div>
             </div>
             </div>
@@ -56,16 +56,16 @@
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title center">Fase de la Investigación</span>
-                        <line-charts v-if="loadedPhaseInv" :chartdata="phase_investigation" :height="180"></line-charts>
+                        <span class="card-title center">Distribución de Investigaciones por Fase</span>
+                        <doughnut-charts v-if="loadedPhaseInv" :chartdata="phase_investigation" :height="300"></doughnut-charts>
                     </div>
                 </div>
             </div>
             <div class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title center" >Tiempo de la Investigación</span>
-                        <line-charts v-if="loadedTimeInv" :chartdata="investigation_time" :height="180"></line-charts>
+                        <span class="card-title center" >Distribución de Investigadores por Tiempo de Investigación</span>
+                        <bar-charts v-if="loadedTimeInv" :chartdata="investigation_time" :height="300"></bar-charts>
                     </div>
                 </div>
             </div>
@@ -200,12 +200,11 @@
                     datasets: [
                         {
                             data: info,
-                            label: 'Total',
-                            backgroundColor: ["rgba(0, 0, 0, 0)"],
-                            borderColor: this.borderColor,
-                            hoverBackgroundColor: this.borderColor,
+                            label: 'Nº de Investigaciones',
+                            backgroundColor: '#082A44',
+                            hoverBackgroundColor: '#3D9EE8',
                             borderWidth: 1,
-                            hoverBorderWidth: 30,
+                            hoverBorderWidth: 2,
                             steppedLine: "middle"
                         }
                     ]
@@ -258,12 +257,11 @@
                     labels: labels,
                     datasets: [{
                         data: info,
-                        label: 'Total',
-                        backgroundColor: ["rgba(0, 0, 0, 0)"],
-                        borderColor: this.borderColor,
+                        label: 'Fase de la Investigación',
+                        backgroundColor: this.backgroundColor,
                         hoverBackgroundColor: this.borderColor,
                         borderWidth: 1,
-                        hoverBorderWidth: 30,
+                        hoverBorderWidth: 2,
                         steppedLine: "middle"
                     }]
                 }
@@ -287,12 +285,11 @@
                     labels: labels,
                     datasets: [{
                         data: info,
-                        label: 'Total',
-                        backgroundColor: ["rgba(0, 0, 0, 0)"],
-                        borderColor: this.borderColor,
-                        hoverBackgroundColor: this.borderColor,
+                        label: 'Tiempo de Investigación',
+                        backgroundColor: '#082A44',
+                        hoverBackgroundColor: '#3D9EE8',
                         borderWidth: 1,
-                        hoverBorderWidth: 30,
+                        hoverBorderWidth: 2,
                         steppedLine: "middle"
                     }]
                 }

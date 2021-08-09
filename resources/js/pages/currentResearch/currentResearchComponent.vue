@@ -1,5 +1,6 @@
 <template>
     <div class="margin-x">
+        <loader :load="load" />
         <div class="row">
             <div class="col s12">
                 <h5 class="center-align" >Indicador del Módulo de la Investigación Actual</h5>
@@ -77,6 +78,7 @@
     export default {
         data() {
             return {
+                load: false,
                 options: {
                     legend: {
                         align: "end"
@@ -97,7 +99,11 @@
                 '#2DA8C8',
                 '#10E7D9',
                 '#1D4C7A',
-                '#1781A1'
+                '#1781A1',
+                '#082A44',
+                '#3D9EE8',
+                '#9ECEF4',
+                '#10E7D9'
             ],
             borderColor: [
                 '#2DA8C8', 
@@ -111,7 +117,11 @@
                 '#3D9EE8',
                 '#9ECEF4',
                 '#0D426B',
-                '#1D4C7A'
+                '#1D4C7A',
+                '#2DA8C8', 
+                '#00B0F0',   
+                '#24D8A0',
+                '#7AE9C6'
             ],
 
                 total_investigation: 0,
@@ -137,6 +147,9 @@
                 loadedTimeInv: false,                
             }
         },
+        beforeMount () {
+            this.load = true
+        },
         async mounted () {
             let url = 'statistics/investigators/current';
             axios.get(url)
@@ -147,6 +160,10 @@
                     this.investigation_line = this.groupInvestigationLine(res.data.investigations_line); 
                     this.phase_investigation = this.groupPhaseInvestigation(res.data.investigations_phase);
                     this.investigation_time = this.groupInvestigationsTime(res.data.investigations_time);
+
+                    setTimeout(() => {
+                        this.load = false
+                    }, 5000) 
                 })
 
         },

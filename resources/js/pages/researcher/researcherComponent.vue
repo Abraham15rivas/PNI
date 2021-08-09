@@ -229,7 +229,10 @@
                     this.totalGroupStates = res.data.groupStates
                     this.gruopStates()
                     this.show.dataState = true;
-                    this.load = false;    
+                    
+                    setTimeout(() => {
+                        this.load = false
+                    }, 5000) 
                 });   
         },
         methods:{

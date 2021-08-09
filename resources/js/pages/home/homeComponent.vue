@@ -1,5 +1,6 @@
 <template>
     <div class="padding">
+        <loader :load="load" /> 
         <div class="row">
             <div class="col m12 s12 mt">
                 <h3 class="center-align" > Programa Nacional de Investigadores (PNI) </h3>
@@ -61,6 +62,22 @@
         </div> 
     </div>   
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            load: false
+        }
+    },
+    beforeMount () {
+        this.load = true
+    },
+    mounted () {
+        this.load = false
+    }
+}
+</script>
 
 <style scoped>
 

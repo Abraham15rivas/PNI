@@ -1,5 +1,6 @@
 <template>
     <div class="margin-x">
+        <loader :load="load" /> 
         <div class="row">
             <div class="col s12">
                 <h5 class="center-align" >Indicadores Sobre el Interés de Investigación e Investigaciones por Tipo de Institución</h5>
@@ -11,7 +12,20 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center" >Cantidad de Investigadores por Interés de Investigación</span>
-                        <horizontalBar-charts  v-if="loadedInt" :chartdata="interest" :height="325"></horizontalBar-charts>
+                         <div class="row" style="padding: 0px 24px">
+                            <div class="col s12" v-if="groups.length > 0">
+                                <md-field>
+                                    <label for="stateAge">Seleccione un grupo</label>
+                                    <md-select v-model="groupSelected" name="stateAge" id="stateAge" v-on:md-selected="changeGroup()">
+                                        <md-option v-for="(group, index) of groups" :key="index" :value="group.title">{{group.title}}</md-option>
+                                    </md-select>
+                                </md-field>
+                            </div>
+                        </div>
+                        <horizontalBar-charts  v-if="loadedInt" :chartdata="groupSelectedInterest" :height="325"></horizontalBar-charts>
+                        <span v-else class="prespan">
+                            <div class="preloader"></div>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -79,6 +93,7 @@
 export default {
     data(){
         return {
+            load: false,
             // Opciones Predefinidas
             options: {
                 legend: { align: "end" },
@@ -100,7 +115,6 @@ export default {
             institution: {}, //Grupo de institucion 
             loadedIns: false,
 
-            interest: {}, //Grupo de Interes
             dataInterest: {},
             loadedInt: false,
 
@@ -111,44 +125,69 @@ export default {
             loadedModeInv: false,
 
             groups: {}, //Grupos
+            groupSelected: {}, // Titulo de grupo seleccionado
+            groupSelectedInterest: {} // Grupo seleccionado
         }
+    },    
+    beforeMount () {
+        this.load = true
     },
     async mounted () {
         const url = 'statistics/investigators/interest';
-        let dataInterest;
-        let filter;
         axios.get(url)
             .then(res => {
-
-                dataInterest = res.data.groupInterest;
-                filter = dataInterest.filter( element => {
-                    return element.total > 0
+                this.dataInterest = res.data.groupInterest;
+                this.dataInterest = this.dataInterest.filter( element => {
+                    if (element.femenino > 0 || element.masculino > 0) {
+                        if (element.total > 0) {
+                            return element
+                        }
+                    }
                 });
                 
                 this.institution = this.groupInstitution(res.data.groupInstitution);
-                this.interest = this.groupInterest(filter);
                 this.actualInt = this.groupActualInt(res.data.actualInvestigation);
                 this.modeInv = this.groupInv(res.data.groupModeInvestigation, 'titulo');
                 this.loadedModeInv = this.modeInv != {} ? true : false;
                 this.groups = res.data.allGroups;
 
                 if (this.groups.length > 0) {
-                    this.filterForGroup(this.groups, dataInterest)
+                    this.filterForGroup(this.groups, this.dataInterest)
                 }
+
+                setTimeout(() => {
+                    this.load = false
+                }, 5000)
             })
             .catch(err => {
                 console.log(err);
             })
     },
     methods: {
+        changeGroup() {
+            let searchGroup = this.groups.filter(element => {
+                if (element.title === this.groupSelected) {
+                    return element
+                }
+            })
+
+            this.loadedInt = false;
+            
+            setTimeout(() => {
+                this.groupSelectedInterest = this.groupInterest(searchGroup[0].values);
+            }, 5000)
+        },
         filterForGroup(group, data) {
             data.forEach(element => {
                 group.forEach(ele => {
-                    if (element.grupo == ele.title) {
+                    if (element.grupo === ele.title) {
                         ele.values.push(element)
                     }
-                });
-            });
+                })
+            })
+
+            this.groupSelectedInterest = this.groupInterest(group[0].values);
+            this.groupSelected = group[0].title
         },
         groupInstitution(items){
             let labels = [];
@@ -181,17 +220,12 @@ export default {
             this.loadedIns = true;
             return data;
         },
-        groupInterest(items){
-            
+        groupInterest(items){            
             let labels = [];
             let info = [];
-            let content = [];
-
-            console.log(items)
 
             items.forEach(item => {
-                if(item['titulo'] != "TOTALES"){
-                    
+                if(item['titulo'] != "TOTALES"){                    
                     item.titulo = item.titulo.toLowerCase();
                     labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1)); 
                     info.push(item.total);
@@ -208,8 +242,7 @@ export default {
                         borderColor: this.borderColor,
                         hoverBackgroundColor: this.borderColor,
                         borderWidth: 1,
-                        hoverBorderWidth: 30,
-                        steppedLine: "middle"
+                        hoverBorderWidth: 2,
                     }
                 ]
             }
@@ -219,7 +252,6 @@ export default {
         groupActualInt(items){
             let labels = [];
             let info = [];
-            let content = [];
 
             items.forEach(item => {
                 if(item['titulo'] != "TOTALES"){
@@ -288,4 +320,33 @@ export default {
 .card .card-content {
     cursor: pointer;
 }
+
+/* Preloader */
+.prespan {
+  height: 150px;
+  /*IMPORTANTE*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.preloader {
+  width: 70px;
+  height: 70px;
+  border: 10px solid #eee;
+  border-top: 10px solid #666;
+  border-radius: 50%;
+  animation-name: girar;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 </style>

@@ -1,5 +1,6 @@
 <template>
     <div class="margin-x">
+        <loader :load="load" />
         <div class="row">
             <div class="col s12">
                 <h5 class="black-text center">
@@ -151,6 +152,9 @@ export default {
             }
         }
     },
+    beforeMount () {
+        this.load = true
+    },
     async mounted() {
         const url = 'statistics/investigators/profile';
         axios.get(url)
@@ -182,6 +186,10 @@ export default {
                     //Tiempo de Investigacion
                     this.timeInvestigation = this.groupInv(res.data.investigations_time, 'investigation_time');
                     this.show.timeInvestigation = true;
+
+                    setTimeout(() => {
+                        this.load = false
+                    }, 5000) 
                 }
             })
             .catch(err => {

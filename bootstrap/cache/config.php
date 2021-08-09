@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:7o/7e4jEAeqgtP/Z4izQwSwE0/41cetE4Hadq6t/2rc=',
+    'key' => 'base64:14MCI3j5pgFdPuEmqkIWyMzF0F8LtQYmEPH1EzAch0o=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -177,7 +177,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\pni\\PNI\\storage\\framework/cache/data',
+        'path' => 'C:\\laragon\\www\\PNI\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -340,10 +340,10 @@
     'orientation' => 'portrait',
     'defines' => 
     array (
-      'font_dir' => 'C:\\xampp\\htdocs\\pni\\PNI\\storage\\fonts/',
-      'font_cache' => 'C:\\xampp\\htdocs\\pni\\PNI\\storage\\fonts/',
-      'temp_dir' => 'C:\\Users\\ORIOLL~1\\AppData\\Local\\Temp',
-      'chroot' => 'C:\\xampp\\htdocs\\pni\\PNI',
+      'font_dir' => 'C:\\laragon\\www\\PNI\\storage\\fonts/',
+      'font_cache' => 'C:\\laragon\\www\\PNI\\storage\\fonts/',
+      'temp_dir' => 'C:\\Users\\abrah\\AppData\\Local\\Temp',
+      'chroot' => 'C:\\laragon\\www\\PNI',
       'enable_font_subsetting' => false,
       'pdf_backend' => 'CPDF',
       'default_media_type' => 'screen',
@@ -366,12 +366,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\pni\\PNI\\storage\\app',
+        'root' => 'C:\\laragon\\www\\PNI\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\pni\\PNI\\storage\\app/public',
+        'root' => 'C:\\laragon\\www\\PNI\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -388,7 +388,7 @@
     ),
     'links' => 
     array (
-      'C:\\xampp\\htdocs\\pni\\PNI\\public\\storage' => 'C:\\xampp\\htdocs\\pni\\PNI\\storage\\app/public',
+      'C:\\laragon\\www\\PNI\\public\\storage' => 'C:\\laragon\\www\\PNI\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -422,13 +422,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp\\htdocs\\pni\\PNI\\storage\\logs/laravel.log',
+        'path' => 'C:\\laragon\\www\\PNI\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp\\htdocs\\pni\\PNI\\storage\\logs/laravel.log',
+        'path' => 'C:\\laragon\\www\\PNI\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -478,7 +478,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\xampp\\htdocs\\pni\\PNI\\storage\\logs/laravel.log',
+        'path' => 'C:\\laragon\\www\\PNI\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -527,15 +527,15 @@
     ),
     'from' => 
     array (
-      'address' => NULL,
-      'name' => 'PNI',
+      'address' => 'hello@example.com',
+      'name' => 'Example',
     ),
     'markdown' => 
     array (
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\pni\\PNI\\resources\\views/vendor/mail',
+        0 => 'C:\\laragon\\www\\PNI\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -614,7 +614,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\pni\\PNI\\storage\\framework/sessions',
+    'files' => 'C:\\laragon\\www\\PNI\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -634,9 +634,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\pni\\PNI\\resources\\views',
+      0 => 'C:\\laragon\\www\\PNI\\resources\\views',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\pni\\PNI\\storage\\framework\\views',
+    'compiled' => 'C:\\laragon\\www\\PNI\\storage\\framework\\views',
   ),
   'flare' => 
   array (

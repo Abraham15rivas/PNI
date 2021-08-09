@@ -79,7 +79,7 @@
                 >
               </router-link>
             </li>
-            <li class="waves-effect">
+            <!--li class="waves-effect">
               <router-link
                 to="/reports"
                 class="collapsible-header"
@@ -89,7 +89,7 @@
                   >description</i
                 >
               </router-link>
-            </li>
+            </li-->
           </ul>
         </li>
       </ul>

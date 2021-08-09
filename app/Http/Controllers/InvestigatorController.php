@@ -182,7 +182,7 @@ class InvestigatorController extends Controller {
         $groupStateArray = $this->orderDescUnkey($groupState);
         
         // Investigadores por rango de edad, edad minima, maxima y promedios por genero
-        $calculations = self::rangeAge($investigators);
+        $calculations = $this->rangeAge($investigators);
         $groupRangeAge = $calculations["ranges"];
         $groupAverageAge = $calculations["averages"];
 
@@ -240,7 +240,7 @@ class InvestigatorController extends Controller {
         }
 
         // Edad minima, maxima y promedios
-        $averages = self::averageAge($male, $famela);
+        $averages = $this->averageAge($male, $famela);
 
         return ["ranges"=>$ranges, "averages"=>$averages];
     }
@@ -299,7 +299,7 @@ class InvestigatorController extends Controller {
         }
 
         // Numero de instituciones
-        $groupInstitution = self::institutionType($investigators);
+        $groupInstitution = $this->institutionType($investigators);
         
         //Numero total de investigadores
         $total_investigators = $investigators->count();
@@ -755,7 +755,7 @@ class InvestigatorController extends Controller {
         return $data->toJson();
     }
 
-    public function allMunicipalities (Satate $state)
+    public function allMunicipalities (State $state)
     {
         $groupMunicipality = collect();
         foreach ($state->municipalities as $muni) {

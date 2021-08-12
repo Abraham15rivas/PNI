@@ -154,7 +154,7 @@
                 <div class="card card-bg">
                     <div class="card-content center">
                         <span class="card-title">Investigadores por Profesión Según el Género</span>
-                       <horizontalBar-charts v-if="show.dataState" :chartdata="profesions" :height="380"></horizontalBar-charts>
+                        <horizontalBar-charts v-if="show.dataState" :chartdata="profesions" :height="380"></horizontalBar-charts>
                     </div>
                 </div>
             </div>
@@ -222,13 +222,17 @@
             axios.get(url)
                 .then(res => {
                     this.investigators = this.totalInvestigators(res.data);
-                    this.rangeAges     = this.rangeAge(res.data.groupRangeAge);
+                    this.rangeAges     = this.rangeAge(res.data.groupRangeAge, 'genero');
                     this.promedios     = this.averageAges(res.data.groupAverageAge);
                     this.profesions    = this.groupInv(res.data.groupProfesion, 'profesion');   
                     this.dataStatesAge = res.data.groupAge;
                     this.totalGroupStates = res.data.groupStates
                     this.gruopStates()
                     this.show.dataState = true;
+
+                    if (this.rangeAges ) {
+                        this.show.dataAge = true
+                    }
                     
                     setTimeout(() => {
                         this.load = false
@@ -264,10 +268,10 @@
                 
             },
             totalInvestigators(data){               
-                this.inv.total_inv  = data.total_investigators;  //TOTAL DE INVESTIGADORES
-                this.inv.inv_mens   = data.investigators_mens;   //TOTAL DE INVESTIGADORES HOMBRES
-                this.inv.inv_womens = data.investigators_womens; //TOTAL DE INVESTIGADORAS   
-                this.inv.investigatorsNot = data.investigatorsNot; //TOTAL DE NO CONTESTARON              
+                this.inv.total_inv          = data.total_investigators;  //TOTAL DE INVESTIGADORES
+                this.inv.inv_mens           = data.investigators_mens;   //TOTAL DE INVESTIGADORES HOMBRES
+                this.inv.inv_womens         = data.investigators_womens; //TOTAL DE INVESTIGADORAS   
+                this.inv.investigatorsNot   = data.investigatorsNot; //TOTAL DE NO CONTESTARON              
                 return this.inv;
             },
             averageAges(data){
@@ -301,30 +305,6 @@
                     this.edadGraph = this.groupInv(_.sortBy(Object.values(arrayState.data),['age']), 'age', false);
                     this.show.dataStateAge = true;
                 }
-            },
-            rangeAge(data){
-                let range      = [];
-                let totalRange = [];
-
-                if (data) {
-                    data.forEach(element => {
-                        range.push(element.titulo);
-                        totalRange.push(element.total)
-                    });                            
-                }
-
-                let dataCollection = {
-                    labels: range,
-                    datasets: [{
-                        label: 'Rango de edades',
-                        backgroundColor: '#082A44',
-                        hoverBackgroundColor: '#3D9EE8',
-                        data: totalRange
-                    }]
-                }               
-                this.show.dataAge = true;  
-                
-                return dataCollection;
             },
             searchMunicipalities(){
                 this.show.dataState = false;
@@ -442,6 +422,65 @@
                         borderWidth: 1,
                         hoverBorderWidth: 2,    
                     });
+                return data;
+            },
+            rangeAge(items, title, flagTotal = true){ //Funcion para agregar graficas
+                let labels = [];
+                let info = [];
+                let famela = [];
+                let male = [];
+
+                items.forEach(item => {
+
+                    let palabra = typeof item.titulo == 'string' ? item.titulo.toLowerCase() : title;
+                    labels.push(palabra);
+                    info.push(item.total);
+
+                    if(typeof item?.famela == 'number')
+                        famela.push(item.famela);
+
+                    if(typeof item?.male == 'number')
+                        male.push(item.male);
+                });
+
+                console.log(famela)
+
+                let data = {
+                    labels: labels,
+                    datasets: [],
+                    scaleStartValue : 0,
+                }
+
+                if(flagTotal){
+                    data.datasets.push({
+                        data: info,
+                        label: 'Total',
+                        backgroundColor: '#082A44',
+                        hoverBackgroundColor: '#3D9EE8',
+                        borderWidth: 1,
+                        hoverBorderWidth: 2,    
+                    })
+                }
+
+                if(famela.length > 0)
+                    data.datasets.push({
+                        data: famela,
+                        label: 'Femenino',
+                        backgroundColor: '#EA5771',
+                        borderWidth: 1,
+                        hoverBorderWidth: 2,    
+                    });
+                
+                if(male.length > 0)
+                    data.datasets.push({
+                        data: male,
+                        label: 'Masculino',
+                        backgroundColor: '#1E88E5',
+                        borderColor: 'rgba(41, 98, 255, 1)',
+                        hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                        borderWidth: 1,
+                        hoverBorderWidth: 2,
+                    });                
                 return data;
             }
         }

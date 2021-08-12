@@ -51,9 +51,23 @@
         <div class="row">
             <div class="col s12 m12">
                 <div class="card">
+
                     <div class="card-content">
                         <span class="card-title center" >Tipo de Investigación actual que realizan los Investigadores e Investigadoras</span>
-                        <horizontalBar-charts v-if="loadedAct" :chartdata="actualInt" :height="180"></horizontalBar-charts>
+                        <div class="row" style="padding: 0px 24px">
+                            <div class="col s12" v-if="groups2.length > 0">
+                                <md-field>
+                                    <label for="stateAge">Seleccione un Grupo</label>
+                                    <md-select v-model="groupSelected2" name="stateAge" id="stateAge" v-on:md-selected="changeGroup2()">
+                                        <md-option v-for="(group, index) of groups2" :key="index" :value="group.title">{{group.title | formatTitle}}</md-option>
+                                    </md-select>
+                                </md-field>
+                            </div>
+                        </div>
+                        <horizontalBar-charts v-if="loadedAct" :chartdata="groupSelectedInterest2" :height="180"></horizontalBar-charts>
+                        <span v-else class="prespan">
+                            <div class="preloader"></div>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -181,7 +195,11 @@ export default {
 
             groups: {}, //Grupos
             groupSelected: {}, // Titulo de grupo seleccionado
-            groupSelectedInterest: {} // Grupo seleccionado
+            groupSelectedInterest: {}, // Grupo seleccionado
+
+            groups2: {}, //Grupos
+            groupSelected2: {}, // Titulo de grupo seleccionado
+            groupSelectedInterest2: {} // Grupo seleccionado
         }
     },
     filters: {
@@ -204,14 +222,25 @@ export default {
         axios.get(url)
             .then(res => {
                 this.dataInterest = res.data.groupInterest;
+                this.actualInt = res.data.actualInvestigation;
+
                 this.institution = this.groupInstitution(res.data.groupInstitution);
-                this.actualInt = this.groupActualInt(res.data.actualInvestigation);
                 this.modeInv = this.groupInv(res.data.groupModeInvestigation, 'titulo');
+
                 this.loadedModeInv = this.modeInv != {} ? true : false;
                 this.groups = res.data.allGroups;
+                this.groups2 = JSON.parse(JSON.stringify(res.data.allGroups));
 
                 if (this.groups.length > 0) {
-                    this.filterForGroup(this.groups, this.dataInterest)
+                    let group = this.filterForGroup(this.groups, this.dataInterest)
+                    this.groupSelectedInterest = this.groupInterest(group[0].values, group[0].title);
+                    this.groupSelected = group[0].title
+                }
+
+                if (this.groups2.length > 0) {
+                    let group2 = this.filterForGroup(this.groups2, this.actualInt)
+                    this.groupSelectedInterest2 = this.groupActualInt(group2[0].values, group2[0].title);
+                    this.groupSelected2 = group2[0].title
                 }
 
                 setTimeout(() => {
@@ -223,6 +252,19 @@ export default {
             })
     },
     methods: {
+        changeGroup2() {
+            let searchGroup = this.groups2.filter(element => {
+                if (element.title === this.groupSelected2) {
+                    return element
+                }
+            })
+
+            this.loadedAct = false;
+            
+            setTimeout(() => {
+                this.groupSelectedInterest2 = this.groupActualInt(searchGroup[0].values, searchGroup[0].title);
+            }, 5000)
+        },
         changeGroup() {
             let searchGroup = this.groups.filter(element => {
                 if (element.title === this.groupSelected) {
@@ -244,9 +286,7 @@ export default {
                     }
                 })
             })
-
-            this.groupSelectedInterest = this.groupInterest(group[0].values, group[0].title);
-            this.groupSelected = group[0].title
+            return group
         },
         groupInstitution(items){
             let labels = [];
@@ -291,9 +331,7 @@ export default {
             items.forEach(item => {
                 if(item['titulo'] != "TOTALES"){                    
                     item.titulo = item.titulo.toLowerCase();
-                    labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1) + item.total);
-
-
+                    labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1));
                     info.push(item.total);
                 }
             });
@@ -301,8 +339,7 @@ export default {
             grupo = this.colorGroup.find((grupo) => {
                 if (grupo.title === title)
                     return grupo
-            })
-            
+            })            
 
             let data = {
                 labels: labels,
@@ -320,31 +357,42 @@ export default {
             }
             this.loadedInt = true;
             return data;
-        },
-        
-        groupActualInt(items){
+        },        
+        groupActualInt(items, title){            
             let labels = [];
             let info = [];
+            let grupo = {
+                color: '#082A44'
+            }
+
+            items.sort((a, b) => a.total - b.total).reverse()
 
             items.forEach(item => {
-                if(item['titulo'] != "TOTALES"){
+                if(item['titulo'] != "TOTALES"){                    
                     item.titulo = item.titulo.toLowerCase();
-                    labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1)); 
+                    labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1));
                     info.push(item.total);
                 }
             });
+            
+            grupo = this.colorGroup.find((grupo) => {
+                if (grupo.title === title)
+                    return grupo
+            })            
 
             let data = {
                 labels: labels,
-                datasets: [{
-                    data: info,
-                    label: 'Cantidad total de Investigaciones',
-                    backgroundColor: this.backgroundColor,
-                    borderColor: this.borderColor,
-                    hoverBackgroundColor: this.borderColor,
-                    borderWidth: 1,
-                    hoverBorderWidth: 2
-                }]
+                datasets: [
+                    {
+                        data: info,
+                        label: 'Cantidad de total Investigaciones actuales',
+                        backgroundColor: grupo.color,
+                        borderColor: grupo.color,
+                        hoverBackgroundColor: grupo.color,
+                        borderWidth: 1,
+                        hoverBorderWidth: 2,
+                    }
+                ]
             }
             this.loadedAct = true;
             return data;

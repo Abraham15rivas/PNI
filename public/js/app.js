@@ -3231,6 +3231,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3255,7 +3269,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         color: '#24D8A0'
       }, {
         title: 'MINERIA_GEOLOGÍA',
-        color: '#1D4C7A'
+        color: '#5194D6'
       }, {
         title: 'COVID-19',
         color: '#3D9EE8'
@@ -3285,7 +3299,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         color: '#001E5E'
       }, {
         title: 'PETRÓLEO',
-        color: '#DE3F2C'
+        color: '#C51818'
       }],
       institution: {},
       //Grupo de institucion 
@@ -3302,7 +3316,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       //Grupos
       groupSelected: {},
       // Titulo de grupo seleccionado
-      groupSelectedInterest: {} // Grupo seleccionado
+      groupSelectedInterest: {},
+      // Grupo seleccionado
+      groups2: {},
+      //Grupos
+      groupSelected2: {},
+      // Titulo de grupo seleccionado
+      groupSelectedInterest2: {} // Grupo seleccionado
 
     };
   },
@@ -3333,14 +3353,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               url = 'statistics/investigators/interest';
               axios.get(url).then(function (res) {
                 _this.dataInterest = res.data.groupInterest;
+                _this.actualInt = res.data.actualInvestigation;
                 _this.institution = _this.groupInstitution(res.data.groupInstitution);
-                _this.actualInt = _this.groupActualInt(res.data.actualInvestigation);
                 _this.modeInv = _this.groupInv(res.data.groupModeInvestigation, 'titulo');
                 _this.loadedModeInv = _this.modeInv != {} ? true : false;
                 _this.groups = res.data.allGroups;
+                _this.groups2 = JSON.parse(JSON.stringify(res.data.allGroups));
 
                 if (_this.groups.length > 0) {
-                  _this.filterForGroup(_this.groups, _this.dataInterest);
+                  var group = _this.filterForGroup(_this.groups, _this.dataInterest);
+
+                  _this.groupSelectedInterest = _this.groupInterest(group[0].values, group[0].title);
+                  _this.groupSelected = group[0].title;
+                }
+
+                if (_this.groups2.length > 0) {
+                  var group2 = _this.filterForGroup(_this.groups2, _this.actualInt);
+
+                  _this.groupSelectedInterest2 = _this.groupActualInt(group2[0].values, group2[0].title);
+                  _this.groupSelected2 = group2[0].title;
                 }
 
                 setTimeout(function () {
@@ -3359,17 +3390,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   methods: {
-    changeGroup: function changeGroup() {
+    changeGroup2: function changeGroup2() {
       var _this2 = this;
 
+      var searchGroup = this.groups2.filter(function (element) {
+        if (element.title === _this2.groupSelected2) {
+          return element;
+        }
+      });
+      this.loadedAct = false;
+      setTimeout(function () {
+        _this2.groupSelectedInterest2 = _this2.groupActualInt(searchGroup[0].values, searchGroup[0].title);
+      }, 5000);
+    },
+    changeGroup: function changeGroup() {
+      var _this3 = this;
+
       var searchGroup = this.groups.filter(function (element) {
-        if (element.title === _this2.groupSelected) {
+        if (element.title === _this3.groupSelected) {
           return element;
         }
       });
       this.loadedInt = false;
       setTimeout(function () {
-        _this2.groupSelectedInterest = _this2.groupInterest(searchGroup[0].values, searchGroup[0].title);
+        _this3.groupSelectedInterest = _this3.groupInterest(searchGroup[0].values, searchGroup[0].title);
       }, 5000);
     },
     filterForGroup: function filterForGroup(group, data) {
@@ -3380,8 +3424,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         });
       });
-      this.groupSelectedInterest = this.groupInterest(group[0].values, group[0].title);
-      this.groupSelected = group[0].title;
+      return group;
     },
     groupInstitution: function groupInstitution(items) {
       var labels = [];
@@ -3424,7 +3467,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       items.forEach(function (item) {
         if (item['titulo'] != "TOTALES") {
           item.titulo = item.titulo.toLowerCase();
-          labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1) + item.total);
+          labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1));
           info.push(item.total);
         }
       });
@@ -3446,9 +3489,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.loadedInt = true;
       return data;
     },
-    groupActualInt: function groupActualInt(items) {
+    groupActualInt: function groupActualInt(items, title) {
       var labels = [];
       var info = [];
+      var grupo = {
+        color: '#082A44'
+      };
+      items.sort(function (a, b) {
+        return a.total - b.total;
+      }).reverse();
       items.forEach(function (item) {
         if (item['titulo'] != "TOTALES") {
           item.titulo = item.titulo.toLowerCase();
@@ -3456,14 +3505,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           info.push(item.total);
         }
       });
+      grupo = this.colorGroup.find(function (grupo) {
+        if (grupo.title === title) return grupo;
+      });
       var data = {
         labels: labels,
         datasets: [{
           data: info,
-          label: 'Cantidad total de Investigaciones',
-          backgroundColor: this.backgroundColor,
-          borderColor: this.borderColor,
-          hoverBackgroundColor: this.borderColor,
+          label: 'Cantidad de total Investigaciones actuales',
+          backgroundColor: grupo.color,
+          borderColor: grupo.color,
+          hoverBackgroundColor: grupo.color,
           borderWidth: 1,
           hoverBorderWidth: 2
         }]
@@ -80336,11 +80388,77 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "row", staticStyle: { padding: "0px 24px" } },
+                  [
+                    _vm.groups2.length > 0
+                      ? _c(
+                          "div",
+                          { staticClass: "col s12" },
+                          [
+                            _c(
+                              "md-field",
+                              [
+                                _c("label", { attrs: { for: "stateAge" } }, [
+                                  _vm._v("Seleccione un Grupo")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "md-select",
+                                  {
+                                    attrs: { name: "stateAge", id: "stateAge" },
+                                    on: {
+                                      "md-selected": function($event) {
+                                        return _vm.changeGroup2()
+                                      }
+                                    },
+                                    model: {
+                                      value: _vm.groupSelected2,
+                                      callback: function($$v) {
+                                        _vm.groupSelected2 = $$v
+                                      },
+                                      expression: "groupSelected2"
+                                    }
+                                  },
+                                  _vm._l(_vm.groups2, function(group, index) {
+                                    return _c(
+                                      "md-option",
+                                      {
+                                        key: index,
+                                        attrs: { value: group.title }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm._f("formatTitle")(group.title)
+                                          )
+                                        )
+                                      ]
+                                    )
+                                  }),
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ]
+                ),
+                _vm._v(" "),
                 _vm.loadedAct
                   ? _c("horizontalBar-charts", {
-                      attrs: { chartdata: _vm.actualInt, height: 180 }
+                      attrs: {
+                        chartdata: _vm.groupSelectedInterest2,
+                        height: 180
+                      }
                     })
-                  : _vm._e()
+                  : _c("span", { staticClass: "prespan" }, [
+                      _c("div", { staticClass: "preloader" })
+                    ])
               ],
               1
             )

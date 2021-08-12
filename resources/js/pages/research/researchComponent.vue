@@ -204,14 +204,6 @@ export default {
         axios.get(url)
             .then(res => {
                 this.dataInterest = res.data.groupInterest;
-                this.dataInterest = this.dataInterest.filter( element => {
-                    if (element.femenino > 0 || element.masculino > 0) {
-                        if (element.total > 0) {
-                            return element
-                        }
-                    }
-                });
-                
                 this.institution = this.groupInstitution(res.data.groupInstitution);
                 this.actualInt = this.groupActualInt(res.data.actualInvestigation);
                 this.modeInv = this.groupInv(res.data.groupModeInvestigation, 'titulo');
@@ -294,20 +286,23 @@ export default {
                 color: '#082A44'
             }
 
+            items.sort((a, b) => a.total - b.total).reverse()
+
             items.forEach(item => {
                 if(item['titulo'] != "TOTALES"){                    
                     item.titulo = item.titulo.toLowerCase();
                     labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1) + item.total);
+
+
                     info.push(item.total);
                 }
             });
-
+            
             grupo = this.colorGroup.find((grupo) => {
                 if (grupo.title === title)
                     return grupo
             })
             
-            // console.log(info.sort((a, b) => a - b).reverse())
 
             let data = {
                 labels: labels,

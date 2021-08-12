@@ -3246,6 +3246,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       backgroundColor: ['#082A44', '#3D9EE8', '#9ECEF4', '#10E7D9', '#24D8A0', '#0D426B', '#1D4C7A', '#5194D6', '#2DA8C8', '#10E7D9', '#1D4C7A', '#1781A1'],
       borderColor: ['#2DA8C8', '#00B0F0', '#24D8A0', '#7AE9C6', '#0EE3D7', '#001E5E', '#52C3E3', '#082A44', '#3D9EE8', '#9ECEF4', '#0D426B', '#1D4C7A'],
+      //COLORES DE GRUPOS-LINEAS DE INVESTIGACÓN
+      colorGroup: [{
+        title: 'AGUA',
+        color: '#52C3E3'
+      }, {
+        title: 'CAMBIO_CLIMÁTICO',
+        color: '#24D8A0'
+      }, {
+        title: 'MINERIA_GEOLOGÍA',
+        color: '#1D4C7A'
+      }, {
+        title: 'COVID-19',
+        color: '#3D9EE8'
+      }, {
+        title: 'NUTRICIÓN',
+        color: '#7AE9C6'
+      }, {
+        title: 'AREA_OCDE',
+        color: '#9ECEF4'
+      }, {
+        title: 'CIENCIAS_SOCIALES',
+        color: '#10E7D9'
+      }, {
+        title: 'ENERGÍA_ELÉCTRICA',
+        color: '#FDFA3F'
+      }, {
+        title: 'TRANSPORTE',
+        color: '#1D4C7A'
+      }, {
+        title: 'AGROALIMENTARIO',
+        color: '#1781A1'
+      }, {
+        title: 'PESCA_ACUICULTURA',
+        color: '#2DA8C8'
+      }, {
+        title: 'SISMOLOGÍA',
+        color: '#001E5E'
+      }, {
+        title: 'PETRÓLEO',
+        color: '#DE3F2C'
+      }],
       institution: {},
       //Grupo de institucion 
       loadedIns: false,
@@ -3335,7 +3376,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
       this.loadedInt = false;
       setTimeout(function () {
-        _this2.groupSelectedInterest = _this2.groupInterest(searchGroup[0].values);
+        _this2.groupSelectedInterest = _this2.groupInterest(searchGroup[0].values, searchGroup[0].title);
       }, 5000);
     },
     filterForGroup: function filterForGroup(group, data) {
@@ -3346,7 +3387,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         });
       });
-      this.groupSelectedInterest = this.groupInterest(group[0].values);
+      this.groupSelectedInterest = this.groupInterest(group[0].values, group[0].title);
       this.groupSelected = group[0].title;
     },
     groupInstitution: function groupInstitution(items) {
@@ -3378,24 +3419,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.loadedIns = true;
       return data;
     },
-    groupInterest: function groupInterest(items) {
+    groupInterest: function groupInterest(items, title) {
       var labels = [];
       var info = [];
+      var grupo = {
+        color: '#082A44'
+      };
       items.forEach(function (item) {
         if (item['titulo'] != "TOTALES") {
           item.titulo = item.titulo.toLowerCase();
-          labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1));
+          labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1) + item.total);
           info.push(item.total);
         }
       });
+      grupo = this.colorGroup.find(function (grupo) {
+        if (grupo.title === title) return grupo;
+      }); // console.log(info.sort((a, b) => a - b).reverse())
+
       var data = {
         labels: labels,
         datasets: [{
           data: info,
           label: 'Cantidad de Investigaciones ',
-          backgroundColor: this.backgroundColor,
-          borderColor: this.borderColor,
-          hoverBackgroundColor: this.borderColor,
+          backgroundColor: grupo.color,
+          borderColor: grupo.color,
+          hoverBackgroundColor: grupo.color,
           borderWidth: 1,
           hoverBorderWidth: 2
         }]
@@ -3419,6 +3467,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           data: info,
           label: 'Cantidad total de Investigaciones',
           backgroundColor: this.backgroundColor,
+          borderColor: this.borderColor,
+          hoverBackgroundColor: this.borderColor,
           borderWidth: 1,
           hoverBorderWidth: 2
         }]
@@ -3957,14 +4007,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (famela.length > 0) data.datasets.push({
         data: famela,
-        label: 'Femenino',
+        label: 'Mujeres',
         backgroundColor: '#EA5771',
         borderWidth: 1,
         hoverBorderWidth: 2
       });
       if (male.length > 0) data.datasets.push({
         data: male,
-        label: 'Masculino',
+        label: 'Hombres',
         backgroundColor: '#1E88E5',
         borderColor: 'rgba(41, 98, 255, 1)',
         hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
@@ -80217,7 +80267,7 @@ var render = function() {
                   ? _c("horizontalBar-charts", {
                       attrs: {
                         chartdata: _vm.groupSelectedInterest,
-                        height: 325
+                        height: 200
                       }
                     })
                   : _c("span", { staticClass: "prespan" }, [

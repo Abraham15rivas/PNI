@@ -241,7 +241,7 @@ export default {
             this.loadedInt = false;
             
             setTimeout(() => {
-                this.groupSelectedInterest = this.groupInterest(searchGroup[0].values);
+                this.groupSelectedInterest = this.groupInterest(searchGroup[0].values, searchGroup[0].title);
             }, 5000)
         },
         filterForGroup(group, data) {
@@ -253,7 +253,7 @@ export default {
                 })
             })
 
-            this.groupSelectedInterest = this.groupInterest(group[0].values);
+            this.groupSelectedInterest = this.groupInterest(group[0].values, group[0].title);
             this.groupSelected = group[0].title
         },
         groupInstitution(items){
@@ -287,17 +287,27 @@ export default {
             this.loadedIns = true;
             return data;
         },
-        groupInterest(items){            
+        groupInterest(items, title){            
             let labels = [];
             let info = [];
+            let grupo = {
+                color: '#082A44'
+            }
 
             items.forEach(item => {
                 if(item['titulo'] != "TOTALES"){                    
                     item.titulo = item.titulo.toLowerCase();
-                    labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1)); 
+                    labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1) + item.total);
                     info.push(item.total);
                 }
             });
+
+            grupo = this.colorGroup.find((grupo) => {
+                if (grupo.title === title)
+                    return grupo
+            })
+            
+            // console.log(info.sort((a, b) => a - b).reverse())
 
             let data = {
                 labels: labels,
@@ -305,8 +315,9 @@ export default {
                     {
                         data: info,
                         label: 'Cantidad de Investigaciones ',
-                        backgroundColor: this.backgroundColor7,
-                        hoverBackgroundColor: null,
+                        backgroundColor: grupo.color,
+                        borderColor: grupo.color,
+                        hoverBackgroundColor: grupo.color,
                         borderWidth: 1,
                         hoverBorderWidth: 2,
                     }
@@ -334,6 +345,8 @@ export default {
                     data: info,
                     label: 'Cantidad total de Investigaciones',
                     backgroundColor: this.backgroundColor,
+                    borderColor: this.borderColor,
+                    hoverBackgroundColor: this.borderColor,
                     borderWidth: 1,
                     hoverBorderWidth: 2
                 }]

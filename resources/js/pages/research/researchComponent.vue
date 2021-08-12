@@ -22,7 +22,7 @@
                                 </md-field>
                             </div>
                         </div>
-                        <horizontalBar-charts  v-if="loadedInt" :chartdata="groupSelectedInterest" :height="325"></horizontalBar-charts>
+                        <horizontalBar-charts  v-if="loadedInt" :chartdata="groupSelectedInterest" :height="200"></horizontalBar-charts>
                         <span v-else class="prespan">
                             <div class="preloader"></div>
                         </span>
@@ -110,6 +110,61 @@ export default {
                 '#7AE9C6', '#0EE3D7', '#001E5E', 
                 '#52C3E3', '#082A44', '#3D9EE8', 
                 '#9ECEF4', '#0D426B', '#1D4C7A'
+            ],
+            //COLORES DE GRUPOS-LINEAS DE INVESTIGACÓN
+            colorGroup: [
+                {
+                    title: 'AGUA',
+                    color: '#52C3E3'
+                },
+                 {
+                    title: 'CAMBIO_CLIMÁTICO',
+                    color: '#24D8A0'
+                },
+                {
+                    title: 'MINERIA_GEOLOGÍA',
+                    color: '#1D4C7A'
+                },
+                {
+                    title: 'COVID-19',
+                    color: '#3D9EE8'
+                },
+                 {
+                    title: 'NUTRICIÓN',
+                    color: '#7AE9C6'
+                },
+                 {
+                    title: 'AREA_OCDE',
+                    color: '#9ECEF4'
+                },
+                {
+                    title: 'CIENCIAS_SOCIALES',
+                    color: '#10E7D9'
+                },
+                {
+                    title: 'ENERGÍA_ELÉCTRICA',
+                    color: '#FDFA3F'
+                },
+                {
+                    title: 'TRANSPORTE',
+                    color: '#1D4C7A'
+                },
+                {
+                    title: 'AGROALIMENTARIO',
+                    color: '#1781A1'
+                },
+                {
+                    title: 'PESCA_ACUICULTURA',
+                    color: '#2DA8C8'
+                },
+                {
+                    title: 'SISMOLOGÍA',
+                    color: '#001E5E'
+                },
+                {
+                    title: 'PETRÓLEO',
+                    color: '#DE3F2C'
+                },
             ],
            
             institution: {}, //Grupo de institucion 
@@ -238,9 +293,8 @@ export default {
                     {
                         data: info,
                         label: 'Cantidad de Investigaciones ',
-                        backgroundColor: this.backgroundColor,
-                        borderColor: this.borderColor,
-                        hoverBackgroundColor: this.borderColor,
+                        backgroundColor: this.backgroundColor7,
+                        hoverBackgroundColor: null,
                         borderWidth: 1,
                         hoverBorderWidth: 2,
                     }

@@ -40,7 +40,7 @@
                                 </div> 
                                 <div class="col s12 m3 xl4">
                                     <h5 class="center-align color-g">Sin Contestar</h5>
-                                    <h5 class="center-align color-g">{{investigators.inv_mens}}</h5>                                
+                                    <h5 class="center-align color-g">{{inv.investigatorsNot}}</h5>                                
                                 </div>   
                             </div>
                         </div>
@@ -266,7 +266,8 @@
             totalInvestigators(data){               
                 this.inv.total_inv  = data.total_investigators;  //TOTAL DE INVESTIGADORES
                 this.inv.inv_mens   = data.investigators_mens;   //TOTAL DE INVESTIGADORES HOMBRES
-                this.inv.inv_womens = data.investigators_womens; //TOTAL DE INVESTIGADORAS                
+                this.inv.inv_womens = data.investigators_womens; //TOTAL DE INVESTIGADORAS   
+                this.inv.investigatorsNot = data.investigatorsNot; //TOTAL DE NO CONTESTARON              
                 return this.inv;
             },
             averageAges(data){

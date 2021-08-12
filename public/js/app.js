@@ -3246,13 +3246,46 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       backgroundColor: ['#082A44', '#3D9EE8', '#9ECEF4', '#10E7D9', '#24D8A0', '#0D426B', '#1D4C7A', '#5194D6', '#2DA8C8', '#10E7D9', '#1D4C7A', '#1781A1'],
       borderColor: ['#2DA8C8', '#00B0F0', '#24D8A0', '#7AE9C6', '#0EE3D7', '#001E5E', '#52C3E3', '#082A44', '#3D9EE8', '#9ECEF4', '#0D426B', '#1D4C7A'],
-      // Colores de grupos
+      //COLORES DE GRUPOS-LINEAS DE INVESTIGACÓN
       colorGroup: [{
         title: 'AGUA',
-        color: '#082A44'
+        color: '#52C3E3'
+      }, {
+        title: 'CAMBIO_CLIMÁTICO',
+        color: '#24D8A0'
+      }, {
+        title: 'MINERIA_GEOLOGÍA',
+        color: '#1D4C7A'
+      }, {
+        title: 'COVID-19',
+        color: '#3D9EE8'
       }, {
         title: 'NUTRICIÓN',
-        color: '#082A44'
+        color: '#7AE9C6'
+      }, {
+        title: 'AREA_OCDE',
+        color: '#9ECEF4'
+      }, {
+        title: 'CIENCIAS_SOCIALES',
+        color: '#10E7D9'
+      }, {
+        title: 'ENERGÍA_ELÉCTRICA',
+        color: '#FDFA3F'
+      }, {
+        title: 'TRANSPORTE',
+        color: '#1D4C7A'
+      }, {
+        title: 'AGROALIMENTARIO',
+        color: '#1781A1'
+      }, {
+        title: 'PESCA_ACUICULTURA',
+        color: '#2DA8C8'
+      }, {
+        title: 'SISMOLOGÍA',
+        color: '#001E5E'
+      }, {
+        title: 'PETRÓLEO',
+        color: '#DE3F2C'
       }],
       institution: {},
       //Grupo de institucion 
@@ -3974,14 +4007,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (famela.length > 0) data.datasets.push({
         data: famela,
-        label: 'Femenino',
+        label: 'Mujeres',
         backgroundColor: '#EA5771',
         borderWidth: 1,
         hoverBorderWidth: 2
       });
       if (male.length > 0) data.datasets.push({
         data: male,
-        label: 'Masculino',
+        label: 'Hombres',
         backgroundColor: '#1E88E5',
         borderColor: 'rgba(41, 98, 255, 1)',
         hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
@@ -80234,7 +80267,7 @@ var render = function() {
                   ? _c("horizontalBar-charts", {
                       attrs: {
                         chartdata: _vm.groupSelectedInterest,
-                        height: 325
+                        height: 200
                       }
                     })
                   : _c("span", { staticClass: "prespan" }, [

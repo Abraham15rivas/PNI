@@ -463,7 +463,7 @@
                 if(famela.length > 0)
                     data.datasets.push({
                         data: famela,
-                        label: 'Femenino',
+                        label: 'Mujeres',
                         backgroundColor: '#EA5771',
                         borderWidth: 1,
                         hoverBorderWidth: 2,    
@@ -472,7 +472,7 @@
                 if(male.length > 0)
                     data.datasets.push({
                         data: male,
-                        label: 'Masculino',
+                        label: 'Hombres',
                         backgroundColor: '#1E88E5',
                         borderColor: 'rgba(41, 98, 255, 1)',
                         hoverBackgroundColor: 'rgba(41, 98, 255, 1)',

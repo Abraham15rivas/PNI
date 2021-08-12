@@ -36,6 +36,7 @@ class InvestigatorController extends Controller {
         //Numero de investigadores separados por genero
         $investigators_mens = $investigators->where('id_genero',2)->count();
         $investigators_womens = $investigators->where('id_genero',1)->count();
+        $investigatorsNot = $investigators->where('id_genero', '!=',1)->where('id_genero', '!=', 2)->count();
 
         //Numero de investigadores agrupados por carreras
         $groupByPro = $investigators->groupBy('id_profesion');
@@ -190,6 +191,7 @@ class InvestigatorController extends Controller {
             "total_investigators"=>$total_investigators,
             "investigators_mens"=>$investigators_mens,
             "investigators_womens"=>$investigators_womens,
+            "investigatorsNot"=>$investigatorsNot,
             "groupMonth"=> $groupMonth,
             "groupProfesion"=>$grouprofesionArray,
             "groupStates"=>$groupStateArray,

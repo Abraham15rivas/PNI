@@ -3265,6 +3265,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     };
   },
+  filters: {
+    formatTitle: function formatTitle(value) {
+      var word = "".concat(value.charAt(0).toUpperCase()).concat(value.slice(1).toLowerCase());
+      var wordSeparator = word.split('_');
+
+      if (wordSeparator.length > 1) {
+        word = "".concat(wordSeparator[0], " ").concat(wordSeparator[1]);
+      }
+
+      return word;
+    }
+  },
   beforeMount: function beforeMount() {
     this.load = true;
   },
@@ -3380,8 +3392,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         labels: labels,
         datasets: [{
           data: info,
-          label: 'Cantidad de investigaciones ',
-          backgroundColor: ["rgba(0, 0, 0, 0)"],
+          label: 'Cantidad de Investigaciones ',
+          backgroundColor: this.backgroundColor,
           borderColor: this.borderColor,
           hoverBackgroundColor: this.borderColor,
           borderWidth: 1,
@@ -3405,10 +3417,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         labels: labels,
         datasets: [{
           data: info,
-          label: 'Cantidad total de investigaciones',
+          label: 'Cantidad total de Investigaciones',
           backgroundColor: this.backgroundColor,
-          borderColor: this.borderColor,
-          hoverBackgroundColor: this.borderColor,
           borderWidth: 1,
           hoverBorderWidth: 2
         }]
@@ -3429,8 +3439,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         datasets: [{
           data: info,
           label: 'Modo de Investigación',
-          backgroundColor: '#082A44',
-          hoverBackgroundColor: '#3D9EE8',
+          backgroundColor: this.backgroundColor,
+          hoverBackgroundColor: this.borderColor,
           borderWidth: 1,
           hoverBorderWidth: 2
         }]
@@ -3898,14 +3908,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (female.length > 0) data.datasets.push({
         data: female,
-        label: 'Femenino',
+        label: 'Mujeres',
         backgroundColor: '#EA5771',
         borderWidth: 1,
         hoverBorderWidth: 2
       });
       if (male.length > 0) data.datasets.push({
         data: male,
-        label: 'Masculino',
+        label: 'Hombres',
         backgroundColor: '#1E88E5',
         borderColor: 'rgba(41, 98, 255, 1)',
         hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
@@ -80155,7 +80165,7 @@ var render = function() {
                               "md-field",
                               [
                                 _c("label", { attrs: { for: "stateAge" } }, [
-                                  _vm._v("Seleccione un grupo")
+                                  _vm._v("Seleccione un Grupo")
                                 ]),
                                 _vm._v(" "),
                                 _c(
@@ -80182,7 +80192,13 @@ var render = function() {
                                         key: index,
                                         attrs: { value: group.title }
                                       },
-                                      [_vm._v(_vm._s(group.title))]
+                                      [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm._f("formatTitle")(group.title)
+                                          )
+                                        )
+                                      ]
                                     )
                                   }),
                                   1
@@ -80251,7 +80267,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _vm.loadedModeInv
-                  ? _c("horizontalBar-charts", {
+                  ? _c("doughnut-charts", {
                       attrs: { chartdata: _vm.modeInv, height: 300 }
                     })
                   : _vm._e()
@@ -80349,9 +80365,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Titulo")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Masculino")]),
+        _c("th", [_vm._v("Hombres")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Femenino")]),
+        _c("th", [_vm._v("Mujeres")]),
         _vm._v(" "),
         _c("th", [_vm._v("Total")])
       ])
@@ -80834,9 +80850,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Edades")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Masculino")]),
+        _c("th", [_vm._v("Hombres")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Femenino")]),
+        _c("th", [_vm._v("Mujeres")]),
         _vm._v(" "),
         _c("th", [_vm._v("Total")])
       ])

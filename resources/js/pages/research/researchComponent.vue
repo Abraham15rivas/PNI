@@ -17,7 +17,7 @@
                                 <md-field>
                                     <label for="stateAge">Seleccione un Grupo</label>
                                     <md-select v-model="groupSelected" name="stateAge" id="stateAge" v-on:md-selected="changeGroup()">
-                                        <md-option v-for="(group, index) of groups" :key="index" :value="group.title">{{group.title}}</md-option>
+                                        <md-option v-for="(group, index) of groups" :key="index" :value="group.title">{{group.title | formatTitle}}</md-option>
                                     </md-select>
                                 </md-field>
                             </div>
@@ -183,7 +183,19 @@ export default {
             groupSelected: {}, // Titulo de grupo seleccionado
             groupSelectedInterest: {} // Grupo seleccionado
         }
-    },    
+    },
+    filters: {
+        formatTitle(value) {
+            let word = `${value.charAt(0).toUpperCase()}${value.slice(1).toLowerCase()}`
+            let wordSeparator = word.split('_')
+
+            if (wordSeparator.length > 1) {
+                word = `${wordSeparator[0]} ${wordSeparator[1]}`
+            }
+
+            return word
+        }
+    },
     beforeMount () {
         this.load = true
     },
@@ -322,8 +334,6 @@ export default {
                     data: info,
                     label: 'Cantidad total de Investigaciones',
                     backgroundColor: this.backgroundColor,
-                    borderColor: this.borderColor,
-                    hoverBackgroundColor: this.borderColor,
                     borderWidth: 1,
                     hoverBorderWidth: 2
                 }]

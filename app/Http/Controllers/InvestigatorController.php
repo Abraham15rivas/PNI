@@ -412,7 +412,6 @@ class InvestigatorController extends Controller {
                     $arrActual->push(["titulo"=>trim($name), "id"=>$id ,"total"=>1, "grupo"=>$grupo]);
                 }
             }
-
         }
         // Modo de investigación
         $groupByModeInvestigation = $investigators->groupBy('id_modo_investifgacion');
@@ -441,7 +440,7 @@ class InvestigatorController extends Controller {
             "total_investigators"=>$total_investigators,
             "groupInstitution"=>$groupInstitution,
             "groupInterest"=>$groupInterest,
-            "actualInvestigation"=>$arrActual,
+            "actualInvestigation"=>$arrActual->unique('id')->values()->all(),
             "groupModeInvestigation"=>$groupModeInvestigation,
             "allGroups"=>$allGroups
         ]);

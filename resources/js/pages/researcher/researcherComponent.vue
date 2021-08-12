@@ -443,8 +443,6 @@
                         male.push(item.male);
                 });
 
-                console.log(famela)
-
                 let data = {
                     labels: labels,
                     datasets: [],

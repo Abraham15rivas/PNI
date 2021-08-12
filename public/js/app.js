@@ -3928,7 +3928,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         if (typeof (item === null || item === void 0 ? void 0 : item.famela) == 'number') famela.push(item.famela);
         if (typeof (item === null || item === void 0 ? void 0 : item.male) == 'number') male.push(item.male);
       });
-      console.log(famela);
       var data = {
         labels: labels,
         datasets: [],

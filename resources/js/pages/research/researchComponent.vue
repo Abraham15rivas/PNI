@@ -123,7 +123,7 @@ export default {
                 },
                 {
                     title: 'MINERIA_GEOLOGÍA',
-                    color: '#1D4C7A'
+                    color: '#5194D6'
                 },
                 {
                     title: 'COVID-19',
@@ -163,7 +163,7 @@ export default {
                 },
                 {
                     title: 'PETRÓLEO',
-                    color: '#DE3F2C'
+                    color: '#C51818'
                 },
             ],
            

@@ -213,7 +213,7 @@ class InvestigatorController extends Controller {
 
         $ranges = collect();
         for ($i = 0; $i < 9; $i++) {
-            $ranges->push(["titulo"=>$i."0 - ".$i."9", "total"=> 0]);
+            $ranges->push(["titulo"=>$i."0 - ".$i."9", "total"=> 0, "famela"=> 0,  "male"=> 0]);
         }
 
         $famela = array();
@@ -229,9 +229,17 @@ class InvestigatorController extends Controller {
                 if ($comparar1 <= $age['age'] && $age['age'] <= $comparar2) {
                     $search = $ranges->where('titulo', $titulo);
                     if($search) {
-                        $ranges = $ranges->map(function ($rango) use($titulo) {
+                        $ranges = $ranges->map(function ($rango) use($titulo, $age) {
                             if ($rango["titulo"] == $titulo) {
                                 $rango["total"]++;
+
+                                if ($age['genero'] == '1') {
+                                    $rango["famela"]++;
+                                }
+
+                                if ($age['genero'] == '2') {
+                                    $rango["male"]++;
+                                }
                             }
                             return $rango;
                         });

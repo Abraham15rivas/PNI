@@ -3690,7 +3690,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this.load = true;
               axios.get(url).then(function (res) {
                 _this.investigators = _this.totalInvestigators(res.data);
-                _this.rangeAges = _this.rangeAge(res.data.groupRangeAge);
+                _this.rangeAges = _this.rangeAge(res.data.groupRangeAge, 'genero');
                 _this.promedios = _this.averageAges(res.data.groupAverageAge);
                 _this.profesions = _this.groupInv(res.data.groupProfesion, 'profesion');
                 _this.dataStatesAge = res.data.groupAge;
@@ -3699,6 +3699,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.gruopStates();
 
                 _this.show.dataState = true;
+
+                if (_this.rangeAges) {
+                  _this.show.dataAge = true;
+                }
+
                 setTimeout(function () {
                   _this.load = false;
                 }, 5000);
@@ -3750,7 +3755,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       this.inv.inv_mens = data.investigators_mens; //TOTAL DE INVESTIGADORES HOMBRES
 
-      this.inv.inv_womens = data.investigators_womens; //TOTAL DE INVESTIGADORAS                
+      this.inv.inv_womens = data.investigators_womens; //TOTAL DE INVESTIGADORAS   
+
+      this.inv.investigatorsNot = data.investigatorsNot; //TOTAL DE NO CONTESTARON              
 
       return this.inv;
     },
@@ -3788,29 +3795,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.edadGraph = this.groupInv(_.sortBy(Object.values(arrayState.data), ['age']), 'age', false);
         this.show.dataStateAge = true;
       }
-    },
-    rangeAge: function rangeAge(data) {
-      var range = [];
-      var totalRange = [];
-
-      if (data) {
-        data.forEach(function (element) {
-          range.push(element.titulo);
-          totalRange.push(element.total);
-        });
-      }
-
-      var dataCollection = {
-        labels: range,
-        datasets: [{
-          label: 'Rango de edades',
-          backgroundColor: '#082A44',
-          hoverBackgroundColor: '#3D9EE8',
-          data: totalRange
-        }]
-      };
-      this.show.dataAge = true;
-      return dataCollection;
     },
     searchMunicipalities: function searchMunicipalities() {
       var _this4 = this;
@@ -3914,6 +3898,55 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (female.length > 0) data.datasets.push({
         data: female,
+        label: 'Femenino',
+        backgroundColor: '#EA5771',
+        borderWidth: 1,
+        hoverBorderWidth: 2
+      });
+      if (male.length > 0) data.datasets.push({
+        data: male,
+        label: 'Masculino',
+        backgroundColor: '#1E88E5',
+        borderColor: 'rgba(41, 98, 255, 1)',
+        hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+        borderWidth: 1,
+        hoverBorderWidth: 2
+      });
+      return data;
+    },
+    rangeAge: function rangeAge(items, title) {
+      var flagTotal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      //Funcion para agregar graficas
+      var labels = [];
+      var info = [];
+      var famela = [];
+      var male = [];
+      items.forEach(function (item) {
+        var palabra = typeof item.titulo == 'string' ? item.titulo.toLowerCase() : title;
+        labels.push(palabra);
+        info.push(item.total);
+        if (typeof (item === null || item === void 0 ? void 0 : item.famela) == 'number') famela.push(item.famela);
+        if (typeof (item === null || item === void 0 ? void 0 : item.male) == 'number') male.push(item.male);
+      });
+      var data = {
+        labels: labels,
+        datasets: [],
+        scaleStartValue: 0
+      };
+
+      if (flagTotal) {
+        data.datasets.push({
+          data: info,
+          label: 'Total',
+          backgroundColor: '#082A44',
+          hoverBackgroundColor: '#3D9EE8',
+          borderWidth: 1,
+          hoverBorderWidth: 2
+        });
+      }
+
+      if (famela.length > 0) data.datasets.push({
+        data: famela,
         label: 'Femenino',
         backgroundColor: '#EA5771',
         borderWidth: 1,
@@ -80406,7 +80439,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("h5", { staticClass: "center-align color-g" }, [
-                      _vm._v(_vm._s(_vm.investigators.inv_mens))
+                      _vm._v(_vm._s(_vm.inv.investigatorsNot))
                     ])
                   ])
                 ])

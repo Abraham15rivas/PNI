@@ -3333,13 +3333,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               url = 'statistics/investigators/interest';
               axios.get(url).then(function (res) {
                 _this.dataInterest = res.data.groupInterest;
-                _this.dataInterest = _this.dataInterest.filter(function (element) {
-                  if (element.femenino > 0 || element.masculino > 0) {
-                    if (element.total > 0) {
-                      return element;
-                    }
-                  }
-                });
                 _this.institution = _this.groupInstitution(res.data.groupInstitution);
                 _this.actualInt = _this.groupActualInt(res.data.actualInvestigation);
                 _this.modeInv = _this.groupInv(res.data.groupModeInvestigation, 'titulo');
@@ -3425,6 +3418,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var grupo = {
         color: '#082A44'
       };
+      items.sort(function (a, b) {
+        return a.total - b.total;
+      }).reverse();
       items.forEach(function (item) {
         if (item['titulo'] != "TOTALES") {
           item.titulo = item.titulo.toLowerCase();
@@ -3434,8 +3430,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
       grupo = this.colorGroup.find(function (grupo) {
         if (grupo.title === title) return grupo;
-      }); // console.log(info.sort((a, b) => a - b).reverse())
-
+      });
       var data = {
         labels: labels,
         datasets: [{

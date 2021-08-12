@@ -119,8 +119,8 @@
                             <thead>
                                 <tr>
                                     <th>Edades</th>
-                                    <th>Masculino</th>
-                                    <th>Femenino</th>
+                                    <th>Hombres</th>
+                                    <th>Mujeres</th>
                                     <th>Total</th>
                                 </tr>
                             </thead>
@@ -406,7 +406,7 @@
                 if(female.length > 0)
                     data.datasets.push({
                         data: female,
-                        label: 'Femenino',
+                        label: 'Mujeres',
                         backgroundColor: '#EA5771',
                         borderWidth: 1,
                         hoverBorderWidth: 2,    
@@ -415,7 +415,7 @@
                 if(male.length > 0)
                     data.datasets.push({
                         data: male,
-                        label: 'Masculino',
+                        label: 'Hombres',
                         backgroundColor: '#1E88E5',
                         borderColor: 'rgba(41, 98, 255, 1)',
                         hoverBackgroundColor: 'rgba(41, 98, 255, 1)',

@@ -15,7 +15,7 @@
                          <div class="row" style="padding: 0px 24px">
                             <div class="col s12" v-if="groups.length > 0">
                                 <md-field>
-                                    <label for="stateAge">Seleccione un grupo</label>
+                                    <label for="stateAge">Seleccione un Grupo</label>
                                     <md-select v-model="groupSelected" name="stateAge" id="stateAge" v-on:md-selected="changeGroup()">
                                         <md-option v-for="(group, index) of groups" :key="index" :value="group.title">{{group.title}}</md-option>
                                     </md-select>
@@ -43,7 +43,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title center">Modo de Investigación que Realizan los Investigadores e Investigadoras</span>
-                        <horizontalBar-charts v-if="loadedModeInv" :chartdata="modeInv" :height="300"></horizontalBar-charts>
+                        <doughnut-charts v-if="loadedModeInv" :chartdata="modeInv" :height="300"></doughnut-charts>
                     </div>
                 </div>
             </div>
@@ -67,8 +67,8 @@
                             <thead>
                                 <tr>
                                     <th>Titulo</th>
-                                    <th>Masculino</th>
-                                    <th>Femenino</th>
+                                    <th>Hombres</th>
+                                    <th>Mujeres</th>
                                     <th>Total</th>
                                 </tr>
                             </thead>
@@ -237,8 +237,8 @@ export default {
                 datasets: [
                     {
                         data: info,
-                        label: 'Cantidad de investigaciones ',
-                        backgroundColor: ["rgba(0, 0, 0, 0)"],
+                        label: 'Cantidad de Investigaciones ',
+                        backgroundColor: this.backgroundColor,
                         borderColor: this.borderColor,
                         hoverBackgroundColor: this.borderColor,
                         borderWidth: 1,
@@ -249,6 +249,7 @@ export default {
             this.loadedInt = true;
             return data;
         },
+        
         groupActualInt(items){
             let labels = [];
             let info = [];
@@ -265,7 +266,7 @@ export default {
                 labels: labels,
                 datasets: [{
                     data: info,
-                    label: 'Cantidad total de investigaciones',
+                    label: 'Cantidad total de Investigaciones',
                     backgroundColor: this.backgroundColor,
                     borderColor: this.borderColor,
                     hoverBackgroundColor: this.borderColor,
@@ -291,8 +292,8 @@ export default {
                 datasets: [{
                     data: info,
                     label: 'Modo de Investigación',
-                    backgroundColor: '#082A44',
-                    hoverBackgroundColor: '#3D9EE8',
+                    backgroundColor: this.backgroundColor,
+                    hoverBackgroundColor: this.borderColor,
                     borderWidth: 1,
                     hoverBorderWidth: 2,
                     

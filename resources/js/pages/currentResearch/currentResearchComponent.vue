@@ -203,6 +203,8 @@
                 let labels = [];
                 let info = [];
                 let content = [];
+               
+                items.sort((a, b) => a.total - b.total).reverse()
 
                 items.forEach(item => {
                     if(item['type_investigation'] != "TOTALES"){                        
@@ -289,6 +291,8 @@
                 let labels = [];
                 let info = [];
                 let content = [];
+
+                 items.sort((a, b) => a.total - b.total)
 
                 items.forEach(item => {
                     if(item['investigation_time'] != "TOTALES"){                        

@@ -74,7 +74,7 @@
                 class="collapsible-header"
                 tabindex="0"
               >
-                Modulo de Investigación Actual<i class="material-icons"
+                Módulo de Investigación Actual<i class="material-icons"
                   >view_module</i
                 >
               </router-link>

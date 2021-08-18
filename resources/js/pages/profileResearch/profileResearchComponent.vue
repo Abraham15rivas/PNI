@@ -69,7 +69,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title title-card">Cantidad de Investigaciones por Tipo de Investigación</span>
-                        <bar-charts  v-if="show.typeInvestigation" :chartdata="typeInvestigation" :height="300"></bar-charts>
+                        <horizontalBar-charts  v-if="show.typeInvestigation" :chartdata="typeInvestigation" :height="300"></horizontalBar-charts>
                     </div>
                 </div>
             </div>
@@ -127,6 +127,8 @@ export default {
                 '#9ECEF4','#0D426B','#1D4C7A'
             ],
 
+            backgroundColor1: '#082A44',
+
             profileResearcher: Number, //Cantidad de Perfil del investigador
 
             profileResearch: Number, //Cantidad de Perfil del investigacion
@@ -168,23 +170,23 @@ export default {
                     this.show.profileResearch = this.profileResearch ? true : false;
 
                     //Nivel Academico
-                    this.academicLevel = this.groupInv(res.data.academic_levels, 'academic_level');
+                    this.academicLevel = this.groupInv(res.data.academic_levels, 'academic_level', 'Investigadores por Nivel Academico', this.backgroundColor1);
                     this.show.academicLevel = true;
 
                     //Tipo de Investigacion
-                    this.typeInvestigation = this.groupInv(res.data.investigations_type, 'type_investigation');
+                    this.typeInvestigation = this.groupInv(res.data.investigations_type, 'type_investigation', 'Tipo de Investigación', this.backgroundColor1);
                     this.show.typeInvestigation = true;
 
                     //linea de Investigacion
-                    this.lineInvestigation = this.groupInv(res.data.investigations_line, 'line_investigation');
+                    this.lineInvestigation = this.groupInv(res.data.investigations_line, 'line_investigation', 'Lineas de Investigación', this.backgroundColor1);
                     this.show.lineInvestigation = true;
 
                     //Tipo de Institucion
-                    this.typeInstitution = this.groupInv(res.data.institutions_type, 'institution_type');
+                    this.typeInstitution = this.groupInv(res.data.institutions_type, 'institution_type', 'Tipo de institución', false);
                     this.show.typeInstitution = true;
 
                     //Tiempo de Investigacion
-                    this.timeInvestigation = this.groupInv(res.data.investigations_time, 'investigation_time');
+                    this.timeInvestigation = this.groupInv(res.data.investigations_time, 'investigation_time', 'Tiempo de Investigación', this.backgroundColor1);
                     this.show.timeInvestigation = true;
 
                     setTimeout(() => {
@@ -197,23 +199,32 @@ export default {
             })
     },
     methods: {
-        groupInv(items, title){
+        groupInv(items, title, label, color){
             let labels = [];
             let info = []
+
+            if (label != 'Tiempo de Investigación')
+                items.sort((a, b) => a.total - b.total).reverse()
 
             items.forEach(item => {
                 let palabra = item[title].toLowerCase();
                 labels.push(palabra[0].toUpperCase() + palabra.slice(1));
                 info.push(item.total);
             });
+
+            /*if (label === 'Tiempo de Investigación')
+            items.forEach(item => {
+                //terminar en casa
+            })*/
+
             let data = {
                 labels: labels,
                 datasets: [{
                     data: info,
-                    label: ' 1',
-                    backgroundColor: this.backgroundColor,
-                    borderColor: this.borderColor,
-                    hoverBackgroundColor: this.borderColor,
+                    label: label,
+                    backgroundColor: color ? color : this.backgroundColor,
+                    borderColor: color ? color : this.borderColor,
+                    hoverBackgroundColor: color ? color : this.borderColor,
                     borderWidth: 1,
                     hoverBorderWidth: 2,
                     
@@ -258,5 +269,5 @@ export default {
     padding-top: 32px;
 }
 
-.card:hover { background: #e3f2fd; }
+
 </style>

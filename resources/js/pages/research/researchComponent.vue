@@ -131,7 +131,7 @@ export default {
                     title: 'AGUA',
                     color: '#52C3E3'
                 },
-                 {
+                {
                     title: 'CAMBIO_CLIMÁTICO',
                     color: '#24D8A0'
                 },
@@ -143,11 +143,11 @@ export default {
                     title: 'COVID-19',
                     color: '#3D9EE8'
                 },
-                 {
+                {
                     title: 'NUTRICIÓN',
                     color: '#7AE9C6'
                 },
-                 {
+                {
                     title: 'AREA_OCDE',
                     color: '#9ECEF4'
                 },

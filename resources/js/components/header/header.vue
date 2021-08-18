@@ -37,12 +37,12 @@
             <li class="waves-effect">
               <h5 class="black-text name center">Indicadores</h5>
             </li>
-            <li class="waves-effect">
+            <li class="waves-effect" :class="[`${this.$root.$route.path === '/home' ? 'active' : ''}`]">
               <router-link to="/home" class="collapsible-header" tabindex="0">
                 Inicio<i class="material-icons">home</i>
               </router-link>
             </li>
-            <li class="waves-effect">
+            <li class="waves-effect" :class="[`${this.$root.$route.path === '/investigadores' ? 'active' : ''}`]">
               <router-link
                 to="/investigadores"
                 class="collapsible-header"
@@ -50,7 +50,7 @@
                 <span style="font-size: 13px"> Investigadores e Investigadoras</span><i class="material-icons">people</i>
               </router-link>
             </li>
-            <li class="waves-effect">
+            <li class="waves-effect" :class="[`${this.$root.$route.path === '/research' ? 'active' : ''}`]">
               <router-link
                 to="/research"
                 class="collapsible-header"
@@ -59,7 +59,7 @@
                 Interés de Investigación<i class="material-icons">work</i>
               </router-link>
             </li>
-            <li class="waves-effect">
+            <li class="waves-effect" :class="[`${this.$root.$route.path === '/profileResearch' ? 'active' : ''}`]">
               <router-link
                 to="/profileResearch"
                 class="collapsible-header"
@@ -68,7 +68,7 @@
                 Perfil de Investigación<i class="material-icons">person</i>
               </router-link>
             </li>
-            <li class="waves-effect">
+            <li class="waves-effect" :class="[`${this.$root.$route.path === '/currentResearch' ? 'active' : ''}`]">
               <router-link
                 to="/currentResearch"
                 class="collapsible-header"
@@ -101,18 +101,28 @@
 export default {
   data() {
     return {
-      sidebar: false,
-    };
+      sidebar: false
+    }
   },
   methods: {
     collapse() {
       this.sidebar = !this.sidebar;
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
+.sidenav li.active {
+  background-color: #1e88e5 !important;
+  color: white !important;
+}
+.sidenav li.active > a {
+  color: white !important;
+}
+.sidenav li.active > a > i {
+  color: white !important;
+}
 .sidenav .logo-container {
   padding: 0 16px;
   height: 94px;

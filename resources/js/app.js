@@ -64,6 +64,6 @@ const app = new Vue({
     router,
     icons: {
         iconfont: 'mdi', // default - only for display purposes
-    },
+    }
 });
 

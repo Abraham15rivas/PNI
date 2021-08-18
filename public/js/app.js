@@ -2423,6 +2423,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var labels = [];
       var info = [];
       var content = [];
+      items.sort(function (a, b) {
+        return a.total - b.total;
+      }).reverse();
       items.forEach(function (item) {
         if (item['type_investigation'] != "TOTALES") {
           item.type_investigation = item.type_investigation.toLowerCase();
@@ -2501,6 +2504,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var labels = [];
       var info = [];
       var content = [];
+      items.sort(function (a, b) {
+        return a.total - b.total;
+      });
       items.forEach(function (item) {
         if (item['investigation_time'] != "TOTALES") {
           item.investigation_time = item.investigation_time.toLowerCase();
@@ -2757,6 +2763,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       backgroundColor: ['#082A44', '#3D9EE8', '#9ECEF4', '#10E7D9', '#24D8A0', '#0D426B', '#1D4C7A', '#5194D6', '#2DA8C8', '#10E7D9', '#1D4C7A', '#1781A1'],
       borderColor: ['#2DA8C8', '#00B0F0', '#24D8A0', '#7AE9C6', '#0EE3D7', '#001E5E', '#52C3E3', '#082A44', '#3D9EE8', '#9ECEF4', '#0D426B', '#1D4C7A'],
+      backgroundColor1: '#082A44',
       profileResearcher: Number,
       //Cantidad de Perfil del investigador
       profileResearch: Number,
@@ -2804,19 +2811,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   _this.show.profileResearch = _this.profileResearch ? true : false; //Nivel Academico
 
-                  _this.academicLevel = _this.groupInv(res.data.academic_levels, 'academic_level');
+                  _this.academicLevel = _this.groupInv(res.data.academic_levels, 'academic_level', 'Investigadores por Nivel Academico', _this.backgroundColor1);
                   _this.show.academicLevel = true; //Tipo de Investigacion
 
-                  _this.typeInvestigation = _this.groupInv(res.data.investigations_type, 'type_investigation');
+                  _this.typeInvestigation = _this.groupInv(res.data.investigations_type, 'type_investigation', 'Tipo de Investigación', _this.backgroundColor1);
                   _this.show.typeInvestigation = true; //linea de Investigacion
 
-                  _this.lineInvestigation = _this.groupInv(res.data.investigations_line, 'line_investigation');
+                  _this.lineInvestigation = _this.groupInv(res.data.investigations_line, 'line_investigation', 'Lineas de Investigación', _this.backgroundColor1);
                   _this.show.lineInvestigation = true; //Tipo de Institucion
 
-                  _this.typeInstitution = _this.groupInv(res.data.institutions_type, 'institution_type');
+                  _this.typeInstitution = _this.groupInv(res.data.institutions_type, 'institution_type', 'Tipo de institución', false);
                   _this.show.typeInstitution = true; //Tiempo de Investigacion
 
-                  _this.timeInvestigation = _this.groupInv(res.data.investigations_time, 'investigation_time');
+                  _this.timeInvestigation = _this.groupInv(res.data.investigations_time, 'investigation_time', 'Tiempo de Investigación', _this.backgroundColor1);
                   _this.show.timeInvestigation = true;
                   setTimeout(function () {
                     _this.load = false;
@@ -2835,22 +2842,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   methods: {
-    groupInv: function groupInv(items, title) {
+    groupInv: function groupInv(items, title, label, color) {
       var labels = [];
       var info = [];
+      if (label != 'Tiempo de Investigación') items.sort(function (a, b) {
+        return a.total - b.total;
+      }).reverse();
       items.forEach(function (item) {
         var palabra = item[title].toLowerCase();
         labels.push(palabra[0].toUpperCase() + palabra.slice(1));
         info.push(item.total);
       });
+      /*if (label === 'Tiempo de Investigación')
+      items.forEach(item => {
+          //terminar en casa
+      })*/
+
       var data = {
         labels: labels,
         datasets: [{
           data: info,
-          label: ' 1',
-          backgroundColor: this.backgroundColor,
-          borderColor: this.borderColor,
-          hoverBackgroundColor: this.borderColor,
+          label: label,
+          backgroundColor: color ? color : this.backgroundColor,
+          borderColor: color ? color : this.borderColor,
+          hoverBackgroundColor: color ? color : this.borderColor,
           borderWidth: 1,
           hoverBorderWidth: 2
         }]
@@ -24716,7 +24731,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.sidenav .logo-container[data-v-62e37494] {\r\n  padding: 0 16px;\r\n  height: 94px;\r\n  line-height: 64px;\r\n  font-size: 24px;\r\n  box-sizing: content-box;\n}\n.sidenav .collapsible > li.waves-effect[data-v-62e37494] {\r\n  display: block;\n}\n.sidenav .collapsible li[data-v-62e37494],\r\n.sidenav.fixed .collapsible li[data-v-62e37494] {\r\n  padding: 0;\n}\n.logo-min[data-v-62e37494] {\r\n  width: 195px;\r\n  height: 85px;\r\n  margin-top: 6px;\n}\n.cintillo-min[data-v-62e37494] {\r\n  width: 100%;\r\n  height: 100px;\n}\n.header-logo[data-v-62e37494] {\r\n  position: fixed;\r\n  right: 10px;\n}\n.brand-logo[data-v-62e37494] {\r\n  width: 100%;\n}\n.logo-sidebar[data-v-62e37494] {\r\n  height: 100px;\r\n  margin: 0 auto;\r\n  display: block;\n}\n.top-m[data-v-62e37494] {\r\n  margin-top: 10px;\n}\n@media (max-width: 992px) {\n.sidenav-collapse[data-v-62e37494] {\r\n    transform: translateX(0%);\r\n    transition: transform 300ms linear;\n}\n.button-collapse[data-v-62e37494] {\r\n    margin-left: 312px;\r\n    transition: margin-left 300ms linear;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.sidenav li.active[data-v-62e37494] {\r\n  background-color: #1e88e5 !important;\r\n  color: white !important;\n}\n.sidenav li.active > a[data-v-62e37494] {\r\n  color: white !important;\n}\n.sidenav li.active > a > i[data-v-62e37494] {\r\n  color: white !important;\n}\n.sidenav .logo-container[data-v-62e37494] {\r\n  padding: 0 16px;\r\n  height: 94px;\r\n  line-height: 64px;\r\n  font-size: 24px;\r\n  box-sizing: content-box;\n}\n.sidenav .collapsible > li.waves-effect[data-v-62e37494] {\r\n  display: block;\n}\n.sidenav .collapsible li[data-v-62e37494],\r\n.sidenav.fixed .collapsible li[data-v-62e37494] {\r\n  padding: 0;\n}\n.logo-min[data-v-62e37494] {\r\n  width: 195px;\r\n  height: 85px;\r\n  margin-top: 6px;\n}\n.cintillo-min[data-v-62e37494] {\r\n  width: 100%;\r\n  height: 100px;\n}\n.header-logo[data-v-62e37494] {\r\n  position: fixed;\r\n  right: 10px;\n}\n.brand-logo[data-v-62e37494] {\r\n  width: 100%;\n}\n.logo-sidebar[data-v-62e37494] {\r\n  height: 100px;\r\n  margin: 0 auto;\r\n  display: block;\n}\n.top-m[data-v-62e37494] {\r\n  margin-top: 10px;\n}\n@media (max-width: 992px) {\n.sidenav-collapse[data-v-62e37494] {\r\n    transform: translateX(0%);\r\n    transition: transform 300ms linear;\n}\n.button-collapse[data-v-62e37494] {\r\n    margin-left: 312px;\r\n    transition: margin-left 300ms linear;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -24773,7 +24788,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.total-register[data-v-768de6a6]{\r\n\tfont-size: 40px;\r\n    margin-top: -8px;\r\n    margin-bottom: 0px;\r\n    text-align: center;\n}\n.icon-total-register[data-v-768de6a6]{\r\n\twidth: 110px;\r\n\theight: 110px;\n}\n.card-icon[data-v-768de6a6] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\n.title-card[data-v-768de6a6] {\r\n    text-align: center;\r\n    margin-top: 0px;\n}\n.separate[data-v-768de6a6] { margin: 48px 64px;\n}\n.margin-x[data-v-768de6a6]{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\n.card[data-v-768de6a6]:hover { background: #e3f2fd;\n}\r\n", ""]);
+exports.push([module.i, "\n.total-register[data-v-768de6a6]{\r\n\tfont-size: 40px;\r\n    margin-top: -8px;\r\n    margin-bottom: 0px;\r\n    text-align: center;\n}\n.icon-total-register[data-v-768de6a6]{\r\n\twidth: 110px;\r\n\theight: 110px;\n}\n.card-icon[data-v-768de6a6] {\r\n    background: #e3f2fd;\r\n    display: flex;\r\n    align-items: center;\r\n    padding: 0px 8px 0px 16px;\n}\n.title-card[data-v-768de6a6] {\r\n    text-align: center;\r\n    margin-top: 0px;\n}\n.separate[data-v-768de6a6] { margin: 48px 64px;\n}\n.margin-x[data-v-768de6a6]{\r\n    margin: 0 50px;\r\n    padding-top: 32px;\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -79080,7 +79095,12 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
-                  { staticClass: "waves-effect" },
+                  {
+                    staticClass: "waves-effect",
+                    class: [
+                      "" + (this.$root.$route.path === "/home" ? "active" : "")
+                    ]
+                  },
                   [
                     _c(
                       "router-link",
@@ -79101,7 +79121,15 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
-                  { staticClass: "waves-effect" },
+                  {
+                    staticClass: "waves-effect",
+                    class: [
+                      "" +
+                        (this.$root.$route.path === "/investigadores"
+                          ? "active"
+                          : "")
+                    ]
+                  },
                   [
                     _c(
                       "router-link",
@@ -79124,7 +79152,13 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
-                  { staticClass: "waves-effect" },
+                  {
+                    staticClass: "waves-effect",
+                    class: [
+                      "" +
+                        (this.$root.$route.path === "/research" ? "active" : "")
+                    ]
+                  },
                   [
                     _c(
                       "router-link",
@@ -79145,7 +79179,15 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
-                  { staticClass: "waves-effect" },
+                  {
+                    staticClass: "waves-effect",
+                    class: [
+                      "" +
+                        (this.$root.$route.path === "/profileResearch"
+                          ? "active"
+                          : "")
+                    ]
+                  },
                   [
                     _c(
                       "router-link",
@@ -79166,7 +79208,15 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "li",
-                  { staticClass: "waves-effect" },
+                  {
+                    staticClass: "waves-effect",
+                    class: [
+                      "" +
+                        (this.$root.$route.path === "/currentResearch"
+                          ? "active"
+                          : "")
+                    ]
+                  },
                   [
                     _c(
                       "router-link",
@@ -79176,7 +79226,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n              Modulo de Investigación Actual"
+                          "\n              Módulo de Investigación Actual"
                         ),
                         _c("i", { staticClass: "material-icons" }, [
                           _vm._v("view_module")
@@ -79762,7 +79812,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _vm.show.typeInvestigation
-                  ? _c("bar-charts", {
+                  ? _c("horizontalBar-charts", {
                       attrs: { chartdata: _vm.typeInvestigation, height: 300 }
                     })
                   : _vm._e()

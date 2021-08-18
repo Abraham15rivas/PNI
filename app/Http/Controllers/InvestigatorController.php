@@ -396,14 +396,16 @@ class InvestigatorController extends Controller {
                 $selected = $actualInvestigations->where('id_lineas_presidenciales',$id);
 
                 foreach($selected as $pro){
-                    $grupo = $pro->grupo;
                     $name = $pro->nombre_lineas_presidenciales;
                     $id = $pro->id_lineas_presidenciales;
+                    $grupo = $pro->grupo;                    
                 }
-                $search = $arrActual->where('titulo',$name);
+
+                $search = $arrActual->where('titulo',trim($name));
+                
                 if($search->count() > 0){
                     $arrActual = $arrActual->map(function ($investigation, $key) use($name) {
-                        if ($investigation["titulo"] == $name) {
+                        if ($investigation["titulo"] == trim($name)) {
                             $investigation["total"]++;
                         }
                         return $investigation;
@@ -440,7 +442,7 @@ class InvestigatorController extends Controller {
             "total_investigators"=>$total_investigators,
             "groupInstitution"=>$groupInstitution,
             "groupInterest"=>$groupInterest,
-            "actualInvestigation"=>$arrActual->unique('id')->values()->all(),
+            "actualInvestigation"=>$arrActual,
             "groupModeInvestigation"=>$groupModeInvestigation,
             "allGroups"=>$allGroups
         ]);

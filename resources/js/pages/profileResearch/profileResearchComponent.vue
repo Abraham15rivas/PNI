@@ -203,19 +203,17 @@ export default {
             let labels = [];
             let info = []
 
-            if (label != 'Tiempo de Investigación')
+            if (label != 'Tiempo de Investigación') {
                 items.sort((a, b) => a.total - b.total).reverse()
+            } else  {
+                items.sort((a, b) => a.id - b.id)
+            }
 
             items.forEach(item => {
                 let palabra = item[title].toLowerCase();
                 labels.push(palabra[0].toUpperCase() + palabra.slice(1));
                 info.push(item.total);
             });
-
-            /*if (label === 'Tiempo de Investigación')
-            items.forEach(item => {
-                //terminar en casa
-            })*/
 
             let data = {
                 labels: labels,

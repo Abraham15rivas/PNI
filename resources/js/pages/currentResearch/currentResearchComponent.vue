@@ -202,7 +202,6 @@
             groupInvestigationType(items){
                 let labels = [];
                 let info = [];
-                let content = [];
                
                 items.sort((a, b) => a.total - b.total).reverse()
 
@@ -234,7 +233,8 @@
             groupInvestigationLine(items){
                 let labels = [];
                 let info = [];
-                let content = [];
+
+                items.sort((a, b) => a.total - b.total).reverse()
 
                 items.forEach(item => {
                     if(item['line_investigation'] != "TOTALES"){
@@ -262,7 +262,6 @@
             groupPhaseInvestigation(items){
                 let labels = [];
                 let info = [];
-                let content = [];
 
                 items.forEach(item => {
                     if(item['phase_investigation'] != "TOTALES"){                        
@@ -290,7 +289,6 @@
             groupInvestigationsTime(items){
                 let labels = [];
                 let info = [];
-                let content = [];
 
                  items.sort((a, b) => a.total - b.total)
 

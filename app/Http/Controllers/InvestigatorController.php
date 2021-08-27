@@ -629,7 +629,13 @@ class InvestigatorController extends Controller {
             }
 
             $total = count($val);
-            $groupLine->push(["line_investigation"=>$name,"id"=>$key,"total"=>$total]);
+            $exist = $groupLine->where('line_investigation', $name);
+
+            if (!$exist->isEmpty()) {
+                $exist->first()['total'] += $total;
+            } else {
+                $groupLine->push(["line_investigation"=>$name,"id"=>$key,"total"=>$total]);
+            }
         }
 
         // Tiempo de investigacion actual

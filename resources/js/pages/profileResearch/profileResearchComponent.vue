@@ -170,7 +170,7 @@ export default {
                     this.show.profileResearch = this.profileResearch ? true : false;
 
                     //Nivel Academico
-                    this.academicLevel = this.groupInv(res.data.academic_levels, 'academic_level', 'Investigadores por Nivel Academico', this.backgroundColor1);
+                    this.academicLevel = this.groupInv(res.data.academic_levels, 'academic_level', 'Investigadores por Nivel Académico', this.backgroundColor1);
                     this.show.academicLevel = true;
 
                     //Tipo de Investigacion
@@ -178,7 +178,7 @@ export default {
                     this.show.typeInvestigation = true;
 
                     //linea de Investigacion
-                    this.lineInvestigation = this.groupInv(res.data.investigations_line, 'line_investigation', 'Lineas de Investigación', this.backgroundColor1);
+                    this.lineInvestigation = this.groupInv(res.data.investigations_line, 'line_investigation', 'Líneas de Investigación', this.backgroundColor1);
                     this.show.lineInvestigation = true;
 
                     //Tipo de Institucion
@@ -203,19 +203,17 @@ export default {
             let labels = [];
             let info = []
 
-            if (label != 'Tiempo de Investigación')
+            if (label != 'Tiempo de Investigación') {
                 items.sort((a, b) => a.total - b.total).reverse()
+            } else  {
+                items.sort((a, b) => a.id - b.id)
+            }
 
             items.forEach(item => {
                 let palabra = item[title].toLowerCase();
                 labels.push(palabra[0].toUpperCase() + palabra.slice(1));
                 info.push(item.total);
             });
-
-            /*if (label === 'Tiempo de Investigación')
-            items.forEach(item => {
-                //terminar en casa
-            })*/
 
             let data = {
                 labels: labels,

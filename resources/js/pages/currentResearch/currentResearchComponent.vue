@@ -248,7 +248,7 @@
                     labels: labels,
                     datasets: [{
                         data: info,
-                        label: 'Total',
+                        label: 'Cantidad de Investigaciones',
                         backgroundColor: this.backgroundColor,
                         borderColor: this.borderColor,
                         hoverBackgroundColor: this.borderColor,

@@ -13,12 +13,6 @@ Route::prefix('statistics')->group(function () {
     Route::get('/investigators/parish/{municipality_id?}','InvestigatorController@searchParish');
 });
 
-Route::prefix('reports')->group(function () {
-    Route::get('/date_min/{value}', 'ReportController@index');
-    Route::post('/create', 'ReportController@report');
-    Route::delete('/delete/{typeReport}/{name}', 'ReportController@deleteReport');
-});
-
 Route::get('', function () {
     return view('layouts.app');
 });
@@ -40,9 +34,5 @@ Route::get('profileResearch', function () {
 });
 
 Route::get('currentResearch', function () {
-    return view('layouts.app');
-});
-
-Route::get('reports', function () {
     return view('layouts.app');
 });

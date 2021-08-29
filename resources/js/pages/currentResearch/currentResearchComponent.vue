@@ -28,7 +28,12 @@
         <div class="row">
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('institution', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="institution">
                         <span class="card-title center">Distribución de las Investigaciones por Tipo de Institución</span>
                         <doughnut-charts v-if="loadedIns" :chartdata="institution" :height="325"></doughnut-charts>
                     </div>
@@ -36,7 +41,12 @@
             </div>
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('investigation_type', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="investigation_type">
                         <span class="card-title center" >Cantidad de Investigaciones por Tipo de Investigación</span>
                         <horizontalBar-charts v-if="loadedInvType" :chartdata="investigation_type" :height="325"></horizontalBar-charts>
                     </div>
@@ -46,7 +56,12 @@
         <div class="row">
             <div class="col s12">
             <div class="card">
-                <div class="card-content">
+                <span class="content-button-pdf">
+                    <button class="btn button-pdf" title="PDF" @click="createPDF('investigation_line', 'portrait', 10, 10, 190, 220)">
+                        <i class="material-icons">picture_as_pdf</i>
+                    </button>
+                </span>
+                <div class="card-content" ref="investigation_line">
                     <span class="card-title center">Cantidad de Investigaciones por Línea de Investigación</span>
                     <horizontalBar-charts v-if="loadedInvLine" :chartdata="investigation_line" :height="300"></horizontalBar-charts>
                 </div>
@@ -56,7 +71,12 @@
         <div class="row">
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('phase_investigation', 'landscape', 80, 30, 145, 140)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="phase_investigation">
                         <span class="card-title center">Distribución de Investigaciones por Fase</span>
                         <doughnut-charts v-if="loadedPhaseInv" :chartdata="phase_investigation" :height="300"></doughnut-charts>
                     </div>
@@ -64,7 +84,12 @@
             </div>
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('investigation_time', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="investigation_time">
                         <span class="card-title center" >Distribución de Investigadores por Tiempo de Investigación</span>
                         <bar-charts v-if="loadedTimeInv" :chartdata="investigation_time" :height="300"></bar-charts>
                     </div>
@@ -75,9 +100,16 @@
 </template>
 
 <script>
+    import moment from 'moment'
+    import jsPDF from 'jspdf'
+    import 'jspdf-autotable'
+
     export default {
         data() {
             return {
+                // Image for pdf
+                canvas: null,
+
                 load: false,
                 options: {
                     legend: {
@@ -106,20 +138,20 @@
                 '#10E7D9'
             ],
             borderColor: [
-                '#2DA8C8', 
-                '#00B0F0',   
-                '#24D8A0', 
-                '#7AE9C6', 
-                '#0EE3D7',  
-                '#001E5E', 
-                '#52C3E3', 
+                '#2DA8C8',
+                '#00B0F0',
+                '#24D8A0',
+                '#7AE9C6',
+                '#0EE3D7',
+                '#001E5E',
+                '#52C3E3',
                 '#082A44',
                 '#3D9EE8',
                 '#9ECEF4',
                 '#0D426B',
                 '#1D4C7A',
-                '#2DA8C8', 
-                '#00B0F0',   
+                '#2DA8C8',
+                '#00B0F0',
                 '#24D8A0',
                 '#7AE9C6'
             ],
@@ -168,6 +200,25 @@
 
         },
         methods: {
+            async createPDF(graph, orientation, x, y, width, height, table = false) {
+                const doc = new jsPDF({ orientation })
+                const data = this[graph]
+
+                if (data.datasets != undefined && data.datasets.length > 0 || table) {
+                    const el = this.$refs[graph]
+                    const options = {
+                        type: 'dataURL'
+                    }
+                    this.canvas = await this.$html2canvas(el, options)
+
+                    doc.addImage(this.canvas, 'PNG', x, y, width, height)
+                    doc.save('reporte.pdf')
+                }
+
+                if (this.canvas) {
+                    this.canvas = null
+                }
+            },
             groupInstitution(items){
                 let labels = [];
                 let info = []

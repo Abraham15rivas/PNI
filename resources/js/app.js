@@ -1,16 +1,18 @@
 require('./bootstrap');
-
 window.Vue = require('vue');
+
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
-
 Vue.use(VueMaterial)
-import VueRouter from 'vue-router'
 
+import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-Vue.component('loader', require('./components/loader.vue').default);
+import Vue from 'vue';
+import VueHtml2Canvas from 'vue-html2canvas';
+Vue.use(VueHtml2Canvas);
 
+Vue.component('loader', require('./components/loader.vue').default);
 Vue.component('header-vue', require('./components/header/header.vue').default);
 Vue.component('line-charts', require('./components/charts/line/line.vue').default);
 Vue.component('doughnut-charts', require('./components/charts/doughnut/doughnut.vue').default);
@@ -23,7 +25,6 @@ import researcherComponent from './pages/researcher/researcherComponent';
 import researchComponent from './pages/research/researchComponent';
 import profileResearchComponent from './pages/profileResearch/profileResearchComponent';
 import currentResearchComponent from './pages/currentResearch/currentResearchComponent';
-import reportComponent from './pages/reports/reportsComponent';
 
 const router = new VueRouter({
     routes: [
@@ -50,10 +51,6 @@ const router = new VueRouter({
         {
             path: '/currentResearch',
             component: currentResearchComponent
-        },
-        {
-            path: '/reports',
-            component: reportComponent
         }
     ],
     mode: 'history'

@@ -10,7 +10,12 @@
         <div class="row">
             <div class="col s12 m12">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('groupSelectedInterest', 'landscape', 5, 0, 260, 200)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="groupSelectedInterest">
                         <span class="card-title center" >Cantidad de Investigadores por Interés de Investigación</span>
                          <div class="row" style="padding: 0px 24px">
                             <div class="col s12" v-if="groups.length > 0">
@@ -33,7 +38,12 @@
         <div class="row">
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('institution', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="institution">
                         <span class="card-title center">Distribución de las Investigaciones por Tipo de Institución</span>
                         <doughnut-charts v-if="loadedIns" :chartdata="institution" :height="300"></doughnut-charts>
                     </div>
@@ -41,7 +51,12 @@
             </div>
              <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('modeInv', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="modeInv">
                         <span class="card-title center">Modo de Investigación que Realizan los Investigadores e Investigadoras</span>
                         <doughnut-charts v-if="loadedModeInv" :chartdata="modeInv" :height="300"></doughnut-charts>
                     </div>
@@ -51,8 +66,12 @@
         <div class="row">
             <div class="col s12 m12">
                 <div class="card">
-
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('groupSelectedInterest2', 'landscape', 5, 0, 260, 200)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="groupSelectedInterest2">
                         <span class="card-title center" >Tipo de Investigación actual que realizan los Investigadores e Investigadoras</span>
                         <div class="row" style="padding: 0px 24px">
                             <div class="col s12" v-if="groups2.length > 0">
@@ -103,10 +122,16 @@
 </template>
 
 <script>
+import moment from 'moment'
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
 
 export default {
     data(){
         return {
+            // Image for pdf
+            canvas: null,
+
             load: false,
             // Opciones Predefinidas
             options: {
@@ -131,7 +156,7 @@ export default {
                     title: 'AGUA',
                     color: '#52C3E3'
                 },
-                 {
+                {
                     title: 'CAMBIO_CLIMÁTICO',
                     color: '#24D8A0'
                 },
@@ -143,11 +168,11 @@ export default {
                     title: 'COVID-19',
                     color: '#3D9EE8'
                 },
-                 {
+                {
                     title: 'NUTRICIÓN',
                     color: '#7AE9C6'
                 },
-                 {
+                {
                     title: 'AREA_OCDE',
                     color: '#9ECEF4'
                 },
@@ -252,6 +277,25 @@ export default {
             })
     },
     methods: {
+        async createPDF(graph, orientation, x, y, width, height, table = false) {
+            const doc = new jsPDF({ orientation })
+            const data = this[graph]
+
+            if (data.datasets != undefined && data.datasets.length > 0 || table) {
+                const el = this.$refs[graph]
+                const options = {
+                    type: 'dataURL'
+                }
+                this.canvas = await this.$html2canvas(el, options)
+
+                doc.addImage(this.canvas, 'PNG', x, y, width, height)
+                doc.save('reporte.pdf')
+            }
+
+            if (this.canvas) {
+                this.canvas = null
+            }
+        },
         changeGroup2() {
             let searchGroup = this.groups2.filter(element => {
                 if (element.title === this.groupSelected2) {

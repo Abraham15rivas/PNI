@@ -27,8 +27,11 @@
     },
     "dependencies": {
         "chart.js": "^2.9.3",
+        "jspdf": "^2.3.1",
+        "jspdf-autotable": "^3.5.20",
         "moment": "^2.29.1",
         "vue-chartjs": "^3.5.0",
+        "vue-html2canvas": "0.0.4",
         "vue-material": "^1.0.0-beta-15"
     }
 }

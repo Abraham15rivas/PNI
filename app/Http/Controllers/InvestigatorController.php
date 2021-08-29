@@ -144,24 +144,6 @@ class InvestigatorController extends Controller {
                     'female'=>$age->where('id_genero',1)->count()
                 ]);
             }
-
-            /*foreach ($genreGroup as $keyG => $genre) {
-                $genre->ageGroup = $genre->groupBy('age');
-                $ageGroup = collect();
-
-                foreach($genre->ageGroup as $keyA => $age){
-                    $ageGroup->push([$keyA=>count($age)]);
-                }
-                if($keyG == 2){
-                    $val->genreGroup->push(['Masculino'=>$ageGroup]);
-                }elseif($keyG == 1){
-                    $val->genreGroup->push(['Femenino'=>$ageGroup]);
-                }else{
-                    $val->genreGroup->push(['Otro'=>$ageGroup]);
-                }
-                
-            }*/
-
             $groupStateAge->push(["estado"=>$name,"data"=>$val->ageGroup->sortBy('age')]);
         }
 

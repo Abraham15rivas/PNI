@@ -31,8 +31,12 @@
         <div class="row">
             <div class="col s12 m8 offset-m2">
                 <div class="card">
-                    <!-- <div class="card-content center blue lighten-5"> -->
-                    <div class="card-content center">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('academicLevel', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content center" ref="academicLevel">
                         <span class="card-title title-card">Distribución de Investigadores por Nivel Académico</span>
                         <bar-charts v-if="show.academicLevel" :chartdata="academicLevel" :height="300"></bar-charts>
                     </div>
@@ -67,7 +71,12 @@
         <div class="row">
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('typeInvestigation', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="typeInvestigation">
                         <span class="card-title title-card">Cantidad de Investigaciones por Tipo de Investigación</span>
                         <horizontalBar-charts  v-if="show.typeInvestigation" :chartdata="typeInvestigation" :height="300"></horizontalBar-charts>
                     </div>
@@ -75,7 +84,12 @@
             </div>
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('lineInvestigation', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="lineInvestigation">
                         <span class="card-title title-card" >Cantidad de Investigaciones por Línea de Investigación</span>
                         <horizontalBar-charts v-if="show.lineInvestigation" :chartdata="lineInvestigation" :height="300" ></horizontalBar-charts>
                     </div>
@@ -87,7 +101,12 @@
         <div class="row">
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('typeInstitution', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="typeInstitution">
                         <span class="card-title title-card">Distribución de las Investigaciones por Tipo de Institución</span>
                         <doughnut-charts v-if="show.typeInstitution" :chartdata="typeInstitution" :height="300"></doughnut-charts>
                     </div>
@@ -95,7 +114,12 @@
             </div>
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('timeInvestigation', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="timeInvestigation">
                         <span class="card-title title-card" >Distribución de los Investigadores por Tiempo de Investigación</span>
                        <bar-charts v-if="show.timeInvestigation" :chartdata="timeInvestigation" :height="300"></bar-charts>
                     </div>
@@ -106,9 +130,16 @@
 </template>
 
 <script>
+import moment from 'moment'
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
+
 export default {
     data(){
         return {
+            // Image for pdf
+            canvas: null,
+
             load: false,// Opciones Predefinidas
             options: {
                 legend:  { align: "end" },
@@ -199,6 +230,25 @@ export default {
             })
     },
     methods: {
+        async createPDF(graph, orientation, x, y, width, height, table = false) {
+            const doc = new jsPDF({ orientation })
+            const data = this[graph]
+
+            if (data.datasets != undefined && data.datasets.length > 0 || table) {
+                const el = this.$refs[graph]
+                const options = {
+                    type: 'dataURL'
+                }
+                this.canvas = await this.$html2canvas(el, options)
+
+                doc.addImage(this.canvas, 'PNG', x, y, width, height)
+                doc.save('reporte.pdf')
+            }
+
+            if (this.canvas) {
+                this.canvas = null
+            }
+        },
         groupInv(items, title, label, color){
             let labels = [];
             let info = []

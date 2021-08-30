@@ -1,35 +1,35 @@
 <template>
     <div class="margin-x">
         <loader :load="load" />
-        <div class="row">
-            <div class="col s12">
-                <h5 class="center-align" >Indicador del Módulo de la Investigación Actual</h5>
+        <span ref="header">
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="center-align" >Indicador del Módulo de la Investigación Actual</h5>
+                </div>
             </div>
-        </div>
-        
-        <div class="row">
-            <div class="col s12 m6 offset-m3">
-                <div class="card horizontal">
-                    <div class="card-image card-icon">
-                        <img class="icon-total-register" src="images/registro.svg">
-                    </div>
-                    <div class="card-stacked"> 
-                        <div class="card-content">
-                            <h6 class="center-align title-card">Total Registrados en el Módulo de la Investigación</h6>
+            <div class="row">
+                <div class="col s12 m6 offset-m3">
+                    <div class="card horizontal">
+                        <div class="card-image card-icon">
+                            <img class="icon-total-register" src="images/registro.svg">
                         </div>
-                        <div class="card-action">
-                            <h2 class="total-register">{{total_investigation}}</h2>                                    
+                        <div class="card-stacked"> 
+                            <div class="card-content">
+                                <h6 class="center-align title-card">Total Registrados en el Módulo de la Investigación</h6>
+                            </div>
+                            <div class="card-action">
+                                <h2 class="total-register">{{total_investigation}}</h2>                                    
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
+        </span>
         <div class="row">
             <div class="col s12 m6">
                 <div class="card">
                     <span class="content-button-pdf">
-                        <button class="btn button-pdf" title="PDF" @click="createPDF('institution', 'landscape', 80, 12, 150, 160)">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('institution', 'landscape', 10, 20, 150, 160, false, 'header')">
                             <i class="material-icons">picture_as_pdf</i>
                         </button>
                     </span>
@@ -200,11 +200,17 @@
 
         },
         methods: {
-            async createPDF(graph, orientation, x, y, width, height, table = false) {
+            async createPDF(graph, orientation, x, y, width, height, table = false, header = null) {
                 const doc = new jsPDF({ orientation })
                 const data = this[graph]
 
                 if (data.datasets != undefined && data.datasets.length > 0 || table) {
+                    if (header) {
+                        const headerValue = this.$refs[header]
+                        const canvasHeader = await this.$html2canvas(headerValue, options)
+                        doc.addImage(canvasHeader, 'PNG', 160, 25, 140, 60)
+                    }
+
                     const el = this.$refs[graph]
                     const options = {
                         type: 'dataURL'

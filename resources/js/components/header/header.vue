@@ -46,8 +46,9 @@
               <router-link
                 to="/investigadores"
                 class="collapsible-header"
-                tabindex="0">
-                <span style="font-size: 13px"> Investigadores e Investigadoras</span><i class="material-icons">people</i>
+                tabindex="0"
+              >
+                Investigadores e Investigadoras<i class="material-icons">people</i>
               </router-link>
             </li>
             <li class="waves-effect" :class="[`${this.$root.$route.path === '/research' ? 'active' : ''}`]">

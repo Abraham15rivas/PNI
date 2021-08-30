@@ -1,38 +1,37 @@
 <template>
     <div class="margin-x">
         <loader :load="load" />
-        <div class="row">
-            <div class="col s12">
-                <h5 class="black-text center">
-                    Indicador del Perfil de los Investigadores e Investigaciones Registradas
-                </h5>
+        <span ref="header">
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="black-text center">
+                        Indicador del Perfil de los Investigadores e Investigaciones Registradas
+                    </h5>
+                </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12 m6 offset-m3 l6 offset-l3">
-                <div class="card horizontal">
-                    <div class="card-image card-icon">
-                        <img class="icon-total-register" src="images/registro.svg">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <h5 class="title-card center-align">Total Registrados en el Perfil del Investigador</h5>
+            <div class="row">
+                <div class="col s12 m6 offset-m3 l6 offset-l3">
+                    <div class="card horizontal">
+                        <div class="card-image card-icon">
+                            <img class="icon-total-register" src="images/registro.svg">
                         </div>
-                        <div class="card-action" v-if="show.profileResearcher">
-                            <h2 class="total-register">{{profileResearcher}}</h2>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <h5 class="title-card center-align">Total Registrados en el Perfil del Investigador</h5>
+                            </div>
+                            <div class="card-action" v-if="show.profileResearcher">
+                                <h2 class="total-register">{{profileResearcher}}</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-            
+        </span>            
         <div class="row">
             <div class="col s12 m8 offset-m2">
                 <div class="card">
                     <span class="content-button-pdf">
-                        <button class="btn button-pdf" title="PDF" @click="createPDF('academicLevel', 'landscape', 80, 12, 150, 160)">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('academicLevel', 'landscape', 10, 20, 150, 160, false, 'header')">
                             <i class="material-icons">picture_as_pdf</i>
                         </button>
                     </span>
@@ -50,7 +49,7 @@
             </div>
         </div>
         
-        <div class="row">
+        <div class="row" ref="header2">
             <div class="col s12 m6 offset-m3">
                 <div class="card horizontal">
                     <div class="card-image card-icon">
@@ -102,7 +101,7 @@
             <div class="col s12 m6">
                 <div class="card">
                     <span class="content-button-pdf">
-                        <button class="btn button-pdf" title="PDF" @click="createPDF('typeInstitution', 'landscape', 80, 12, 150, 160)">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('typeInstitution', 'landscape',  10, 20, 150, 160, false, 'header2')">
                             <i class="material-icons">picture_as_pdf</i>
                         </button>
                     </span>
@@ -230,11 +229,17 @@ export default {
             })
     },
     methods: {
-        async createPDF(graph, orientation, x, y, width, height, table = false) {
+        async createPDF(graph, orientation, x, y, width, height, table = false, header = null) {
             const doc = new jsPDF({ orientation })
             const data = this[graph]
 
             if (data.datasets != undefined && data.datasets.length > 0 || table) {
+                if (header) {
+                    const headerValue = this.$refs[header]
+                    const canvasHeader = await this.$html2canvas(headerValue, options)
+                    doc.addImage(canvasHeader, 'PNG', 160, 25, 120, 60)
+                }
+
                 const el = this.$refs[graph]
                 const options = {
                     type: 'dataURL'

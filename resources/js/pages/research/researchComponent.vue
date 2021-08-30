@@ -91,33 +91,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12 m12">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title center" >Interés de Investigación por Género</span>
-                        <table class="highlight striped">
-                            <thead>
-                                <tr>
-                                    <th>Titulo</th>
-                                    <th>Hombres</th>
-                                    <th>Mujeres</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody v-if="loadedInt">
-                                <tr v-for="(item, index) in dataInterest" v-bind:key="index">
-                                    <td class="td-title">{{ item.titulo }}</td>
-                                    <td>{{ item.masculino }}</td>
-                                    <td>{{ item.femenino }}</td>
-                                    <td>{{ item.total }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -363,9 +336,11 @@ export default {
             this.loadedIns = true;
             return data;
         },
-        groupInterest(items, title){            
+        groupInterest(items, title, flagTotal = true){            
             let labels = [];
             let info = [];
+            let female = [];
+            let male = [];
             let grupo = {
                 color: '#082A44'
             }
@@ -377,34 +352,64 @@ export default {
                     item.titulo = item.titulo.toLowerCase();
                     labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1));
                     info.push(item.total);
+                    if (item.total > 0) {
+                        female.push(item.femenino)
+                        male.push(item.masculino)
+                    }
                 }
             });
             
             grupo = this.colorGroup.find((grupo) => {
                 if (grupo.title === title)
                     return grupo
-            })            
+            })
 
             let data = {
                 labels: labels,
-                datasets: [
-                    {
-                        data: info,
-                        label: 'Cantidad de Investigaciones ',
-                        backgroundColor: grupo.color,
-                        borderColor: grupo.color,
-                        hoverBackgroundColor: grupo.color,
-                        borderWidth: 1,
-                        hoverBorderWidth: 2,
-                    }
-                ]
+                datasets: [],
+                scaleStartValue : 0,
             }
+
+            if(flagTotal){
+                data.datasets.push({
+                    data: info,
+                    label: 'Cantidad de Investigaciones',
+                    backgroundColor: grupo.color,
+                    borderColor: grupo.color,
+                    hoverBackgroundColor: grupo.color,
+                    borderWidth: 1,
+                    hoverBorderWidth: 2,    
+                })
+            }
+
+            if(female.length > 0)
+                data.datasets.push({
+                    data: female,
+                    label: 'Mujeres',
+                    backgroundColor: '#EA5771',
+                    borderWidth: 1,
+                    hoverBorderWidth: 2,
+                });
+            
+            if(male.length > 0)
+                data.datasets.push({
+                    data: male,
+                    label: 'Hombres',
+                    backgroundColor: '#1E88E5',
+                    borderColor: 'rgba(41, 98, 255, 1)',
+                    hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                    borderWidth: 1,
+                    hoverBorderWidth: 2, 
+                });
+
             this.loadedInt = true;
             return data;
         },        
-        groupActualInt(items, title){            
+        groupActualInt(items, title, flagTotal = true){            
             let labels = [];
             let info = [];
+            let female = [];
+            let male = [];
             let grupo = {
                 color: '#082A44'
             }
@@ -416,28 +421,58 @@ export default {
                     item.titulo = item.titulo.toLowerCase();
                     labels.push(item.titulo[0].toUpperCase() + item.titulo.slice(1));
                     info.push(item.total);
+                    if (item.total > 0) {
+                        female.push(item.femenino)
+                        male.push(item.masculino)
+                    }
                 }
             });
             
             grupo = this.colorGroup.find((grupo) => {
                 if (grupo.title === title)
                     return grupo
-            })            
+            })
 
             let data = {
                 labels: labels,
-                datasets: [
-                    {
-                        data: info,
-                        label: 'Cantidad de total Investigaciones actuales',
-                        backgroundColor: grupo.color,
-                        borderColor: grupo.color,
-                        hoverBackgroundColor: grupo.color,
-                        borderWidth: 1,
-                        hoverBorderWidth: 2,
-                    }
-                ]
+                datasets: [],
+                scaleStartValue : 0,
             }
+
+            if(flagTotal){
+                data.datasets.push({
+                    data: info,
+                    label: 'Cantidad de total Investigaciones actuales',
+                    backgroundColor: grupo.color,
+                    borderColor: grupo.color,
+                    hoverBackgroundColor: grupo.color,
+                    borderWidth: 1,
+                    hoverBorderWidth: 2,
+                })
+            }
+
+            if(female.length > 0)
+                data.datasets.push({
+                    enabled: false,
+                    data: female,
+                    label: 'Mujeres',
+                    backgroundColor: '#EA5771',
+                    borderWidth: 1,
+                    hoverBorderWidth: 2,
+                });
+            
+            if(male.length > 0)
+                data.datasets.push({
+                    enabled: false,
+                    data: male,
+                    label: 'Hombres',
+                    backgroundColor: '#1E88E5',
+                    borderColor: 'rgba(41, 98, 255, 1)',
+                    hoverBackgroundColor: 'rgba(41, 98, 255, 1)',
+                    borderWidth: 1,
+                    hoverBorderWidth: 2,
+                });
+
             this.loadedAct = true;
             return data;
         },

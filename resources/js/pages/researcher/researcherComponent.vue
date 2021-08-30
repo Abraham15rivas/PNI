@@ -1,60 +1,62 @@
 <template>
     <div class="margin-x">
         <loader :load="load" />
-        <div class="row">
-            <div class="col s12">
-                <h5 class="center">
-                    Indicador de Investigadoras e Investigadores Rregistrados en el Programa Nacional de Investigadores
-                </h5>
+        <span ref="header">
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="center">
+                        Indicador de Investigadoras e Investigadores Rregistrados en el Programa Nacional de Investigadores
+                    </h5>
+                </div>
             </div>
-        </div>
-        <div class="row"> 
-            <div class="col s12 m4">
-                <div class="card horizontal">
-                    <div class="card-image card-icon">
-                        <img class="img-fluid size-img" src="images/registro.svg">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-body">
-                            <h5 class="center-align">Total de Investigadores Registrados</h5>
-                            <h4 class="center-align">{{investigators.total_inv}}</h4>
+            <div class="row"> 
+                <div class="col s12 m4">
+                    <div class="card horizontal">
+                        <div class="card-image card-icon">
+                            <img class="img-fluid size-img" src="images/registro.svg">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-body">
+                                <h5 class="center-align">Total de Investigadores Registrados</h5>
+                                <h4 class="center-align">{{investigators.total_inv}}</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s12 m8">  
-                <div class="card horizontal">
-                    <div class="card-image card-icon">
-                        <img class="icon-fm img-fluid size-img" src="images/genero.png">
-                    </div>                    
-                    <div class="card-stacked">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col s12 m3 xl4">
-                                    <h5 class="center-align color-w ml-5">Mujeres</h5>
-                                    <h5 class="center-align color-w">{{investigators.inv_womens}}</h5>
+                <div class="col s12 m8">  
+                    <div class="card horizontal">
+                        <div class="card-image card-icon">
+                            <img class="icon-fm img-fluid size-img" src="images/genero.png">
+                        </div>                    
+                        <div class="card-stacked">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col s12 m3 xl4">
+                                        <h5 class="center-align color-w ml-5">Mujeres</h5>
+                                        <h5 class="center-align color-w">{{investigators.inv_womens}}</h5>
+                                    </div>
+                                    <div class="col s12 m3 xl4">
+                                        <h5 class="center-align color-m">Hombres</h5>
+                                        <h5 class="center-align color-m">{{investigators.inv_mens}}</h5>                                
+                                    </div> 
+                                    <div class="col s12 m3 xl4">
+                                        <h5 class="center-align color-g">Sin Contestar</h5>
+                                        <h5 class="center-align color-g">{{inv.investigatorsNot}}</h5>                                
+                                    </div>   
                                 </div>
-                                <div class="col s12 m3 xl4">
-                                    <h5 class="center-align color-m">Hombres</h5>
-                                    <h5 class="center-align color-m">{{investigators.inv_mens}}</h5>                                
-                                </div> 
-                                <div class="col s12 m3 xl4">
-                                    <h5 class="center-align color-g">Sin Contestar</h5>
-                                    <h5 class="center-align color-g">{{inv.investigatorsNot}}</h5>                                
-                                </div>   
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </span>
         <div class="row">
             <div class="col s12">
                 <div class="card">                        
                     <span class="content-button-pdf">
-                        <button class="btn button-pdf" title="PDF" @click="createPDF('rangeAges', 'landscape', 15, 50, 260, 120)">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('rangeAges', 'landscape', 15, 80, 260, 120, false, 'header')">
                             <i class="material-icons">picture_as_pdf</i>
-                        </button>
+                    </button>
                     </span>
                     <div class="card-content center" ref="rangeAges">
                         <span class="card-title">Investigadores por Rango de Edad</span>
@@ -271,11 +273,17 @@
                 });   
         },
         methods:{
-            async createPDF(graph, orientation, x, y, width, height, table = false) {
+            async createPDF(graph, orientation, x, y, width, height, table = false, header = null) {
                 const doc = new jsPDF({ orientation })
                 const data = this[graph]
 
                 if (data.datasets != undefined && data.datasets.length > 0 || table) {
+                    if (header) {
+                        const headerValue = this.$refs[header]
+                        const canvasHeader = await this.$html2canvas(headerValue, options)
+                        doc.addImage(canvasHeader, 'PNG', 15, 15, width, 60)
+                    }
+
                     const el = this.$refs[graph]
                     const options = {
                         type: 'dataURL'

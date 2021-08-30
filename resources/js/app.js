@@ -1,12 +1,11 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
+import router from "./router";
+
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 Vue.use(VueMaterial)
-
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
 
 import Vue from 'vue';
 import VueHtml2Canvas from 'vue-html2canvas';
@@ -19,42 +18,6 @@ Vue.component('doughnut-charts', require('./components/charts/doughnut/doughnut.
 Vue.component('pie-charts', require('./components/charts/pie/pie.vue').default);
 Vue.component('horizontalBar-charts', require('./components/charts/horizontalBar/horizontalBar.vue').default);
 Vue.component('bar-charts', require('./components/charts/bar/bar.vue').default);
-
-import homeComponent from './pages/home/homeComponent';
-import researcherComponent from './pages/researcher/researcherComponent';
-import researchComponent from './pages/research/researchComponent';
-import profileResearchComponent from './pages/profileResearch/profileResearchComponent';
-import currentResearchComponent from './pages/currentResearch/currentResearchComponent';
-
-const router = new VueRouter({
-    routes: [
-        {
-            path: '/',
-            component: homeComponent
-        },
-        {
-            path: '/home',
-            component: homeComponent
-        },
-        {
-            path: '/investigadores',
-            component: researcherComponent
-        },
-        {
-            path: '/research',
-            component: researchComponent
-        },
-        {
-            path: '/profileResearch',
-            component: profileResearchComponent
-        },
-        {
-            path: '/currentResearch',
-            component: currentResearchComponent
-        }
-    ],
-    mode: 'history'
-})
 
 const app = new Vue({
     el: '#app',

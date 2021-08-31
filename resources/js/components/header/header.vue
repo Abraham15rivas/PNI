@@ -46,8 +46,9 @@
               <router-link
                 to="/investigadores"
                 class="collapsible-header"
-                tabindex="0">
-                <span style="font-size: 13px"> Investigadores e Investigadoras</span><i class="material-icons">people</i>
+                tabindex="0"
+              >
+                Investigadores e Investigadoras<i class="material-icons">people</i>
               </router-link>
             </li>
             <li class="waves-effect" :class="[`${this.$root.$route.path === '/research' ? 'active' : ''}`]">
@@ -74,22 +75,9 @@
                 class="collapsible-header"
                 tabindex="0"
               >
-                Módulo de Investigación Actual<i class="material-icons"
-                  >view_module</i
-                >
+                Módulo de Investigación Actual<i class="material-icons">view_module</i>
               </router-link>
             </li>
-            <!--li class="waves-effect">
-              <router-link
-                to="/reports"
-                class="collapsible-header"
-                tabindex="0"
-              >
-                Reportes<i class="material-icons"
-                  >description</i
-                >
-              </router-link>
-            </li-->
           </ul>
         </li>
       </ul>

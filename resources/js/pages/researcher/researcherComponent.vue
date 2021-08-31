@@ -1,57 +1,64 @@
 <template>
     <div class="margin-x">
-        <loader :load="load" />    
-        <div class="row">
-            <div class="col s12">
-                <h5 class="center">
-                    Indicador de Investigadoras e Investigadores Rregistrados en el Programa Nacional de Investigadores
-                </h5>
+        <loader :load="load" />
+        <span ref="header">
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="center">
+                        Indicador de Investigadoras e Investigadores Rregistrados en el Programa Nacional de Investigadores
+                    </h5>
+                </div>
             </div>
-        </div>
-        <div class="row"> 
-            <div class="col s12 m4">
-                <div class="card horizontal">
-                    <div class="card-image card-icon">
-                        <img class="img-fluid size-img" src="images/registro.svg">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-body">
-                            <h5 class="center-align">Total de Investigadores Registrados</h5>
-                            <h4 class="center-align">{{investigators.total_inv}}</h4>
+            <div class="row"> 
+                <div class="col s12 m4">
+                    <div class="card horizontal">
+                        <div class="card-image card-icon">
+                            <img class="img-fluid size-img" src="images/registro.svg">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-body">
+                                <h5 class="center-align">Total de Investigadores Registrados</h5>
+                                <h4 class="center-align">{{investigators.total_inv}}</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s12 m8">  
-                <div class="card horizontal">
-                    <div class="card-image card-icon">
-                        <img class="icon-fm img-fluid size-img" src="images/genero.png">
-                    </div>                    
-                    <div class="card-stacked">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col s12 m3 xl4">
-                                    <h5 class="center-align color-w ml-5">Mujeres</h5>
-                                    <h5 class="center-align color-w">{{investigators.inv_womens}}</h5>
+                <div class="col s12 m8">  
+                    <div class="card horizontal">
+                        <div class="card-image card-icon">
+                            <img class="icon-fm img-fluid size-img" src="images/genero.png">
+                        </div>                    
+                        <div class="card-stacked">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col s12 m3 xl4">
+                                        <h5 class="center-align color-w ml-5">Mujeres</h5>
+                                        <h5 class="center-align color-w">{{investigators.inv_womens}}</h5>
+                                    </div>
+                                    <div class="col s12 m3 xl4">
+                                        <h5 class="center-align color-m">Hombres</h5>
+                                        <h5 class="center-align color-m">{{investigators.inv_mens}}</h5>                                
+                                    </div> 
+                                    <div class="col s12 m3 xl4">
+                                        <h5 class="center-align color-g">Sin Contestar</h5>
+                                        <h5 class="center-align color-g">{{inv.investigatorsNot}}</h5>                                
+                                    </div>   
                                 </div>
-                                <div class="col s12 m3 xl4">
-                                    <h5 class="center-align color-m">Hombres</h5>
-                                    <h5 class="center-align color-m">{{investigators.inv_mens}}</h5>                                
-                                </div> 
-                                <div class="col s12 m3 xl4">
-                                    <h5 class="center-align color-g">Sin Contestar</h5>
-                                    <h5 class="center-align color-g">{{inv.investigatorsNot}}</h5>                                
-                                </div>   
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </span>
         <div class="row">
             <div class="col s12">
-                <div class="card">
-                    <div class="card-content center">
+                <div class="card">                        
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('rangeAges', 'landscape', 15, 80, 260, 120, false, 'header')">
+                            <i class="material-icons">picture_as_pdf</i>
+                    </button>
+                    </span>
+                    <div class="card-content center" ref="rangeAges">
                         <span class="card-title">Investigadores por Rango de Edad</span>
                         <bar-charts v-if="show.dataAge" :chartdata="rangeAges" :height="180"></bar-charts>
                     </div>
@@ -61,7 +68,12 @@
         <div class="row">
             <div class="col s12">
                 <div class="card">
-                    <div class="card-content center">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('datacollection', 'landscape', 15, 50, 260, 120)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content center" ref="datacollection">
                         <span class="card-title">Investigadores por Estados</span>
                         <bar-charts v-if="show.dataState" :chartdata="datacollection" :height="180"></bar-charts>
                     </div>                    
@@ -92,7 +104,12 @@
         <div class="row">
             <div class="col s12">
                 <div class="card">
-                    <div class="card-content center">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('edadGraph', 'landscape', 15, 50, 260, 120)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content center" ref="edadGraph">
                         <span class="card-title">Investigadores por Edades Según su Ubicación Geográfica (Estado)</span>
                         <div class="row" style="padding: 0px 24px">
                             <div class="col s12" v-if="dataStates.length > 0">
@@ -105,15 +122,19 @@
                             </div>
                         </div> 
                         <bar-charts v-if="show.dataStateAge" :chartdata="edadGraph" :options="options" :height="180"></bar-charts>
-                    </div>                    
-                                       
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col m8 offset-m2">
                 <div class="card">
-                    <div class="card-content center">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('promedios', 'landscape', 60, 60, 200, 100, true)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content center" ref="promedios">
                         <span class="card-title">Promedio de Edades</span>
                         <table class="table table-striped table-hover responsive-table">
                             <thead>
@@ -152,7 +173,12 @@
         <div class="row">
             <div class="col s12">
                 <div class="card card-bg">
-                    <div class="card-content center">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('profesions', 'portrait', 10, 10, 190, 220)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content center" ref="profesions">
                         <span class="card-title">Investigadores por Profesión Según el Género</span>
                         <horizontalBar-charts v-if="show.dataState" :chartdata="profesions" :height="380"></horizontalBar-charts>
                     </div>
@@ -163,9 +189,16 @@
 </template>
 
 <script>
+    import moment from 'moment'
+    import jsPDF from 'jspdf'
+    import 'jspdf-autotable'
+
     export default {
         data() {
             return {
+                // Image for pdf
+                canvas: null,
+
                 totalGroupStates: [],
                 total_investigators: "",
                 investigators_mens: "",
@@ -240,6 +273,31 @@
                 });   
         },
         methods:{
+            async createPDF(graph, orientation, x, y, width, height, table = false, header = null) {
+                const doc = new jsPDF({ orientation })
+                const data = this[graph]
+
+                if (data.datasets != undefined && data.datasets.length > 0 || table) {
+                    if (header) {
+                        const headerValue = this.$refs[header]
+                        const canvasHeader = await this.$html2canvas(headerValue, options)
+                        doc.addImage(canvasHeader, 'PNG', 15, 15, width, 60)
+                    }
+
+                    const el = this.$refs[graph]
+                    const options = {
+                        type: 'dataURL'
+                    }
+                    this.canvas = await this.$html2canvas(el, options)
+
+                    doc.addImage(this.canvas, 'PNG', x, y, width, height)
+                    doc.save('reporte.pdf')
+                }
+
+                if (this.canvas) {
+                    this.canvas = null
+                }
+            },
             gruopStates() {
                 this.show.dataState = false;
                 this.dataParish = []

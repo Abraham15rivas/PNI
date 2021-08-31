@@ -144,24 +144,6 @@ class InvestigatorController extends Controller {
                     'female'=>$age->where('id_genero',1)->count()
                 ]);
             }
-
-            /*foreach ($genreGroup as $keyG => $genre) {
-                $genre->ageGroup = $genre->groupBy('age');
-                $ageGroup = collect();
-
-                foreach($genre->ageGroup as $keyA => $age){
-                    $ageGroup->push([$keyA=>count($age)]);
-                }
-                if($keyG == 2){
-                    $val->genreGroup->push(['Masculino'=>$ageGroup]);
-                }elseif($keyG == 1){
-                    $val->genreGroup->push(['Femenino'=>$ageGroup]);
-                }else{
-                    $val->genreGroup->push(['Otro'=>$ageGroup]);
-                }
-                
-            }*/
-
             $groupStateAge->push(["estado"=>$name,"data"=>$val->ageGroup->sortBy('age')]);
         }
 
@@ -404,14 +386,21 @@ class InvestigatorController extends Controller {
                 $search = $arrActual->where('titulo',trim($name));
                 
                 if($search->count() > 0){
-                    $arrActual = $arrActual->map(function ($investigation, $key) use($name) {
+                    $arrActual = $arrActual->map(function ($investigation) use($name, $inv) {
                         if ($investigation["titulo"] == trim($name)) {
                             $investigation["total"]++;
+                            if ($inv->id_genero == 1) {
+                                $investigation["femenino"]++;
+                            } else {
+                                $investigation["masculino"]++;
+                            }
                         }
                         return $investigation;
                     });
                 }else{
-                    $arrActual->push(["titulo"=>trim($name), "id"=>$id ,"total"=>1, "grupo"=>$grupo]);
+                    $famela = ($inv->id_genero == 1) ? 1 : 0;
+                    $male = ($inv->id_genero == 2) ? 1 : 0;
+                    $arrActual->push(["titulo"=>trim($name), "id"=>$id , "femenino"=>$famela, "masculino"=>$male, "total"=>1, "grupo"=>$grupo]);
                 }
             }
         }
@@ -629,7 +618,13 @@ class InvestigatorController extends Controller {
             }
 
             $total = count($val);
-            $groupLine->push(["line_investigation"=>$name,"id"=>$key,"total"=>$total]);
+            $exist = $groupLine->where('line_investigation', $name);
+
+            if (!$exist->isEmpty()) {
+                $exist->first()['total'] += $total;
+            } else {
+                $groupLine->push(["line_investigation"=>$name,"id"=>$key,"total"=>$total]);
+            }
         }
 
         // Tiempo de investigacion actual

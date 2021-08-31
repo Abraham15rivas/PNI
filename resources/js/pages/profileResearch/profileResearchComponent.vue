@@ -1,38 +1,41 @@
 <template>
     <div class="margin-x">
         <loader :load="load" />
-        <div class="row">
-            <div class="col s12">
-                <h5 class="black-text center">
-                    Indicador del Perfil de los Investigadores e Investigaciones Registradas
-                </h5>
+        <span ref="header">
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="black-text center">
+                        Indicador del Perfil de los Investigadores e Investigaciones Registradas
+                    </h5>
+                </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12 m6 offset-m3 l6 offset-l3">
-                <div class="card horizontal">
-                    <div class="card-image card-icon">
-                        <img class="icon-total-register" src="images/registro.svg">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <h5 class="title-card center-align">Total Registrados en el Perfil del Investigador</h5>
+            <div class="row">
+                <div class="col s12 m6 offset-m3 l6 offset-l3">
+                    <div class="card horizontal">
+                        <div class="card-image card-icon">
+                            <img class="icon-total-register" src="images/registro.svg">
                         </div>
-                        <div class="card-action" v-if="show.profileResearcher">
-                            <h2 class="total-register">{{profileResearcher}}</h2>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <h5 class="title-card center-align">Total Registrados en el Perfil del Investigador</h5>
+                            </div>
+                            <div class="card-action" v-if="show.profileResearcher">
+                                <h2 class="total-register">{{profileResearcher}}</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-            
+        </span>            
         <div class="row">
             <div class="col s12 m8 offset-m2">
                 <div class="card">
-                    <!-- <div class="card-content center blue lighten-5"> -->
-                    <div class="card-content center">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('academicLevel', 'landscape', 10, 20, 150, 160, false, 'header')">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content center" ref="academicLevel">
                         <span class="card-title title-card">Distribución de Investigadores por Nivel Académico</span>
                         <bar-charts v-if="show.academicLevel" :chartdata="academicLevel" :height="300"></bar-charts>
                     </div>
@@ -46,7 +49,7 @@
             </div>
         </div>
         
-        <div class="row">
+        <div class="row" ref="header2">
             <div class="col s12 m6 offset-m3">
                 <div class="card horizontal">
                     <div class="card-image card-icon">
@@ -67,7 +70,12 @@
         <div class="row">
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('typeInvestigation', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="typeInvestigation">
                         <span class="card-title title-card">Cantidad de Investigaciones por Tipo de Investigación</span>
                         <horizontalBar-charts  v-if="show.typeInvestigation" :chartdata="typeInvestigation" :height="300"></horizontalBar-charts>
                     </div>
@@ -75,7 +83,12 @@
             </div>
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('lineInvestigation', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="lineInvestigation">
                         <span class="card-title title-card" >Cantidad de Investigaciones por Línea de Investigación</span>
                         <horizontalBar-charts v-if="show.lineInvestigation" :chartdata="lineInvestigation" :height="300" ></horizontalBar-charts>
                     </div>
@@ -87,7 +100,12 @@
         <div class="row">
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('typeInstitution', 'landscape',  10, 20, 150, 160, false, 'header2')">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="typeInstitution">
                         <span class="card-title title-card">Distribución de las Investigaciones por Tipo de Institución</span>
                         <doughnut-charts v-if="show.typeInstitution" :chartdata="typeInstitution" :height="300"></doughnut-charts>
                     </div>
@@ -95,7 +113,12 @@
             </div>
             <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-content">
+                    <span class="content-button-pdf">
+                        <button class="btn button-pdf" title="PDF" @click="createPDF('timeInvestigation', 'landscape', 80, 12, 150, 160)">
+                            <i class="material-icons">picture_as_pdf</i>
+                        </button>
+                    </span>
+                    <div class="card-content" ref="timeInvestigation">
                         <span class="card-title title-card" >Distribución de los Investigadores por Tiempo de Investigación</span>
                        <bar-charts v-if="show.timeInvestigation" :chartdata="timeInvestigation" :height="300"></bar-charts>
                     </div>
@@ -106,9 +129,16 @@
 </template>
 
 <script>
+import moment from 'moment'
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
+
 export default {
     data(){
         return {
+            // Image for pdf
+            canvas: null,
+
             load: false,// Opciones Predefinidas
             options: {
                 legend:  { align: "end" },
@@ -170,7 +200,7 @@ export default {
                     this.show.profileResearch = this.profileResearch ? true : false;
 
                     //Nivel Academico
-                    this.academicLevel = this.groupInv(res.data.academic_levels, 'academic_level', 'Investigadores por Nivel Academico', this.backgroundColor1);
+                    this.academicLevel = this.groupInv(res.data.academic_levels, 'academic_level', 'Investigadores por Nivel Académico', this.backgroundColor1);
                     this.show.academicLevel = true;
 
                     //Tipo de Investigacion
@@ -178,7 +208,7 @@ export default {
                     this.show.typeInvestigation = true;
 
                     //linea de Investigacion
-                    this.lineInvestigation = this.groupInv(res.data.investigations_line, 'line_investigation', 'Lineas de Investigación', this.backgroundColor1);
+                    this.lineInvestigation = this.groupInv(res.data.investigations_line, 'line_investigation', 'Líneas de Investigación', this.backgroundColor1);
                     this.show.lineInvestigation = true;
 
                     //Tipo de Institucion
@@ -199,23 +229,46 @@ export default {
             })
     },
     methods: {
+        async createPDF(graph, orientation, x, y, width, height, table = false, header = null) {
+            const doc = new jsPDF({ orientation })
+            const data = this[graph]
+
+            if (data.datasets != undefined && data.datasets.length > 0 || table) {
+                if (header) {
+                    const headerValue = this.$refs[header]
+                    const canvasHeader = await this.$html2canvas(headerValue, options)
+                    doc.addImage(canvasHeader, 'PNG', 160, 25, 120, 60)
+                }
+
+                const el = this.$refs[graph]
+                const options = {
+                    type: 'dataURL'
+                }
+                this.canvas = await this.$html2canvas(el, options)
+
+                doc.addImage(this.canvas, 'PNG', x, y, width, height)
+                doc.save('reporte.pdf')
+            }
+
+            if (this.canvas) {
+                this.canvas = null
+            }
+        },
         groupInv(items, title, label, color){
             let labels = [];
             let info = []
 
-            if (label != 'Tiempo de Investigación')
+            if (label != 'Tiempo de Investigación') {
                 items.sort((a, b) => a.total - b.total).reverse()
+            } else  {
+                items.sort((a, b) => a.id - b.id)
+            }
 
             items.forEach(item => {
                 let palabra = item[title].toLowerCase();
                 labels.push(palabra[0].toUpperCase() + palabra.slice(1));
                 info.push(item.total);
             });
-
-            /*if (label === 'Tiempo de Investigación')
-            items.forEach(item => {
-                //terminar en casa
-            })*/
 
             let data = {
                 labels: labels,

@@ -37,7 +37,7 @@
             <li class="waves-effect">
               <h5 class="black-text name center">Indicadores</h5>
             </li>
-            <li class="waves-effect" :class="[`${this.$root.$route.path === '/home' ? 'active' : ''}`]">
+            <li class="waves-effect" :class="[`${this.$root.$route.path === '/home' || this.$root.$route.path === '/' ? 'active' : ''}`]">
               <router-link to="/home" class="collapsible-header" tabindex="0">
                 Inicio<i class="material-icons">home</i>
               </router-link>

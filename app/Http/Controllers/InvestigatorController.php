@@ -46,7 +46,7 @@ class InvestigatorController extends Controller {
         foreach($groupByPro as $key => $val){
             $selected = $profesion->where('id_profesion',$key);
 
-            //destructurar el objeto para obtener el nombre de la profesion
+            //Destructurar el objeto para obtener el nombre de la profesion
             foreach($selected as $pro){
                 $name = $pro->profesion;
             }

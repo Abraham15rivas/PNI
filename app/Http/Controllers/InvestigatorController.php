@@ -24,7 +24,7 @@ use Carbon\Carbon;
 
 class InvestigatorController extends Controller {
     
-    public function index() {
+    public function index () {
         //obtener datos masivos
         $investigators = Investigator::get();
         $profesion = Profesion::get();
